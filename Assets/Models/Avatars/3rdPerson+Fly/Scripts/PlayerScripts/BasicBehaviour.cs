@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Normal.Realtime;
 
 // This class manages which player behaviour is active or overriding, and call its local functions.
 // Contains basic setup and common functions used by all the player behaviours.
 public class BasicBehaviour : MonoBehaviour
 {
+	private RealtimeView      _realtimeView;
+	private RealtimeTransform _realtimeTransform;
+
 	public Transform playerCamera;                        // Reference to the camera that focus the player.
 	public float turnSmoothing = 0.06f;                   // Speed of turn when moving to match camera facing.
 	public float sprintFOV = 100f;                        // the FOV to use on the camera when player is sprinting.
@@ -47,6 +51,9 @@ public class BasicBehaviour : MonoBehaviour
 	void Awake ()
 	{
 		// Set up the references.
+		_realtimeView      = GetComponent<RealtimeView>();
+		_realtimeTransform = GetComponent<RealtimeTransform>();
+
 		behaviours = new List<GenericBehaviour> ();
 		overridingBehaviours = new List<GenericBehaviour>();
 		anim = GetComponent<Animator> ();
@@ -62,6 +69,9 @@ public class BasicBehaviour : MonoBehaviour
 
 	void Update()
 	{
+		if (!_realtimeView.isOwnedLocally) return;
+		_realtimeTransform.RequestOwnership();
+
 		// Store the input axes.
 		h = Input.GetAxis("Horizontal");
 		v = Input.GetAxis("Vertical");
@@ -91,6 +101,8 @@ public class BasicBehaviour : MonoBehaviour
 	// Call the FixedUpdate functions of the active or overriding behaviours.
 	void FixedUpdate()
 	{
+		if (!_realtimeView.isOwnedLocally) return;
+		_realtimeTransform.RequestOwnership();
 		// Call the active behaviour if no other is overriding.
 		bool isAnyBehaviourActive = false;
 		if (behaviourLocked > 0 || overridingBehaviours.Count == 0)
@@ -124,6 +136,8 @@ public class BasicBehaviour : MonoBehaviour
 	// Call the LateUpdate functions of the active or overriding behaviours.
 	private void LateUpdate()
 	{
+		if (!_realtimeView.isOwnedLocally) return;
+		_realtimeTransform.RequestOwnership();
 		// Call the active behaviour if no other is overriding.
 		if (behaviourLocked > 0 || overridingBehaviours.Count == 0)
 		{
