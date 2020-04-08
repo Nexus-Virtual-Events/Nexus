@@ -26,7 +26,7 @@ public class BasicBehaviour : MonoBehaviour
 	private List<GenericBehaviour> overridingBehaviours;  // List of current overriding behaviours.
 	private Rigidbody rBody;                              // Reference to the player's rigidbody.
 	private int groundedBool;                             // Animator variable related to whether or not the player is on the ground.
-	private Vector3 colExtents;                           // Collider extents for ground test. 
+	private Vector3 colExtents;                           // Collider extents for ground test.
 
 	// Get current horizontal and vertical axes.
 	public float GetH { get { return h; } }
@@ -349,7 +349,7 @@ public abstract class GenericBehaviour : MonoBehaviour
 
 	// Protected, virtual functions can be overridden by inheriting classes.
 	// The active behaviour will control the player actions with these functions:
-	
+
 	// The local equivalent for MonoBehaviour's FixedUpdate function.
 	public virtual void LocalFixedUpdate() { }
 	// The local equivalent for MonoBehaviour's LateUpdate function.

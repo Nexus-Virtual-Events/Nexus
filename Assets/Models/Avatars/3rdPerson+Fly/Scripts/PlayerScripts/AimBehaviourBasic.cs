@@ -121,7 +121,7 @@ public class AimBehaviourBasic : GenericBehaviour
 	}
 
  	// Draw the crosshair when aiming.
-	void OnGUI () 
+	void OnGUI ()
 	{
 		if (crosshair)
 		{

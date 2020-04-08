@@ -26,7 +26,7 @@ public class FlyBehaviour : GenericBehaviour
 	void Update()
 	{
 		// Toggle fly by input, only if there is no overriding state or temporary transitions.
-		if (Input.GetButtonDown(flyButton) && !behaviourManager.IsOverriding() 
+		if (Input.GetButtonDown(flyButton) && !behaviourManager.IsOverriding()
 			&& !behaviourManager.GetTempLockStatus(behaviourManager.GetDefaultBehaviour))
 		{
 			fly = !fly;
