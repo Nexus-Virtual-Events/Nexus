@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 {
 
     public TMP_InputField playerName;
+    public string scene;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,6 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
       ThirdPersonOrbitCamBasic.playerName = playerName.text;
-      SceneManager.LoadScene("Pinning Scene");
+      SceneManager.LoadScene(scene);
     }
 }
