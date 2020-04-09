@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 // This class corresponds to the 3rd person camera features.
-public class ThirdPersonOrbitCamBasic : MonoBehaviour 
+public class ThirdPersonOrbitCamBasic : MonoBehaviour
 {
 	public Transform player;                                           // Player's reference.
 	public Vector3 pivotOffset = new Vector3(0.0f, 1.0f,  0.0f);       // Offset to repoint the camera.
@@ -9,7 +9,7 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 	public float smooth = 10f;                                         // Speed of camera responsiveness.
 	public float horizontalAimingSpeed = 6f;                           // Horizontal turn speed.
 	public float verticalAimingSpeed = 6f;                             // Vertical turn speed.
-	public float maxVerticalAngle = 30f;                               // Camera max clamp angle. 
+	public float maxVerticalAngle = 30f;                               // Camera max clamp angle.
 	public float minVerticalAngle = -60f;                              // Camera min clamp angle.
 	public string XAxis = "Analog X";                                  // The default horizontal axis input name.
 	public string YAxis = "Analog Y";                                  // The default vertical axis input name.
@@ -30,6 +30,10 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 	// Get the camera horizontal angle.
 	public float GetH { get { return angleH; } }
 
+	// Player Name
+	public string text = "Player Name";
+	private GameObject _sign;
+
 	void Awake()
 	{
 		// Reference to the camera transform.
@@ -49,9 +53,22 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 		defaultFOV = cam.GetComponent<Camera>().fieldOfView;
 		angleH = player.eulerAngles.y;
 
+		_sign = new GameObject("player_label");
+
 		ResetTargetOffsets ();
 		ResetFOV ();
 		ResetMaxVerticalAngle();
+	}
+
+	private void Start() {
+		TextMesh tm = _sign.AddComponent<TextMesh>();
+		tm.text = text;
+		tm.color = new Color(0.8f, 0.8f, 0.8f);
+		tm.fontStyle = FontStyle.Bold;
+		tm.alignment = TextAlignment.Center;
+		tm.anchor = TextAnchor.MiddleCenter;
+		tm.characterSize = 0.065f;
+		tm.fontSize = 30;
 	}
 
 	void Update()
@@ -81,10 +98,10 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 		for(float zOffset = targetCamOffset.z; zOffset <= 0; zOffset += 0.5f)
 		{
 			noCollisionOffset.z = zOffset;
-			if (DoubleViewingPosCheck (baseTempPosition + aimRotation * noCollisionOffset, Mathf.Abs(zOffset)) || zOffset == 0) 
+			if (DoubleViewingPosCheck (baseTempPosition + aimRotation * noCollisionOffset, Mathf.Abs(zOffset)) || zOffset == 0)
 			{
 				break;
-			} 
+			}
 		}
 
 		// Repostition the camera.
@@ -92,6 +109,8 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 		smoothCamOffset = Vector3.Lerp(smoothCamOffset, noCollisionOffset, smooth * Time.deltaTime);
 
 		cam.position =  player.position + camYRotation * smoothPivotOffset + aimRotation * smoothCamOffset;
+		_sign.transform.rotation = Camera.main.transform.rotation;
+		_sign.transform.position = player.position + Vector3.up * 2.15f;
 	}
 
 	// Set camera offsets to custom values.

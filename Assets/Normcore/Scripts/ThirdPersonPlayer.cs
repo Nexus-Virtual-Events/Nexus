@@ -9,6 +9,7 @@ using Normal.Realtime;
         private RealtimeTransform _realtimeTransform;
 
         private void Awake() {
+
             _realtimeView      = GetComponent<RealtimeView>();
             _realtimeTransform = GetComponent<RealtimeTransform>();
         }
