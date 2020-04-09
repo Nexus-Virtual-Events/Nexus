@@ -31,7 +31,7 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 	public float GetH { get { return angleH; } }
 
 	// Player Name
-	public string text = "Player Name";
+	public static string playerName;
 	private GameObject _sign;
 
 	void Awake()
@@ -62,7 +62,7 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 
 	private void Start() {
 		TextMesh tm = _sign.AddComponent<TextMesh>();
-		tm.text = text;
+		tm.text = playerName;
 		tm.color = new Color(0.8f, 0.8f, 0.8f);
 		tm.fontStyle = FontStyle.Bold;
 		tm.alignment = TextAlignment.Center;
