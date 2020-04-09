@@ -25,6 +25,6 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
       ThirdPersonOrbitCamBasic.playerName = playerName.text;
-      SceneManager.LoadScene("Normcore Graduation");
+      SceneManager.LoadScene("Pinning Scene");
     }
 }
