@@ -5,23 +5,42 @@ using UnityEngine.SceneManagement;
 // using UnityEngine.UI;
 // using TMPro;
 
-public class SceneSelector : MonoBehaviour
+namespace Michsky.UI.ModernUIPack
 {
+  public class SceneSelector : MonoBehaviour
+  {
 
-    // public TMP_Dropdown sceneSelector;
+      // public TMP_Dropdown sceneSelector;
+      public Animator transition;
+      public float transitionDuration = 1f;
 
-    public void LoadCircle()
-    {
-      if(SceneManager.GetActiveScene().name == "Bowl Scene") SceneManager.LoadScene("Pinning Scene");
-    }
+      public void LoadCircle()
+      {
+        StartCoroutine(TransitionToScene("Pinning Scene"));
+      }
 
-    public void LoadBowl()
-    {
-      if(SceneManager.GetActiveScene().name == "Pinning Scene") SceneManager.LoadScene("Bowl Scene");
-    }
+      public void LoadBowl()
+      {
+        StartCoroutine(TransitionToScene("Bowl Scene"));
+      }
 
-    // public void SelectScene()
-    // {
-    //   if(SceneManager.GetActiveScene().name != sceneSelector.options[sceneSelector.value].text) SceneManager.LoadScene(sceneSelector.options[sceneSelector.value].text);
-    // }
+      IEnumerator TransitionToScene(string scene)
+      {
+        // transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionDuration);
+
+        if(SceneManager.GetActiveScene().name != scene)
+        {
+          Debug.Log("Transitioning to " + scene);
+          Loading.sceneString = scene;
+          SceneManager.LoadScene("Loading");
+        }
+
+      }
+
+      // public void SelectScene()
+      // {
+      //   if(SceneManager.GetActiveScene().name != sceneSelector.options[sceneSelector.value].text) SceneManager.LoadScene(sceneSelector.options[sceneSelector.value].text);
+      // }
+  }
 }
