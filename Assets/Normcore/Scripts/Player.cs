@@ -36,6 +36,11 @@ public class Player : MonoBehaviour {
             _realtimeTransform = GetComponent<RealtimeTransform>();
         }
 
+        private void Start(){
+            InfoSync _InfoSync = GetComponent<InfoSync>();
+            _InfoSync.SetName(PlayerPrefs.GetString("name"));
+        }
+
 
         private bool isCameraParented = false;
 
