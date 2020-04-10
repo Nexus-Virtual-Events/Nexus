@@ -2,30 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 
-public class MainMenu : MonoBehaviour
+public class PlayerName : MonoBehaviour
 {
 
-    public TMP_InputField playerName;
-    public string scene;
+    public static string playerName;
+    public TMP_Text displayName;
 
     // Start is called before the first frame update
     void Start()
     {
-
+      displayName.text = playerName;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-    }
-
-    public void StartGame()
-    {
-      PlayerName.playerName = playerName.text;
-      SceneManager.LoadScene(scene);
     }
 }
