@@ -21,6 +21,10 @@ public class Player : MonoBehaviour {
         float shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
         float maxShift = 1000.0f; //Maximum speed when holdin gshift
         float camSens = 0.25f; //How sensitive it with mouse
+
+        private float offsetx = 0f;
+        private float offsety = 5f;
+        private float offsetz = -10f;
        
         private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
         private float totalRun= 1.0f;
@@ -44,6 +48,10 @@ public class Player : MonoBehaviour {
             if (!isCameraParented) {
                 m_MainCamera = Camera.main.gameObject;
                 m_MainCamera.transform.parent = transform;
+                Vector3 offset = new Vector3(offsetx, offsety, offsetz);
+                m_MainCamera.transform.position = transform.position + offset;
+                m_MainCamera.transform.LookAt(transform);
+
                 isCameraParented = true;
             }
 
