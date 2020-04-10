@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-      ThirdPersonOrbitCamBasic.playerName = playerName.text;
+      // ThirdPersonOrbitCamBasic.playerName = playerName.text;
       SceneManager.LoadScene(scene);
     }
 }

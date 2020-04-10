@@ -13,8 +13,6 @@ namespace Normal.Realtime {
         [SerializeField] private RealtimeAvatar.LocalPlayer _localPlayer;
 #pragma warning restore 0649
 
-        public GameObject localSelfAvatarPrefab;
-
         public GameObject localAvatarPrefab { get { return _localAvatarPrefab; } set { SetLocalAvatarPrefab(value); } }
 
         public RealtimeAvatar                  localAvatar { get; private set; }
@@ -71,15 +69,8 @@ namespace Normal.Realtime {
         }
 
         public void _RegisterAvatar(int clientID, RealtimeAvatar avatar) {
-            Debug.Log("Register Avatar");
-
             if (avatars.ContainsKey(clientID)) {
-                Debug.Log(gameObject.name);
-                string str = UnityEngine.StackTraceUtility.ExtractStackTrace ();
-
-                Debug.Log(str);
                 Debug.LogError("RealtimeAvatar registered more than once for the same clientID (" + clientID + "). This is a bug!");
-                return;
             }
             avatars[clientID] = avatar;
             
@@ -125,12 +116,9 @@ namespace Normal.Realtime {
                 DestroyAvatarIfNeeded();
                 CreateAvatarIfNeeded();
             }
-
         }
-
+        
         public void CreateAvatarIfNeeded() {
-            Debug.Log("!!! >>>>");
-
             if (!_realtime.connected) {
                 Debug.LogError("RealtimeAvatarManager: Unable to create avatar. Realtime is not connected to a room.");
                 return;
@@ -144,12 +132,7 @@ namespace Normal.Realtime {
                 return;
             }
 
-            Debug.Log(">>>> INSTANTIATE");
-            GameObject avatarGameObject = Realtime.Instantiate(localSelfAvatarPrefab.name, true, true, true, _realtime);
-            
-            AvatarTypeHandler ahScript = avatarGameObject.GetComponent<AvatarTypeHandler>();
-            ahScript.SetAsSelf();
-
+            GameObject avatarGameObject = Realtime.Instantiate(_localAvatarPrefab.name, true, true, true, _realtime);
             if (avatarGameObject == null) {
                 Debug.LogError("RealtimeAvatarManager: Failed to instantiate RealtimeAvatar prefab for the local player.");
                 return;
@@ -163,8 +146,6 @@ namespace Normal.Realtime {
 
             localAvatar.localPlayer = _localPlayer;
             localAvatar.deviceType = GetRealtimeAvatarDeviceTypeForLocalPlayer();
-
-
         }
 
         public void DestroyAvatarIfNeeded() {
