@@ -37,8 +37,8 @@ public class Player : MonoBehaviour {
         }
 
         private void Start(){
-            InfoSync _InfoSync = GetComponent<InfoSync>();
-            _InfoSync.SetName(PlayerPrefs.GetString("name"));
+            // InfoSync _InfoSync = GetComponent<InfoSync>();
+            // _InfoSync.SetName(PlayerPrefs.GetString("name"));
         }
 
 
