@@ -34,6 +34,7 @@ namespace Normal.Realtime.Examples
         private float totalRun = 1.0f;
 
         GameObject m_MainCamera;
+        EventManager eventManager;
 
         private void Awake()
         {
@@ -43,8 +44,14 @@ namespace Normal.Realtime.Examples
 
         private void Start()
         {
-            // InfoSync _InfoSync = GetComponent<InfoSync>();
-            // _InfoSync.SetName(PlayerPrefs.GetString("name"));
+            eventManager = GameObject.Find("EventManagerObject").GetComponent<EventManager>();
+            eventManager.OnEventsChange.AddListener(Ping);
+            Debug.Log("Event manager set!");
+        }
+
+        void Ping()
+        {
+            //transform.Rotate(new Vector3(20f, 0f, 0f) * Time.deltaTime);
         }
 
 

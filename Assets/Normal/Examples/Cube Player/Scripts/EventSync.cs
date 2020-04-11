@@ -6,7 +6,7 @@ using Normal.Realtime;
 public class EventSync : RealtimeComponent
 {
 
-    public RealtimeEventsScript realtimeAdmin;
+    public EventManager eventManager;
 
     private EventSyncModel _model;
 
@@ -26,7 +26,7 @@ public class EventSync : RealtimeComponent
             if (_model != null)
             {
                 // Update the mesh render to match the new model
-                UpdateName();
+                UpdateEvents();
 
                 // Register for events so we'll know if the color changes later
                 _model.eventsDidChange += EventsDidChange;
@@ -37,13 +37,13 @@ public class EventSync : RealtimeComponent
     private void EventsDidChange(EventSyncModel model, string value)
     {
         // Update the mesh renderer
-        UpdateName();
+        UpdateEvents();
     }
 
-    private void UpdateName()
+    private void UpdateEvents()
     {
         // Get the color from the model and set it on the mesh renderer.
-        _playerNameText.text = _model.events;
+        eventManager.events = _model.events;
     }
 
     public void SetEvent(string eventString)
