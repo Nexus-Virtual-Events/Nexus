@@ -56,18 +56,23 @@ namespace Normal.Realtime.Examples
 
         private Vector3 offset = new Vector3(0f, 0f, 0f);
 
+        private string _name;
+        private NameSync _nameSync;
 
         private void Update()
         {
             if (!isNameSet)
             {
+                _nameSync = GameObject.FindObjectOfType<NameSync>();
+                _name = PlayerPrefs.GetString("playerName");
+                _nameSync.SetName(_name);
                 nameText = Instantiate(nameTextPrefab, transform.position + offset, Quaternion.identity);
                 GetComponent<NameSync>()._playerNameText = nameText;
                 isNameSet = true;
             }
 
             nameText.transform.position = transform.position + offset;
-            nameText.transform.LookAt((nameText.transform.position - Camera.main.transform.position)*10);
+            nameText.transform.LookAt((nameText.transform.position - Camera.main.transform.position)*100);
 
             // If this CubePlayer prefab is not owned by this client, bail.
             if (!_realtimeView.isOwnedLocally)
