@@ -6,6 +6,7 @@ namespace Michsky.UI.ModernUIPack {
         private Realtime _realtime;
 
         public ModalWindowManager welcomeWindow;
+        public NotificationManager connectedNotification;
 
         private void Awake() {
             // Get the Realtime component on this game object
@@ -29,6 +30,11 @@ namespace Michsky.UI.ModernUIPack {
         public void ShowWelcomeWindow()
         {
             welcomeWindow.OpenWindow();
+        }
+
+        public void ShowConnectedNotification()
+        {
+            connectedNotification.OpenNotification();
         }
     }
 }
