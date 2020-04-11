@@ -21,22 +21,19 @@ namespace Normal.Realtime.Examples
         space : Moves camera on X and Z axis only.  So camera doesn't gain any height*/
 
 
-        float mainSpeed = 5.0f; //regular speed
+        float mainSpeed = 10.0f; //regular speed
         float shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
-        float maxShift = 10.0f; //Maximum speed when holdin gshift
+        float maxShift = 1000.0f; //Maximum speed when holdin gshift
         float camSens = 0.25f; //How sensitive it with mouse
 
         private float offsetx = 0f;
         private float offsety = 1.25f;
-        private float offsetz = -2.5f;
+        private float offsetz = -2f;
 
         private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
         private float totalRun = 1.0f;
 
         GameObject m_MainCamera;
-
-        public TMP_Text nameTextPrefab;
-        private TMP_Text nameText;
 
         private void Awake()
         {
@@ -52,26 +49,6 @@ namespace Normal.Realtime.Examples
 
 
         private bool isCameraParented = false;
-        private bool isNameSet = false;
-
-        private Vector3 offset = new Vector3(0f, 0f, 0f);
-
-        private string _name;
-        private NameSync _nameSync;
-
-        private void FixedUpdate(){
-            if (!isNameSet)
-            {
-                _nameSync = GameObject.FindObjectOfType<NameSync>();
-                nameText = Instantiate(nameTextPrefab, transform.position + offset, Quaternion.identity);
-                GetComponent<NameSync>()._playerNameText = nameText;
-                isNameSet = true;
-            }
-
-            nameText.transform.position = transform.position + offset;
-            nameText.transform.LookAt((nameText.transform.position - Camera.main.transform.position)*100);
-
-        }
 
         private void Update()
         {
