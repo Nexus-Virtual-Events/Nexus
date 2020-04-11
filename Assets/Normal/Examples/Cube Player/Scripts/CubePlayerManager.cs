@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using Normal.Realtime;
 
-namespace Normal.Realtime.Examples {
+namespace Michsky.UI.ModernUIPack {
     public class CubePlayerManager : MonoBehaviour {
         private Realtime _realtime;
+
+        public ModalWindowManager welcomeWindow;
 
         private void Awake() {
             // Get the Realtime component on this game object
@@ -21,6 +23,12 @@ namespace Normal.Realtime.Examples {
                            ownedByClient: true,                // Make sure the RealtimeView on this prefab is owned by this client
                 preventOwnershipTakeover: true,                // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
                              useInstance: realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
+            ShowWelcomeWindow();
+        }
+
+        public void ShowWelcomeWindow()
+        {
+            welcomeWindow.OpenWindow();
         }
     }
 }

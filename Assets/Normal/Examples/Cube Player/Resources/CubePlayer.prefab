@@ -100,11 +100,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _realtime: {fileID: 0}
-  _sceneViewUUID: 20d7e44d1a596f42bdf8928012675eab
+  _sceneViewUUID: 
   _sceneViewOwnedByCreatingClient: 1
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _isRootPrefabView: 1
   _components:
   - componentID: 1
     component: {fileID: -7336106641282877822}
@@ -175,6 +175,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4469541641394377828}
     m_Modifications:
+    - target: {fileID: 94518228940472873, guid: 7909ec8de3448423dadbb7bdb1f368f1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21700449227511232, guid: 2f17e8bb3967fe14093d5fec798fffd9,
+        type: 2}
     - target: {fileID: 2439314633855899928, guid: 7909ec8de3448423dadbb7bdb1f368f1,
         type: 3}
       propertyPath: m_Name
@@ -253,7 +259,7 @@ PrefabInstance:
     - target: {fileID: 2467135175555165550, guid: 7909ec8de3448423dadbb7bdb1f368f1,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1.5
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 2467135175555165550, guid: 7909ec8de3448423dadbb7bdb1f368f1,
         type: 3}
@@ -320,6 +326,28 @@ PrefabInstance:
       propertyPath: m_text
       value: Sample text
       objectReference: {fileID: 0}
+    - target: {fileID: 7350305958875822869, guid: 7909ec8de3448423dadbb7bdb1f368f1,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350305958875822869, guid: 7909ec8de3448423dadbb7bdb1f368f1,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350305958875822869, guid: 7909ec8de3448423dadbb7bdb1f368f1,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f17e8bb3967fe14093d5fec798fffd9,
+        type: 2}
+    - target: {fileID: 7350305958875822869, guid: 7909ec8de3448423dadbb7bdb1f368f1,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 21700449227511232, guid: 2f17e8bb3967fe14093d5fec798fffd9,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7909ec8de3448423dadbb7bdb1f368f1, type: 3}
 --- !u!224 &6082392954929904600 stripped

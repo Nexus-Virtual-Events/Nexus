@@ -6,7 +6,7 @@ namespace Normal.Realtime.Examples
 {
     public class CubePlayer : MonoBehaviour
     {
-        public float speed = 5.0f;
+        public float speed = 2.0f;
 
         private RealtimeView _realtimeView;
         private RealtimeTransform _realtimeTransform;
@@ -23,7 +23,7 @@ namespace Normal.Realtime.Examples
 
         float mainSpeed = 10.0f; //regular speed
         float shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
-        float maxShift = 1000.0f; //Maximum speed when holdin gshift
+        float maxShift = 10.0f; //Maximum speed when holdin gshift
         float camSens = 0.25f; //How sensitive it with mouse
 
         private float offsetx = 0f;
