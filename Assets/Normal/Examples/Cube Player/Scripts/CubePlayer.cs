@@ -23,7 +23,7 @@ namespace Normal.Realtime.Examples
 
         float mainSpeed = 10.0f; //regular speed
         float shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
-        float maxShift = 10.0f; //Maximum speed when holdin gshift
+        float maxShift = 100.0f; //Maximum speed when holdin gshift
         float camSens = 0.25f; //How sensitive it with mouse
 
         private float offsetx = 0f;
