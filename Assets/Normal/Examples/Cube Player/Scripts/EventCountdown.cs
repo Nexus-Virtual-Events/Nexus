@@ -6,14 +6,17 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using Normal.Realtime;
 using Michsky.UI.ModernUIPack;
+using System;
 
 namespace Normal.Realtime.Examples
 {
     public class EventCountdown : MonoBehaviour
     {
 
-        private float currentTime = 0f;
-        public float countdownDuration;
+        private DateTime currentTime;
+        public int countdownDuration;
+        private DateTime startTime;
+        private TimeSpan timeLeft;
         public TMP_Text eventStartingNotificationDescription;
         public string scene = "The Bowl";
         private EventManager eventManager;
@@ -25,7 +28,8 @@ namespace Normal.Realtime.Examples
         void Start()
         {
             Debug.Log("Event countdown starting!!!!");
-            currentTime = countdownDuration;
+            currentTime = DateTime.Now;
+            startTime = DateTime.Now.AddSeconds(countdownDuration);
             eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
             eventManager.OnEventsChange.AddListener(ReceiveEvent);
             Debug.Log("Event manager from EventCountdown");
@@ -43,7 +47,7 @@ namespace Normal.Realtime.Examples
                 scene = "The Bowl";
             }
 
-            countdownDuration = 10.0f;
+            countdownDuration = 10;
             if (eventManager.events[1] == '1')
             {
                 Debug.Log("Initializing countdown");
@@ -51,11 +55,11 @@ namespace Normal.Realtime.Examples
             else
             {
                 Debug.Log("Resetting countdown");
-                currentTime = countdownDuration;
+                currentTime = DateTime.Now;
+                startTime = DateTime.Now.AddSeconds(countdownDuration);
             }
             
         }
-
 
         // Update is called once per frame
         void Update()
@@ -64,18 +68,16 @@ namespace Normal.Realtime.Examples
 
             if (eventManager.events[1] == '1')
             {
-                if (currentTime > 0)
-                {
-                    currentTime -= 1 * Time.deltaTime;
-                }
-                else
+                timeLeft = startTime - currentTime;
+
+                if (timeLeft <= TimeSpan.Zero)
                 {
                     GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
                 }
                 Loading.sceneString = scene;
                 SceneManager.LoadScene("Loading");
             }
-            eventStartingNotificationDescription.text = "A virtual event is starting! You will automatically join the event in " + currentTime.ToString("0") + " seconds.";
+            eventStartingNotificationDescription.text = "A virtual event is starting! You will automatically join the event in " + string.Format("{0}", timeLeft.Seconds) + " seconds.";
         }
 
 
