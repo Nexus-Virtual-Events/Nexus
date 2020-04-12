@@ -9,7 +9,8 @@ public class AdminPanel : MonoBehaviour
     public TMP_Text buttonText;
     public TMP_Text buttonHighlightedText;
 
-    private int _eventStatus = 0;
+    public int eventStatus = 0;
+    public int eventIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,22 +24,27 @@ public class AdminPanel : MonoBehaviour
         
     }
 
-    public void ChangeEventStatus(int eventIndex)
+    public void ChangeEventStatus()
     {
         if(buttonText.text == "CHOOSE")
         {
             buttonText.text = "END";
             buttonHighlightedText.text = "CONFIRM";
 
-            _eventStatus = 1;
+            eventStatus = 1;
         }
         else
         {
             buttonText.text = "CHOOSE";
             buttonHighlightedText.text = "START";
 
-            _eventStatus = 0;
+            eventStatus = 0;
         }
         
+    }
+
+    public void ChangeSelectedEvent(int selectedIndex)
+    {
+        eventIndex = selectedIndex;
     }
 }
