@@ -56,7 +56,6 @@ namespace Normal.Realtime.Examples
                 currentTime = DateTime.Now;
                 startTime = DateTime.Now.AddSeconds(countdownDuration);
             }
-
         }
 
         // Update is called once per frame
@@ -83,4 +82,3 @@ namespace Normal.Realtime.Examples
 
     }
 }
-
