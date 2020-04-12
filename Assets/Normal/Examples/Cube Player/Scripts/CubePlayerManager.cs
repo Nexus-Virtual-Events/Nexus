@@ -6,7 +6,9 @@ namespace Michsky.UI.ModernUIPack {
         private Realtime _realtime;
 
         public ModalWindowManager welcomeWindow;
+        public ModalWindowManager settingsWindow;
         public NotificationManager connectedNotification;
+        public GameObject grassTerrain;
 
         private void Awake() {
             // Get the Realtime component on this game object
@@ -35,6 +37,29 @@ namespace Michsky.UI.ModernUIPack {
         public void ShowConnectedNotification()
         {
             connectedNotification.OpenNotification();
+        }
+
+        public void ShowSettingsWindow()
+        {
+            settingsWindow.OpenWindow();
+        }
+
+        public void SetGraphicsSetting(int settingIndex)
+        {
+            QualitySettings.SetQualityLevel(settingIndex);
+            if (settingIndex == 0)
+            {
+                grassTerrain.GetComponent<Terrain>().enabled = false;
+            }
+            else
+            {
+                grassTerrain.GetComponent<Terrain>().enabled = true;
+            }
+        }
+
+        public void ToggleGrass()
+        {
+            grassTerrain.GetComponent<Terrain>().enabled = !grassTerrain.GetComponent<Terrain>().enabled;
         }
     }
 }
