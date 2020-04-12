@@ -38,13 +38,15 @@ namespace Michsky.UI.ModernUIPack
                 scene = "The Bowl";
             }
 
+            countdownDuration = 60;
             if(eventManager.events[1] == '1')
             {
-                countdownDuration = 60;
+                Debug.Log("Initializing countdown");
             }
             else
             {
-                countdownDuration = 0;  
+                Debug.Log("Resetting countdown");
+                currentTime = countdownDuration;
             }
 
         }

@@ -25,7 +25,7 @@ namespace Michsky.UI.ModernUIPack {
         private void Start()
         {
             eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
-            eventManager.OnEventsChange.AddListener(ShowEventStartingNotification);
+            eventManager.OnEventsChange.AddListener(ReactToEvent);
         }
 
         private void DidConnectToRoom(Realtime realtime) {
@@ -49,9 +49,17 @@ namespace Michsky.UI.ModernUIPack {
             connectedNotification.OpenNotification();
         }
 
-        public void ShowEventStartingNotification()
+        public void ReactToEvent()
         {
-            eventStartingNotification.OpenNotification();
+            Debug.Log("ReactToEvents" + eventManager.events);
+            if (eventManager.events[1] == '1')
+            {
+                eventStartingNotification.OpenNotification();
+            }
+            else if (eventManager.events[1] == '0')
+            {
+                eventStartingNotification.CloseNotification();
+            }
         }
 
         public void ShowSettingsWindow()
