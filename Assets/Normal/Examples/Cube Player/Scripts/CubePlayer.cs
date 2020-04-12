@@ -7,7 +7,7 @@ namespace Normal.Realtime.Examples
     public class CubePlayer : MonoBehaviour
     {
 
-        private RealtimeView _realtimeView;
+        public RealtimeView _realtimeView;
         private RealtimeTransform _realtimeTransform;
 
         /*

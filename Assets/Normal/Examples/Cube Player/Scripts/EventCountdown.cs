@@ -65,10 +65,11 @@ namespace Normal.Realtime.Examples {
                     }
                     else
                     {
-                        foreach (GameObject player in (GameObject.FindGameObjectsWithTag("Player"))) {
-                            if (player.GetComponent<CubePlayer>().isLocallyOwned()) {
-                            Realtime.Destroy(player);
-                            }
+                    //foreach (GameObject player in (GameObject.FindGameObjectsWithTag("Player"))) {
+                    //    if (player.GetComponent<CubePlayer>().isLocallyOwned()) {
+                    //    //Realtime.Destroy(player);
+                    //    }
+                        GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
                     }
                         Loading.sceneString = scene;
                         SceneManager.LoadScene("Loading");

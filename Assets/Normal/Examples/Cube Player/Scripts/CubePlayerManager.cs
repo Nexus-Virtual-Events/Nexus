@@ -88,7 +88,7 @@ namespace Michsky.UI.ModernUIPack {
 
         public void Respawn()
         {
-            Realtime.Destroy(localPlayer);
+            GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
             Loading.sceneString = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("Loading");
         }
