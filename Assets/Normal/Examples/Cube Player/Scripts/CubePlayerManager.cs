@@ -8,6 +8,7 @@ namespace Michsky.UI.ModernUIPack {
         public ModalWindowManager welcomeWindow;
         public ModalWindowManager settingsWindow;
         public NotificationManager connectedNotification;
+        public NotificationManager eventStartingNotification;
         public GameObject grassTerrain;
 
         private void Awake() {
@@ -37,6 +38,11 @@ namespace Michsky.UI.ModernUIPack {
         public void ShowConnectedNotification()
         {
             connectedNotification.OpenNotification();
+        }
+
+        public void ShowEventStartingNotification()
+        {
+            eventStartingNotification.OpenNotification();
         }
 
         public void ShowSettingsWindow()
