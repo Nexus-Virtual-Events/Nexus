@@ -284,8 +284,8 @@ GameObject:
   - component: {fileID: 152618871}
   - component: {fileID: 152618870}
   - component: {fileID: 152618867}
-  - component: {fileID: 152618868}
   - component: {fileID: 152618869}
+  - component: {fileID: 152618868}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -310,11 +310,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 152618866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23227288f1ba4464c96c877a89adadd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 45e25dbcc6e13034f8ec6a188d79e02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: {fileID: 0}
-  scene: The Bowl
+  buttonText: {fileID: 1394472887}
+  buttonHighlightedText: {fileID: 1048344125}
 --- !u!114 &152618869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2260,7 +2260,7 @@ PrefabInstance:
     - target: {fileID: 114068356456235682, guid: b92332d04cb21b244b96090db93b2ae5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114068356456235682, guid: b92332d04cb21b244b96090db93b2ae5,
         type: 3}
@@ -2275,7 +2275,7 @@ PrefabInstance:
     - target: {fileID: 114068356456235682, guid: b92332d04cb21b244b96090db93b2ae5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartGame
+      value: StartEvent
       objectReference: {fileID: 0}
     - target: {fileID: 114068356456235682, guid: b92332d04cb21b244b96090db93b2ae5,
         type: 3}
@@ -2644,6 +2644,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1028800074}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1048344125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114658086615100504, guid: b92332d04cb21b244b96090db93b2ae5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1028800074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1089904975
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,6 +3142,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1394472887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114438997644334570, guid: b92332d04cb21b244b96090db93b2ae5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1028800074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1909299425
 GameObject:
   m_ObjectHideFlags: 0
