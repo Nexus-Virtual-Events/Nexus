@@ -56,6 +56,11 @@ namespace Normal.Realtime.Examples
                 currentTime = DateTime.Now;
                 startTime = DateTime.Now.AddSeconds(countdownDuration);
             }
+<<<<<<< HEAD
+=======
+
+        }
+>>>>>>> parent of d4a42ea... disconnect function + got rid of some errors
 
         }
 
