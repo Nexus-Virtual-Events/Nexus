@@ -12,6 +12,7 @@ namespace Michsky.UI.ModernUIPack {
         public NotificationManager eventStartingNotification;
         public GameObject grassTerrain;
         private EventManager eventManager;
+        private GameObject localPlayer;
 
         private void Awake() {
             // Get the Realtime component on this game object
@@ -30,7 +31,7 @@ namespace Michsky.UI.ModernUIPack {
 
         private void DidConnectToRoom(Realtime realtime) {
             // Instantiate the CubePlayer for this client once we've successfully connected to the room
-            Realtime.Instantiate("CubePlayer",                 // Prefab name
+            localPlayer = Realtime.Instantiate("CubePlayer",                 // Prefab name
                                 position: Vector3.up,          // Start 1 meter in the air
                                 rotation: Quaternion.identity, // No rotation
                            ownedByClient: true,                // Make sure the RealtimeView on this prefab is owned by this client
@@ -87,6 +88,7 @@ namespace Michsky.UI.ModernUIPack {
 
         public void Respawn()
         {
+            Realtime.Destroy(localPlayer);
             Loading.sceneString = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("Loading");
         }

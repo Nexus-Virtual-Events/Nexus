@@ -90,6 +90,11 @@ namespace Normal.Realtime.Examples
             SimpleMove_Update();
         }
 
+        public bool isLocallyOwned ()
+        {
+            return _realtimeView.isOwnedLocally;
+        }
+
     
         public Transform playerCamera;                        // Reference to the camera that focus the player.
 
