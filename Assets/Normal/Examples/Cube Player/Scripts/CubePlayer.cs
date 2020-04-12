@@ -183,11 +183,9 @@ namespace Normal.Realtime.Examples
             h = Input.GetAxis("Horizontal");
             v = Input.GetAxis("Vertical");
 
-            Debug.Log("HV: " + h +", " + v);
             // Get jump input.
             if (!jump && Input.GetButtonDown(jumpButton) && currentBehavior == BehaviorTypes.Move)
             {
-                Debug.Log("Jumped");
                 jump = true;
             }
 
@@ -309,7 +307,6 @@ namespace Normal.Realtime.Examples
                 speed = sprintSpeed;
             }
 
-            Debug.Log("MOVINNNN: " + speed);
             anim.SetFloat(speedFloat, speed, speedDampTime, Time.deltaTime);
         }
 
@@ -357,6 +354,8 @@ namespace Normal.Realtime.Examples
         // Collision detection.
         private void OnCollisionStay(Collision collision)
         {
+            if (!_realtimeView.isOwnedLocally)
+                return;
             isColliding = true;
             // Slide on vertical obstacles
             if (currentBehavior == BehaviorTypes.Move && collision.GetContact(0).normal.y <= 0.1f)
@@ -369,6 +368,8 @@ namespace Normal.Realtime.Examples
         }
         private void OnCollisionExit(Collision collision)
         {
+            if (!_realtimeView.isOwnedLocally)
+                return;
             isColliding = false;
         }
 
