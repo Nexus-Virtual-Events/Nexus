@@ -69,7 +69,7 @@ namespace Normal.Realtime.Examples
                 m_MainCamera = Camera.main.gameObject;
                 m_MainCamera.transform.parent = transform;
                 Vector3 offset = new Vector3(offsetx, offsety, offsetz);
-                m_MainCamera.transform.position = transform.position + offset;
+                m_MainCamera.transform.position = transform.position + offset + new Vector3(0, -1, 0);
                 m_MainCamera.transform.LookAt(transform);
 
                 isCameraParented = true;
