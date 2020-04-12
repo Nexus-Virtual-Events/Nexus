@@ -25,7 +25,7 @@ public class AdminPanel : MonoBehaviour
 
     public void ChangeEventStatus(int eventIndex)
     {
-        if(buttonText.text == "START")
+        if(buttonText.text == "CHOOSE")
         {
             buttonText.text = "END";
             buttonHighlightedText.text = "CONFIRM";
@@ -34,8 +34,8 @@ public class AdminPanel : MonoBehaviour
         }
         else
         {
-            buttonText.text = "END";
-            buttonHighlightedText.text = "CONFIRM";
+            buttonText.text = "CHOOSE";
+            buttonHighlightedText.text = "START";
 
             _eventStatus = 0;
         }
