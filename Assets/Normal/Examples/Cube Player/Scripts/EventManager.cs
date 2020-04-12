@@ -10,11 +10,15 @@ public class EventManager : MonoBehaviour
 
     public UnityEvent OnEventsChange;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         events = "00";
         prevEvents = "00";
+    }
 
+    void Start()
+    {
+        
         if (OnEventsChange == null)
             OnEventsChange = new UnityEvent();
     }

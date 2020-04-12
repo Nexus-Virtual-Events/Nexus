@@ -19,7 +19,7 @@ namespace Normal.Realtime.Examples
         private EventManager eventManager;
         private GameObject localPlayer;
 
-
+        private bool isManagerSet = false;
 
         // Start is called before the first frame update
         void Start()
@@ -34,6 +34,8 @@ namespace Normal.Realtime.Examples
 
         void ReceiveEvent()
         {
+            if (eventManager.events == null) { return; }
+            
             Debug.Log("events from ReceiveEvent");
             Debug.Log(eventManager.events);
             if (eventManager.events[0] == '0')
@@ -51,13 +53,15 @@ namespace Normal.Realtime.Examples
                 Debug.Log("Resetting countdown");
                 currentTime = countdownDuration;
             }
-
+            
         }
 
 
         // Update is called once per frame
         void Update()
         {
+            if (eventManager.events == null) { return; }
+
             if (eventManager.events[1] == '1')
             {
                 if (currentTime > 0)
@@ -66,10 +70,6 @@ namespace Normal.Realtime.Examples
                 }
                 else
                 {
-                    //foreach (GameObject player in (GameObject.FindGameObjectsWithTag("Player"))) {
-                    //    if (player.GetComponent<CubePlayer>().isLocallyOwned()) {
-                    //    //Realtime.Destroy(player);
-                    //    }
                     GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
                 }
                 Loading.sceneString = scene;
