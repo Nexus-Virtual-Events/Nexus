@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8574117770179133265}
   - component: {fileID: 8574117770179133266}
   m_Layer: 0
-  m_Name: Grass 2
+  m_Name: Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 8574117770179133267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: -0.45, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25000006, z: 0.5000001}
+  m_LocalScale: {x: 0.1, y: 0.0010001, z: 0.1000001}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
