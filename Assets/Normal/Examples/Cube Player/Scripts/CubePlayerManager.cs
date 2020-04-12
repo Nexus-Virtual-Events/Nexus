@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using Normal.Realtime;
 
 namespace Michsky.UI.ModernUIPack {
@@ -66,6 +67,12 @@ namespace Michsky.UI.ModernUIPack {
         public void ToggleGrass()
         {
             grassTerrain.GetComponent<Terrain>().enabled = !grassTerrain.GetComponent<Terrain>().enabled;
+        }
+
+        public void Respawn()
+        {
+            Loading.sceneString = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene("Loading");
         }
     }
 }
