@@ -11,7 +11,7 @@ namespace Normal.Realtime.Examples
     public class ModifyEvents : MonoBehaviour
     {
 
-        public string _events;
+        private string _events;
         private EventSync _eventSync;
 
         private RealtimeView _realtimeView;
@@ -28,6 +28,11 @@ namespace Normal.Realtime.Examples
             _realtimeTransform = GetComponent<RealtimeTransform>();
         }
 
+        public void ChangeEvent(int eventIndex, int eventStatus)
+        {
+            _events = eventIndex.ToString() + eventStatus.ToString();
+        }
+
 
         public void Update()
         {
@@ -39,7 +44,7 @@ namespace Normal.Realtime.Examples
             if (_eventSync == null || _events == null)
             {
                 _eventSync = GameObject.FindObjectOfType<EventSync>();
-                _events = "00000000";
+                _events = "00";
             }
             else
             {
@@ -48,3 +53,4 @@ namespace Normal.Realtime.Examples
         }
     }
 }
+

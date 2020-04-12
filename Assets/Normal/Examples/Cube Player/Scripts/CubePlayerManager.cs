@@ -11,6 +11,7 @@ namespace Michsky.UI.ModernUIPack {
         public NotificationManager connectedNotification;
         public NotificationManager eventStartingNotification;
         public GameObject grassTerrain;
+        private EventManager eventManager;
 
         private void Awake() {
             // Get the Realtime component on this game object
@@ -18,6 +19,13 @@ namespace Michsky.UI.ModernUIPack {
 
             // Notify us when Realtime successfully connects to the room
             _realtime.didConnectToRoom += DidConnectToRoom;
+
+        }
+
+        private void Start()
+        {
+            eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
+            eventManager.OnEventsChange.AddListener(ShowEventStartingNotification);
         }
 
         private void DidConnectToRoom(Realtime realtime) {

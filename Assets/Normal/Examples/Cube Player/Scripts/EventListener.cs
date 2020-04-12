@@ -8,7 +8,7 @@ public class EventListener : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        eventManager = GameObject.Find("EventManagerObject").GetComponent<EventManager>();
+        eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
         eventManager.OnEventsChange.AddListener(Ping);
     }
 

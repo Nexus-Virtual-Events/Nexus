@@ -12,6 +12,9 @@ public class EventManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        events = "00";
+        prevEvents = "00";
+
         if (OnEventsChange == null)
             OnEventsChange = new UnityEvent();
     }
@@ -20,7 +23,7 @@ public class EventManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(events != prevEvents)
+        if (events != prevEvents)
         {
             OnEventsChange.Invoke();
             prevEvents = events;

@@ -43,7 +43,7 @@ namespace Normal.Realtime.Examples
 
         private void Start()
         {
-            //eventManager = GameObject.Find("EventManagerObject").GetComponent<EventManager>();
+            //eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
             //eventManager.OnEventsChange.AddListener(Ping);
             Debug.Log("Event manager set!");
         }
@@ -69,7 +69,7 @@ namespace Normal.Realtime.Examples
                 m_MainCamera.transform.parent = transform;
                 Vector3 offset = new Vector3(offsetx, offsety, offsetz);
                 m_MainCamera.transform.position = transform.position + offset + new Vector3(0, -1, 0);
-                m_MainCamera.transform.LookAt(transform);
+                m_MainCamera.transform.LookAt(transform); 
 
                 playerCamera = m_MainCamera.transform;
 
