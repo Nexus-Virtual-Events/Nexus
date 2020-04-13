@@ -19,7 +19,8 @@ namespace Michsky.UI.ModernUIPack
         public bool invokeAtStart;
         public bool invertAnimation;
         public bool loopSelection;
-        private int index = 0;
+        public int index = 0;
+        //public static Resolution[] resolutions;
 
         [Header("ITEMS")]
         public List<Item> itemList = new List<Item>();
@@ -29,6 +30,12 @@ namespace Michsky.UI.ModernUIPack
         {
             public string itemTitle = "Item Title";
             public UnityEvent onValueChanged;
+
+            public Item(string itemTitle, UnityEvent onValueChanged)
+            {
+                this.itemTitle = itemTitle;
+                this.onValueChanged = onValueChanged;
+            }
         }
 
         void Start()
@@ -46,6 +53,15 @@ namespace Michsky.UI.ModernUIPack
             label.text = itemList[defaultIndex].itemTitle;
             labeHelper.text = label.text;
             index = defaultIndex;
+        }
+
+        private void Update()
+        {
+            if(label.text == "")
+            {
+                label.text = itemList[defaultIndex].itemTitle;
+                labeHelper.text = label.text;
+            }
         }
 
         public void PreviousClick()

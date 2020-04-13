@@ -1,6 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using Normal.Realtime;
+using System.Linq;
 
 namespace Michsky.UI.ModernUIPack {
     public class CubePlayerManager : MonoBehaviour {
@@ -13,6 +19,13 @@ namespace Michsky.UI.ModernUIPack {
         public GameObject grassTerrain;
         private EventManager eventManager;
         private GameObject localPlayer;
+
+        public AudioMixer audioMixer;
+
+        public HorizontalSelector resolutionSelector;
+        Resolution[] resolutions;
+        UnityEvent[] onResolutionChanges;
+
 
         private void Awake() {
             // Get the Realtime component on this game object
@@ -27,6 +40,38 @@ namespace Michsky.UI.ModernUIPack {
         {
             eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
             eventManager.OnEventsChange.AddListener(ReactToEvent);
+
+            resolutions = Screen.resolutions;
+            resolutionSelector.itemList = null;
+            List<HorizontalSelector.Item> resolutionOptions = new List<HorizontalSelector.Item>();
+
+            onResolutionChanges = new UnityEvent[resolutions.Length];
+            for (int i = 0; i < resolutions.Length; i++)
+            {
+                onResolutionChanges[i] = new UnityEvent();
+                onResolutionChanges[i].AddListener(delegate { SetResolution(i); });
+            }
+
+            int currentResolutionIndex = 0;
+
+            for (int i = 0; i < resolutions.Length; i++)
+            {
+                string option = resolutions[i].width.ToString() + " x " + resolutions[i].height.ToString();
+                Debug.Log("Resolution " + i.ToString() + ": " + option);
+                HorizontalSelector.Item item = new HorizontalSelector.Item(option, onResolutionChanges[i]);
+                resolutionOptions.Add(item);
+
+                if (resolutions[i].width == Screen.currentResolution.width
+                    && resolutions[i].height == Screen.currentResolution.height)
+                {
+                    currentResolutionIndex = i;
+                }
+            }
+
+            resolutionSelector.itemList = resolutionOptions;
+            Debug.Log(resolutionSelector.itemList);
+            resolutionSelector.defaultIndex = currentResolutionIndex;
+            resolutionSelector.index = currentResolutionIndex;
         }
 
         private void DidConnectToRoom(Realtime realtime) {
@@ -80,6 +125,20 @@ namespace Michsky.UI.ModernUIPack {
             {
                 grassTerrain.GetComponent<Terrain>().enabled = true;
             }
+        }
+
+        public void SetResolution(int resolutionIndex)
+        {
+            Debug.Log("Setting Resolution to " + resolutionIndex.ToString());
+
+            Resolution resolution = resolutions[resolutionIndex-1];
+            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+
+        }
+
+        public void SetVolume(float volume)
+        {
+            audioMixer.SetFloat("Volume", volume);
         }
 
         public void ToggleGrass()
