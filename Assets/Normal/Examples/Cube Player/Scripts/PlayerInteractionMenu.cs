@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionMenu : MonoBehaviour
+public class PlayerInteractionMenu : MonoBehaviour
 {
     public void ExitMenu()
     {
