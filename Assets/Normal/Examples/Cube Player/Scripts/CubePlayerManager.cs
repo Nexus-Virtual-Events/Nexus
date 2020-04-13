@@ -70,8 +70,9 @@ namespace Michsky.UI.ModernUIPack {
 
         public void SetGraphicsSetting(int settingIndex)
         {
+            Debug.Log(settingIndex);
             QualitySettings.SetQualityLevel(settingIndex);
-            if (settingIndex == 0)
+            if (settingIndex < 3)
             {
                 grassTerrain.GetComponent<Terrain>().enabled = false;
             }
