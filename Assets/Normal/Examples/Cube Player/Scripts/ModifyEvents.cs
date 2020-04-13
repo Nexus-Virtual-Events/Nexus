@@ -41,7 +41,7 @@ namespace Normal.Realtime.Examples
 
             _realtimeTransform.RequestOwnership();
 
-            if (_eventSync == null || _events == null)
+            if (_events == null)
             {
                 _eventSync = GameObject.FindObjectOfType<EventSync>();
                 _events = "00";

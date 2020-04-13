@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Diagnostics;
 
 namespace Normal.Realtime.Examples
 {
@@ -19,9 +20,6 @@ namespace Normal.Realtime.Examples
         void Start()
         {
             eventModifier = GameObject.Find("EventManager").GetComponent<ModifyEvents>();
-            Debug.Log("eventModifier set to");
-            Debug.Log(eventModifier);
-
         }
 
         // Update is called once per frame

@@ -52,7 +52,7 @@ namespace Michsky.UI.ModernUIPack {
 
         public void ReactToEvent()
         {
-            Debug.Log("ReactToEvents" + eventManager.events);
+            if (eventManager.events == null) return;
             if (eventManager.events[1] == '1')
             {
                 eventStartingNotification.OpenNotification();

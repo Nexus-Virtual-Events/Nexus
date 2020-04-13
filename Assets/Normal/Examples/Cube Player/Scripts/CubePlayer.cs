@@ -43,9 +43,6 @@ namespace Normal.Realtime.Examples
 
         private void Start()
         {
-            //eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
-            //eventManager.OnEventsChange.AddListener(Ping);
-            Debug.Log("Event manager set!");
         }
 
         void Ping()

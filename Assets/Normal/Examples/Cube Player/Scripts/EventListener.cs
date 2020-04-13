@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class EventListener : MonoBehaviour
@@ -14,7 +15,8 @@ public class EventListener : MonoBehaviour
 
     void Ping()
     {
-        Debug.Log(eventManager.events);
+        UnityEngine.Debug.Log("EventManager Ping Notification");
+        UnityEngine.Debug.Log(eventManager.events);
     }
 
     // Update is called once per frame

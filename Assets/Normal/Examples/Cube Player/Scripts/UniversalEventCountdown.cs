@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,25 +6,27 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using Normal.Realtime;
 using Michsky.UI.ModernUIPack;
+using System;
 
 namespace Normal.Realtime.Examples
 {
-    public class EventCountdown : MonoBehaviour
+    public class UniversalEventCountdown : MonoBehaviour
     {
 
-        private float currentTime = 0f;
-        public float countdownDuration = 10.0f;
+        private DateTime currentTime;
+        public int countdownDuration;
+        private DateTime startTime;
+        private TimeSpan timeLeft;
         public TMP_Text eventStartingNotificationDescription;
         public string scene = "The Bowl";
         private EventManager eventManager;
         private GameObject localPlayer;
 
-
+        private bool eventReceived = false;
 
         // Start is called before the first frame update
         void Start()
         {
-            currentTime = countdownDuration;
             eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
             eventManager.OnEventsChange.AddListener(ReceiveEvent);
         }
@@ -32,50 +34,39 @@ namespace Normal.Realtime.Examples
         void ReceiveEvent()
         {
             if (eventManager.events == null) return;
-
             if (eventManager.events[0] == '0')
             {
                 scene = "The Bowl";
+                eventReceived = false;
             }
-
-            countdownDuration = 10.0f;
             if (eventManager.events[1] == '1')
             {
-
+                currentTime = DateTime.Now;
+                startTime = DateTime.Now.AddSeconds(countdownDuration);
+                eventReceived = true;
             }
-            else
-            {
-                currentTime = countdownDuration;
-            }
-
         }
-
 
         // Update is called once per frame
         void Update()
         {
+            currentTime = DateTime.Now;
             if (eventManager.events == null) return;
-            if (eventManager.events[1] == '1')
+            if (eventManager.events[1] == '1' && eventReceived)
             {
-                if (currentTime > 0)
+                timeLeft = startTime - currentTime;
+
+                if (timeLeft <= TimeSpan.Zero)
                 {
-                    currentTime -= 1 * Time.deltaTime;
-                }
-                else
-                {
-                    //foreach (GameObject player in (GameObject.FindGameObjectsWithTag("Player"))) {
-                    //    if (player.GetComponent<CubePlayer>().isLocallyOwned()) {
-                    //    //Realtime.Destroy(player);
-                    //    }
                     GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
                     Loading.sceneString = scene;
                     SceneManager.LoadScene("Loading");
                 }
+
+                eventStartingNotificationDescription.text = "A virtual event is starting! You will automatically join the event in " + string.Format("{0}", timeLeft.Seconds) + " seconds.";
             }
-            eventStartingNotificationDescription.text = "A virtual event is starting! You will automatically join the event in " + currentTime.ToString("0") + " seconds.";
         }
 
 
     }
 }
-

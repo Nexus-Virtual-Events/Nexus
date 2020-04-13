@@ -74,7 +74,7 @@ namespace Michsky.UI.ModernUIPack
 
             catch
             {
-                Debug.Log("Some public variables are missing. Assign a variable, otherwise the features won't work properly.");
+                //Debug.Log("Some public variables are missing. Assign a variable, otherwise the features won't work properly.");
             }
         }
     }
