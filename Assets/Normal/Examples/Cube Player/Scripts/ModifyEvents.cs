@@ -12,6 +12,8 @@ namespace Normal.Realtime.Examples
     {
 
         private string _events;
+        private string _prevEvents;
+
         private EventSync _eventSync;
 
         private RealtimeView _realtimeView;
@@ -20,6 +22,9 @@ namespace Normal.Realtime.Examples
         private void Start()
         {
             _eventSync = GameObject.FindObjectOfType<EventSync>();
+            _events = "00";
+            _prevEvents = "00";
+            Debug.Log("Start() events from ModifyEvents:" + _events);
         }
 
         private void Awake()
@@ -36,19 +41,23 @@ namespace Normal.Realtime.Examples
 
         public void Update()
         {
-            if (!_realtimeView.isOwnedLocally)
-                return;
+            //if (!_realtimeView.isOwnedLocally)
+            //    return;
 
-            _realtimeTransform.RequestOwnership();
+            //_realtimeTransform.RequestOwnership();
 
-            if (_events == null)
+            if (_eventSync == null)
             {
                 _eventSync = GameObject.FindObjectOfType<EventSync>();
-                _events = "00";
             }
             else
             {
-                _eventSync.SetEvent(_events);
+                if (_prevEvents != _events)
+                {
+                    Debug.Log("ModifEvents changing the event to:" + _events);
+                    _eventSync.SetEvent(_events);
+                    _prevEvents = _events;
+                }
             }
         }
     }

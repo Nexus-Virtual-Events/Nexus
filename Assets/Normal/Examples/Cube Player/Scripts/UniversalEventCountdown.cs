@@ -33,13 +33,16 @@ namespace Normal.Realtime.Examples
 
         void ReceiveEvent()
         {
-            if (eventManager.events == null) return;
-            if (eventManager.events[0] == '0')
+            //if (eventManager.events == null) return;
+            //Debug.Log("Received event from universal countdown");
+            //Debug.Log(eventManager.events);
+            //Debug.Log(eventManager.isInitialized());
+            if (eventManager.GetEvents()[0] == '0')
             {
                 scene = "The Bowl";
                 eventReceived = false;
             }
-            if (eventManager.events[1] == '1')
+            if (eventManager.GetEvents()[1] == '1')
             {
                 currentTime = DateTime.Now;
                 startTime = DateTime.Now.AddSeconds(countdownDuration);
@@ -51,13 +54,14 @@ namespace Normal.Realtime.Examples
         void Update()
         {
             currentTime = DateTime.Now;
-            if (eventManager.events == null) return;
-            if (eventManager.events[1] == '1' && eventReceived)
+            if (eventManager.GetEvents() == null) return;
+            if (eventManager.GetEvents()[1] == '1' && eventReceived)
             {
                 timeLeft = startTime - currentTime;
 
                 if (timeLeft <= TimeSpan.Zero)
                 {
+                    Debug.Log("Event loading from Universal Countdown: "+ eventManager.GetEvents());
                     GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
                     Loading.sceneString = scene;
                     SceneManager.LoadScene("Loading");

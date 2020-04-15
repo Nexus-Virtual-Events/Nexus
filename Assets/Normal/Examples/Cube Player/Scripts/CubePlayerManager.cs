@@ -97,12 +97,12 @@ namespace Michsky.UI.ModernUIPack {
 
         public void ReactToEvent()
         {
-            if (eventManager.events == null) return;
-            if (eventManager.events[1] == '1')
+            if (eventManager.GetEvents() == null) return;
+            if (eventManager.GetEvents()[1] == '1')
             {
                 eventStartingNotification.OpenNotification();
             }
-            else if (eventManager.events[1] == '0')
+            else if (eventManager.GetEvents()[1] == '0')
             {
                 eventStartingNotification.CloseNotification();
             }

@@ -31,15 +31,15 @@ namespace Normal.Realtime.Examples
 
         void ReceiveEvent()
         {
-            if (eventManager.events == null) return;
+            if (eventManager.GetEvents() == null) return;
 
-            if (eventManager.events[0] == '0')
+            if (eventManager.GetEvents()[0] == '0')
             {
                 scene = "The Bowl";
             }
 
             countdownDuration = 10.0f;
-            if (eventManager.events[1] == '1')
+            if (eventManager.GetEvents()[1] == '1')
             {
 
             }
@@ -54,8 +54,8 @@ namespace Normal.Realtime.Examples
         // Update is called once per frame
         void Update()
         {
-            if (eventManager.events == null) return;
-            if (eventManager.events[1] == '1')
+            if (eventManager.GetEvents() == null) return;
+            if (eventManager.GetEvents()[1] == '1')
             {
                 if (currentTime > 0)
                 {

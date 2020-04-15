@@ -43,11 +43,12 @@ public class EventSync : RealtimeComponent
     private void UpdateEvents()
     {
         // Get the color from the model and set it on the mesh renderer.
-        eventManager.events = _model.events;
+        eventManager.SetEvents(_model.events);
     }
 
     public void SetEvent(string eventString)
     {
+        Debug.Log("SetEvent called with " + eventString);
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
         _model.events = eventString;
