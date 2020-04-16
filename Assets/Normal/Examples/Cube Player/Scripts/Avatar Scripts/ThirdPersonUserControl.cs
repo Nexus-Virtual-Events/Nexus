@@ -45,6 +45,7 @@ namespace Normal.Realtime.Examples
         }
 
         private bool isCameraParented = false;
+        private bool isRecipeSet = false;
 
         private void Start()
         {
@@ -68,10 +69,11 @@ namespace Normal.Realtime.Examples
 
         private void Update()
         {
-            if (avatarRecipe != null)
+            if (!isRecipeSet && avatarRecipe != null)
             {
                 avatar.ClearSlots();
                 avatar.LoadFromRecipeString(avatarRecipe);
+                isRecipeSet = true;
             }
             // If this CubePlayer prefab is not owned by this client, bail.
             if (!_realtimeView.isOwnedLocally)
