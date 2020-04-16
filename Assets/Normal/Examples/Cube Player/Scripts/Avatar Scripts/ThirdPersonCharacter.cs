@@ -74,6 +74,21 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			UpdateAnimator(move);
 		}
 
+        public void ForeignMove(string moveState)
+        {
+			string[] parameters;
+
+            //"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
+            parameters = moveState.Split(' ');
+
+            Vector3 move = new Vector3(float.Parse(parameters[0]), float.Parse(parameters[1]), float.Parse(parameters[2]));
+            bool isCrouching = int.Parse(parameters[3]) != 0;
+            bool isOnGround = int.Parse(parameters[4]) != 0;
+
+			Move(move, isCrouching, isOnGround);
+
+        }
+
 
 		void ScaleCapsuleForCrouching(bool crouch)
 		{
@@ -121,6 +136,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
 			m_Animator.SetBool("Crouch", m_Crouching);
 			m_Animator.SetBool("OnGround", m_IsGrounded);
+
+
 			if (!m_IsGrounded)
 			{
 				m_Animator.SetFloat("Jump", m_Rigidbody.velocity.y);
@@ -151,7 +168,59 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 		}
 
-  //      public void SyncAnimation(string animationState)
+		public void UpdateAnimatorAdvanced(Vector3 move, bool isOwner)
+		{
+			// update the animator parameters
+			m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
+			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
+			m_Animator.SetBool("Crouch", m_Crouching);
+			m_Animator.SetBool("OnGround", m_IsGrounded);
+
+            if (isOwner)
+            {
+				Debug.Log("Local");
+            }
+            else
+            {
+				Debug.Log("Non-Local");
+            }
+			Debug.Log("m_IsGrounded:");
+			Debug.Log(m_IsGrounded);
+			Debug.Log("m_Crouching");
+			Debug.Log(m_Crouching);
+
+
+			if (!m_IsGrounded)
+			{
+				m_Animator.SetFloat("Jump", m_Rigidbody.velocity.y);
+			}
+
+			// calculate which leg is behind, so as to leave that leg trailing in the jump animation
+			// (This code is reliant on the specific run cycle offset in our animations,
+			// and assumes one leg passes the other at the normalized clip times of 0.0 and 0.5)
+			float runCycle =
+				Mathf.Repeat(
+					m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime + m_RunCycleLegOffset, 1);
+			float jumpLeg = (runCycle < k_Half ? 1 : -1) * m_ForwardAmount;
+			if (m_IsGrounded)
+			{
+				m_Animator.SetFloat("JumpLeg", jumpLeg);
+			}
+
+			// the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
+			// which affects the movement speed because of the root motion.
+			if (m_IsGrounded && move.magnitude > 0)
+			{
+				m_Animator.speed = m_AnimSpeedMultiplier;
+			}
+			else
+			{
+				// don't use that while airborne
+				m_Animator.speed = 1;
+			}
+		}
+
+		//      public void SyncAnimation(string animationState)
 		//{
 		//	string[] parameters;
 

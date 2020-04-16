@@ -3,6 +3,7 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Characters.ThirdPerson;
 using System.IO;
 using UMA.CharacterSystem;
+using System;
 
 namespace Normal.Realtime.Examples
 {
@@ -72,7 +73,7 @@ namespace Normal.Realtime.Examples
         private void Update()
         {
             currentNumPlayers = GameObject.FindGameObjectsWithTag("Player").Length;
-            Debug.Log(currentNumPlayers);
+            //Debug.Log(currentNumPlayers);
             if (currentNumPlayers != prevNumPlayers)
             {
                 if (avatarRecipe != null && avatarRecipe.Length > 100)
@@ -110,12 +111,19 @@ namespace Normal.Realtime.Examples
                 // Make sure we own the transform so that RealtimeTransform knows to use this client's transform to synchronize remote clients.
                 _realtimeTransform.RequestOwnership();
 
-                if (!m_Jump)
+                if(!m_Jump)
                 {
                     m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
                 }
             }
         }
+
+        private string parseMoveToString(Vector3 move, bool crouch, bool jump)
+        {
+            return move.x.ToString() + " " + move.y.ToString() + " " + move.z.ToString() + " " + Convert.ToInt16(crouch) + " " + Convert.ToInt16(jump);
+        }
+
+       
 
 
         // Fixed update is called in sync with physics
@@ -124,11 +132,17 @@ namespace Normal.Realtime.Examples
             // If this CubePlayer prefab is not owned by this client, bail.
             if (!_realtimeView.isOwnedLocally)
             {
-                m_Character.UpdateAnimator(GetComponent<UpdateMove>().characterMove);
+                Debug.Log("> Non-local character position");
+                Debug.Log(">>>>");
+                Debug.Log(GetComponent<UpdateMove>());
+                Debug.Log(">>>>");
+                Debug.Log(GetComponent<UpdateMove>().characterMove);
+                Debug.Log(">>>>");
+                m_Character.ForeignMove(GetComponent<UpdateMove>().characterMove);
             }
             else
             {
-
+                
                 // Move the camera
                 if (!isCameraParented)
                 {
@@ -173,9 +187,14 @@ namespace Normal.Realtime.Examples
 
                 // pass all parameters to the character control script
                 m_Character.Move(m_Move, crouch, m_Jump);
-                m_Jump = false;
 
-                GetComponent<UpdateMove>().characterMove = m_Move;
+                Debug.Log("> Local character position");
+                Debug.Log(GetComponent<UpdateMove>().characterMove);
+                Debug.Log(crouch);
+                GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, crouch, m_Jump);
+                Debug.Log(GetComponent<UpdateMove>().characterMove);
+
+                m_Jump = false;
             }
         }
     }

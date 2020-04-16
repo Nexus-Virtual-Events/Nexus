@@ -462,8 +462,8 @@ GameObject:
   - component: {fileID: 1017946477121450270}
   - component: {fileID: 7343576115046406042}
   - component: {fileID: -2243905955437128993}
-  - component: {fileID: 3172266051637581173}
-  - component: {fileID: -7620861146849539123}
+  - component: {fileID: 6416644207899178433}
+  - component: {fileID: 9103083775864586185}
   m_Layer: 0
   m_Name: NexusAvatar
   m_TagString: Player
@@ -684,11 +684,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _realtime: {fileID: 0}
-  _sceneViewUUID: 
+  _sceneViewUUID: 879cb88d52d5a9499010db276634a308
   _sceneViewOwnedByCreatingClient: 1
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 1
+  _isRootPrefabView: 0
   _components:
   - componentID: 1
     component: {fileID: 8366006502200670442}
@@ -706,7 +706,10 @@ MonoBehaviour:
     component: {fileID: 0}
     componentIDHasBeenUsed: 1
   - componentID: 6
-    component: {fileID: 3172266051637581173}
+    component: {fileID: 0}
+    componentIDHasBeenUsed: 1
+  - componentID: 7
+    component: {fileID: 6416644207899178433}
     componentIDHasBeenUsed: 1
   _parentView: {fileID: 0}
   _childViews: []
@@ -775,7 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e85ba675cdb43ec8929fa638731f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3172266051637581173
+--- !u!114 &6416644207899178433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -787,7 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9e11acc67df456b96fef76021f14d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-7620861146849539123
+--- !u!114 &9103083775864586185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -799,7 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0438f0ae83ab74924bf0e5c461621a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterMove: {x: 0, y: 0, z: 0}
+  characterMove: 
 --- !u!1001 &6436147050421029685
 PrefabInstance:
   m_ObjectHideFlags: 0
