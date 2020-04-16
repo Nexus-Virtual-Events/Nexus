@@ -461,6 +461,7 @@ GameObject:
   - component: {fileID: 7387591736794463965}
   - component: {fileID: 1017946477121450270}
   - component: {fileID: 7343576115046406042}
+  - component: {fileID: -2243905955437128993}
   m_Layer: 0
   m_Name: NexusAvatar
   m_TagString: Untagged
@@ -754,6 +755,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd4ff7916cbc1db4dae0b06d829ff79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2243905955437128993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344741582037746110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e85ba675cdb43ec8929fa638731f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6436147050421029685

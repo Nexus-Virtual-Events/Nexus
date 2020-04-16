@@ -31,6 +31,7 @@ namespace Normal.Realtime.Examples
 
         public DynamicCharacterAvatar avatar;
         public string avatarRecipe;
+        public string foreignAvatarRecipe;
 
         private void Awake()
         {
@@ -61,18 +62,17 @@ namespace Normal.Realtime.Examples
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
-
-            if (!_realtimeView.isOwnedLocally)
-                return;
-
-            avatarRecipe = PlayerPrefs.GetString("playerRecipe");
-            avatar.ClearSlots();
-            avatar.LoadFromRecipeString(avatarRecipe);
+         
         }
 
 
         private void Update()
         {
+            if (avatarRecipe != null)
+            {
+                avatar.ClearSlots();
+                avatar.LoadFromRecipeString(avatarRecipe);
+            }
             // If this CubePlayer prefab is not owned by this client, bail.
             if (!_realtimeView.isOwnedLocally)
                 return;

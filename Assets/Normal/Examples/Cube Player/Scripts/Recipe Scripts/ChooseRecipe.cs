@@ -28,21 +28,21 @@ namespace Normal.Realtime.Examples
 
         public void Update()
         {
-            Debug.Log(">>>>>>>>>");
-            Debug.Log(!_realtimeView.isOwnedLocally);
-            Debug.Log("playerRecipe");
-            Debug.Log(_playerRecipe.Substring(0, 210));
-            Debug.Log("prevRecipe");
-            if (_prevRecipe.Length > 200)
-            {
-                Debug.Log(_prevRecipe.Substring(0, 210));
-            }
-            else
-            {
-                Debug.Log(" ");
-            }
+            //Debug.Log(">>>>>>>>>");
+            //Debug.Log(!_realtimeView.isOwnedLocally);
+            //Debug.Log("playerRecipe");
+            //Debug.Log(_playerRecipe.Substring(0, 210));
+            //Debug.Log("prevRecipe");
+            //if (_prevRecipe.Length > 200)
+            //{
+            //    Debug.Log(_prevRecipe.Substring(0, 210));
+            //}
+            //else
+            //{
+            //    Debug.Log(" ");
+            //}
            
-            Debug.Log(">>>>>>");
+            //Debug.Log(">>>>>>");
 
             if (!_realtimeView.isOwnedLocally)
                 return;
@@ -56,23 +56,25 @@ namespace Normal.Realtime.Examples
             }
             else
             {
-                Debug.Log(">>>>>>>>>");
-                Debug.Log("From inside else");
-                Debug.Log("playerRecipe");
-                Debug.Log(_playerRecipe.Substring(0, 210));
-                Debug.Log("prevRecipe");
-                if (_prevRecipe.Length > 200)
-                {
-                    Debug.Log(_prevRecipe.Substring(0, 210));
-                }
-                else { 
-                    Debug.Log(" ");
-                }
-                Debug.Log(">>>>>>");
+                //Debug.Log(">>>>>>>>>");
+                //Debug.Log("From inside else");
+                //Debug.Log("playerRecipe");
+                //Debug.Log(_playerRecipe.Substring(0, 210));
+                //Debug.Log("prevRecipe");
+                //if (_prevRecipe.Length > 200)
+                //{
+                //    Debug.Log(_prevRecipe.Substring(0, 210));
+                //}
+                //else { 
+                //    Debug.Log(" ");
+                //}
+                //Debug.Log(">>>>>>");
 
 
                 if (_playerRecipe != _prevRecipe)
                 {
+                    Debug.Log(">>>>");
+                    Debug.Log(_playerRecipe);
                     Debug.Log("recipe different");
                     _recipeSync.SetRecipe(_playerRecipe);
                     _prevRecipe = _playerRecipe;
