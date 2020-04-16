@@ -6,6 +6,8 @@ namespace Normal.Realtime.Examples
     {
 
         private string _playerRecipe;
+        private string _prevRecipe = "";
+
         private RecipeSync _recipeSync;
 
         private RealtimeView _realtimeView;
@@ -26,6 +28,22 @@ namespace Normal.Realtime.Examples
 
         public void Update()
         {
+            Debug.Log(">>>>>>>>>");
+            Debug.Log(!_realtimeView.isOwnedLocally);
+            Debug.Log("playerRecipe");
+            Debug.Log(_playerRecipe.Substring(0, 210));
+            Debug.Log("prevRecipe");
+            if (_prevRecipe.Length > 200)
+            {
+                Debug.Log(_prevRecipe.Substring(0, 210));
+            }
+            else
+            {
+                Debug.Log(" ");
+            }
+           
+            Debug.Log(">>>>>>");
+
             if (!_realtimeView.isOwnedLocally)
                 return;
 
@@ -38,7 +56,27 @@ namespace Normal.Realtime.Examples
             }
             else
             {
-                _recipeSync.SetRecipe(_playerRecipe);
+                Debug.Log(">>>>>>>>>");
+                Debug.Log("From inside else");
+                Debug.Log("playerRecipe");
+                Debug.Log(_playerRecipe.Substring(0, 210));
+                Debug.Log("prevRecipe");
+                if (_prevRecipe.Length > 200)
+                {
+                    Debug.Log(_prevRecipe.Substring(0, 210));
+                }
+                else { 
+                    Debug.Log(" ");
+                }
+                Debug.Log(">>>>>>");
+
+
+                if (_playerRecipe != _prevRecipe)
+                {
+                    Debug.Log("recipe different");
+                    _recipeSync.SetRecipe(_playerRecipe);
+                    _prevRecipe = _playerRecipe;
+                }
             }
         }
     }
