@@ -82,34 +82,38 @@ namespace Normal.Realtime.Examples
                     prevNumPlayers = currentNumPlayers;
                 }
             }
-            
+
             // If this CubePlayer prefab is not owned by this client, bail.
             if (!_realtimeView.isOwnedLocally)
-                return;
-
-            // Move the camera
-            if (!isCameraParented)
             {
-                m_MainCamera = Camera.main.gameObject;
-                m_MainCamera.transform.parent = transform;
-                Vector3 offset = new Vector3(offsetx, offsety, offsetz);
-                m_MainCamera.transform.position = transform.position + offset;
-                m_MainCamera.transform.LookAt(transform);
-
-                playerCamera = m_MainCamera.transform;
-
-                camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic>();
-                camScript.AssignPlayer(transform);
-
-                isCameraParented = true;
+                //do nothing
             }
-
-            // Make sure we own the transform so that RealtimeTransform knows to use this client's transform to synchronize remote clients.
-            _realtimeTransform.RequestOwnership();
-
-            if (!m_Jump)
+            else
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                // Move the camera
+                if (!isCameraParented)
+                {
+                    m_MainCamera = Camera.main.gameObject;
+                    m_MainCamera.transform.parent = transform;
+                    Vector3 offset = new Vector3(offsetx, offsety, offsetz);
+                    m_MainCamera.transform.position = transform.position + offset;
+                    m_MainCamera.transform.LookAt(transform);
+
+                    playerCamera = m_MainCamera.transform;
+
+                    camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic>();
+                    camScript.AssignPlayer(transform);
+
+                    isCameraParented = true;
+                }
+
+                // Make sure we own the transform so that RealtimeTransform knows to use this client's transform to synchronize remote clients.
+                _realtimeTransform.RequestOwnership();
+
+                if (!m_Jump)
+                {
+                    m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                }
             }
         }
 
@@ -119,53 +123,60 @@ namespace Normal.Realtime.Examples
         {
             // If this CubePlayer prefab is not owned by this client, bail.
             if (!_realtimeView.isOwnedLocally)
-                return;
-
-            // Move the camera
-            if (!isCameraParented)
             {
-                m_MainCamera = Camera.main.gameObject;
-                m_MainCamera.transform.parent = transform;
-                Vector3 offset = new Vector3(offsetx, offsety, offsetz);
-                m_MainCamera.transform.position = transform.position + offset + new Vector3(0, -1, 0);
-                m_MainCamera.transform.LookAt(transform);
-
-                playerCamera = m_MainCamera.transform;
-
-                camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic>();
-                camScript.AssignPlayer(transform);
-
-                isCameraParented = true;
-            }
-
-            // Make sure we own the transform so that RealtimeTransform knows to use this client's transform to synchronize remote clients.
-            _realtimeTransform.RequestOwnership();
-
-            // read inputs
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
-            bool crouch = Input.GetKey(KeyCode.C);
-
-            // calculate move direction to pass to character
-            if (m_Cam != null)
-            {
-                // calculate camera relative direction to move:
-                m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-                m_Move = v * m_CamForward + h * m_Cam.right;
+                m_Character.UpdateAnimator(GetComponent<UpdateMove>().characterMove);
             }
             else
             {
-                // we use world-relative directions in the case of no main camera
-                m_Move = v * Vector3.forward + h * Vector3.right;
-            }
+
+                // Move the camera
+                if (!isCameraParented)
+                {
+                    m_MainCamera = Camera.main.gameObject;
+                    m_MainCamera.transform.parent = transform;
+                    Vector3 offset = new Vector3(offsetx, offsety, offsetz);
+                    m_MainCamera.transform.position = transform.position + offset + new Vector3(0, -1, 0);
+                    m_MainCamera.transform.LookAt(transform);
+
+                    playerCamera = m_MainCamera.transform;
+
+                    camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic>();
+                    camScript.AssignPlayer(transform);
+
+                    isCameraParented = true;
+                }
+
+                // Make sure we own the transform so that RealtimeTransform knows to use this client's transform to synchronize remote clients.
+                _realtimeTransform.RequestOwnership();
+
+                // read inputs
+                float h = CrossPlatformInputManager.GetAxis("Horizontal");
+                float v = CrossPlatformInputManager.GetAxis("Vertical");
+                bool crouch = Input.GetKey(KeyCode.C);
+
+                // calculate move direction to pass to character
+                if (m_Cam != null)
+                {
+                    // calculate camera relative direction to move:
+                    m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+                    m_Move = v * m_CamForward + h * m_Cam.right;
+                }
+                else
+                {
+                    // we use world-relative directions in the case of no main camera
+                    m_Move = v * Vector3.forward + h * Vector3.right;
+                }
 #if !MOBILE_INPUT
-            // walk speed multiplier
-            if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
+                // walk speed multiplier
+                if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
 #endif
 
-            // pass all parameters to the character control script
-            m_Character.Move(m_Move, crouch, m_Jump);
-            m_Jump = false;
+                // pass all parameters to the character control script
+                m_Character.Move(m_Move, crouch, m_Jump);
+                m_Jump = false;
+
+                GetComponent<UpdateMove>().characterMove = m_Move;
+            }
         }
     }
 }

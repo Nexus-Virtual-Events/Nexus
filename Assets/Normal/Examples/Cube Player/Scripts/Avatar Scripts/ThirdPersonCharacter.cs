@@ -114,7 +114,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-		void UpdateAnimator(Vector3 move)
+		public void UpdateAnimator(Vector3 move)
 		{
 			// update the animator parameters
 			m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
@@ -150,6 +150,22 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_Animator.speed = 1;
 			}
 		}
+
+  //      public void SyncAnimation(string animationState)
+		//{
+		//	string[] parameters;
+
+		//	//"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
+		//	parameters = animationState.Split(' ');
+
+		//	float forwardAmount = float.Parse(parameters[0]);
+		//	float turnAmount = float.Parse(parameters[1]);
+		//	int isCrouching = int.Parse(parameters[2]);
+		//	int isOnGround = int.Parse(parameters[3]);
+
+		//	UpdateAnimator()
+
+		//}
 
 
 		void HandleAirborneMovement()
