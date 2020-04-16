@@ -45,7 +45,9 @@ namespace Normal.Realtime.Examples
         }
 
         private bool isCameraParented = false;
-        private bool isRecipeSet = false;
+
+        private int currentNumPlayers;
+        private int prevNumPlayers;
 
         private void Start()
         {
@@ -69,12 +71,18 @@ namespace Normal.Realtime.Examples
 
         private void Update()
         {
-            if (!isRecipeSet && avatarRecipe != null)
+            currentNumPlayers = GameObject.FindGameObjectsWithTag("Player").Length;
+            Debug.Log(currentNumPlayers);
+            if (currentNumPlayers != prevNumPlayers)
             {
-                avatar.ClearSlots();
-                avatar.LoadFromRecipeString(avatarRecipe);
-                isRecipeSet = true;
+                if (avatarRecipe != null && avatarRecipe.Length > 100)
+                {
+                    avatar.ClearSlots();
+                    avatar.LoadFromRecipeString(avatarRecipe);
+                    prevNumPlayers = currentNumPlayers;
+                }
             }
+            
             // If this CubePlayer prefab is not owned by this client, bail.
             if (!_realtimeView.isOwnedLocally)
                 return;

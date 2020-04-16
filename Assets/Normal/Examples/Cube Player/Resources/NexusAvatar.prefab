@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: -2243905955437128993}
   m_Layer: 0
   m_Name: NexusAvatar
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -551,6 +551,7 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   avatar: {fileID: 5344741582037746109}
   avatarRecipe: 
+  foreignAvatarRecipe: 
 --- !u!114 &2007558291461423101
 MonoBehaviour:
   m_ObjectHideFlags: 0
