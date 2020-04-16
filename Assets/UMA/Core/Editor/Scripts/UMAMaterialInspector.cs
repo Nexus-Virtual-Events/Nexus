@@ -11,7 +11,13 @@ namespace UMA.Editors
         private Shader _lastSelectedShader;
         private string[] _shaderProperties;
         private GUIStyle _centeredStyle;
+        private SerializedProperty _shaderParms;
 
+        private bool shaderParmsFoldout = false;
+        public void OnEnable()
+        {
+            _shaderParms = serializedObject.FindProperty("shaderParms");
+        }
         public override void OnInspectorGUI()
         {
             UMAMaterial source = target as UMAMaterial;
@@ -45,8 +51,19 @@ namespace UMA.Editors
             EditorGUILayout.PropertyField(serializedObject.FindProperty("MipMapBias"), new GUIContent("Mip Map Bias", "Negative values have sharper bias"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("AnisoLevel"), new GUIContent("Aniso Level", "Anisotropic level"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("MatFilterMode"),  new GUIContent("Texture Filter Mode", "Select the filter mode of Point, Bilinear or Trilinear"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("MaskWithCurrentColor"), new GUIContent("Mask with Current Color", "When this is checked, the background of the atlas is filled with this color for alpha blending."));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("maskMultiplier"), new GUIContent("Mask Multiplier", "When Masking with current color, the current color is multiplied by this color."));
             //EditorGUILayout.PropertyField(serializedObject.FindProperty("Compression"), new GUIContent("Texture Compression", "Compress the atlas texture to DXT1 or DXT5"));
             EditorGUILayout.EndVertical();
+
+            GUILayout.Space(20f);
+            shaderParmsFoldout = EditorGUILayout.Foldout(shaderParmsFoldout, "Shader Parameter Mapping");
+            if (shaderParmsFoldout)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(_shaderParms, true);
+                EditorGUI.indentLevel--;
+            }
 
             GUILayout.Space(20);
 
@@ -102,10 +119,11 @@ namespace UMA.Editors
                         }
                         EditorGUILayout.EndHorizontal();
 
+                        SerializedProperty NonShaderProperty = channel.FindPropertyRelative("NonShaderTexture");
                         UMAMaterial source = target as UMAMaterial;
                         if( source.material != null )
                         {
-                            if (!source.material.HasProperty(materialPropertyName.stringValue))
+                            if (!source.material.HasProperty(materialPropertyName.stringValue) && !NonShaderProperty.boolValue)
                                 EditorGUILayout.HelpBox("This name is not found in the shader! Are you sure it is correct?", MessageType.Warning);
                         }
 
@@ -118,6 +136,13 @@ namespace UMA.Editors
                         
                         EditorGUILayout.PropertyField(channel.FindPropertyRelative("DownSample"), new GUIContent("Down Sample", "Decrease size to save texture memory"));
                         EditorGUILayout.PropertyField(channel.FindPropertyRelative("sourceTextureName"), new GUIContent("Source Texture Name", "For use with procedural materials, leave empty otherwise."));
+
+                        EditorGUILayout.PropertyField(NonShaderProperty, new GUIContent("NonShader Texture", "For having a texture get merged by the UMA texture merging process but not used in a shader. E.G. Pixel/UV based ID lookup. The Material Property Name should be empty when this is true."));
+                        if(NonShaderProperty.boolValue && !string.IsNullOrEmpty(materialPropertyName.stringValue))
+                        {
+                            EditorGUILayout.HelpBox("A NonShader Texture shouldn't have a Material Property Name value.", MessageType.Warning);
+                        }
+
                     }
                     EditorGUI.indentLevel -= 1;
                 }

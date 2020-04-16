@@ -25,7 +25,6 @@ namespace UMA.Editors
 
 		private bool additionalFoldout = false;
 
-
 		void OnEnable()
 		{
 			_overlayName = serializedObject.FindProperty("overlayName");
@@ -50,7 +49,6 @@ namespace UMA.Editors
 			if (doSave && Time.realtimeSinceStartup > (lastActionTime + 0.5f))
 			{
 				doSave = false;
-				Debug.Log("Saved OverlayDataAsset lastActionTime = " + lastActionTime + " realTime = " + Time.realtimeSinceStartup);
 				lastActionTime = Time.realtimeSinceStartup;
 				EditorUtility.SetDirty(target);
 				AssetDatabase.SaveAssets();
@@ -69,6 +67,7 @@ namespace UMA.Editors
 			EditorGUILayout.PropertyField(_overlayName);
 			EditorGUILayout.PropertyField(_overlayType);
 			EditorGUILayout.PropertyField(_rect);
+			EditorGUILayout.LabelField("Note: It is recommended to use UV coordinates (0.0 -> 1.0) in 2.10+ for rect fields.", EditorStyles.helpBox);
 
 			EditorGUILayout.PropertyField(_umaMaterial);
 
