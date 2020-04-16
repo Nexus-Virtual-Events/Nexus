@@ -39,8 +39,8 @@ public class AvatarCreator : MonoBehaviour
 
     public void ModifySex(bool isMale)
     {
-        if (isMale && avatar.activeRace.name != "HumanMaleDCS") avatar.ChangeRace("HumanMaleDCS");
-        if (!isMale && avatar.activeRace.name != "HumanFemaleDCS") avatar.ChangeRace("HumanFemaleDCS");
+        if (isMale && avatar.activeRace.name != "HumanMaleHD") avatar.ChangeRace("HumanMaleHD");
+        if (!isMale && avatar.activeRace.name != "HumanFemaleHD") avatar.ChangeRace("HumanFemaleHD");
     }
 
     void Updated(UMAData data)
@@ -70,7 +70,7 @@ public class AvatarCreator : MonoBehaviour
 
     public void ModifyHair(bool pressedPlus)
     {
-        if(avatar.activeRace.name == "HumanMaleDCS")
+        if(avatar.activeRace.name == "HumanMaleHD")
         {
             if (pressedPlus)
                 currentHairStyleMale++;
@@ -86,7 +86,7 @@ public class AvatarCreator : MonoBehaviour
 
             avatar.BuildCharacter();
         }
-        if (avatar.activeRace.name == "HumanFemaleDCS")
+        if (avatar.activeRace.name == "HumanFemaleHD")
         {
             if (pressedPlus)
                 currentHairStyleFemale++;

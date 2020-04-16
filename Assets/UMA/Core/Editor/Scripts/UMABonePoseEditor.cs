@@ -203,7 +203,7 @@ namespace UMA.PoseTools
 //			inspectorLocked = ActiveEditorTracker.sharedTracker.isLocked;
 //			ActiveEditorTracker.sharedTracker.isLocked = true;
 			EditorApplication.update += this.OnUpdate;
-			SceneView.onSceneGUIDelegate += this.OnSceneGUI;
+			SceneView.duringSceneGui += this.OnSceneGUI;
 
 			if (warningIcon == null)
 			{
@@ -217,7 +217,7 @@ namespace UMA.PoseTools
 
 		public void OnDisable()
 		{
-			SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
+			SceneView.duringSceneGui -= this.OnSceneGUI;
 			EditorApplication.update -= this.OnUpdate;
 //			ActiveEditorTracker.sharedTracker.isLocked = inspectorLocked;
 		}
