@@ -1,8 +1,8 @@
-using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Characters.ThirdPerson;
-using Normal.Realtime;
+using System.IO;
+using UMA.CharacterSystem;
 
 namespace Normal.Realtime.Examples
 {
@@ -28,6 +28,9 @@ namespace Normal.Realtime.Examples
         EventManager eventManager;
         public Transform playerCamera;
         private ThirdPersonOrbitCamBasic camScript;
+
+        public DynamicCharacterAvatar avatar;
+        public string avatarRecipe;
 
         private void Awake()
         {
@@ -58,6 +61,13 @@ namespace Normal.Realtime.Examples
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
+
+            if (!_realtimeView.isOwnedLocally)
+                return;
+
+            avatarRecipe = File.ReadAllText(Application.persistentDataPath + "/avatar.txt");
+            avatar.ClearSlots();
+            avatar.LoadFromRecipeString(avatarRecipe);
         }
 
 

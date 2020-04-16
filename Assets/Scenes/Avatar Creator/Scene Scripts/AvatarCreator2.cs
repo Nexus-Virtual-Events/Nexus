@@ -119,12 +119,12 @@ public class AvatarCreator2 : MonoBehaviour
     public void SaveAvatar()
     {
         avatarRecipe = avatar.GetCurrentRecipe();
-        File.WriteAllText(Application.persistentDataPath + "/avatar.txt", avatarRecipe);
+        PlayerPrefs.SetString("playerRecipe", avatarRecipe);
     }
 
     public void LoadAvatar()
     {
-        avatarRecipe = File.ReadAllText(Application.persistentDataPath + "/avatar.txt");
+        avatarRecipe = PlayerPrefs.GetString("playerRecipe");
         avatar.ClearSlots();
         avatar.LoadFromRecipeString(avatarRecipe);
     }
