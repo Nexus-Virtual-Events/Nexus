@@ -65,7 +65,7 @@ namespace Normal.Realtime.Examples
             if (!_realtimeView.isOwnedLocally)
                 return;
 
-            avatarRecipe = File.ReadAllText(Application.persistentDataPath + "/avatar.txt");
+            avatarRecipe = PlayerPrefs.GetString("playerRecipe");
             avatar.ClearSlots();
             avatar.LoadFromRecipeString(avatarRecipe);
         }
