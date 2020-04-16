@@ -19,6 +19,8 @@ namespace Normal.Realtime.Examples
         private EventManager eventManager;
         private GameObject localPlayer;
 
+        private char cameraString;
+
 
 
         // Start is called before the first frame update
@@ -33,20 +35,28 @@ namespace Normal.Realtime.Examples
         {
             if (eventManager.GetEvents() == null) return;
 
-            if (eventManager.GetEvents()[0] == '0')
-            {
-                scene = "The Bowl";
-            }
+            if (cameraString == eventManager.GetEvents()[2]){
+                if (eventManager.GetEvents()[0] == '0')
+                {
+                    scene = "The Bowl";
+                }
 
-            countdownDuration = 10.0f;
-            if (eventManager.GetEvents()[1] == '1')
-            {
+                countdownDuration = 10.0f;
+                if (eventManager.GetEvents()[1] == '1')
+                {
 
+                }
+                else
+                {
+                    currentTime = countdownDuration;
+                }
             }
             else
             {
-                currentTime = countdownDuration;
+                Debug.Log("Camera changed");
             }
+
+            cameraString = eventManager.GetEvents()[2];
 
         }
 
