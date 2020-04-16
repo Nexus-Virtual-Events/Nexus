@@ -22,7 +22,7 @@ namespace Michsky.UI.ModernUIPack {
 
         public AudioMixer audioMixer;
 
-        public HorizontalSelector resolutionSelector;
+        public ResolutionSelector resolutionSelector;
         Resolution[] resolutions;
         UnityEvent[] onResolutionChanges;
 
@@ -42,15 +42,18 @@ namespace Michsky.UI.ModernUIPack {
             eventManager.OnEventsChange.AddListener(ReactToEvent);
 
             resolutions = Screen.resolutions;
-            resolutionSelector.itemList = null;
-            List<HorizontalSelector.Item> resolutionOptions = new List<HorizontalSelector.Item>();
+            ResolutionSelector.resolutions = resolutions;
+            //resolutionSelector.itemList = null;
+            List<ResolutionSelector.Item> resolutionOptions = new List<ResolutionSelector.Item>();
 
-            onResolutionChanges = new UnityEvent[resolutions.Length];
-            for (int i = 0; i < resolutions.Length; i++)
-            {
-                onResolutionChanges[i] = new UnityEvent();
-                onResolutionChanges[i].AddListener(delegate { SetResolution(i); });
-            }
+            //onResolutionChanges = new UnityEvent[resolutions.Length];
+            //for (int i = 0; i < resolutions.Length; i++)
+            //{
+            //    Debug.Log("resolution indexes: " + i.ToString());
+            //    onResolutionChanges[i] = new UnityEvent();
+            //    onResolutionChanges[i].AddListener(delegate { SetResolution(i); });
+            //    Debug.Log("onResolutionChanges[i] = :");
+            //}
 
             int currentResolutionIndex = 0;
 
@@ -58,7 +61,7 @@ namespace Michsky.UI.ModernUIPack {
             {
                 string option = resolutions[i].width.ToString() + " x " + resolutions[i].height.ToString();
                 Debug.Log("Resolution " + i.ToString() + ": " + option);
-                HorizontalSelector.Item item = new HorizontalSelector.Item(option, onResolutionChanges[i]);
+                ResolutionSelector.Item item = new ResolutionSelector.Item(option);
                 resolutionOptions.Add(item);
 
                 if (resolutions[i].width == Screen.currentResolution.width
@@ -127,14 +130,14 @@ namespace Michsky.UI.ModernUIPack {
             }
         }
 
-        public void SetResolution(int resolutionIndex)
-        {
-            Debug.Log("Setting Resolution to " + resolutionIndex.ToString());
+        //public void SetResolution(int resolutionIndex)
+        //{
+        //    Debug.Log("Setting Resolution to " + resolutionIndex.ToString());
 
-            Resolution resolution = resolutions[resolutionIndex-1];
-            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        //    Resolution resolution = resolutions[resolutionIndex-1];
+        //    Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 
-        }
+        //}
 
         public void SetVolume(float volume)
         {
