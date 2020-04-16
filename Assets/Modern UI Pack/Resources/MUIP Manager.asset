@@ -30,11 +30,11 @@ MonoBehaviour:
   dropdownItemFont: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
   dropdownThemeType: 0
   dropdownAnimationType: 1
-  dropdownFont: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
+  dropdownFont: {fileID: 11400000, guid: 2f17e8bb3967fe14093d5fec798fffd9, type: 2}
   dropdownColor: {r: 0.37254903, g: 0.40784314, b: 0.4509804, a: 1}
   dropdownTextColor: {r: 1, g: 1, b: 1, a: 1}
   dropdownIconColor: {r: 1, g: 1, b: 1, a: 1}
-  dropdownItemColor: {r: 0.30588236, g: 0.3372549, b: 0.36862746, a: 1}
+  dropdownItemColor: {r: 1, g: 1, b: 1, a: 1}
   dropdownItemTextColor: {r: 1, g: 1, b: 1, a: 1}
   dropdownItemIconColor: {r: 255, g: 255, b: 255, a: 1}
   selectorFont: {fileID: 11400000, guid: 2f17e8bb3967fe14093d5fec798fffd9, type: 2}

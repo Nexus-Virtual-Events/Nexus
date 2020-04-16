@@ -1,16 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using Normal.Realtime;
-using System.Linq;
+using System.IO;
+using UMA.CharacterSystem;
 
 namespace Michsky.UI.ModernUIPack {
     public class AvatarManager : MonoBehaviour {
         private Realtime _realtime;
+
+        public DynamicCharacterAvatar avatar;
+        public string avatarRecipe;
 
         public ModalWindowManager welcomeWindow;
         public ModalWindowManager settingsWindow;
@@ -38,6 +40,10 @@ namespace Michsky.UI.ModernUIPack {
 
         private void Start()
         {
+            avatarRecipe = File.ReadAllText(Application.persistentDataPath + "/avatar.txt");
+            avatar.ClearSlots();
+            avatar.LoadFromRecipeString(avatarRecipe);
+
             eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
             eventManager.OnEventsChange.AddListener(ReactToEvent);
 

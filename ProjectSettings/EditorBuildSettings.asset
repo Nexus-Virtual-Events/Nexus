@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Loading/Loading.unity
     guid: bae65e66fdbe64c1c980435d9e548010
   - enabled: 1
+    path: Assets/Scenes/Avatar Creator/Avatar Creator.unity
+    guid: 586cf90d6a5094cfdaefc2f4e40e81cc
+  - enabled: 1
     path: Assets/Scenes/The Bowl/The Bowl.unity
-    guid: cbfe36cfddfde964d9dfce63a355d5dd
+    guid: 5764fe164d54048a4b95f12d2d41921d
   m_configObjects: {}
