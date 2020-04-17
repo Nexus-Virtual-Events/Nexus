@@ -555,8 +555,6 @@ MonoBehaviour:
   foreignAvatarRecipe: 
   FocusCameraPosition: {fileID: 6999568011241147481, guid: 25c118c2d6b7e45e4a8fa267bca5cd6b,
     type: 3}
-  FocusItem: {fileID: 2255234181292289824, guid: 8cea5a97e11d14b189e80f5c1a3ccedb,
-    type: 3}
 --- !u!114 &2007558291461423101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,6 +811,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5344741582037746087}
     m_Modifications:
+    - target: {fileID: 94518228940472873, guid: 29e747a427a7a4f5b847c644ec4d8b7e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21918420405216288, guid: fa328c1ae3ffb6b4583cf371153b0be6,
+        type: 2}
     - target: {fileID: 2439314633855899928, guid: 29e747a427a7a4f5b847c644ec4d8b7e,
         type: 3}
       propertyPath: m_Name
@@ -963,6 +967,18 @@ PrefabInstance:
       propertyPath: m_margin.y
       value: -1.3244619
       objectReference: {fileID: 0}
+    - target: {fileID: 7350305958875822869, guid: 29e747a427a7a4f5b847c644ec4d8b7e,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: fa328c1ae3ffb6b4583cf371153b0be6,
+        type: 2}
+    - target: {fileID: 7350305958875822869, guid: 29e747a427a7a4f5b847c644ec4d8b7e,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 21918420405216288, guid: fa328c1ae3ffb6b4583cf371153b0be6,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e747a427a7a4f5b847c644ec4d8b7e, type: 3}
 --- !u!224 &8893712038968174171 stripped
