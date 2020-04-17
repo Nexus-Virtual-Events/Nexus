@@ -149,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14659994}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5104575, y: 1.196, z: 1.1762289}
+  m_LocalPosition: {x: 2.510458, y: 1.196, z: 1.1762291}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1311782921}
@@ -1468,7 +1468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 237.72795, y: -106.093506}
+  m_AnchoredPosition: {x: 237.72803, y: -106.09375}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &671343048
@@ -1591,7 +1591,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704881405}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019999983, y: 1.196, z: 1.8104577}
+  m_LocalPosition: {x: 0.019999983, y: 1.196, z: 1.8104582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1311782921}
@@ -2354,7 +2354,10 @@ MonoBehaviour:
     - _recipeName: F_UnderwearHD
       _compatibleRaces:
       - HumanFemaleHD
-    - _recipeName: UnderwearHD 1
+    - _recipeName: UnderwearHD
+      _compatibleRaces:
+      - HumanMaleHD
+    - _recipeName: RobeHD
       _compatibleRaces:
       - HumanMaleHD
   raceAnimationControllers:
@@ -2749,7 +2752,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -92.340576, y: -70.72882}
+  m_AnchoredPosition: {x: -92.34033, y: -70.729004}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1427360732
@@ -2870,7 +2873,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504980959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019999983, y: 1.196, z: -0.687114}
+  m_LocalPosition: {x: 0.019999983, y: 1.196, z: -0.6871141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1311782921}
