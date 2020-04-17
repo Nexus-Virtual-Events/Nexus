@@ -9,12 +9,14 @@ namespace Normal.Realtime.Examples
 {
     public class AdminPanel : MonoBehaviour
     {
-        public TMP_Text buttonText;
-        public TMP_Text buttonHighlightedText;
+        public TMP_Text eventSelectButtonText;
+        public TMP_Text eventSelectButtonHighlightedText;
 
         public int eventStatus = 0;
         public int eventIndex = 0;
         ModifyEvents eventModifier;
+
+        public TMP_Text focusCameraButtonText;
 
         // Start is called before the first frame update
         void Start()
@@ -30,18 +32,18 @@ namespace Normal.Realtime.Examples
 
         public void ChangeEventStatus()
         {
-            if (buttonText.text == "CHOOSE")
+            if (eventSelectButtonText.text == "CHOOSE")
             {
-                buttonText.text = "END";
-                buttonHighlightedText.text = "CONFIRM";
+                eventSelectButtonText.text = "END";
+                eventSelectButtonHighlightedText.text = "CONFIRM";
 
                 eventStatus = 1;
 
             }
             else
             {
-                buttonText.text = "CHOOSE";
-                buttonHighlightedText.text = "START";
+                eventSelectButtonText.text = "CHOOSE";
+                eventSelectButtonHighlightedText.text = "START";
 
                 eventStatus = 0;
             }
@@ -53,6 +55,23 @@ namespace Normal.Realtime.Examples
         public void ChangeSelectedEvent(int selectedIndex)
         {
             eventIndex = selectedIndex;
+        }
+
+        public void ToggleFocusCameraMode()
+        {
+            if (focusCameraButtonText.text == "FOCUS")
+            {
+                focusCameraButtonText.text = "UNFOCUS";
+
+                eventStatus = 1;
+
+            }
+            else
+            {
+                focusCameraButtonText.text = "FOCUS";
+
+                eventStatus = 0;
+            }
         }
     }
 }

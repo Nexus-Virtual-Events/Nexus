@@ -3420,26 +3420,12 @@ MonoBehaviour:
   preloadWardrobeRecipes:
     loadDefaultRecipes: 1
     recipes:
-    - _recipeName: MaleUnderwear
+    - _recipeName: UnderwearHD
       _compatibleRaces:
-      - HumanMale
-      - HumanMaleDCS
-    - _recipeName: MaleShorts2
+      - HumanMaleHD
+    - _recipeName: F_UnderwearHD
       _compatibleRaces:
-      - HumanMale
-      - HumanMaleDCS
-    - _recipeName: MaleHair2
-      _compatibleRaces:
-      - HumanMale
-      - HumanMaleDCS
-    - _recipeName: FemaleUndies2
-      _compatibleRaces:
-      - HumanFemaleDCS
-      - HumanFemale
-    - _recipeName: FemaleHair1
-      _compatibleRaces:
-      - HumanFemaleDCS
-      - HumanFemale
+      - HumanFemaleHD
   raceAnimationControllers:
     defaultAnimationController: {fileID: 9100000, guid: eb280940c811fab4a9e3ddf09381c343,
       type: 2}
