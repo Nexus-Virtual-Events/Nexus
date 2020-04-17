@@ -63,14 +63,13 @@ namespace Normal.Realtime.Examples
             {
                 focusCameraButtonText.text = "UNFOCUS";
 
-                eventStatus = 1;
-
+                eventModifier.ChangeCamera(1);
             }
             else
             {
                 focusCameraButtonText.text = "FOCUS";
 
-                eventStatus = 0;
+                eventModifier.ChangeCamera(0);
             }
         }
     }

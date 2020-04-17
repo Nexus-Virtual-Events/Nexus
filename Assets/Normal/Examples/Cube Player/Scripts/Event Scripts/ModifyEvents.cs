@@ -24,7 +24,6 @@ namespace Normal.Realtime.Examples
             _eventSync = GameObject.FindObjectOfType<EventSync>();
             _events = "000";
             _prevEvents = "000";
-            Debug.Log("Start() events from ModifyEvents:" + _events);
         }
 
         private void Awake()
@@ -35,12 +34,15 @@ namespace Normal.Realtime.Examples
 
         public void ChangeEvent(int eventIndex, int eventStatus)
         {
-            _events = eventIndex.ToString() + eventStatus.ToString() + _events[2];
+
+            _events = eventIndex.ToString() + eventStatus.ToString() + _events[2].ToString();
         }
 
         public void ChangeCamera(int isCameraOn)
         {
-            _events = _events[0] + _events[1] + isCameraOn.ToString();
+       
+            Debug.Log(isCameraOn.ToString());
+            _events = _events[0].ToString() + _events[1].ToString() + isCameraOn.ToString();
         }
 
 
@@ -59,7 +61,7 @@ namespace Normal.Realtime.Examples
             {
                 if (_prevEvents != _events)
                 {
-                    Debug.Log("ModifEvents changing the event to:" + _events);
+                    Debug.Log("Modify events changing the event to:" + _events);
                     _eventSync.SetEvent(_events);
                     _prevEvents = _events;
                 }

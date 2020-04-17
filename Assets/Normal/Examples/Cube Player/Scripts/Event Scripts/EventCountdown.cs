@@ -19,9 +19,7 @@ namespace Normal.Realtime.Examples
         private EventManager eventManager;
         private GameObject localPlayer;
 
-        private char cameraString;
-
-
+        private char cameraString = '0';
 
         // Start is called before the first frame update
         void Start()
@@ -34,6 +32,10 @@ namespace Normal.Realtime.Examples
         void ReceiveEvent()
         {
             if (eventManager.GetEvents() == null) return;
+
+            Debug.Log("Two states:");
+            Debug.Log(cameraString);
+            Debug.Log(eventManager.GetEvents()[2]);
 
             if (cameraString == eventManager.GetEvents()[2]){
                 if (eventManager.GetEvents()[0] == '0')

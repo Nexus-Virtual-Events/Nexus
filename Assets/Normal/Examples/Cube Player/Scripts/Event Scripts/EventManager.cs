@@ -9,6 +9,7 @@ public class EventManager : MonoBehaviour
     private string prevEvents;
 
     public UnityEvent OnEventsChange;
+
     private bool isInitializedBool = false;
     // Start is called before the first frame update
     void Start()

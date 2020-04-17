@@ -478,7 +478,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5344741582037746110}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -486,7 +486,7 @@ Transform:
   - {fileID: 8893712038968174171}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &5344741582037746080
 Animator:
   serializedVersion: 3
@@ -549,11 +549,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _realtimeView: {fileID: 0}
-  podiumCameraPosition: {fileID: 0}
   playerCamera: {fileID: 0}
   avatar: {fileID: 5344741582037746109}
   avatarRecipe: 
   foreignAvatarRecipe: 
+  FocusCameraPosition: {fileID: 6999568011241147481, guid: 25c118c2d6b7e45e4a8fa267bca5cd6b,
+    type: 3}
+  FocusItem: {fileID: 2255234181292289824, guid: 8cea5a97e11d14b189e80f5c1a3ccedb,
+    type: 3}
 --- !u!114 &2007558291461423101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,11 +687,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _realtime: {fileID: 0}
-  _sceneViewUUID: 879cb88d52d5a9499010db276634a308
+  _sceneViewUUID: 
   _sceneViewOwnedByCreatingClient: 1
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _isRootPrefabView: 1
   _components:
   - componentID: 1
     component: {fileID: 8366006502200670442}
