@@ -148,9 +148,13 @@ namespace Normal.Realtime.Examples
             }
         }
 
-        private string parseMoveToString(Vector3 move, bool crouch, bool jump)
+        private string parseMoveToString(Vector3 move, bool[] toggleAnimations)
         {
-            return move.x.ToString() + " " + move.y.ToString() + " " + move.z.ToString() + " " + Convert.ToInt16(crouch) + " " + Convert.ToInt16(jump);
+            string animationString = move.x.ToString() + " " + move.y.ToString() + " " + move.z.ToString() + " ";
+            foreach (bool animation in toggleAnimations) {
+                animationString += Convert.ToInt16(animation) + " ";
+            }
+            return animationString;
         }
 
         // Fixed update is called in sync with physics
@@ -159,7 +163,7 @@ namespace Normal.Realtime.Examples
             // If this CubePlayer prefab is not owned by this client, bail.
             if (!_realtimeView.isOwnedLocally)
             {
-                
+       
                 m_Character.ForeignMove(GetComponent<UpdateMove>().characterMove);
             }
             else
@@ -191,6 +195,7 @@ namespace Normal.Realtime.Examples
                     float h = CrossPlatformInputManager.GetAxis("Horizontal");
                     float v = CrossPlatformInputManager.GetAxis("Vertical");
                     bool crouch = Input.GetKey(KeyCode.C);
+                    bool clap = Input.GetKey(KeyCode.Alpha1);
 
                     // calculate move direction to pass to character
                     if (m_Cam != null)
@@ -210,9 +215,15 @@ namespace Normal.Realtime.Examples
 #endif
 
                     // pass all parameters to the character control script
-                    m_Character.Move(m_Move, crouch, m_Jump);
+                    m_Character.Move(m_Move, crouch, m_Jump, clap);
 
-                    GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, crouch, m_Jump);
+                    bool[] toggleInformation = new bool[3];
+                    toggleInformation[0] = crouch;
+                    toggleInformation[1] = m_Jump;
+                    toggleInformation[2] = clap;
+                    
+
+                    GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, toggleInformation);
 
                     m_Jump = false;
                 }
