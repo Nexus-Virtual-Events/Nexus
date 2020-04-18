@@ -238,6 +238,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 		}
 
+		float prevY;
 
 		void CheckGroundStatus()
 		{
@@ -248,7 +249,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 #endif
 			// 0.1f is a small offset to start the ray from inside the character
 			// it is also good to note that the transform position in the sample assets is at the base of the character
-			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
+			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance) || Mathf.Abs(prevY-transform.position.y) == 0.01)
 			{
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
@@ -260,6 +261,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_GroundNormal = Vector3.up;
 				m_Animator.applyRootMotion = false;
 			}
+			prevY = transform.position.y;
 		}
 	}
 }
