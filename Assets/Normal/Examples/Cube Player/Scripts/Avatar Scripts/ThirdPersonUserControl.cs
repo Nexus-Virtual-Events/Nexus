@@ -196,6 +196,8 @@ namespace Normal.Realtime.Examples
                     float v = CrossPlatformInputManager.GetAxis("Vertical");
                     bool crouch = Input.GetKey(KeyCode.C);
                     bool clap = Input.GetKey(KeyCode.Alpha1);
+                    bool wave = Input.GetKey(KeyCode.Alpha2);
+
 
                     // calculate move direction to pass to character
                     if (m_Cam != null)
@@ -215,13 +217,13 @@ namespace Normal.Realtime.Examples
 #endif
 
                     // pass all parameters to the character control script
-                    m_Character.Move(m_Move, crouch, m_Jump, clap);
+                    m_Character.Move(m_Move, crouch, m_Jump, clap, wave);
 
                     bool[] toggleInformation = new bool[3];
                     toggleInformation[0] = crouch;
                     toggleInformation[1] = m_Jump;
                     toggleInformation[2] = clap;
-                    
+                    toggleInformation[3] = wave;
 
                     GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, toggleInformation);
 
