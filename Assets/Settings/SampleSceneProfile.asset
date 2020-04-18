@@ -16,11 +16,11 @@ MonoBehaviour:
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.75
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.45
     min: 0
   scatter:
     m_OverrideState: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0.22
     min: 0
     max: 1
   smoothness:
@@ -108,19 +108,19 @@ MonoBehaviour:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
+          time: 0.058020476
+          value: 0.102941155
+          inSlope: 1.4003676
+          outSlope: 1.4003676
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.23890784
-          value: 0.14705884
-          inSlope: 1
-          outSlope: 1
+          time: 0.3139932
+          value: 0.3602941
+          inSlope: 2.0825984
+          outSlope: 2.0825984
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2
 --- !u!114 &7925498879759901904
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -396,7 +396,7 @@ MonoBehaviour:
     m_Value: 0
   contrast:
     m_OverrideState: 1
-    m_Value: 24
+    m_Value: 17
     min: -100
     max: 100
   colorFilter:
@@ -412,6 +412,6 @@ MonoBehaviour:
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: 18
+    m_Value: 1
     min: -100
     max: 100
