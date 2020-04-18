@@ -46,6 +46,7 @@ namespace UMA.CharacterSystem.Editors
 			else
 			{
 					var raceDatas = UMAContext.Instance.GetAllRaces();
+				    Debug.Log(raceDatas);
 					if ((raceDatas.Length + 1) != (foundRaces.Count))
 					{
 						SetRaceLists(raceDatas);
