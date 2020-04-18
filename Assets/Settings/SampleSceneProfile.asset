@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
@@ -20,7 +20,7 @@ MonoBehaviour:
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.49
+    m_Value: 0.68
     min: 0
   scatter:
     m_OverrideState: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.75919026, y: 0.81939363, z: 1, w: 0}
+    m_Value: {x: 0.9141224, y: 0.91803795, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.9441865, z: 0.97552675, w: 0}
