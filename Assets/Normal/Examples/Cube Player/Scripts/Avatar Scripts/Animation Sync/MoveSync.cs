@@ -55,6 +55,7 @@ namespace Normal.Realtime.Examples
 
         public void SetMove(string move)
         {
+            Debug.Log(move);
             // Set the color on the model
             // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
             _model.move = move;

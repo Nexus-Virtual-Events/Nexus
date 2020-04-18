@@ -37,7 +37,7 @@ namespace Normal.Realtime.Examples
             if (_moveSync == null || characterMove == null)
             {
                 _moveSync = GameObject.FindObjectOfType<MoveSync>();
-                characterMove = "0 0 0 0 0";
+                characterMove = "0 0 0 0 0 0";
             }
             else
             {

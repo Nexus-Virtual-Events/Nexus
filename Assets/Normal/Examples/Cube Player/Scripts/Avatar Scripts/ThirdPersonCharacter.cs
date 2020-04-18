@@ -28,6 +28,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		Vector3 m_CapsuleCenter;
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
+		bool m_Clapping;
 
 		void Start()
 		{
@@ -42,7 +43,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-		public void Move(Vector3 move, bool crouch, bool jump)
+		public void Move(Vector3 move, bool crouch, bool jump, bool clap)
 		{
 
 			// convert the world relative moveInput vector into a local-relative
@@ -54,18 +55,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			move = Vector3.ProjectOnPlane(move, m_GroundNormal);
 			m_TurnAmount = Mathf.Atan2(move.x, move.z);
 			m_ForwardAmount = move.z;
+			m_Clapping = clap;
 
 			ApplyExtraTurnRotation();
 
 			// control and velocity handling is different when grounded and airborne:
 			if (m_IsGrounded)
 			{
-				Debug.Log("grounded");
 				HandleGroundedMovement(crouch, jump);
 			}
 			else
 			{
-				Debug.Log("airborne");
 				HandleAirborneMovement();
 			}
 
@@ -86,8 +86,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             Vector3 move = new Vector3(float.Parse(parameters[0]), float.Parse(parameters[1]), float.Parse(parameters[2]));
             bool isCrouching = int.Parse(parameters[3]) != 0;
             bool isOnGround = int.Parse(parameters[4]) != 0;
+            bool isClapping = int.Parse(parameters[5]) != 0;
 
-			Move(move, isCrouching, isOnGround);
+			Move(move, isCrouching, isOnGround, isClapping);
 
         }
 
@@ -138,6 +139,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
 			m_Animator.SetBool("Crouch", m_Crouching);
 			m_Animator.SetBool("OnGround", m_IsGrounded);
+			m_Animator.SetBool("Clapping", m_Clapping);
 
 
 			if (!m_IsGrounded)
@@ -254,7 +256,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_GroundNormal = Vector3.up;
 				m_Animator.applyRootMotion = false;
 			}
-			Debug.Log(m_IsGrounded);
 		}
 	}
 }
