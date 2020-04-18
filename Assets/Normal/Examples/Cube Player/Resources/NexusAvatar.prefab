@@ -528,7 +528,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5344741582037746110}
-  m_Material: {fileID: 13400000, guid: 9b816bbd7164f4b84b9f17d54dbbb761, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
@@ -573,7 +573,6 @@ MonoBehaviour:
   m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.1
 --- !u!114 &5344741582037746109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,7 +792,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 21539420542967178, guid: 4bd810f1cbcb0f446a8f5a31453e243f,
+      objectReference: {fileID: 21700449227511232, guid: 2f17e8bb3967fe14093d5fec798fffd9,
         type: 2}
     - target: {fileID: 2439314633855899928, guid: 29e747a427a7a4f5b847c644ec4d8b7e,
         type: 3}
@@ -949,13 +948,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f,
+      objectReference: {fileID: 11400000, guid: 2f17e8bb3967fe14093d5fec798fffd9,
         type: 2}
     - target: {fileID: 7350305958875822869, guid: 29e747a427a7a4f5b847c644ec4d8b7e,
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 21539420542967178, guid: 4bd810f1cbcb0f446a8f5a31453e243f,
+      objectReference: {fileID: 21700449227511232, guid: 2f17e8bb3967fe14093d5fec798fffd9,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e747a427a7a4f5b847c644ec4d8b7e, type: 3}
