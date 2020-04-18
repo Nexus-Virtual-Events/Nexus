@@ -7,14 +7,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 	[RequireComponent(typeof(Animator))]
 	public class ThirdPersonCharacter : MonoBehaviour
 	{
-		[SerializeField] float m_MovingTurnSpeed = 360;
-		[SerializeField] float m_StationaryTurnSpeed = 180;
-		float m_JumpPower = 8f;
-		float m_GravityMultiplier = 1f;
-		float m_RunCycleLegOffset = 0.1f; //specific to the character in sample assets, will need to be modified to work with others
-		[SerializeField] float m_MoveSpeedMultiplier = 1f;
-		float m_AnimSpeedMultiplier = 0.9f;
-		float m_GroundCheckDistance = 0.3f;
+		 float m_MovingTurnSpeed = 360;
+		 float m_StationaryTurnSpeed = 180;
+		 float m_JumpPower = 7f;
+		 float m_GravityMultiplier = 1.5f;
+		 float m_RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
+		 float m_MoveSpeedMultiplier = 1f;
+		 float m_AnimSpeedMultiplier = 1f;
+		 float m_GroundCheckDistance = 0.15f;
 
 		Rigidbody m_Rigidbody;
 		Animator m_Animator;
@@ -170,22 +170,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 		}
 
-		//      public void SyncAnimation(string animationState)
-		//{
-		//	string[] parameters;
-
-		//	//"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
-		//	parameters = animationState.Split(' ');
-
-		//	float forwardAmount = float.Parse(parameters[0]);
-		//	float turnAmount = float.Parse(parameters[1]);
-		//	int isCrouching = int.Parse(parameters[2]);
-		//	int isOnGround = int.Parse(parameters[3]);
-
-		//	UpdateAnimator()
-
-		//}
-
+	
 
 		void HandleAirborneMovement()
 		{
