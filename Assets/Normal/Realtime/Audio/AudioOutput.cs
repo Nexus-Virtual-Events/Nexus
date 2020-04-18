@@ -37,6 +37,7 @@ namespace Normal.Realtime {
 
             // Speaker
             AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.maxDistance = 30;
 
             // Create audio source if needed.
             if (audioSource == null) {
