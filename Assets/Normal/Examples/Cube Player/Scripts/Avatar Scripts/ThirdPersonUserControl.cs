@@ -219,7 +219,7 @@ namespace Normal.Realtime.Examples
                     // pass all parameters to the character control script
                     m_Character.Move(m_Move, crouch, m_Jump, clap, wave);
 
-                    bool[] toggleInformation = new bool[3];
+                    bool[] toggleInformation = new bool[4];
                     toggleInformation[0] = crouch;
                     toggleInformation[1] = m_Jump;
                     toggleInformation[2] = clap;
