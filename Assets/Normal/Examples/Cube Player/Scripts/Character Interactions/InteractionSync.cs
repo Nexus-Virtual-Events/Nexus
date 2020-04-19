@@ -5,10 +5,10 @@ using Normal.Realtime;
 
 namespace Normal.Realtime.Examples
 {
-    public class MoveSync : RealtimeComponent
+    public class InteractionSync : RealtimeComponent
     {
 
-        private MoveSyncModel _model;
+        private InteractionSyncModel _model;
 
         private void Start()
         {
@@ -17,14 +17,14 @@ namespace Normal.Realtime.Examples
             //_characterMove = GetComponent<UpdateMove>.
         }
 
-        private MoveSyncModel model
+        private InteractionSyncModel model
         {
             set
             {
                 if (_model != null)
                 {
                     // Unregister from events
-                    _model.moveDidChange -= MoveDidChange;
+                    _model.interactionDidChange -= InteractionDidChange;
                 }
 
                 // Store the model
@@ -33,32 +33,41 @@ namespace Normal.Realtime.Examples
                 if (_model != null)
                 {
                     // Update the mesh render to match the new model
-                    UpdateMove();
+                    UpdateInteraction();
 
                     // Register for events so we'll know if the color changes later
-                    _model.moveDidChange += MoveDidChange;
+                    _model.interactionDidChange += InteractionDidChange;
                 }
             }
         }
 
-        private void MoveDidChange(MoveSyncModel model, string value)
+        private void InteractionDidChange(InteractionSyncModel model, string value)
         {
+            
             // Update the mesh renderer
-            UpdateMove();
+            // UpdateInteraction();
+            if (value == "") { return; }
+            Debug.Log("Received intearction: " + value);
+            GetComponent<ModifyInteraction>().ReceivedNewInteraction(value);
         }
 
-        private void UpdateMove()
+        private void UpdateInteraction()
         {
             // Get the color from the model and set it on the mesh renderer.
-            GetComponent<UpdateMove>().characterMove = _model.move;
+            if (_model.interaction == "") {
+                Debug.LogWarning("Empty intreaction value");
+                return;
+            }
+            
+            
         }
 
-        public void SetMove(string move)
+        public void SetInteraction(string interaction)
         {
-            //Debug.Log(move);
+            Debug.Log("Setting to:" + interaction);
             // Set the color on the model
             // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
-            _model.move = move;
+            _model.interaction = interaction;
         }
     }
 }

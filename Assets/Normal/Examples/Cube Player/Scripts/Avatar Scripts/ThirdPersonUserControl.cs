@@ -29,12 +29,27 @@ namespace Normal.Realtime.Examples
         public Transform playerCamera;
         private ThirdPersonOrbitCamBasic camScript;
 
+        ModifyInteraction interactionModifier;
+
         public DynamicCharacterAvatar avatar;
         public string avatarRecipe;
         public string foreignAvatarRecipe;
 
-        public bool sit;
+        public bool sit = false;
         public Vector3 positionBeforeSitting;
+
+        private bool isCameraParented = false;
+
+        private int currentNumPlayers;
+        private int prevNumPlayers;
+
+        //Camera focus stuff
+        private bool canMove = true;
+        private bool autoPilot = false;
+        private Vector3 autoTarget;
+
+        private GameObject FocusCameraPosition;
+        private Transform cameraStay;
 
         private void Awake()
         {
@@ -47,15 +62,10 @@ namespace Normal.Realtime.Examples
             return _realtimeView.isOwnedLocally;
         }
 
-        private bool isCameraParented = false;
-
-        private int currentNumPlayers;
-        private int prevNumPlayers;
-
-        //Camera focus stuff
-        private bool canMove = true;
-        private GameObject FocusCameraPosition;
-        private Transform cameraStay;
+        public int getID()
+        {
+            return _realtimeView.ownerID;
+        }
 
         private void Start()
         {
@@ -76,12 +86,31 @@ namespace Normal.Realtime.Examples
             eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
             eventManager.OnEventsChange.AddListener(SwitchFocus);
 
+            interactionModifier = GetComponent<ModifyInteraction>();
+            //interactionModifier.OnInteractionsReceived +=  reactToInteractionChange;
+
+
             if (_realtimeView.isOwnedLocally)
             {
                ActionRouter.SetLocalAvatar(transform.gameObject);
-               sit = false;
             }
          
+        }
+
+
+        public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
+        {
+
+            if (!_realtimeView.isOwnedLocally) { return; }
+
+            Vector3 otherPosition = sourceCharacter.transform.position;
+            Vector3 target = ((otherPosition - transform.position)/2) + transform.position;
+
+            Debug.Log("target: " + target.ToString());
+
+            canMove = false;
+            autoPilot = true;
+            autoTarget = target;
         }
 
         private void SwitchFocus()
@@ -257,6 +286,30 @@ namespace Normal.Realtime.Examples
                     GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, toggleInformation);
 
                     m_Jump = false;
+                }
+                else
+                {
+                    if (autoPilot)
+                    {
+                        Debug.Log("autoPilot " + getID().ToString());
+
+                        m_Character.Move(autoTarget - transform.position, false, false, false, false, false);
+                        bool[] toggleInformation = new bool[5];
+                        toggleInformation[0] = false;
+                        toggleInformation[1] = false;
+                        toggleInformation[2] = false;
+                        toggleInformation[3] = false;
+                        toggleInformation[4] = false;
+
+                        GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, toggleInformation);
+
+                        if(Vector3.Distance(transform.position, autoTarget) < 0.1)
+                        {
+                            canMove = true;
+                            autoPilot = false;
+                            Debug.Log("target reached");
+                        }
+                    }
                 }
             }
         }

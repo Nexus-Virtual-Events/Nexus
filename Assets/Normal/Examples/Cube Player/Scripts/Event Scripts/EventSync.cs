@@ -48,7 +48,7 @@ public class EventSync : RealtimeComponent
 
     public void SetEvent(string eventString)
     {
-        Debug.Log("SetEvent called with " + eventString);
+        //Debug.Log("SetEvent called with " + eventString);
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
         _model.events = eventString;

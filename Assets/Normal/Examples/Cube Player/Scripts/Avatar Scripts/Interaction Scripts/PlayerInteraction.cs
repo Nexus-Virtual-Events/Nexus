@@ -23,6 +23,16 @@ public class PlayerInteraction : MonoBehaviour
 
     bool IsCloseEnough(GameObject hit)
     {
+        if (!hit.transform) {
+            Debug.LogWarning("Hit transfrom doesn't exist.");
+            return false;
+        }
+
+        if (!ActionRouter.GetLocalAvatar()) {
+            Debug.LogWarning("Local Avatar doesn't exist.");
+            return false;
+        }
+
         return Vector3.Distance(hit.transform.position, ActionRouter.GetLocalAvatar().transform.position) < minMenuDist;
     }
 
@@ -41,26 +51,32 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     if (hit.transform.tag == "Player" && !hit.transform.GetComponent<RealtimeView>().isOwnedLocally)
                     {
+                        
                         if (_isInstantiated && _interactedObject != hit.transform.gameObject)
                         {
                             Destroy(_interactionMenu.gameObject);
+                            _isInstantiated = false;
                         }
 
-                        if (_interactedObject != hit.transform.gameObject)
+                        if (!_isInstantiated)
                         {
-                        _interactedObject = hit.transform.gameObject;
-                        _interactionMenu = Instantiate(playerInteractionMenuPrefab);
-                        _interactionMenu.transform.SetParent(GameObject.Find("Player HUD").transform);
-                        _isInstantiated = true;
+                            _interactedObject = hit.transform.gameObject;
+                            _interactionMenu = Instantiate(playerInteractionMenuPrefab);
+                            _interactionMenu.transform.SetParent(GameObject.Find("Player HUD").transform);
+                            _isInstantiated = true;
+                            ActionRouter.SetCurrentCharacter(hit.transform.gameObject);
                         }
+                           
                     }
                     else if (hit.transform.tag == "Chair")
                     {
                         if (_isInstantiated && _interactedObject != hit.transform.gameObject)
                         {
                             Destroy(_interactionMenu.gameObject);
+                            _isInstantiated = false;
                         }
-                        if (_interactedObject != hit.transform.gameObject)
+
+                        if (!_isInstantiated)
                         {
                             _interactedObject = hit.transform.gameObject;
                             _interactionMenu = Instantiate(chairInteractionMenuPrefab);
@@ -75,7 +91,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (_isInstantiated)
         {
-            if (_interactionMenu == null || !IsCloseEnough(_interactedObject))
+            if (_interactionMenu == null || !IsCloseEnough(_interactedObject) || _interactedObject == null)
             {
                 _isInstantiated = false;
                 Destroy(_interactionMenu.gameObject);
