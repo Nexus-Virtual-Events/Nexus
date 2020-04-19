@@ -105,9 +105,7 @@ namespace Normal.Realtime.Examples
             if (!_realtimeView.isOwnedLocally) { return; }
 
 
-            Debug.Log("[Remote Interaction] " + interactionModifier.GetCurrentInteraction());
-
-            string[] parameters = stringToArray(interactionModifier.GetCurrentInteraction());
+            string[] parameters = stringToArray(newInteraction);
 
 
             if (parameters[2] == "0") {

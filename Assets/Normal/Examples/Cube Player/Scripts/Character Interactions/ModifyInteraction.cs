@@ -8,7 +8,6 @@ namespace Normal.Realtime.Examples
 {
     public class ModifyInteraction : MonoBehaviour
     {
-        private string interaction;
         private string _prevInteraction;
 
         private InteractionSync _interactionSync;
@@ -24,23 +23,7 @@ namespace Normal.Realtime.Examples
         {
             // Get a reference to the color sync component
             _interactionSync = GetComponent<InteractionSync>();
-            interaction = "0 0 0";
-            _prevInteraction = "0 0 0";
 
-
-        }
-
-        public void SetCurrentInteraction (string nInteraction) {
-            Debug.Log("Updating current interaction: " + nInteraction);
-            Debug.Log("IsLocal?" + _realtimeView.isOwnedLocally);
-            Debug.Log("Interaction sync: " + _interactionSync);
-            string str = UnityEngine.StackTraceUtility.ExtractStackTrace ();
-            Debug.Log(str);
-            interaction = nInteraction;
-        }
-
-        public string GetCurrentInteraction () {
-            return interaction;
         }
 
         private void Awake()
@@ -50,12 +33,13 @@ namespace Normal.Realtime.Examples
         }
 
         public void SendNewValue(string newInteractionCommand) {
-            _interactionSync.SetInteraction(interaction);
+            Debug.Log("Sending value: " + newInteractionCommand);
+            _interactionSync.SetInteraction(newInteractionCommand);
         }
 
         public void ReceivedNewInteraction(string newIntreactionReceived) {
             if (!_realtimeView.isOwnedLocally) {
-                Debug.Log("received intreaction but not local");
+                Debug.Log("Received intreaction but not local");
                 return;
             }
 
