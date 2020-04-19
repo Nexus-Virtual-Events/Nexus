@@ -48,7 +48,6 @@ namespace Normal.Realtime.Examples
         public void ReceivedNewInteraction(string newIntreactionReceived) {
             // Check if the target user is me
             string[] parameters = stringToArray(newIntreactionReceived);
-
             if (parameters[2] == "0") {
                 Debug.Log("Received intreaction but not action needed");
                 return;
