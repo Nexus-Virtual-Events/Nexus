@@ -14,6 +14,7 @@ public class ChairInteractionMenu : MonoBehaviour
     public void SitDown()
     {
         GameObject localAvatar = ActionRouter.GetLocalAvatar();
+        localAvatar.GetComponent<Normal.Realtime.Examples.ThirdPersonUserControl>().sit = false;
         Transform chair = ActionRouter.GetCurrentChair().transform;
         localAvatar.transform.position = chair.position + chair.rotation * new Vector3(0f, -0.45f, 0f);
         localAvatar.transform.rotation = chair.rotation * Quaternion.Euler(90f, 0, 0);
