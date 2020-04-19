@@ -465,6 +465,8 @@ GameObject:
   - component: {fileID: 1938732676824237042}
   - component: {fileID: 8759677201249903172}
   - component: {fileID: 581240723282060613}
+  - component: {fileID: -3292913170641518607}
+  - component: {fileID: 6755074562924661899}
   m_Layer: 0
   m_Name: NexusAvatar
   m_TagString: Player
@@ -554,8 +556,8 @@ MonoBehaviour:
   avatar: {fileID: 5344741582037746109}
   avatarRecipe: 
   foreignAvatarRecipe: 
-  FocusCameraPosition: {fileID: 6999568011241147481, guid: 25c118c2d6b7e45e4a8fa267bca5cd6b,
-    type: 3}
+  sit: 0
+  positionBeforeSitting: {x: 0, y: 0, z: 0}
 --- !u!114 &5344741582037746108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,6 +694,9 @@ MonoBehaviour:
     componentIDHasBeenUsed: 1
   - componentID: 5
     component: {fileID: 8759677201249903172}
+    componentIDHasBeenUsed: 1
+  - componentID: 6
+    component: {fileID: -3292913170641518607}
     componentIDHasBeenUsed: 1
   _parentView: {fileID: 0}
   _childViews: []
@@ -930,6 +935,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3292913170641518607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344741582037746110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e37d74ab19e49dc842252eb56e6b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6755074562924661899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344741582037746110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36205c95fbc9434b835fc40a5de6116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interaction: 
 --- !u!1001 &6436147050421029685
 PrefabInstance:
   m_ObjectHideFlags: 0
