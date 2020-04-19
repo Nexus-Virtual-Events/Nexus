@@ -39,20 +39,35 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (IsCloseEnough(hit.transform.gameObject))
                 {
-                    if (hit.transform.tag == "Player" && !hit.transform.GetComponent<RealtimeView>().isOwnedLocally && _isInstantiated == false)
+                    if (hit.transform.tag == "Player" && !hit.transform.GetComponent<RealtimeView>().isOwnedLocally)
                     {
+                        if (_isInstantiated && _interactedObject != hit.transform.gameObject)
+                        {
+                            Destroy(_interactionMenu.gameObject);
+                        }
+
+                        if (_interactedObject != hit.transform.gameObject)
+                        {
                         _interactedObject = hit.transform.gameObject;
                         _interactionMenu = Instantiate(playerInteractionMenuPrefab);
                         _interactionMenu.transform.SetParent(GameObject.Find("Player HUD").transform);
                         _isInstantiated = true;
+                        }
                     }
-                    else if (hit.transform.tag == "Chair" && _isInstantiated == false)
+                    else if (hit.transform.tag == "Chair")
                     {
-                        _interactedObject = hit.transform.gameObject;
-                        _interactionMenu = Instantiate(chairInteractionMenuPrefab);
-                        _interactionMenu.transform.SetParent(GameObject.Find("Player HUD").transform);
-                        _isInstantiated = true;
-                        ActionRouter.SetCurrentChair(hit.transform.gameObject);
+                        if (_isInstantiated && _interactedObject != hit.transform.gameObject)
+                        {
+                            Destroy(_interactionMenu.gameObject);
+                        }
+                        if (_interactedObject != hit.transform.gameObject)
+                        {
+                            _interactedObject = hit.transform.gameObject;
+                            _interactionMenu = Instantiate(chairInteractionMenuPrefab);
+                            _interactionMenu.transform.SetParent(GameObject.Find("Player HUD").transform);
+                            _isInstantiated = true;
+                            ActionRouter.SetCurrentChair(hit.transform.gameObject);
+                        }
                     }
                 }
             }
