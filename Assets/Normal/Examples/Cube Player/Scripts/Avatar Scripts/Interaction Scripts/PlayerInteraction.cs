@@ -44,6 +44,7 @@ public class PlayerInteraction : MonoBehaviour
                     _interactionMenu = Instantiate(chairInteractionMenuPrefab);
                     _interactionMenu.transform.SetParent(GameObject.Find("Player HUD").transform);
                     _isInstantiated = true;
+                    ActionRouter.SetCurrentChair(hit.transform.gameObject);
                 }
             }
         }

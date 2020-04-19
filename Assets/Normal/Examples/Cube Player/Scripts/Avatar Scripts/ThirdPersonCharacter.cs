@@ -30,6 +30,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		bool m_Crouching;
 		bool m_Clapping;
 		bool m_Waving;
+		bool m_Sitting;
 
 		void Start()
 		{
@@ -44,7 +45,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-		public void Move(Vector3 move, bool crouch, bool jump, bool clap, bool wave)
+		public void Move(Vector3 move, bool crouch, bool jump, bool clap, bool wave, bool sit)
 		{
 
 			// convert the world relative moveInput vector into a local-relative
@@ -58,6 +59,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_ForwardAmount = move.z;
 			m_Clapping = clap;
 			m_Waving = wave;
+			m_Sitting = sit;
 
 			ApplyExtraTurnRotation();
 
@@ -90,8 +92,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             bool isOnGround = int.Parse(parameters[4]) != 0;
             bool isClapping = int.Parse(parameters[5]) != 0;
 			bool isWaving = int.Parse(parameters[6]) != 0;
+			bool isSitting = int.Parse(parameters[7]) != 0;
 
-			Move(move, isCrouching, isOnGround, isClapping, isWaving);
+			Move(move, isCrouching, isOnGround, isClapping, isWaving, isSitting);
 
         }
 
@@ -144,7 +147,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Animator.SetBool("OnGround", m_IsGrounded);
 			m_Animator.SetBool("Clap", m_Clapping);
 			m_Animator.SetBool("Wave", m_Waving);
-
+			m_Animator.SetBool("Sit", m_Sitting);
 
 			if (!m_IsGrounded)
 			{
@@ -176,21 +179,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 		}
 
-		//      public void SyncAnimation(string animationState)
-		//{
-		//	string[] parameters;
-
-		//	//"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
-		//	parameters = animationState.Split(' ');
-
-		//	float forwardAmount = float.Parse(parameters[0]);
-		//	float turnAmount = float.Parse(parameters[1]);
-		//	int isCrouching = int.Parse(parameters[2]);
-		//	int isOnGround = int.Parse(parameters[3]);
-
-		//	UpdateAnimator()
-
-		//}
 
 
 		void HandleAirborneMovement()

@@ -33,6 +33,9 @@ namespace Normal.Realtime.Examples
         public string avatarRecipe;
         public string foreignAvatarRecipe;
 
+        public bool sit;
+        public Vector3 positionBeforeSitting;
+
         private void Awake()
         {
             _realtimeView = GetComponent<RealtimeView>();
@@ -72,6 +75,12 @@ namespace Normal.Realtime.Examples
             m_Character = GetComponent<ThirdPersonCharacter>();
             eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
             eventManager.OnEventsChange.AddListener(SwitchFocus);
+
+            if (_realtimeView.isOwnedLocally)
+            {
+               ActionRouter.SetLocalAvatar(transform.gameObject);
+               sit = false;
+            }
          
         }
 
@@ -163,12 +172,12 @@ namespace Normal.Realtime.Examples
             // If this CubePlayer prefab is not owned by this client, bail.
             if (!_realtimeView.isOwnedLocally)
             {
-       
+
                 m_Character.ForeignMove(GetComponent<UpdateMove>().characterMove);
             }
             else
             {
-                
+
                 // Move the camera
                 if (!isCameraParented)
                 {
@@ -198,6 +207,22 @@ namespace Normal.Realtime.Examples
                     bool clap = Input.GetKey(KeyCode.Alpha1);
                     bool wave = Input.GetKey(KeyCode.Alpha2);
 
+                    if (sit)
+                    {
+                        GetComponent<CapsuleCollider>().enabled = false;
+                        GetComponent<Rigidbody>().useGravity = false;
+                    }
+                    
+
+                    if ((h != 0f || v != 0f) && sit){
+                        Debug.Log("Stand up");
+                        sit = false;
+                        transform.position = positionBeforeSitting;
+                        GetComponent<CapsuleCollider>().enabled = true;
+                        GetComponent<Rigidbody>().useGravity = true;
+
+                    }
+
 
                     // calculate move direction to pass to character
                     if (m_Cam != null)
@@ -217,13 +242,14 @@ namespace Normal.Realtime.Examples
 #endif
 
                     // pass all parameters to the character control script
-                    m_Character.Move(m_Move, crouch, m_Jump, clap, wave);
+                    m_Character.Move(m_Move, crouch, m_Jump, clap, wave, sit);
 
-                    bool[] toggleInformation = new bool[4];
+                    bool[] toggleInformation = new bool[5];
                     toggleInformation[0] = crouch;
                     toggleInformation[1] = m_Jump;
                     toggleInformation[2] = clap;
                     toggleInformation[3] = wave;
+                    toggleInformation[4] = sit;
 
                     GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, toggleInformation);
 
