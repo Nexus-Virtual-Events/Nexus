@@ -29,7 +29,10 @@ namespace Normal.Realtime.Examples {
         }
 
         public void PerformAction(string interactionString) {
-            interactionModifier.SendNewValue(selfId.ToString() + " " + getOtherID().ToString() + " " + ActionRouter.interactionMap.Reverse[interactionString]);
+            System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+            int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+
+            interactionModifier.SendNewValue(selfId.ToString() + " " + getOtherID().ToString() + " " + ActionRouter.interactionMap.Reverse[interactionString] + " " + cur_time.ToString());
         }
 
     }
