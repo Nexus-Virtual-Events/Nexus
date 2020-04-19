@@ -53,7 +53,8 @@ namespace Normal.Realtime.Examples
                 return;
             }
 
-            if (parameters[1] != _realtimeView.ownerID.ToString())
+            Debug.Log(ActionRouter.GetLocalAvatar().GetComponent<RealtimeView>().ownerID);
+            if (parameters[1] != ActionRouter.GetLocalAvatar().GetComponent<RealtimeView>().ownerID.ToString())
             {
                 Debug.Log("Self is not the target");
                 return;
