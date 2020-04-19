@@ -31,6 +31,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		bool m_Clapping;
 		bool m_Waving;
 		bool m_Sitting;
+		bool m_ShakingHand;
 
 		void Start()
 		{
@@ -45,7 +46,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
 
-		public void Move(Vector3 move, bool crouch, bool jump, bool clap, bool wave, bool sit)
+		public void Move(Vector3 move, bool crouch, bool jump, bool clap, bool wave, bool sit, bool shakehand)
 		{
 
 			// convert the world relative moveInput vector into a local-relative
@@ -60,6 +61,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Clapping = clap;
 			m_Waving = wave;
 			m_Sitting = sit;
+			m_ShakingHand = shakehand;
+
 
 			ApplyExtraTurnRotation();
 
@@ -93,8 +96,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             bool isClapping = int.Parse(parameters[5]) != 0;
 			bool isWaving = int.Parse(parameters[6]) != 0;
 			bool isSitting = int.Parse(parameters[7]) != 0;
+			bool isShakingHand = int.Parse(parameters[8]) != 0;
 
-			Move(move, isCrouching, isOnGround, isClapping, isWaving, isSitting);
+
+			Move(move, isCrouching, isOnGround, isClapping, isWaving, isSitting, isShakingHand);
 
         }
 
@@ -148,6 +153,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Animator.SetBool("Clap", m_Clapping);
 			m_Animator.SetBool("Wave", m_Waving);
 			m_Animator.SetBool("Sit", m_Sitting);
+			m_Animator.SetBool("ShakeHand", m_ShakingHand);
 
 			if (!m_IsGrounded)
 			{
