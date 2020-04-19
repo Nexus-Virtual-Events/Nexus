@@ -47,6 +47,7 @@ namespace Normal.Realtime.Examples
             if (_interactionSync == null || interaction == null)
             {
                 _interactionSync = GameObject.FindObjectOfType<InteractionSync>();
+                interaction = "0 0 0";
             }
             else
             {
@@ -57,6 +58,7 @@ namespace Normal.Realtime.Examples
                     _prevInteraction = interaction;
                     OnInteractionsChange.Invoke();
                     interaction = "0 0 0";
+
                 }
                 
             }

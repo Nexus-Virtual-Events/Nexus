@@ -35,7 +35,7 @@ namespace Normal.Realtime.Examples
         public string avatarRecipe;
         public string foreignAvatarRecipe;
 
-        public bool sit;
+        public bool sit = false;
         public Vector3 positionBeforeSitting;
 
         private bool isCameraParented = false;
@@ -93,7 +93,6 @@ namespace Normal.Realtime.Examples
             if (_realtimeView.isOwnedLocally)
             {
                ActionRouter.SetLocalAvatar(transform.gameObject);
-               sit = false;
             }
          
         }
