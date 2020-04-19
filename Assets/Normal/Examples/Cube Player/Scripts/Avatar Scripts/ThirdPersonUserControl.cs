@@ -87,7 +87,7 @@ namespace Normal.Realtime.Examples
             eventManager.OnEventsChange.AddListener(SwitchFocus);
 
             interactionModifier = GetComponent<ModifyInteraction>();
-            interactionModifier.OnInteractionsReceived +=  reactToInteractionChange;
+            //interactionModifier.OnInteractionsReceived +=  reactToInteractionChange;
 
 
             if (_realtimeView.isOwnedLocally)
@@ -99,26 +99,12 @@ namespace Normal.Realtime.Examples
         }
 
 
-        private void reactToInteractionChange(string newInteraction)
+        public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
         {
 
             if (!_realtimeView.isOwnedLocally) { return; }
 
-
-            string[] parameters = stringToArray(newInteraction);
-
-
-            if (parameters[2] == "0") {
-                return;
-            }
-
-            if (parameters[0] != getID().ToString() && parameters[1] != getID().ToString())
-            {
-                Debug.Log("irrelevant");
-                return;
-            }
-
-            Vector3 otherPosition = ActionRouter.GetCurrentCharacter().transform.position;
+            Vector3 otherPosition = sourceCharacter.transform.position;
             Vector3 target = ((otherPosition - transform.position)/2) + transform.position;
 
             Debug.Log("target: " + target.ToString());
@@ -126,16 +112,6 @@ namespace Normal.Realtime.Examples
             canMove = false;
             autoPilot = true;
             autoTarget = target;
-            
-        }
-
-        private string[] stringToArray(string s)
-        {
-            string[] parameters;
-
-            //"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
-            parameters = s.Split(' ');
-            return parameters;
         }
 
         private void SwitchFocus()
