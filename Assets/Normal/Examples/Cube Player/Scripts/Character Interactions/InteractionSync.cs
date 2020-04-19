@@ -43,19 +43,28 @@ namespace Normal.Realtime.Examples
 
         private void InteractionDidChange(InteractionSyncModel model, string value)
         {
+            
             // Update the mesh renderer
-            UpdateInteraction();
+            // UpdateInteraction();
+            if (value == "") { return; }
+            Debug.Log("Received intearction: " + value);
+            GetComponent<ModifyInteraction>().ReceivedNewInteraction(value);
         }
 
         private void UpdateInteraction()
         {
             // Get the color from the model and set it on the mesh renderer.
-            GetComponent<ModifyInteraction>().interaction = _model.interaction;
+            if (_model.interaction == "") {
+                Debug.LogWarning("Empty intreaction value");
+                return;
+            }
+            
+            
         }
 
         public void SetInteraction(string interaction)
         {
-            Debug.Log(interaction);
+            Debug.Log("Setting to:" + interaction);
             // Set the color on the model
             // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
             _model.interaction = interaction;

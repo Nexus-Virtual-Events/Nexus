@@ -8,7 +8,6 @@ namespace Normal.Realtime.Examples
 {
     public class ModifyInteraction : MonoBehaviour
     {
-        public string interaction;
         private string _prevInteraction;
 
         private InteractionSync _interactionSync;
@@ -16,18 +15,13 @@ namespace Normal.Realtime.Examples
         private RealtimeView _realtimeView;
         private RealtimeTransform _realtimeTransform;
 
-        public UnityEvent OnInteractionsChange;
+        public delegate void RemoteInteractionCommand (string newInteractionCommand);
+        public event RemoteInteractionCommand OnInteractionsReceived;
 
         private void Start()
         {
             // Get a reference to the color sync component
             _interactionSync = GetComponent<InteractionSync>();
-            interaction = "0 0 0";
-            _prevInteraction = "0 0 0";
-
-            if (OnInteractionsChange == null)
-                OnInteractionsChange = new UnityEvent();
-
         }
 
         private void Awake()
@@ -36,34 +30,36 @@ namespace Normal.Realtime.Examples
             _realtimeTransform = GetComponent<RealtimeTransform>();
         }
 
-        private void Update()
+        public void SendNewValue(string newInteractionCommand) {
+            Debug.Log("Sending value: " + newInteractionCommand);
+            _interactionSync.SetInteraction(newInteractionCommand);
+        }
+
+
+        private string[] stringToArray(string s)
         {
+            string[] parameters;
 
-            if (!_realtimeView.isOwnedLocally)
+            //"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
+            parameters = s.Split(' ');
+            return parameters;
+        }
+
+        public void ReceivedNewInteraction(string newIntreactionReceived) {
+            // Check if the target user is me
+            string[] parameters = stringToArray(newIntreactionReceived);
+            if (parameters[2] == "0") {
+                Debug.Log("Received intreaction but not action needed");
                 return;
-
-            _realtimeTransform.RequestOwnership();
-
-            if (_interactionSync == null || interaction == null)
-            {
-                _interactionSync = GameObject.FindObjectOfType<InteractionSync>();
-                interaction = "0 0 0";
             }
-            else
+
+            if (parameters[1] != _realtimeView.ownerID.ToString())
             {
-                
-                if (interaction != _prevInteraction)
-                {
-                    _interactionSync.SetInteraction(interaction);
-                    _prevInteraction = interaction;
-                    OnInteractionsChange.Invoke();
-                    interaction = "0 0 0";
-
-                }
-                
+                Debug.Log("Self is not the target");
+                return;
             }
-            // If the color has changed (via the inspector), call SetColor on the color sync component.
 
+            ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(gameObject, newIntreactionReceived);
         }
     }
 }
