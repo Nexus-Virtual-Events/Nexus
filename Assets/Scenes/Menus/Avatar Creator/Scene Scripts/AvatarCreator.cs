@@ -17,6 +17,7 @@ public class AvatarCreator : MonoBehaviour
     //public Slider weightSlider;
 
     private Dictionary<string, DnaSetter> DNA;
+    public string activeDNASlot;
 
     //public List<string> hairStylesMale = new List<string>();
     //private int currentHairStyleMale;
@@ -46,11 +47,20 @@ public class AvatarCreator : MonoBehaviour
         if (!isMale && avatar.activeRace.name != "HumanFemaleDCS") avatar.ChangeRace("HumanFemaleDCS");
     }
 
+    public void SetActiveDNASlot(string _activeDNASlot)
+    {
+        activeDNASlot = _activeDNASlot;
+    }
+
+    public void SliderChange(float value)
+    {
+        DNA[activeDNASlot].Set(value);
+        avatar.BuildCharacter();
+    }
+
     void Updated(UMAData data)
     {
         DNA = avatar.GetDNA();
-        //heightSlider.value = DNA["height"].Get();
-        //weightSlider.value = DNA["belly"].Get();
     }
 
     public void Done()
@@ -61,18 +71,6 @@ public class AvatarCreator : MonoBehaviour
         SceneManager.LoadScene("Loading");
 
     }
-
-    //public void ModifyHeight(float height)
-    //{
-    //    DNA["height"].Set(height);
-    //    avatar.BuildCharacter();
-    //}
-
-    //public void ModifyWeight(float weight)
-    //{
-    //    DNA["belly"].Set(weight);
-    //    avatar.BuildCharacter();
-    //}
 
     public void ModifySkinColor(Color color)
     {
@@ -115,6 +113,16 @@ public class AvatarCreator : MonoBehaviour
     //        avatar.BuildCharacter();
     //    }
     //}
+
+    public void ToggleWindowVisibility(string windowName)
+    {
+        Animator windowAnimator = GameObject.Find(windowName).GetComponent<Animator>();
+        if(windowAnimator != null)
+        {
+            bool isOpen = windowAnimator.GetBool("Open");
+            windowAnimator.SetBool("Open", !isOpen);
+        }
+    }
 
     public void SaveAvatar()
     {

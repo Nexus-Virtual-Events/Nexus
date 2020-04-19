@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 //Added to detect whether the pointer is over a UI element...
 using UnityEngine.EventSystems;
 
@@ -83,6 +84,11 @@ namespace UMA.Examples
             x = defaultx;
             y = defaulty;
             distance = defaultdistance;
+        }
+
+        public void SwitchTargetBone(string _targetBone)
+        {
+            TargetBone = (targetOpts)System.Array.IndexOf(targetStrings, _targetBone);
         }
 
         public void SwitchTarget(Transform _dstTarget)
