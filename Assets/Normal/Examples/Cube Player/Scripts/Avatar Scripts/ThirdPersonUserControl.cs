@@ -96,15 +96,13 @@ namespace Normal.Realtime.Examples
             }
          
         }
-
-
         public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
         {
 
             if (!_realtimeView.isOwnedLocally) { return; }
 
             Vector3 otherPosition = sourceCharacter.transform.position;
-            Vector3 target = ((otherPosition - transform.position)/2) + transform.position;
+            Vector3 target = (((otherPosition - transform.position)/2) * 0.7f) + transform.position;
 
             Debug.Log("target: " + target.ToString());
 

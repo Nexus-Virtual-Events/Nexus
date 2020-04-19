@@ -33,6 +33,7 @@ namespace Normal.Realtime.Examples {
             int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
             interactionModifier.SendNewValue(selfId.ToString() + " " + getOtherID().ToString() + " " + ActionRouter.interactionMap.Reverse[interactionString] + " " + cur_time.ToString());
+            ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(ActionRouter.GetCurrentCharacter(), "");
         }
 
     }
