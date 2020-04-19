@@ -94,7 +94,10 @@ namespace Normal.Realtime.Examples
             {
                ActionRouter.SetLocalAvatar(transform.gameObject);
             }
-         
+            else {
+                // Set as remote avatar
+                transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
+            }
         }
         public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
         {

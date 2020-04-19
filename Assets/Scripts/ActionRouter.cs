@@ -14,9 +14,9 @@ public class ActionRouter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Physics.IgnoreLayerCollision(9, 10);
         interactionMap = new Map<int, string>();
         interactionMap.Add(1, "ShakeHand");
-
     }
 
     // Update is called once per frame
