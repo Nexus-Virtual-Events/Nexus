@@ -5,6 +5,7 @@ using System.IO;
 using UMA.CharacterSystem;
 using System;
 
+
 namespace Normal.Realtime.Examples
 {
     [RequireComponent(typeof(ThirdPersonCharacter))]
@@ -105,7 +106,14 @@ namespace Normal.Realtime.Examples
             if (!_realtimeView.isOwnedLocally) { return; }
 
             Vector3 otherPosition = sourceCharacter.transform.position;
-            Vector3 target = (((otherPosition - transform.position)/2) * 0.7f) + transform.position;
+            Vector3 diff = (otherPosition - transform.position);
+
+            if (diff.magnitude < 1) {
+                diff = new Vector3(0, 0, 0);
+            }
+
+
+            Vector3 target = ((diff/2) * 0.7f) + transform.position;
 
             Debug.Log("target: " + target.ToString());
 
@@ -239,6 +247,7 @@ namespace Normal.Realtime.Examples
                     bool crouch = Input.GetKey(KeyCode.C);
                     bool clap = Input.GetKey(KeyCode.Alpha1);
                     bool wave = Input.GetKey(KeyCode.Alpha2);
+               
 
                     if (sit)
                     {
@@ -275,14 +284,16 @@ namespace Normal.Realtime.Examples
 #endif
 
                     // pass all parameters to the character control script
-                    m_Character.Move(m_Move, crouch, m_Jump, clap, wave, sit);
+                    m_Character.Move(m_Move, crouch, m_Jump, clap, wave, sit, false);
 
-                    bool[] toggleInformation = new bool[5];
+                    bool[] toggleInformation = new bool[6];
                     toggleInformation[0] = crouch;
                     toggleInformation[1] = m_Jump;
                     toggleInformation[2] = clap;
                     toggleInformation[3] = wave;
                     toggleInformation[4] = sit;
+                    toggleInformation[5] = false;
+
 
                     GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, toggleInformation);
 
@@ -292,20 +303,26 @@ namespace Normal.Realtime.Examples
                 {
                     if (autoPilot)
                     {
-                        Debug.Log("autoPilot " + getID().ToString());
 
-                        m_Character.Move(autoTarget - transform.position, false, false, false, false, false);
-                        bool[] toggleInformation = new bool[5];
+                        m_Character.Move(autoTarget - transform.position, false, false, false, false, false, false);
+                        bool[] toggleInformation = new bool[6];
                         toggleInformation[0] = false;
                         toggleInformation[1] = false;
                         toggleInformation[2] = false;
                         toggleInformation[3] = false;
                         toggleInformation[4] = false;
+                        toggleInformation[5] = false;
 
-                        GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, toggleInformation);
+                        GetComponent<UpdateMove>().characterMove = parseMoveToString(autoTarget - transform.position, toggleInformation);
 
-                        if(Vector3.Distance(transform.position, autoTarget) < 0.1)
+                        if(Vector3.Distance(transform.position, autoTarget) < 0.2)
                         {
+                            //handshake finishing action
+                            toggleInformation[5] = true;
+                            Debug.Log("toggleInformation" + toggleInformation.ToString());
+                            m_Character.Move(new Vector3(0, 0, 0), false, false, false, false, false, true);
+                            GetComponent<UpdateMove>().characterMove = parseMoveToString(new Vector3(0, 0, 0), toggleInformation);
+                            
                             canMove = true;
                             autoPilot = false;
                             Debug.Log("target reached");
