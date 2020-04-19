@@ -13,11 +13,17 @@ public class PlayerInteraction : MonoBehaviour
     private Transform _interactionMenu;
     private bool _isInstantiated = false;
     private GameObject _interactedObject;
+    private float minMenuDist = 3;
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    bool IsCloseEnough(GameObject hit)
+    {
+        return Vector3.Distance(hit.transform.position, ActionRouter.GetLocalAvatar().transform.position) < minMenuDist;
     }
 
     // Update is called once per frame
@@ -31,28 +37,34 @@ public class PlayerInteraction : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag == "Player" && !hit.transform.GetComponent<RealtimeView>().isOwnedLocally && _isInstantiated == false)
+                if (IsCloseEnough(hit.transform.gameObject))
                 {
-                    _interactedObject = hit.transform.gameObject;
-                    _interactionMenu = Instantiate(playerInteractionMenuPrefab);
-                    _interactionMenu.transform.SetParent(GameObject.Find("Player HUD").transform);
-                    _isInstantiated = true;
-                }
-                else if (hit.transform.tag == "Chair" && _isInstantiated == false)
-                {
-                    _interactedObject = hit.transform.gameObject;
-                    _interactionMenu = Instantiate(chairInteractionMenuPrefab);
-                    _interactionMenu.transform.SetParent(GameObject.Find("Player HUD").transform);
-                    _isInstantiated = true;
-                    ActionRouter.SetCurrentChair(hit.transform.gameObject);
+                    if (hit.transform.tag == "Player" && !hit.transform.GetComponent<RealtimeView>().isOwnedLocally && _isInstantiated == false)
+                    {
+                        _interactedObject = hit.transform.gameObject;
+                        _interactionMenu = Instantiate(playerInteractionMenuPrefab);
+                        _interactionMenu.transform.SetParent(GameObject.Find("Player HUD").transform);
+                        _isInstantiated = true;
+                    }
+                    else if (hit.transform.tag == "Chair" && _isInstantiated == false)
+                    {
+                        _interactedObject = hit.transform.gameObject;
+                        _interactionMenu = Instantiate(chairInteractionMenuPrefab);
+                        _interactionMenu.transform.SetParent(GameObject.Find("Player HUD").transform);
+                        _isInstantiated = true;
+                        ActionRouter.SetCurrentChair(hit.transform.gameObject);
+                    }
                 }
             }
         }
 
         if (_isInstantiated)
         {
-            if (_interactionMenu == null)
+            if (_interactionMenu == null || !IsCloseEnough(_interactedObject))
+            {
                 _isInstantiated = false;
+                Destroy(_interactionMenu.gameObject);
+            }
             else
                 _interactionMenu.transform.position = Camera.main.WorldToScreenPoint(_interactedObject.transform.position);
         }
