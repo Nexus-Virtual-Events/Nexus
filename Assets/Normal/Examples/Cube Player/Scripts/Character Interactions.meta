@@ -1,12 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Scenes/Menus/Avatar Creator/Icons/DNA.meta
-guid: b7bfdda9094cd4c0cbeca0697e3caa56
-=======
-guid: 5fd48bde88edf440fbc3224522a5bc4f
->>>>>>> b958c0c15842321c41993af8a9fbaf29709a32b5:Assets/Normal/Examples/Cube Player/Scripts/Character Interactions.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:

@@ -116,11 +116,16 @@ public class AvatarCreator : MonoBehaviour
 
     public void ToggleWindowVisibility(string windowName)
     {
-        Animator windowAnimator = GameObject.Find(windowName).GetComponent<Animator>();
+        GameObject window = GameObject.Find(windowName);
+        Animator windowAnimator = window.GetComponent<Animator>();
         if(windowAnimator != null)
         {
             bool isOpen = windowAnimator.GetBool("Open");
             windowAnimator.SetBool("Open", !isOpen);
+            if(isOpen)
+                window.transform.SetAsFirstSibling();
+            else
+                window.transform.SetAsLastSibling();
         }
     }
 
