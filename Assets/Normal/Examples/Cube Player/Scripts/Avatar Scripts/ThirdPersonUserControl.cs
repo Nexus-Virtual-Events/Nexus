@@ -92,9 +92,12 @@ namespace Normal.Realtime.Examples
 
             if (_realtimeView.isOwnedLocally)
             {
-               ActionRouter.SetLocalAvatar(transform.gameObject);
+                ActionRouter.SetLocalAvatar(transform.gameObject);
+                avatar.ClearSlots();
+                avatarRecipe = PlayerPrefs.GetString("playerRecipe");
+                avatar.LoadFromRecipeString(avatarRecipe);
             }
-         
+
         }
 
 
@@ -104,10 +107,10 @@ namespace Normal.Realtime.Examples
             if (!_realtimeView.isOwnedLocally) { return; }
 
             Vector3 otherPosition = sourceCharacter.transform.position;
-            Vector3 target = ((otherPosition - transform.position)/2) + transform.position;
+            Vector3 target = ((otherPosition - transform.position) / 2) + transform.position;
 
             Debug.Log("target: " + target.ToString());
-
+            
             canMove = false;
             autoPilot = true;
             autoTarget = target;
@@ -147,6 +150,7 @@ namespace Normal.Realtime.Examples
                 if (avatarRecipe != null && avatarRecipe.Length > 100)
                 {
                     avatar.ClearSlots();
+                    avatarRecipe = PlayerPrefs.GetString("playerRecipe");
                     avatar.LoadFromRecipeString(avatarRecipe);
                     prevNumPlayers = currentNumPlayers;
                 }
@@ -192,7 +196,8 @@ namespace Normal.Realtime.Examples
         private string parseMoveToString(Vector3 move, bool[] toggleAnimations)
         {
             string animationString = move.x.ToString() + " " + move.y.ToString() + " " + move.z.ToString() + " ";
-            foreach (bool animation in toggleAnimations) {
+            foreach (bool animation in toggleAnimations)
+            {
                 animationString += Convert.ToInt16(animation) + " ";
             }
             return animationString;
@@ -244,9 +249,10 @@ namespace Normal.Realtime.Examples
                         GetComponent<CapsuleCollider>().enabled = false;
                         GetComponent<Rigidbody>().useGravity = false;
                     }
-                    
 
-                    if ((h != 0f || v != 0f) && sit){
+
+                    if ((h != 0f || v != 0f) && sit)
+                    {
                         Debug.Log("Stand up");
                         sit = false;
                         transform.position = positionBeforeSitting;
@@ -303,7 +309,7 @@ namespace Normal.Realtime.Examples
 
                         GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, toggleInformation);
 
-                        if(Vector3.Distance(transform.position, autoTarget) < 0.1)
+                        if (Vector3.Distance(transform.position, autoTarget) < 0.1)
                         {
                             canMove = true;
                             autoPilot = false;

@@ -7410,6 +7410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatar: {fileID: 1859851102}
+  activeDNASlot: 
   avatarRecipe: 
 --- !u!114 &1859851102
 MonoBehaviour:
@@ -7455,7 +7456,7 @@ MonoBehaviour:
   loadBlendShapes: 0
   keepAvatar: 0
   activeRace:
-    name: HumanMaleDCS
+    name: HumanMaleHighPoly
   defaultChangeRaceOptions: 8
   cacheCurrentState: 1
   rebuildSkeleton: 0

@@ -621,16 +621,13 @@ MonoBehaviour:
   loadBlendShapes: 0
   keepAvatar: 0
   activeRace:
-    name: HumanMaleHD
+    name: None Set
   defaultChangeRaceOptions: 8
   cacheCurrentState: 1
   rebuildSkeleton: 0
   preloadWardrobeRecipes:
     loadDefaultRecipes: 1
-    recipes:
-    - _recipeName: UnderwearHD
-      _compatibleRaces:
-      - HumanMaleHD
+    recipes: []
   raceAnimationControllers:
     defaultAnimationController: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9,
       type: 2}
@@ -959,7 +956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36205c95fbc9434b835fc40a5de6116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interaction: 
 --- !u!1001 &6436147050421029685
 PrefabInstance:
   m_ObjectHideFlags: 0

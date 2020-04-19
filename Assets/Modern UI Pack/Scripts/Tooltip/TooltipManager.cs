@@ -17,6 +17,8 @@ namespace Michsky.UI.ModernUIPack
         public int hBorderLeft = 230;
         public int hBorderRight = -210;
 
+        //public Vector3 offset = new Vector3(50, 0, 0);
+
         Vector2 uiPos;
         Vector3 cursorPos;
         RectTransform tooltipRect;
@@ -35,7 +37,7 @@ namespace Michsky.UI.ModernUIPack
         {
             cursorPos = Input.mousePosition;
             cursorPos.z = tooltipZHelper.position.z;
-            tooltipRect.position = Camera.main.ScreenToWorldPoint(cursorPos);
+            tooltipRect.position = cursorPos;
             uiPos = tooltipRect.anchoredPosition;
             CheckForBounds();
             tooltipContent.transform.localPosition = Vector3.SmoothDamp(tooltipContent.transform.localPosition, contentPos, ref tooltipVelocity, tooltipSmoothness);
