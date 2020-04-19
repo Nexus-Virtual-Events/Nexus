@@ -54,7 +54,7 @@ namespace Normal.Realtime.Examples
 
         //Camera focus stuff
         private bool canMove = true;
-        public GameObject FocusCameraPosition;
+        private GameObject FocusCameraPosition;
         private Transform cameraStay;
 
         private void Start()
@@ -89,6 +89,8 @@ namespace Normal.Realtime.Examples
             if (!_realtimeView.isOwnedLocally)
                 return;
 
+            FocusCameraPosition = GameObject.Find("FocusCamPos");
+
             if (eventManager.GetEvents()[2] == '1')
             {
                 cameraStay = Camera.main.transform;
@@ -102,6 +104,7 @@ namespace Normal.Realtime.Examples
                 camScript.AssignPlayer(transform);
                 canMove = true;
             }
+
         }
 
 
