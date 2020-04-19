@@ -30,6 +30,7 @@ namespace Normal.Realtime.Examples {
 
         public void PerformAction(string interactionString) {
             interactionModifier.SendNewValue(selfId.ToString() + " " + getOtherID().ToString() + " " + ActionRouter.interactionMap.Reverse[interactionString]);
+            interactionModifier.SendNewValue("0 0 0");
         }
 
     }

@@ -47,7 +47,7 @@ namespace Normal.Realtime.Examples
             // Update the mesh renderer
             // UpdateInteraction();
             if (value == "") { return; }
-            Debug.Log("Received intearction: " + value);
+            Debug.Log("Received interaction: " + value);
             GetComponent<ModifyInteraction>().ReceivedNewInteraction(value);
         }
 

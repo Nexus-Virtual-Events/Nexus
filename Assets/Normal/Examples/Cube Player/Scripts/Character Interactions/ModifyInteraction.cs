@@ -33,6 +33,7 @@ namespace Normal.Realtime.Examples
         public void SendNewValue(string newInteractionCommand) {
             Debug.Log("Sending value: " + newInteractionCommand);
             _interactionSync.SetInteraction(newInteractionCommand);
+
         }
 
 
@@ -45,21 +46,29 @@ namespace Normal.Realtime.Examples
             return parameters;
         }
 
-        public void ReceivedNewInteraction(string newIntreactionReceived) {
+        public void ReceivedNewInteraction(string newInteractionReceived) {
             // Check if the target user is me
-            string[] parameters = stringToArray(newIntreactionReceived);
+            Debug.Log("New interaction:" + newInteractionReceived);
+
+            string[] parameters = stringToArray(newInteractionReceived);
             if (parameters[2] == "0") {
                 Debug.Log("Received intreaction but not action needed");
                 return;
             }
 
+            Debug.Log("owner ID: " + _realtimeView.ownerID.ToString());
+            Debug.Log("parameters[0] " + parameters[0]);
+            Debug.Log("parameters[1] " + parameters[1]);
+
             if (parameters[1] != _realtimeView.ownerID.ToString())
             {
-                Debug.Log("Self is not the target");
+                Debug.Log("Self is the source of the interaction");
+                GetComponent<ThirdPersonUserControl>().InitiateInteraction(ActionRouter.GetCurrentCharacter(), newInteractionReceived);
                 return;
             }
 
-            ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(gameObject, newIntreactionReceived);
+            Debug.Log("Interaction from another character");
+            GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(gameObject, newInteractionReceived);
         }
     }
 }

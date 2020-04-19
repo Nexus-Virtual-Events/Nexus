@@ -103,6 +103,8 @@ namespace Normal.Realtime.Examples
 
             if (!_realtimeView.isOwnedLocally) { return; }
 
+            Debug.Log("Interaction received from User Controller");
+
             Vector3 otherPosition = sourceCharacter.transform.position;
             Vector3 target = ((otherPosition - transform.position)/2) + transform.position;
 
@@ -112,6 +114,26 @@ namespace Normal.Realtime.Examples
             autoPilot = true;
             autoTarget = target;
         }
+
+
+        public void InitiateInteraction(GameObject targetCharacter, string newInteraction)
+        {
+            if (!_realtimeView.isOwnedLocally) { return; }
+
+            Debug.Log("Interaction received from User Controller");
+
+            Vector3 otherPosition = targetCharacter.transform.position;
+            Vector3 target = ((otherPosition - transform.position) / 2) + transform.position;
+
+            Debug.Log("target: " + target.ToString());
+
+            canMove = false;
+            autoPilot = true;
+            autoTarget = target;
+        }
+
+
+
 
         private void SwitchFocus()
         {
@@ -291,7 +313,7 @@ namespace Normal.Realtime.Examples
                 {
                     if (autoPilot)
                     {
-                        Debug.Log("autoPilot " + getID().ToString());
+                        //Debug.Log("autoPilot " + getID().ToString());
 
                         m_Character.Move(autoTarget - transform.position, false, false, false, false, false);
                         bool[] toggleInformation = new bool[5];
