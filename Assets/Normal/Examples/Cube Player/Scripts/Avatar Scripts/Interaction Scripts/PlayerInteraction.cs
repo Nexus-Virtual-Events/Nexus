@@ -23,6 +23,10 @@ public class PlayerInteraction : MonoBehaviour
 
     bool IsCloseEnough(GameObject hit)
     {
+        if (hit == null) {
+            return false;
+        }
+
         if (!hit.transform) {
             Debug.LogWarning("Hit transfrom doesn't exist.");
             return false;
@@ -95,6 +99,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 _isInstantiated = false;
                 Destroy(_interactionMenu.gameObject);
+                _interactedObject = null;
             }
             else
                 _interactionMenu.transform.position = Camera.main.WorldToScreenPoint(_interactedObject.transform.position);
