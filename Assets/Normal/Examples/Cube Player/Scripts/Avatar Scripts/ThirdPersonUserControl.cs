@@ -87,7 +87,7 @@ namespace Normal.Realtime.Examples
             eventManager.OnEventsChange.AddListener(SwitchFocus);
 
             interactionModifier = GetComponent<ModifyInteraction>();
-            interactionModifier.OnInteractionsChange.AddListener(reactToInteractionChange);
+            interactionModifier.OnInteractionsReceived +=  reactToInteractionChange;
 
 
             if (_realtimeView.isOwnedLocally)
@@ -99,18 +99,20 @@ namespace Normal.Realtime.Examples
         }
 
 
-        private void reactToInteractionChange()
+        private void reactToInteractionChange(string newInteraction)
         {
 
-            if (!_realtimeView.isOwnedLocally)
+            if (!_realtimeView.isOwnedLocally) { return; }
+
+
+            Debug.Log("[Remote Interaction] " + interactionModifier.GetCurrentInteraction());
+
+            string[] parameters = stringToArray(interactionModifier.GetCurrentInteraction());
+
+
+            if (parameters[2] == "0") {
                 return;
-
-
-            string[] parameters = stringToArray(interactionModifier.interaction);
-
-
-            if (parameters[2] == "0")
-                return;
+            }
 
             if (parameters[0] != getID().ToString() && parameters[1] != getID().ToString())
             {

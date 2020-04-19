@@ -33,13 +33,13 @@ public class ActionRouter : MonoBehaviour
 
     public static void SetLocalAvatar(GameObject o)
     {
-        Debug.Log("current avatar set");
+        Debug.Log("[Action Router] Current Avatar set: " + o);
         localAvatar = o;
     }
 
     public static void SetCurrentCharacter(GameObject o)
     {
-        Debug.Log("current character set");
+        Debug.Log("[Action Router] Current Character set");
         currentCharacter = o;
     }
 

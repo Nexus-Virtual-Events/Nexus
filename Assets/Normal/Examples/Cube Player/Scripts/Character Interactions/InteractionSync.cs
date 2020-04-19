@@ -44,13 +44,21 @@ namespace Normal.Realtime.Examples
         private void InteractionDidChange(InteractionSyncModel model, string value)
         {
             // Update the mesh renderer
-            UpdateInteraction();
+            // UpdateInteraction();
+            if (value == "") { return; }
+        
+            GetComponent<ModifyInteraction>().ReceivedNewInteraction(value);
         }
 
         private void UpdateInteraction()
         {
             // Get the color from the model and set it on the mesh renderer.
-            GetComponent<ModifyInteraction>().interaction = _model.interaction;
+            if (_model.interaction == "") {
+                Debug.LogWarning("Empty intreaction value");
+                return;
+            }
+            
+            
         }
 
         public void SetInteraction(string interaction)

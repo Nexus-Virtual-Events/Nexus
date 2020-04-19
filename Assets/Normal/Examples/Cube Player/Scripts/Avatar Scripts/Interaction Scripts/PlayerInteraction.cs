@@ -23,6 +23,16 @@ public class PlayerInteraction : MonoBehaviour
 
     bool IsCloseEnough(GameObject hit)
     {
+        if (!hit.transform) {
+            Debug.LogWarning("Hit transfrom doesn't exist.");
+            return false;
+        }
+
+        if (!ActionRouter.GetLocalAvatar()) {
+            Debug.LogWarning("Local Avatar doesn't exist.");
+            return false;
+        }
+
         return Vector3.Distance(hit.transform.position, ActionRouter.GetLocalAvatar().transform.position) < minMenuDist;
     }
 
