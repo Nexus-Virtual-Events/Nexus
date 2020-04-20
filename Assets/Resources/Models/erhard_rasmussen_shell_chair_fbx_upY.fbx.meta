@@ -3,7 +3,17 @@ guid: d5d2a82136dd2466ebbb1487cb8d505c
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: erhard_rasmussen_shell_chair_mtl_1
+    second: {fileID: 2100010, guid: 47616bd0cda748d4cbedcfc908506b9d, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: erhard_rasmussen_shell_chair_mtl_2
+    second: {fileID: 2100000, guid: 47616bd0cda748d4cbedcfc908506b9d, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0
