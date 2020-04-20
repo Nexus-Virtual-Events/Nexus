@@ -13,8 +13,6 @@ public class AvatarCreator : MonoBehaviour
 {
     public DynamicCharacterAvatar avatar;
     public static string sceneString;
-    //public Slider heightSlider;
-    //public Slider weightSlider;
 
     private Dictionary<string, DnaSetter> DNA;
     public string activeDNASlot;
@@ -30,21 +28,17 @@ public class AvatarCreator : MonoBehaviour
     void OnEnable()
     {
         avatar.CharacterUpdated.AddListener(Updated);
-        //heightSlider.onValueChanged.AddListener(ModifyHeight);
-        //weightSlider.onValueChanged.AddListener(ModifyWeight);
     }
 
     void OnDisable()
     {
         avatar.CharacterUpdated.RemoveListener(Updated);
-        //heightSlider.onValueChanged.RemoveListener(ModifyHeight);
-        //weightSlider.onValueChanged.RemoveListener(ModifyWeight);
     }
 
     public void ModifySex(bool isMale)
     {
-        if (isMale && avatar.activeRace.name != "HumanMaleDCS") avatar.ChangeRace("HumanMaleDCS");
-        if (!isMale && avatar.activeRace.name != "HumanFemaleDCS") avatar.ChangeRace("HumanFemaleDCS");
+        if (isMale && avatar.activeRace.name != "HumanMaleHighPoly") avatar.ChangeRace("HumanMaleHighPoly");
+        if (!isMale && avatar.activeRace.name != "HumanFemaleHighPoly") avatar.ChangeRace("HumanFemaleHighPoly");
     }
 
     public void SetActiveDNASlot(string _activeDNASlot)

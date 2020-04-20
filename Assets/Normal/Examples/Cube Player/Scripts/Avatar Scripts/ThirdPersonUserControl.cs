@@ -109,7 +109,7 @@ namespace Normal.Realtime.Examples
             if (!_realtimeView.isOwnedLocally) { return; }
 
             Vector3 otherPosition = sourceCharacter.transform.position;
-            Vector3 target = ((otherPosition - transform.position) / 2) + transform.position;
+            //Vector3 target = ((otherPosition - transform.position) / 2) + transform.position;
             Vector3 diff = (otherPosition - transform.position);
 
             if (diff.magnitude < 1) {
