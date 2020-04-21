@@ -15,6 +15,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		[SerializeField] float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
 		float m_GroundCheckDistance = 0.5f;
+		int maxJumpHeight = 3; //This only acts as a checker. I don't know how this is actually calculated. Change this if you
+                               // change anything about jump
 
 		Rigidbody m_Rigidbody;
 		Animator m_Animator;
@@ -32,6 +34,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		bool m_Waving;
 		bool m_Sitting;
 		bool m_ShakingHand;
+
+
 
 		void Start()
 		{
@@ -243,7 +247,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 #endif
 			// 0.1f is a small offset to start the ray from inside the character
 			// it is also good to note that the transform position in the sample assets is at the base of the character
-			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance) || Mathf.Abs(prevY-transform.position.y) == 0.01)
+			Debug.Log("in the air?");
+			Debug.Log((Mathf.Abs(prevY - transform.position.y) < 0.01 && transform.position.y < 5));
+
+			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance) || (Mathf.Abs(prevY - transform.position.y) < 0.01 && transform.position.y < maxJumpHeight))
 			{
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
