@@ -32,8 +32,8 @@ namespace Normal.Realtime.Examples {
             System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
             int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
-            interactionModifier.SendNewValue(selfId.ToString() + " " + getOtherID().ToString() + " " + ActionRouter.interactionMap.Reverse[interactionString] + " " + cur_time.ToString());
-            ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(ActionRouter.GetCurrentCharacter(), "");
+            interactionModifier.SendNewValue(selfId.ToString() + " " + getOtherID().ToString() + " " + Utils.interactionMap.Reverse[interactionString] + " " + cur_time.ToString());
+            ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(ActionRouter.GetCurrentCharacter(), interactionString);
         }
 
     }
