@@ -15,8 +15,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		[SerializeField] float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
 		float m_GroundCheckDistance = 0.5f;
-		int maxJumpHeight = 3; //This only acts as a checker. I don't know how this is actually calculated. Change this if you
-                               // change anything about jump
 
 		Rigidbody m_Rigidbody;
 		Animator m_Animator;
@@ -245,16 +243,28 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// helper to visualise the ground check ray in the scene view
 			Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
 #endif
-			// 0.1f is a small offset to start the ray from inside the character
-			// it is also good to note that the transform position in the sample assets is at the base of the character
-			Debug.Log("in the air?");
-			Debug.Log((Mathf.Abs(prevY - transform.position.y) < 0.01 && transform.position.y < 5));
 
-			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance) || (Mathf.Abs(prevY - transform.position.y) < 0.01 && transform.position.y < maxJumpHeight))
+
+			_timer += Time.deltaTime;
+            if(_timer > 1)
+            {
+				_timer = 0;
+				Debug.Log("prevY set to:" + prevY.ToString());
+                if(Mathf.Abs(prevY - transform.position.y) < 0.01)
+                {
+					Debug.Log(transform.position.y);
+					_stuck = true;
+					Debug.Log("stuck");
+				}
+				prevY = transform.position.y;
+			}
+
+			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance) || _stuck)
 			{
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
 				m_Animator.applyRootMotion = true;
+				_stuck = false;
 			}
 			else
 			{
@@ -262,7 +272,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_GroundNormal = Vector3.up;
 				m_Animator.applyRootMotion = false;
 			}
-			prevY = transform.position.y;
+
 		}
 	}
 }
