@@ -36280,7 +36280,7 @@ GameObject:
   - component: {fileID: 645926635}
   - component: {fileID: 645926634}
   m_Layer: 5
-  m_Name: Red (1)
+  m_Name: FacialHairOptions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75642,7 +75642,7 @@ GameObject:
   - component: {fileID: 1249671588}
   - component: {fileID: 1249671587}
   m_Layer: 5
-  m_Name: Red (4)
+  m_Name: Shoe Options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81147,7 +81147,7 @@ GameObject:
   - component: {fileID: 1361879442}
   - component: {fileID: 1361879441}
   m_Layer: 5
-  m_Name: Red (3)
+  m_Name: Bottom Options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94727,7 +94727,7 @@ GameObject:
   - component: {fileID: 1590348905}
   - component: {fileID: 1590348904}
   m_Layer: 5
-  m_Name: Red (2)
+  m_Name: TopOptions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104378,7 +104378,7 @@ GameObject:
   - component: {fileID: 1728430241}
   - component: {fileID: 1728430240}
   m_Layer: 5
-  m_Name: Red
+  m_Name: HairOptions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104490,7 +104490,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1728430242}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1859851101}
+        m_MethodName: ToggleWindowVisibility
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: HairSelector
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1728430242
 MonoBehaviour:
   m_ObjectHideFlags: 0
