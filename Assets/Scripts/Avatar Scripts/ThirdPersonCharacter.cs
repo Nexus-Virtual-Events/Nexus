@@ -244,6 +244,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
 #endif
 
+			float _timer = 0;
+			bool _stuck = false;
 
 			_timer += Time.deltaTime;
             if(_timer > 1)
