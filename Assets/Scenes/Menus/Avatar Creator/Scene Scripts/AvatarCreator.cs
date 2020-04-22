@@ -68,6 +68,7 @@ public class AvatarCreator : MonoBehaviour
 
     public void ModifySkinColor(Color color)
     {
+        Debug.Log("Skin Color Modified!");
         avatar.SetColor("Skin", color);
         avatar.UpdateColors(true);
     }
