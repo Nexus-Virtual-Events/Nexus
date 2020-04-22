@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2035111234}
-  m_IndirectSpecularColor: {r: 130.94061, g: 162.19731, b: 214.64816, a: 1}
+  m_IndirectSpecularColor: {r: 144.01083, g: 150.83284, b: 169.75659, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3646,7 +3646,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -3657,7 +3657,7 @@ MonoBehaviour:
           m_StringArgument: handsSize
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -8033,11 +8033,11 @@ RectTransform:
   - {fileID: 1097179743}
   - {fileID: 2079748082}
   - {fileID: 953475417}
-  - {fileID: 1569566346}
   - {fileID: 538915121}
+  - {fileID: 1569566346}
   - {fileID: 1355035126}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8637,8 +8637,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActiveDNASlot
+      - m_Target: {fileID: 1124948252}
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8648,8 +8648,8 @@ MonoBehaviour:
           m_StringArgument: waist
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SliderChange
+      - m_Target: {fileID: 1124948252}
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11259,107 +11259,6 @@ RectTransform:
   m_AnchoredPosition: {x: 4.800049, y: 0}
   m_SizeDelta: {x: -12.599976, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &161203935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b6606ef2548734bb6d11b9d160bc7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  rotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  skyIntensityMode:
-    m_OverrideState: 0
-    m_Value: 0
-  exposure:
-    m_OverrideState: 0
-    m_Value: 10
-  multiplier:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  upperHemisphereLuxValue:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  upperHemisphereLuxColor:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0, z: 0}
-  desiredLuxValue:
-    m_OverrideState: 0
-    m_Value: 20000
-  updateMode:
-    m_OverrideState: 0
-    m_Value: 0
-  updatePeriod:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-  includeSunInBaking:
-    m_OverrideState: 0
-    m_Value: 0
-  hdriSky:
-    m_OverrideState: 0
-    m_Value: {fileID: 8900000, guid: 54a3a0570aebe8949bec4966f1376581, type: 3}
-  enableBackplate:
-    m_OverrideState: 0
-    m_Value: 0
-  backplateType:
-    m_OverrideState: 0
-    m_Value: 0
-  groundLevel:
-    m_OverrideState: 0
-    m_Value: 0
-  scale:
-    m_OverrideState: 0
-    m_Value: {x: 32, y: 32}
-  projectionDistance:
-    m_OverrideState: 0
-    m_Value: 16
-    min: 0.0000001
-  plateRotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  plateTexRotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  plateTexOffset:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0}
-  blendAmount:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 100
-  shadowTint:
-    m_OverrideState: 0
-    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
-  pointLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
-  dirLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
-  rectLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
 --- !u!1 &161413483
 GameObject:
   m_ObjectHideFlags: 0
@@ -11730,7 +11629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168218571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019999983, y: 1.196, z: 1.8100324}
+  m_LocalPosition: {x: 0.019999983, y: 1.196, z: 1.8100376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405591765}
@@ -12412,7 +12311,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -12423,7 +12322,7 @@ MonoBehaviour:
           m_StringArgument: eyeRotation
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -16492,6 +16391,107 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238176450}
   m_CullTransparentMesh: 0
+--- !u!114 &239701929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b6606ef2548734bb6d11b9d160bc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  rotation:
+    m_OverrideState: 0
+    m_Value: 143
+    min: 0
+    max: 360
+  skyIntensityMode:
+    m_OverrideState: 0
+    m_Value: 0
+  exposure:
+    m_OverrideState: 0
+    m_Value: 10
+  multiplier:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxValue:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxColor:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 0}
+  desiredLuxValue:
+    m_OverrideState: 0
+    m_Value: 20000
+  updateMode:
+    m_OverrideState: 0
+    m_Value: 0
+  updatePeriod:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+  includeSunInBaking:
+    m_OverrideState: 0
+    m_Value: 0
+  hdriSky:
+    m_OverrideState: 0
+    m_Value: {fileID: 8900000, guid: 740caf694c995c442a325d68cb54313e, type: 3}
+  enableBackplate:
+    m_OverrideState: 0
+    m_Value: 0
+  backplateType:
+    m_OverrideState: 0
+    m_Value: 0
+  groundLevel:
+    m_OverrideState: 0
+    m_Value: 0
+  scale:
+    m_OverrideState: 0
+    m_Value: {x: 32, y: 32}
+  projectionDistance:
+    m_OverrideState: 0
+    m_Value: 16
+    min: 0.0000001
+  plateRotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  plateTexRotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  plateTexOffset:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0}
+  blendAmount:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 100
+  shadowTint:
+    m_OverrideState: 0
+    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    hdr: 0
+    showAlpha: 1
+    showEyeDropper: 1
+  pointLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  dirLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  rectLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!1 &241096316
 GameObject:
   m_ObjectHideFlags: 0
@@ -16963,7 +16963,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -16974,7 +16974,7 @@ MonoBehaviour:
           m_StringArgument: eyeSize
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -20762,7 +20762,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -20773,7 +20773,7 @@ MonoBehaviour:
           m_StringArgument: breastSize
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -21029,7 +21029,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -21296,7 +21296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: a123fc0ac58cb774e8592c925f167e7c, type: 2}
   m_StaticLightingSkyUniqueID: 1
-  m_SkySettings: {fileID: 161203935}
+  m_SkySettings: {fileID: 239701929}
   m_SkySettingsFromProfile: {fileID: -1658960478407648048, guid: a123fc0ac58cb774e8592c925f167e7c,
     type: 2}
 --- !u!4 &313761475
@@ -21942,7 +21942,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: ToggleWindowVisibility
         m_Mode: 5
         m_Arguments:
@@ -26214,7 +26214,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1297650285}
         m_MethodName: SwitchTargetBone
         m_Mode: 5
         m_Arguments:
@@ -33419,7 +33419,7 @@ PrefabInstance:
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.958
+      value: 1.84
       objectReference: {fileID: 0}
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
@@ -33429,32 +33429,32 @@ PrefabInstance:
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.191
+      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.52450615
+      value: 0.20214514
       objectReference: {fileID: 0}
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.85140675
+      value: 0.97935563
       objectReference: {fileID: 0}
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
@@ -33464,7 +33464,7 @@ PrefabInstance:
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 63.27
+      value: 23.325
       objectReference: {fileID: 0}
     - target: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
         type: 3}
@@ -33494,12 +33494,18 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 516344077}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1124948252}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d5ca4957d29e4e8898509af18c14d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &516344079 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4803200590424113488, guid: dbc39b91f125347fb992455a43ec5986,
+    type: 3}
+  m_PrefabInstance: {fileID: 516344077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &518300181
 GameObject:
   m_ObjectHideFlags: 0
@@ -35259,7 +35265,7 @@ RectTransform:
   - {fileID: 579766799}
   - {fileID: 958267766}
   m_Father: {fileID: 121704241}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -37089,7 +37095,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -37100,7 +37106,7 @@ MonoBehaviour:
           m_StringArgument: headSize
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -38121,7 +38127,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -38132,7 +38138,7 @@ MonoBehaviour:
           m_StringArgument: armLength
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -39723,7 +39729,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1297650285}
         m_MethodName: SwitchTargetBone
         m_Mode: 5
         m_Arguments:
@@ -41493,7 +41499,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -41504,7 +41510,7 @@ MonoBehaviour:
           m_StringArgument: earsSize
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -45387,8 +45393,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActiveDNASlot
+      - m_Target: {fileID: 1124948252}
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -45398,8 +45404,8 @@ MonoBehaviour:
           m_StringArgument: legsSize
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SliderChange
+      - m_Target: {fileID: 1124948252}
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -58986,7 +58992,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: ModifySex
         m_Mode: 6
         m_Arguments:
@@ -62302,7 +62308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037846703}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019999983, y: 1.196, z: -0.68700767}
+  m_LocalPosition: {x: 0.019999983, y: 1.196, z: -0.687009}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405591765}
@@ -68134,6 +68140,12 @@ RectTransform:
   m_AnchoredPosition: {x: 4.800049, y: 0}
   m_SizeDelta: {x: -12.599976, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1124948252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4803200590424113491, guid: dbc39b91f125347fb992455a43ec5986,
+    type: 3}
+  m_PrefabInstance: {fileID: 516344077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1128062823
 GameObject:
   m_ObjectHideFlags: 0
@@ -71533,8 +71545,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ToggleWindowVisibility
+      - m_Target: {fileID: 1124948252}
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -75092,7 +75104,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -75103,7 +75115,7 @@ MonoBehaviour:
           m_StringArgument: lowCheekPosition
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -75785,8 +75797,8 @@ GameObject:
   - component: {fileID: 1297650284}
   - component: {fileID: 1297650283}
   - component: {fileID: 1297650281}
-  - component: {fileID: 1297650287}
   - component: {fileID: 1297650282}
+  - component: {fileID: 1297650285}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -75883,7 +75895,7 @@ MonoBehaviour:
     m_Anamorphism: 0
   flipYMode: 0
   fullscreenPassthrough: 0
-  allowDynamicResolution: 0
+  allowDynamicResolution: 1
   customRenderingSettings: 0
   invertFaceCulling: 0
   probeLayerMask:
@@ -75944,7 +75956,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -75956,14 +75968,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297650280}
-  m_LocalRotation: {x: -0.022962164, y: 0.97605896, z: -0.17339188, w: -0.12929425}
-  m_LocalPosition: {x: 2.454, y: 1.436, z: 2.861}
+  m_LocalRotation: {x: -0.0161621, y: 0.98382896, z: -0.124935076, w: -0.12732118}
+  m_LocalPosition: {x: 2.2775598, y: 1.3606806, z: 2.391716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 17.5, y: 109.65, z: 0}
---- !u!114 &1297650287
+--- !u!114 &1297650285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75972,37 +75984,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1297650280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8a636f62116c0a40bbfefdf876d4608, type: 3}
+  m_Script: {fileID: 11500000, guid: 34117dad236f34e94aeede23f2028160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boost: 3.5
-  positionLerpTime: 0.2
-  mouseSensitivityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.5
-      inSlope: 4.6264863
-      outSlope: 4.6264863
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.11557238
-    - serializedVersion: 3
-      time: 1
-      value: 2.5
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  rotationLerpTime: 0.01
-  invertY: 0
+  mouseButtonToUse: 1
+  target: {fileID: 516344079}
+  distance: 0
+  xSpeed: 120
+  ySpeed: 120
+  scrollrate: 3
+  yMinLimit: -20
+  yMaxLimit: 80
+  distanceMin: 0.5
+  distanceMax: 15
+  Offset: {x: 0, y: 0, z: 0}
+  AlwaysOn: 0
+  ZoomSensitivity: 1
+  singleTouchOrbiting: 1
+  pinchToZoom: 1
+  Clip: 0
+  TargetBone: 0
 --- !u!1 &1303151879
 GameObject:
   m_ObjectHideFlags: 0
@@ -77966,7 +77967,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -77977,7 +77978,7 @@ MonoBehaviour:
           m_StringArgument: cheekPosition
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -79132,7 +79133,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -79143,7 +79144,7 @@ MonoBehaviour:
           m_StringArgument: headWidth
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -83347,7 +83348,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -83358,7 +83359,7 @@ MonoBehaviour:
           m_StringArgument: armWidth
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -83528,7 +83529,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -83539,7 +83540,7 @@ MonoBehaviour:
           m_StringArgument: eyeSpacing
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -88372,7 +88373,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -88383,7 +88384,7 @@ MonoBehaviour:
           m_StringArgument: foreheadPosition
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -89523,8 +89524,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActiveDNASlot
+      - m_Target: {fileID: 1124948252}
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -89534,8 +89535,8 @@ MonoBehaviour:
           m_StringArgument: belly
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SliderChange
+      - m_Target: {fileID: 1124948252}
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -90531,7 +90532,7 @@ Transform:
   - {fileID: 1788149673}
   - {fileID: 1425461543}
   m_Father: {fileID: 121704241}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1569648490
 GameObject:
@@ -92361,7 +92362,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: ToggleWindowVisibility
         m_Mode: 5
         m_Arguments:
@@ -95628,8 +95629,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActiveDNASlot
+      - m_Target: {fileID: 1124948252}
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -95639,8 +95640,8 @@ MonoBehaviour:
           m_StringArgument: feetSize
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SliderChange
+      - m_Target: {fileID: 1124948252}
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -96589,7 +96590,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -96600,7 +96601,7 @@ MonoBehaviour:
           m_StringArgument: cheekSize
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -97323,7 +97324,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: ToggleWindowVisibility
         m_Mode: 5
         m_Arguments:
@@ -100082,7 +100083,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -100093,7 +100094,7 @@ MonoBehaviour:
           m_StringArgument: earsPosition
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -102698,7 +102699,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -102709,7 +102710,7 @@ MonoBehaviour:
           m_StringArgument: lowCheekPronounced
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -105160,7 +105161,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: ModifySex
         m_Mode: 6
         m_Arguments:
@@ -106864,7 +106865,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1297650285}
         m_MethodName: SwitchTargetBone
         m_Mode: 5
         m_Arguments:
@@ -110984,7 +110985,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -110995,7 +110996,7 @@ MonoBehaviour:
           m_StringArgument: earsRotation
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -114804,7 +114805,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1297650285}
         m_MethodName: SwitchTargetBone
         m_Mode: 5
         m_Arguments:
@@ -115433,7 +115434,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -115444,7 +115445,7 @@ MonoBehaviour:
           m_StringArgument: forearmWidth
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -120307,7 +120308,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -120318,7 +120319,7 @@ MonoBehaviour:
           m_StringArgument: forearmLength
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:
@@ -120842,7 +120843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059789766}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5100322, y: 1.196, z: 1.1760162}
+  m_LocalPosition: {x: 2.5100374, y: 1.196, z: 1.1760188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405591765}
@@ -121450,7 +121451,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SetActiveDNASlot
         m_Mode: 5
         m_Arguments:
@@ -121461,7 +121462,7 @@ MonoBehaviour:
           m_StringArgument: foreheadSize
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 516344078}
         m_MethodName: SliderChange
         m_Mode: 0
         m_Arguments:

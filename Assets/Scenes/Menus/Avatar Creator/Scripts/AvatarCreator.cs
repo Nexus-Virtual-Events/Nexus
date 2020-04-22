@@ -37,8 +37,8 @@ public class AvatarCreator : MonoBehaviour
 
     public void ModifySex(bool isMale)
     {
-        if (isMale && avatar.activeRace.name != "HumanMaleHighPoly") avatar.ChangeRace("HumanMaleHighPoly");
-        if (!isMale && avatar.activeRace.name != "HumanFemaleHighPoly") avatar.ChangeRace("HumanFemaleHighPoly");
+        if (isMale && avatar.activeRace.name != "HumanMaleHD") avatar.ChangeRace("HumanMaleHD");
+        if (!isMale && avatar.activeRace.name != "HumanFemaleHD") avatar.ChangeRace("HumanFemaleHD");
     }
 
     public void SetActiveDNASlot(string _activeDNASlot)
