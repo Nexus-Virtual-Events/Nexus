@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28502658, g: 0.37139314, b: 0.49600917, a: 1}
+  m_IndirectSpecularColor: {r: 0.3528641, g: 0.38908333, b: 0.43940592, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -62466,6 +62466,11 @@ PrefabInstance:
       propertyPath: activeRace.name
       value: HumanMaleHighPoly
       objectReference: {fileID: 0}
+    - target: {fileID: 4803200590424113490, guid: c6558d6a02a5649fa99ba6c8abbd279a,
+        type: 3}
+      propertyPath: avatar
+      value: 
+      objectReference: {fileID: 1859851102}
     - target: {fileID: 4803200590424113491, guid: c6558d6a02a5649fa99ba6c8abbd279a,
         type: 3}
       propertyPath: m_Name
