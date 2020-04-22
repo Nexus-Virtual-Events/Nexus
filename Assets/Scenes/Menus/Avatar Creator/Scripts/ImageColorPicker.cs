@@ -19,7 +19,6 @@ public class ImageColorPicker : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Clicked!");
         selectedColor = GetColor(GetPointerUVPosition());
         OnColorPicked.Invoke(selectedColor);
     }
