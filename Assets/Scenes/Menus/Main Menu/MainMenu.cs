@@ -15,7 +15,7 @@ namespace Michsky.UI.ModernUIPack
       public void StartGame()
       {
         PlayerPrefs.SetString("playerName", playerName.text);
-        AvatarCreator2.sceneString = scene;
+        AvatarCreator.sceneString = scene;
         SceneManager.LoadScene("Avatar Creator");
       }
   }

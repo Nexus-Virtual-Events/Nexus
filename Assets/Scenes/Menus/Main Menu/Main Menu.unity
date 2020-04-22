@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: {fileID: 1534323268}
-  scene: The Bowl
+  scene: The Circle
 --- !u!114 &152618869
 MonoBehaviour:
   m_ObjectHideFlags: 0
