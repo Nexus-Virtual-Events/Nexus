@@ -234,7 +234,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 		}
 
-		float prevY;
+		float prevY = 0;
+		float _timer = 0;
 
 		void CheckGroundStatus()
 		{
@@ -244,11 +245,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
 #endif
 
-			float _timer = 0;
 			bool _stuck = false;
 
 			_timer += Time.deltaTime;
-            if(_timer > 1)
+			Debug.Log(_timer);
+            if(_timer > .5f)
             {
 				_timer = 0;
 				Debug.Log("prevY set to:" + prevY.ToString());
@@ -256,7 +257,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 {
 					Debug.Log(transform.position.y);
 					_stuck = true;
-					Debug.Log("stuck");
 				}
 				prevY = transform.position.y;
 			}
