@@ -66,17 +66,19 @@ public class AvatarCreator : MonoBehaviour
 
     }
 
+    public void ModifyEyeColor(Color color)
+    {
+        Debug.Log("modified eye color");
+        avatar.SetColor("Eyes", color);
+        avatar.UpdateColors(true);
+    }
+
     public void ModifySkinColor(Color color)
     {
         avatar.SetColor("Skin", color);
         avatar.UpdateColors(true);
     }
 
-    public void ModifyEyeColor(Color color)
-    {
-        avatar.SetColor("Eyes", color);
-        avatar.UpdateColors(true);
-    }
 
     //public void ModifyHair(bool pressedPlus)
     //{
