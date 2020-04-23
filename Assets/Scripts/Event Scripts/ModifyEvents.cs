@@ -38,9 +38,7 @@ public class ModifyEvents : MonoBehaviour
 
     public void ChangeCamera(int isCameraOn)
     {
-       
-        Debug.Log(isCameraOn.ToString());
-        _events = _events[0].ToString() + _events[1].ToString() + isCameraOn.ToString();
+       _events = _events[0].ToString() + _events[1].ToString() + isCameraOn.ToString();
     }
 
 

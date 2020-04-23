@@ -248,14 +248,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			bool _stuck = false;
 
 			_timer += Time.deltaTime;
-			Debug.Log(_timer);
             if(_timer > .5f)
             {
 				_timer = 0;
-				Debug.Log("prevY set to:" + prevY.ToString());
                 if(Mathf.Abs(prevY - transform.position.y) < 0.01)
                 {
-					Debug.Log(transform.position.y);
 					_stuck = true;
 				}
 				prevY = transform.position.y;

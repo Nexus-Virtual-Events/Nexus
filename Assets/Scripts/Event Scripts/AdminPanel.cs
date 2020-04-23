@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Diagnostics;
 using Normal.Realtime;
 
 public class AdminPanel : MonoBehaviour
@@ -17,16 +16,25 @@ public class AdminPanel : MonoBehaviour
 
     public TMP_Text focusCameraButtonText;
 
+    private ModifyPodium podiumModifier;
+    private GameObject localAvatar;
+
     // Start is called before the first frame update
     void Start()
     {
         eventModifier = GameObject.Find("EventManager").GetComponent<ModifyEvents>();
+        localAvatar = ActionRouter.GetLocalAvatar();
+        podiumModifier = localAvatar.GetComponent<ModifyPodium>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //if(localAvatar == null)
+        //{
+        //    localAvatar = ActionRouter.GetLocalAvatar();
+        //    podiumModifier = localAvatar.GetComponent<ModifyPodium>();
+        //}
     }
 
     public void ChangeEventStatus()
@@ -63,12 +71,16 @@ public class AdminPanel : MonoBehaviour
             focusCameraButtonText.text = "UNFOCUS";
 
             eventModifier.ChangeCamera(1);
+
+            podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
         }
         else
         {
             focusCameraButtonText.text = "FOCUS";
 
             eventModifier.ChangeCamera(0);
+
+            podiumModifier.SendNewValue(-1);
         }
     }
 }

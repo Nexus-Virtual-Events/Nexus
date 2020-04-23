@@ -54,8 +54,6 @@ public class ActionRouter : MonoBehaviour
     {
         return currentCharacter;
     }
-
-
     // ActionRouter.SetLocalAvatar(....);
 }
 

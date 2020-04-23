@@ -4,10 +4,10 @@ using UnityEngine;
 using Normal.Realtime;
 
 
-public class InteractionSync : RealtimeComponent
+public class PodiumSync : RealtimeComponent
 {
 
-    private InteractionSyncModel _model;
+    private PodiumSyncModel _model;
 
     private void Start()
     {
@@ -16,14 +16,14 @@ public class InteractionSync : RealtimeComponent
         //_characterMove = GetComponent<UpdateMove>.
     }
 
-    private InteractionSyncModel model
+    private PodiumSyncModel model
     {
         set
         {
             if (_model != null)
             {
                 // Unregister from events
-                _model.interactionDidChange -= InteractionDidChange;
+                _model.podiumDidChange -= PodiumDidChange;
             }
 
             // Store the model
@@ -32,40 +32,34 @@ public class InteractionSync : RealtimeComponent
             if (_model != null)
             {
                 // Update the mesh render to match the new model
-                //UpdateInteraction();
+                //UpdatePodium();
 
                 // Register for events so we'll know if the color changes later
-                _model.interactionDidChange += InteractionDidChange;
+                _model.podiumDidChange += PodiumDidChange;
             }
         }
     }
 
-    private void InteractionDidChange(InteractionSyncModel model, string value)
+    private void PodiumDidChange(PodiumSyncModel model, int value)
     {
-            
-        // Update the mesh renderer
-        // UpdateInteraction();
-        if (value == "") { return; }
-        Debug.Log("Received intearction: " + value);
-        GetComponent<ModifyInteraction>().ReceivedNewInteraction(value);
+        GetComponent<ModifyPodium>().ReceivedNewPodium(value);
     }
 
-    //private void UpdateInteraction()
+    //private void UpdatePodium()
     //{
     //    // Get the color from the model and set it on the mesh renderer.
-    //    if (_model.interaction == "") {
+        
     //        Debug.LogWarning("Empty intreaction value");
     //        return;
-    //    }
-            
-            
+
     //}
 
-    public void SetInteraction(string interaction)
+    public void SetPodium(int podium)
     {
-        Debug.Log("Setting to:" + interaction);
+        Debug.Log("Setting to:" + podium);
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
-        _model.interaction = interaction;
+        _model.podium = podium;
     }
+
 }

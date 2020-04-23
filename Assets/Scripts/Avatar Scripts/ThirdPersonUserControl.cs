@@ -130,6 +130,53 @@ public class ThirdPersonUserControl : MonoBehaviour
         autoTarget = target;
     }
 
+    int maxId = -1;
+
+    public void ReactToPodiumChange(int newPodium)
+    {
+
+        if (!_realtimeView.isOwnedLocally) { return; }
+
+        if (newPodium == -1)
+        {
+            Debug.Log("Podium reset");
+            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                if (maxId != -1)
+                    if (player.GetComponent<ThirdPersonUserControl>().getID() == maxId)
+                    {
+                        player.GetComponent<AudioSource>().spatialBlend = 1;
+                    }
+            }
+            return;
+        }
+
+        Debug.Log("podium changed to "+ newPodium.ToString());
+
+        float maxDistance = 1000;
+
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            float dist = (player.transform.position - GameObject.Find("Podium").transform.position).magnitude;
+                
+            if (dist < maxDistance)
+            {
+                maxDistance = dist;
+                maxId = player.GetComponent<ThirdPersonUserControl>().getID();
+            }
+        }
+
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if(maxId != -1)
+                if(player.GetComponent<ThirdPersonUserControl>().getID() == maxId)
+                    {
+                        player.GetComponent<AudioSource>().spatialBlend = 0;
+                    }
+        }
+
+    }
+
     private void SwitchFocus()
     {
         if (!_realtimeView.isOwnedLocally)

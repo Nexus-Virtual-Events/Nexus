@@ -44,7 +44,6 @@ public class EventManager : MonoBehaviour
     {
         if (events != prevEvents)
         {
-            Debug.Log("changing event");
             OnEventsChange.Invoke();
             prevEvents = events;
         }
