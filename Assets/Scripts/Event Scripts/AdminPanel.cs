@@ -15,6 +15,7 @@ public class AdminPanel : MonoBehaviour
     ModifyEvents eventModifier;
 
     public TMP_Text focusCameraButtonText;
+    public TMP_Text focusVoiceButtonText;
 
     private ModifyPodium podiumModifier;
     private GameObject localAvatar;
@@ -79,6 +80,22 @@ public class AdminPanel : MonoBehaviour
             focusCameraButtonText.text = "FOCUS";
 
             eventModifier.ChangeCamera(0);
+
+            podiumModifier.SendNewValue(-1);
+        }
+    }
+
+    public void ToggleFocusVoiceMode()
+    {
+        if (focusVoiceButtonText.text == "GLOBAL")
+        {
+            focusVoiceButtonText.text = "LOCAL";
+
+            podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
+        }
+        else
+        {
+            focusVoiceButtonText.text = "GLOBAL";
 
             podiumModifier.SendNewValue(-1);
         }
