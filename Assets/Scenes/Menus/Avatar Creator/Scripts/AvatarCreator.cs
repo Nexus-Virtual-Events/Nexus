@@ -72,6 +72,12 @@ public class AvatarCreator : MonoBehaviour
         avatar.UpdateColors(true);
     }
 
+    public void ModifyEyeColor(Color color)
+    {
+        avatar.SetColor("Eyes", color);
+        avatar.UpdateColors(true);
+    }
+
     //public void ModifyHair(bool pressedPlus)
     //{
     //    if(avatar.activeRace.name == "HumanMaleHD")
