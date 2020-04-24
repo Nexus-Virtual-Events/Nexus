@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "299949821719",
+    "firebase_url": "https://nexus-57e04.firebaseio.com",
+    "project_id": "nexus-57e04",
+    "storage_bucket": "nexus-57e04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299949821719:android:7ac0f73d0b69660f9df152",
+        "android_client_info": {
+          "package_name": "com.nexus.lawrenceville"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299949821719-6f8dbg9jc00cscu1m34l0v2qutpsmvbm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3tY5OKoLvukT_qEiX15evXoZ98bXy45w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299949821719-6f8dbg9jc00cscu1m34l0v2qutpsmvbm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "299949821719-ibr6092l121ckiv1a79o54qpidmfcvn9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nexus.lawrenceville"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
