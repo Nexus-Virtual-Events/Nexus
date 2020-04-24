@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0188188c253e0c4bb9b46e19fa7312e, type: 3}
   m_Name: UnderwearHD
   m_EditorClassIdentifier: 
-  label: 
-  resourcesOnly: 0
   recipeType: Wardrobe
   DisplayValue: Underwear
   compatibleRaces:
@@ -24,11 +22,8 @@ MonoBehaviour:
     thumb: {fileID: 0}
   wardrobeSlot: Underwear
   Hides: []
-  HideTags: []
   suppressWardrobeSlots: []
   activeWardrobeSet: []
   MeshHideAssets: []
   recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"MaleLegsHD","scale":100,"copyIdx":-1,"overlays":[{"id":"UnderwearOverlayHD","colorIdx":0,"rect":[0,0,0,0]}]}],"colors":[],"fColors":[{"name":"","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":0,"race":"","packedDna":[]}'
-  IncompatibleRecipes: []
-  UserField: 
   replaces: Nothing
