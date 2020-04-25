@@ -14,6 +14,7 @@ namespace Michsky.UI.ModernUIPack
     {
         public string scene;
         public string displayName;
+        private string key = "NexusConnects";
 
         private void Start()
         {
@@ -62,7 +63,7 @@ namespace Michsky.UI.ModernUIPack
         {
             //StartGame();
             Debug.Log("login activated with " + _email.text + _password.text);
-            string jsonString = "{\"email\":" + _email.text + "\"password\":" + _password.text + "}";
+            string jsonString = "{\"email\":" + _email.text + ",\"password\":" + _password.text + ",\"key\":" + key + "}";
             //CoroutineWithData cd = new CoroutineWithData(this, Post("http://the-nexus.herokuapp.com/authenticate_with_unity", jsonString));
             //yield return cd.coroutine;
             StartCoroutine(Post("http://the-nexus.herokuapp.com/authenticate_with_unity", jsonString));
