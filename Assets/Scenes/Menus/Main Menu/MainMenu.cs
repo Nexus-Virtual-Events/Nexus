@@ -12,6 +12,10 @@ namespace Michsky.UI.ModernUIPack
 {
     public class MainMenu : MonoBehaviour
     {
+        public TMP_InputField _email;
+        public TMP_InputField _password;
+        public TMP_Text _warningText;
+
         public string scene;
         public string displayName;
         private string key = "NexusConnects";
@@ -21,32 +25,6 @@ namespace Michsky.UI.ModernUIPack
             _warningText.text = "";
         }
 
-
-
-        //public void Register()
-        //{
-        //    Firebase.Auth.FirebaseAuth auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-        //    auth.CreateUserWithEmailAndPasswordAsync(_email.text, _password.text).ContinueWith(task =>
-        //    {
-        //        if (task.IsCanceled)
-        //        {
-        //            Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
-        //            return;
-        //        }
-        //        if (task.IsFaulted)
-        //        {
-        //            Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-        //            return;
-        //        }
-
-        //        // Firebase user has been created.
-        //        user = task.Result;
-        //        Debug.LogFormat("Firebase user created successfully: {0} ({1})",
-        //            user.DisplayName, user.UserId);
-
-        //        StartGame();
-        //    });
-        //}
         IEnumerator Post(string url, string bodyJsonString)
         {
             var request = new UnityWebRequest(url, "POST");
@@ -68,27 +46,6 @@ namespace Michsky.UI.ModernUIPack
             //yield return cd.coroutine;
             StartCoroutine(Post("http://the-nexus.herokuapp.com/authenticate_with_unity", jsonString));
             //Debug.Log("result is " + cd.result);  //  'success' or 'fail'
-
-            //Firebase.Auth.FirebaseAuth auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-            //auth.SignInWithEmailAndPasswordAsync(_email.text, _password.text).ContinueWith(task =>
-            //{
-            //    if (task.IsCanceled)
-            //    {
-            //        Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
-            //        return;
-            //    }
-            //    if (task.IsFaulted)
-            //    {
-            //        Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-            //        return;
-            //    }
-
-            //    user = task.Result;
-            //    Debug.LogFormat("User signed in successfully: {0} ({1})",
-            //        user.DisplayName, user.UserId);
-
-            //    StartGame();
-            //});
         }
 
         public void StartGame()
