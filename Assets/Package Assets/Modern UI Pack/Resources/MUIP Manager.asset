@@ -15,7 +15,7 @@ MonoBehaviour:
   enableDynamicUpdate: 1
   enableExtendedColorPicker: 1
   editorHints: 1
-  animatedIconColor: {r: 0.37254903, g: 0.40784314, b: 0.4509804, a: 1}
+  animatedIconColor: {r: 1, g: 1, b: 1, a: 1}
   buttonThemeType: 0
   buttonFont: {fileID: 11400000, guid: 2f17e8bb3967fe14093d5fec798fffd9, type: 2}
   buttonFontSize: 22.5

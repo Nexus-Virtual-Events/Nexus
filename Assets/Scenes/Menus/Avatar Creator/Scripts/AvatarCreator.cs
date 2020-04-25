@@ -15,13 +15,8 @@ public class AvatarCreator : MonoBehaviour
     public static string sceneString;
 
     private Dictionary<string, DnaSetter> DNA;
+
     public string activeDNASlot;
-
-    //public List<string> hairStylesMale = new List<string>();
-    //private int currentHairStyleMale;
-
-    //public List<string> hairStylesFemale = new List<string>();
-    //private int currentHairStyleFemale;
 
     public string avatarRecipe;
 
@@ -77,6 +72,18 @@ public class AvatarCreator : MonoBehaviour
     {
         avatar.SetColor("Skin", color);
         avatar.UpdateColors(true);
+    }
+
+    public void ModifyHair(string hairStyle)
+    {
+        avatar.SetSlot("Hair", hairStyle);
+        avatar.BuildCharacter();
+    }
+
+    public void ClearHair()
+    {
+        avatar.ClearSlot("Hair");
+        avatar.BuildCharacter();
     }
 
 
