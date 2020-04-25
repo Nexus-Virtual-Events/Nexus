@@ -29,7 +29,7 @@ namespace Michsky.UI.ModernUIPack
         public string displayName;
         private string key = "NexusConnects";
 
-        string url = "http://127.0.0.1:5000/authenticate_with_unity";
+        string url = "http://the-nexus.herokuapp.com/authenticate_with_unity";
 
         //private void Start()
         //{
