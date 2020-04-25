@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Networking;
-using UnityEngine.Encoding;
 using System.Text;
 
 
@@ -59,34 +58,39 @@ namespace Michsky.UI.ModernUIPack
             request.SetRequestHeader("Content-Type", "application/json");
             yield return request.SendWebRequest();
             Debug.Log("Status Code: " + request.responseCode);
+            yield return request.responseCode;
         }
 
         public void Login()
         {
-            StartGame();
-            //Debug.Log("login activated with " + _email.text + _email.);
-            //Post()
+            //StartGame();
+            Debug.Log("login activated with " + _email.text + _password.text);
+            string jsonString = "{\"email\":" + _email.text + "\"password\":" + _password.text + "}";
+            //CoroutineWithData cd = new CoroutineWithData(this, Post("http://the-nexus.herokuapp.com/authenticate_with_unity", jsonString));
+            //yield return cd.coroutine;
+            StartCoroutine(Post("http://the-nexus.herokuapp.com/authenticate_with_unity", jsonString));
+            //Debug.Log("result is " + cd.result);  //  'success' or 'fail'
+            
+            //Firebase.Auth.FirebaseAuth auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+            //auth.SignInWithEmailAndPasswordAsync(_email.text, _password.text).ContinueWith(task =>
+            //{
+            //    if (task.IsCanceled)
+            //    {
+            //        Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
+            //        return;
+            //    }
+            //    if (task.IsFaulted)
+            //    {
+            //        Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+            //        return;
+            //    }
 
-            ////Firebase.Auth.FirebaseAuth auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-            ////auth.SignInWithEmailAndPasswordAsync(_email.text, _password.text).ContinueWith(task =>
-            ////{
-            ////    if (task.IsCanceled)
-            ////    {
-            ////        Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
-            ////        return;
-            ////    }
-            ////    if (task.IsFaulted)
-            ////    {
-            ////        Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-            ////        return;
-            ////    }
+            //    user = task.Result;
+            //    Debug.LogFormat("User signed in successfully: {0} ({1})",
+            //        user.DisplayName, user.UserId);
 
-            ////    user = task.Result;
-            ////    Debug.LogFormat("User signed in successfully: {0} ({1})",
-            ////        user.DisplayName, user.UserId);
-
-            ////    StartGame();
-            ////});
+            //    StartGame();
+            //});
         }
 
         public void StartGame()
@@ -95,6 +99,27 @@ namespace Michsky.UI.ModernUIPack
             PlayerPrefs.SetString("playerName", _email.text);
             AvatarCreator.sceneString = scene;
             SceneManager.LoadScene("Avatar Creator");
+        }
+    }
+
+    public class CoroutineWithData
+    {
+        public Coroutine coroutine { get; private set; }
+        public object result;
+        private IEnumerator target;
+        public CoroutineWithData(MonoBehaviour owner, IEnumerator target)
+        {
+            this.target = target;
+            this.coroutine = owner.StartCoroutine(Run());
+        }
+
+        private IEnumerator Run()
+        {
+            while (target.MoveNext())
+            {
+                result = target.Current;
+                yield return result;
+            }
         }
     }
 }
