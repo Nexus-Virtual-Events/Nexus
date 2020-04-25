@@ -12,11 +12,8 @@ namespace Michsky.UI.ModernUIPack
 {
     public class MainMenu : MonoBehaviour
     {
-        public TMP_InputField _email;
-        public TMP_InputField _password;
-        public Text _warningText;
-        //public Firebase.Auth.FirebaseUser user;
         public string scene;
+        public string displayName;
 
         private void Start()
         {
@@ -70,7 +67,7 @@ namespace Michsky.UI.ModernUIPack
             //yield return cd.coroutine;
             StartCoroutine(Post("http://the-nexus.herokuapp.com/authenticate_with_unity", jsonString));
             //Debug.Log("result is " + cd.result);  //  'success' or 'fail'
-            
+
             //Firebase.Auth.FirebaseAuth auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
             //auth.SignInWithEmailAndPasswordAsync(_email.text, _password.text).ContinueWith(task =>
             //{
@@ -96,7 +93,7 @@ namespace Michsky.UI.ModernUIPack
         public void StartGame()
         {
             Debug.Log("StartGame() Called!");
-            PlayerPrefs.SetString("playerName", _email.text);
+            PlayerPrefs.SetString("playerName", displayName);
             AvatarCreator.sceneString = scene;
             SceneManager.LoadScene("Avatar Creator");
         }
