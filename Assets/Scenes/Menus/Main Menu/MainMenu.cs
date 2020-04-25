@@ -14,7 +14,7 @@ namespace Michsky.UI.ModernUIPack
 
         public void Join()
         {
-
+            
         }
 
         public void StartGame()
