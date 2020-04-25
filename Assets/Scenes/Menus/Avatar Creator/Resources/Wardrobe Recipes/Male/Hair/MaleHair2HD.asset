@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0188188c253e0c4bb9b46e19fa7312e, type: 3}
-  m_Name: Hair1HD
+  m_Name: MaleHair2HD
   m_EditorClassIdentifier: 
   label: 
   resourcesOnly: 0
   recipeType: Wardrobe
-  DisplayValue: Hair
+  DisplayValue: Hair2HD
   compatibleRaces:
   - HumanMaleHD
   wardrobeRecipeThumbs:
@@ -28,7 +28,8 @@ MonoBehaviour:
   suppressWardrobeSlots: []
   activeWardrobeSet: []
   MeshHideAssets: []
-  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"MaleHairHD","scale":100,"copyIdx":-1,"overlays":[{"id":"Hair1OverlayHD","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":0,"race":"","packedDna":[]}'
+  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"M_Hair
+    1","scale":100,"copyIdx":-1,"overlays":[{"id":"Hair1OverlayHD","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":0,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
   replaces: Nothing

@@ -17,6 +17,7 @@ public class AvatarCreator : MonoBehaviour
     private Dictionary<string, DnaSetter> DNA;
 
     public string activeDNASlot;
+    public string currentHair = "";
 
     public string avatarRecipe;
 
@@ -76,8 +77,17 @@ public class AvatarCreator : MonoBehaviour
 
     public void ModifyHair(string hairStyle)
     {
-        avatar.SetSlot("Hair", hairStyle);
-        avatar.BuildCharacter();
+        if (currentHair == hairStyle)
+        {
+            ClearHair();
+            currentHair = "";
+        }
+        else
+        {
+            currentHair = hairStyle;
+            avatar.SetSlot("Hair", hairStyle);
+            avatar.BuildCharacter();
+        }
     }
 
     public void ClearHair()
