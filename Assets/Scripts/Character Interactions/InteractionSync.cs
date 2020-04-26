@@ -50,14 +50,16 @@ public class InteractionSync : RealtimeComponent
         GetComponent<ModifyInteraction>().ReceivedNewInteraction(value);
     }
 
-    private void UpdateInteraction()
-    {
-       // Get the color from the model and set it on the mesh renderer.
-       if (_model.interaction == "") {
-           Debug.LogWarning("Empty intreaction value");
-           return;
-       }
-    }
+    //private void UpdateInteraction()
+    //{
+    //    // Get the color from the model and set it on the mesh renderer.
+    //    if (_model.interaction == "") {
+    //        Debug.LogWarning("Empty intreaction value");
+    //        return;
+    //    }
+            
+            
+    //}
 
     public void SetInteraction(string interaction)
     {

@@ -17,6 +17,7 @@ public class AdminPanel : MonoBehaviour
     public TMP_Text focusCameraButtonText;
     public TMP_Text focusVoiceButtonText;
 
+    private ModifyPodium podiumModifier;
     private GameObject localAvatar;
 
     // Start is called before the first frame update
@@ -24,15 +25,17 @@ public class AdminPanel : MonoBehaviour
     {
         eventModifier = GameObject.Find("EventManager").GetComponent<ModifyEvents>();
         localAvatar = ActionRouter.GetLocalAvatar();
+        podiumModifier = localAvatar.GetComponent<ModifyPodium>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(localAvatar == null)
-        {
-           localAvatar = ActionRouter.GetLocalAvatar();
-        }
+        //if(localAvatar == null)
+        //{
+        //    localAvatar = ActionRouter.GetLocalAvatar();
+        //    podiumModifier = localAvatar.GetComponent<ModifyPodium>();
+        //}
     }
 
     public void ChangeEventStatus()
@@ -70,10 +73,7 @@ public class AdminPanel : MonoBehaviour
 
             eventModifier.ChangeCamera(1);
 
-            if (localAvatar) {
-                ModifyPodium podiumModifier = localAvatar.GetComponent<ModifyPodium>();
-                podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
-            }
+            podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
         }
         else
         {
@@ -85,26 +85,16 @@ public class AdminPanel : MonoBehaviour
     }
 
     public void ToggleFocusVoiceMode()
-    {   
-        ModifyPodium podiumModifier;
-
-        if (localAvatar) {
-            podiumModifier = localAvatar.GetComponent<ModifyPodium>();
-            podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
-        }
-        else {
-            Debug.Log("No local avatar found");
-            return;
-        }
-    
+    {
         if (focusVoiceButtonText.text == "LOCAL")
         {
             focusVoiceButtonText.text = "GLOBAL";
-            
+
+            podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
         }
         else
         {
-            focusVoiceButtonText.text = "LOCAL";
+            focusCameraButtonText.text = "LOCAL";
 
             podiumModifier.SendNewValue(-1);
         }
