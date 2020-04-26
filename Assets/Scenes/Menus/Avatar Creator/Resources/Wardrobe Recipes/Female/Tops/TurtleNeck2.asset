@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0188188c253e0c4bb9b46e19fa7312e, type: 3}
+  m_Name: TurtleNeck2
+  m_EditorClassIdentifier: 
+  label: 
+  resourcesOnly: 0
+  recipeType: Wardrobe
+  DisplayValue: 
+  compatibleRaces:
+  - HumanFemaleHD
+  wardrobeRecipeThumbs:
+  - race: HumanFemaleHD
+    filename: 
+    thumb: {fileID: 0}
+  wardrobeSlot: Chest
+  Hides: []
+  HideTags: []
+  suppressWardrobeSlots:
+  - Shoulders
+  activeWardrobeSet: []
+  MeshHideAssets:
+  - {fileID: 11400000, guid: 8b44a7b80b10b1e428aa280793a56abd, type: 2}
+  - {fileID: 11400000, guid: 49956bce7835cb44998ca564cb61e508, type: 2}
+  - {fileID: 11400000, guid: a5bd3fa3dad2efb45be5c4b2ec9148e3, type: 2}
+  - {fileID: 11400000, guid: 7abcef7e4e0803b449471adc9477ccf0, type: 2}
+  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"F_TurtleNeck_lp","scale":100,"copyIdx":-1,"overlays":[{"id":"F_TurtleNeck_lp_Overlay2","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"Shirt","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
+  IncompatibleRecipes: []
+  UserField: 
+  replaces: Nothing

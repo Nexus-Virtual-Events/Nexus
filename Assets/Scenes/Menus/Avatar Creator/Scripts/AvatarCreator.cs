@@ -1,11 +1,8 @@
-﻿using System.Collections;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UMA;
 using UMA.CharacterSystem;
-using UnityEngine.UI;
-using System;
-using System.IO;
 using Michsky.UI.ModernUIPack;
 using UnityEngine.SceneManagement;
 
@@ -17,9 +14,29 @@ public class AvatarCreator : MonoBehaviour
     private Dictionary<string, DnaSetter> DNA;
 
     public string activeDNASlot;
+
     public string currentHair = "";
+    public string currentFullOutfit = "";
+    public string currentTop = "";
+
+    public List<GameObject> mensOptions;
+    public List<GameObject> womensOptions;
+
+    public List<GameObject> mensHairOptions;
+    public List<GameObject> womensHairOptions;
+    public List<GameObject> mensTopOptions;
+    public List<GameObject> womensTopOptions;
 
     public string avatarRecipe;
+
+    private void Start()
+    {
+        mensOptions.AddRange(mensHairOptions);
+        mensOptions.AddRange(mensTopOptions);
+
+        womensOptions.AddRange(womensHairOptions);
+        womensOptions.AddRange(womensTopOptions);
+    }
 
     void OnEnable()
     {
@@ -33,8 +50,34 @@ public class AvatarCreator : MonoBehaviour
 
     public void ModifySex(bool isMale)
     {
-        if (isMale && avatar.activeRace.name != "HumanMaleHD") avatar.ChangeRace("HumanMaleHD");
-        if (!isMale && avatar.activeRace.name != "HumanFemaleHD") avatar.ChangeRace("HumanFemaleHD");
+        if (isMale && avatar.activeRace.name != "HumanMaleHD")
+        {
+            avatar.ChangeRace("HumanMaleHD");
+
+            foreach (GameObject wardrobeItem in womensOptions)
+            {
+                wardrobeItem.SetActive(false);
+            }
+
+            foreach (GameObject wardrobeItem in mensOptions)
+            {
+                wardrobeItem.SetActive(true);
+            }
+        }
+        if (!isMale && avatar.activeRace.name != "HumanFemaleHD")
+        {
+            avatar.ChangeRace("HumanFemaleHD");
+
+            foreach (GameObject wardrobeItem in womensOptions)
+            {
+                wardrobeItem.SetActive(true);
+            }
+
+            foreach (GameObject wardrobeItem in mensOptions)
+            {
+                wardrobeItem.SetActive(false);
+            }
+        }
     }
 
     public void SetActiveDNASlot(string _activeDNASlot)
@@ -79,7 +122,8 @@ public class AvatarCreator : MonoBehaviour
     {
         if (currentHair == hairStyle)
         {
-            ClearHair();
+            avatar.ClearSlot("Hair");
+            avatar.BuildCharacter();
             currentHair = "";
         }
         else
@@ -90,48 +134,37 @@ public class AvatarCreator : MonoBehaviour
         }
     }
 
-    public void ClearHair()
+    public void ModifyFullOutfit(string fullOutfit)
     {
-        avatar.ClearSlot("Hair");
-        avatar.BuildCharacter();
+        if (currentFullOutfit == fullOutfit)
+        {
+            avatar.ClearSlot("FullOutfit");
+            avatar.BuildCharacter();
+            currentFullOutfit = "";
+        }
+        else
+        {
+            currentFullOutfit = fullOutfit;
+            avatar.SetSlot("FullOutfit", fullOutfit);
+            avatar.BuildCharacter();
+        }
     }
 
-
-    //public void ModifyHair(bool pressedPlus)
-    //{
-    //    if(avatar.activeRace.name == "HumanMaleHD")
-    //    {
-    //        if (pressedPlus)
-    //            currentHairStyleMale++;
-    //        else
-    //            currentHairStyleMale--;
-
-    //        currentHairStyleMale = Mathf.Clamp(currentHairStyleMale, 0, hairStylesMale.Count - 1);
-
-    //        if (hairStylesMale[currentHairStyleMale] == "None")
-    //            avatar.ClearSlot("Hair");
-    //        else
-    //            avatar.SetSlot("Hair", hairStylesMale[currentHairStyleMale]);
-
-    //        avatar.BuildCharacter();
-    //    }
-    //    if (avatar.activeRace.name == "HumanFemaleHD")
-    //    {
-    //        if (pressedPlus)
-    //            currentHairStyleFemale++;
-    //        else
-    //            currentHairStyleFemale--;
-
-    //        currentHairStyleFemale = Mathf.Clamp(currentHairStyleFemale, 0, hairStylesFemale.Count - 1);
-
-    //        if (hairStylesFemale[currentHairStyleFemale] == "None")
-    //            avatar.ClearSlot("Hair");
-    //        else
-    //            avatar.SetSlot("Hair", hairStylesFemale[currentHairStyleFemale]);
-
-    //        avatar.BuildCharacter();
-    //    }
-    //}
+    public void ModifyTop(string top)
+    {
+        if (currentTop == top)
+        {
+            avatar.ClearSlot("Chest");
+            avatar.BuildCharacter();
+            currentTop = "";
+        }
+        else
+        {
+            currentTop = top;
+            avatar.SetSlot("Chest", top);
+            avatar.BuildCharacter();
+        }
+    }
 
     public void ToggleWindowVisibility(string windowName)
     {
