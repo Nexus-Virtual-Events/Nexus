@@ -17,7 +17,6 @@ public class AdminPanel : MonoBehaviour
     public TMP_Text focusCameraButtonText;
     public TMP_Text focusVoiceButtonText;
 
-    private ModifyPodium podiumModifier;
     private GameObject localAvatar;
 
     // Start is called before the first frame update
@@ -25,7 +24,6 @@ public class AdminPanel : MonoBehaviour
     {
         eventModifier = GameObject.Find("EventManager").GetComponent<ModifyEvents>();
         localAvatar = ActionRouter.GetLocalAvatar();
-        podiumModifier = localAvatar.GetComponent<ModifyPodium>();
     }
 
     // Update is called once per frame
@@ -38,6 +36,10 @@ public class AdminPanel : MonoBehaviour
         //}
     }
 
+    ModifyPodium GetPodiumModifier () {
+        return localAvatar.GetComponent<ModifyPodium>();
+    }
+
     public void ChangeEventStatus()
     {
         if (eventSelectButtonText.text == "CHOOSE")
@@ -46,7 +48,6 @@ public class AdminPanel : MonoBehaviour
             eventSelectButtonHighlightedText.text = "CONFIRM";
 
             eventStatus = 1;
-
         }
         else
         {
@@ -73,7 +74,7 @@ public class AdminPanel : MonoBehaviour
 
             eventModifier.ChangeCamera(1);
 
-            podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
+            GetPodiumModifier().SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
         }
         else
         {
@@ -90,13 +91,13 @@ public class AdminPanel : MonoBehaviour
         {
             focusVoiceButtonText.text = "GLOBAL";
 
-            podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
+            GetPodiumModifier().SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
         }
         else
         {
             focusCameraButtonText.text = "LOCAL";
 
-            podiumModifier.SendNewValue(-1);
+            GetPodiumModifier().SendNewValue(-1);
         }
     }
 }
