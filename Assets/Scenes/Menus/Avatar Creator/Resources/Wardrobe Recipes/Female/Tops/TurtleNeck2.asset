@@ -28,11 +28,7 @@ MonoBehaviour:
   suppressWardrobeSlots:
   - Shoulders
   activeWardrobeSet: []
-  MeshHideAssets:
-  - {fileID: 11400000, guid: 8b44a7b80b10b1e428aa280793a56abd, type: 2}
-  - {fileID: 11400000, guid: 49956bce7835cb44998ca564cb61e508, type: 2}
-  - {fileID: 11400000, guid: a5bd3fa3dad2efb45be5c4b2ec9148e3, type: 2}
-  - {fileID: 11400000, guid: 7abcef7e4e0803b449471adc9477ccf0, type: 2}
+  MeshHideAssets: []
   recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"F_TurtleNeck_lp","scale":100,"copyIdx":-1,"overlays":[{"id":"F_TurtleNeck_lp_Overlay2","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"Shirt","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
