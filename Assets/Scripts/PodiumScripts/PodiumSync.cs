@@ -27,12 +27,13 @@ public class PodiumSync : RealtimeComponent
             }
 
             // Store the model
+            Debug.Log("Podium sync set");
             _model = value;
 
             if (_model != null)
             {
                 // Update the mesh render to match the new model
-                //UpdatePodium();
+                UpdatePodium();
 
                 // Register for events so we'll know if the color changes later
                 _model.podiumDidChange += PodiumDidChange;
@@ -45,20 +46,21 @@ public class PodiumSync : RealtimeComponent
         GetComponent<ModifyPodium>().ReceivedNewPodium(value);
     }
 
-    //private void UpdatePodium()
-    //{
-    //    // Get the color from the model and set it on the mesh renderer.
+    private void UpdatePodium()
+    {
+       // Get the color from the model and set it on the mesh renderer.
         
-    //        Debug.LogWarning("Empty intreaction value");
-    //        return;
+           Debug.LogWarning("Empty intreaction value");
+           return;
 
-    //}
+    }
 
     public void SetPodium(int podium)
     {
         Debug.Log("Setting to:" + podium);
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
+        Debug.Log(_model);
         _model.podium = podium;
     }
 
