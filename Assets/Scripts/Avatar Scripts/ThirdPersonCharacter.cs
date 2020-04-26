@@ -89,7 +89,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
 			string[] parameters;
 
-			Debug.Log("F4N Move: " + moveState);
+			// Debug.Log("F4N Move: " + moveState);
             //"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
             parameters = moveState.Split(' ');
 

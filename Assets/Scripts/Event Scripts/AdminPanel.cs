@@ -104,7 +104,7 @@ public class AdminPanel : MonoBehaviour
         }
         else
         {
-            focusCameraButtonText.text = "LOCAL";
+            focusVoiceButtonText.text = "LOCAL";
 
             podiumModifier.SendNewValue(-1);
         }
