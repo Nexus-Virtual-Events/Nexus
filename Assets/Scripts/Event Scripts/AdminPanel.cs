@@ -86,6 +86,16 @@ public class AdminPanel : MonoBehaviour
         }
     }
 
+    public void FocusCamera()
+    {
+        focusCameraButtonText.text = "UNFOCUS";
+    }
+
+    public void UnfocusCamera()
+    {
+        focusCameraButtonText.text = "FOCUS";
+    }
+
     //private void ChangeVoiceButton()
     //{
     //    if (focusVoiceButtonText.text == "TURN ON")
