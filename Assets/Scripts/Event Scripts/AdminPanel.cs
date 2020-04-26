@@ -17,25 +17,25 @@ public class AdminPanel : MonoBehaviour
     public TMP_Text focusCameraButtonText;
     public TMP_Text focusVoiceButtonText;
 
-    private ModifyPodium podiumModifier;
     private GameObject localAvatar;
+    ModifyPodium podiumModifier;
+
 
     // Start is called before the first frame update
     void Start()
     {
         eventModifier = GameObject.Find("EventManager").GetComponent<ModifyEvents>();
         localAvatar = ActionRouter.GetLocalAvatar();
-        podiumModifier = localAvatar.GetComponent<ModifyPodium>();
+        podiumModifier = GameObject.Find("Podium").GetComponent<ModifyPodium>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(localAvatar == null)
-        //{
-        //    localAvatar = ActionRouter.GetLocalAvatar();
-        //    podiumModifier = localAvatar.GetComponent<ModifyPodium>();
-        //}
+        if (localAvatar == null)
+        {
+            localAvatar = ActionRouter.GetLocalAvatar();
+        }
     }
 
     public void ChangeEventStatus()
@@ -73,7 +73,11 @@ public class AdminPanel : MonoBehaviour
 
             eventModifier.ChangeCamera(1);
 
-            podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
+            if (localAvatar)
+            {
+                ModifyPodium podiumModifier = localAvatar.GetComponent<ModifyPodium>();
+                podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
+            }
         }
         else
         {
@@ -84,19 +88,51 @@ public class AdminPanel : MonoBehaviour
         }
     }
 
+    //private void ChangeVoiceButton()
+    //{
+    //    if (focusVoiceButtonText.text == "TURN ON")
+    //    {
+    //        focusVoiceButtonText.text = "TURN OFF";
+    //    }
+    //    else
+    //    {
+    //    }
+    //}
+
+    public void TurnOnVoice() {
+        focusVoiceButtonText.text = "TURN OFF";
+    }
+
+    public void TurnOffVoice()
+    {
+        focusVoiceButtonText.text = "TURN ON";
+    }
+
+
     public void ToggleFocusVoiceMode()
     {
-        if (focusVoiceButtonText.text == "LOCAL")
-        {
-            focusVoiceButtonText.text = "GLOBAL";
 
-            podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
+        if (localAvatar && podiumModifier)
+        {
+            Debug.Log("requirements set");
+
+            if (localAvatar.GetComponent<AudioSource>().spatialBlend == 1)
+            {
+                Debug.Log("turning on");
+                podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
+                TurnOnVoice();
+            }
+            else
+            {
+                Debug.Log("turning off");
+                podiumModifier.SendNewValue(-1);
+                TurnOffVoice();
+            }
         }
         else
         {
-            focusCameraButtonText.text = "LOCAL";
-
-            podiumModifier.SendNewValue(-1);
+            Debug.Log("No local avatar or podium modifier found");
+            podiumModifier = GameObject.Find("Podium").GetComponent<ModifyPodium>();
         }
     }
 }
