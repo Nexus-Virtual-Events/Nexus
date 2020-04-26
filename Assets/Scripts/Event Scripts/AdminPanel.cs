@@ -18,21 +18,28 @@ public class AdminPanel : MonoBehaviour
     public TMP_Text focusVoiceButtonText;
 
     private GameObject localAvatar;
+    ModifyPodium podiumModifier;
+
 
     // Start is called before the first frame update
     void Start()
     {
         eventModifier = GameObject.Find("EventManager").GetComponent<ModifyEvents>();
         localAvatar = ActionRouter.GetLocalAvatar();
+        podiumModifier = GameObject.Find("Podium").GetComponent<ModifyPodium>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(localAvatar == null)
+        if (localAvatar == null)
         {
-           localAvatar = ActionRouter.GetLocalAvatar();
+            localAvatar = ActionRouter.GetLocalAvatar();
         }
+    }
+
+    ModifyPodium GetPodiumModifier () {
+        return localAvatar.GetComponent<ModifyPodium>();
     }
 
     public void ChangeEventStatus()
@@ -43,7 +50,6 @@ public class AdminPanel : MonoBehaviour
             eventSelectButtonHighlightedText.text = "CONFIRM";
 
             eventStatus = 1;
-
         }
         else
         {
@@ -70,10 +76,6 @@ public class AdminPanel : MonoBehaviour
 
             eventModifier.ChangeCamera(1);
 
-            if (localAvatar) {
-                ModifyPodium podiumModifier = localAvatar.GetComponent<ModifyPodium>();
-                podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
-            }
         }
         else
         {
@@ -84,29 +86,61 @@ public class AdminPanel : MonoBehaviour
         }
     }
 
-    public void ToggleFocusVoiceMode()
-    {   
-        ModifyPodium podiumModifier;
+    public void FocusCamera()
+    {
+        focusCameraButtonText.text = "UNFOCUS";
+    }
 
-        if (localAvatar) {
-            podiumModifier = localAvatar.GetComponent<ModifyPodium>();
-            podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
-        }
-        else {
-            Debug.Log("No local avatar found");
-            return;
-        }
-    
-        if (focusVoiceButtonText.text == "LOCAL")
+    public void UnfocusCamera()
+    {
+        focusCameraButtonText.text = "FOCUS";
+    }
+
+    //private void ChangeVoiceButton()
+    //{
+    //    if (focusVoiceButtonText.text == "TURN ON")
+    //    {
+    //        focusVoiceButtonText.text = "TURN OFF";
+    //    }
+    //    else
+    //    {
+    //    }
+    //}
+
+    public void TurnOnVoice() {
+        focusVoiceButtonText.text = "TURN OFF";
+    }
+
+    public void TurnOffVoice()
+    {
+        focusVoiceButtonText.text = "TURN ON";
+    }
+
+
+    public void ToggleFocusVoiceMode()
+    {
+
+        if (localAvatar && podiumModifier)
         {
-            focusVoiceButtonText.text = "GLOBAL";
-            
+            Debug.Log("requirements set");
+
+            if (localAvatar.GetComponent<AudioSource>().spatialBlend == 1)
+            {
+                Debug.Log("turning on");
+                podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
+                TurnOnVoice();
+            }
+            else
+            {
+                Debug.Log("turning off");
+                podiumModifier.SendNewValue(-1);
+                TurnOffVoice();
+            }
         }
         else
         {
-            focusVoiceButtonText.text = "LOCAL";
-
-            podiumModifier.SendNewValue(-1);
+            Debug.Log("No local avatar or podium modifier found");
+            podiumModifier = GameObject.Find("Podium").GetComponent<ModifyPodium>();
         }
     }
 }

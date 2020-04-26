@@ -7,7 +7,6 @@ using Normal.Realtime;
 
 public class ModifyPodium : MonoBehaviour
 {
-    private string _prevPodium;
 
     private PodiumSync _podiumSync;
 
@@ -31,12 +30,33 @@ public class ModifyPodium : MonoBehaviour
 
     public void SendNewValue(int newPodiumCommand)
     {
-        Debug.Log("Sending value: " + newPodiumCommand);
         _podiumSync.SetPodium(newPodiumCommand);
     }
 
+    private int prevPodium;
+
     public void ReceivedNewPodium(int newPodiumReceived)
     {
-        ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToPodiumChange(newPodiumReceived);
+        Debug.Log("New podium received from ModifyPodium: " + newPodiumReceived.ToString());
+
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            GameObject.Find("Realtime").GetComponent<AdminPanel>().TurnOffVoice();
+            if (player.GetComponent<ThirdPersonUserControl>().getID() == prevPodium)
+                player.GetComponent<AudioSource>().spatialBlend = 1;
+        }
+
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (player.GetComponent<ThirdPersonUserControl>().getID() == newPodiumReceived)
+            {
+                player.GetComponent<AudioSource>().spatialBlend = 0;
+                Debug.Log("setting " + player.GetComponent<ThirdPersonUserControl>().getID().ToString() + " to global");
+            }
+        }
+
+        prevPodium = newPodiumReceived;
+
+        //ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID();
     }
 }

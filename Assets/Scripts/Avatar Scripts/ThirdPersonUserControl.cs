@@ -189,6 +189,7 @@ public class ThirdPersonUserControl : MonoBehaviour
             cameraStay = Camera.main.transform;
             camScript.AssignPlayer(FocusCameraPosition.transform);
             canMove = false;
+            GameObject.Find("Realtime").GetComponent<AdminPanel>().FocusCamera();
         }
         else if(prevFocusState == "1" && eventManager.GetEvents()[2] == '0')
         {
@@ -196,6 +197,7 @@ public class ThirdPersonUserControl : MonoBehaviour
             Camera.main.transform.rotation = cameraStay.rotation;
             camScript.AssignPlayer(transform);
             canMove = true;
+            GameObject.Find("Realtime").GetComponent<AdminPanel>().UnfocusCamera();
         }
 
         prevFocusState = eventManager.GetEvents()[2].ToString();
