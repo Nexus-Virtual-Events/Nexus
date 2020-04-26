@@ -38,6 +38,10 @@ public class AdminPanel : MonoBehaviour
         }
     }
 
+    ModifyPodium GetPodiumModifier () {
+        return localAvatar.GetComponent<ModifyPodium>();
+    }
+
     public void ChangeEventStatus()
     {
         if (eventSelectButtonText.text == "CHOOSE")
@@ -46,7 +50,6 @@ public class AdminPanel : MonoBehaviour
             eventSelectButtonHighlightedText.text = "CONFIRM";
 
             eventStatus = 1;
-
         }
         else
         {
@@ -73,11 +76,6 @@ public class AdminPanel : MonoBehaviour
 
             eventModifier.ChangeCamera(1);
 
-            if (localAvatar)
-            {
-                ModifyPodium podiumModifier = localAvatar.GetComponent<ModifyPodium>();
-                podiumModifier.SendNewValue(ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID());
-            }
         }
         else
         {
