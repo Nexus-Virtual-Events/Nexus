@@ -14,6 +14,7 @@ public class AvatarCreator : MonoBehaviour
     private Dictionary<string, DnaSetter> DNA;
 
     public string activeDNASlot;
+    public string activeColorField;
 
     public string currentHair = "";
     public string currentFullOutfit = "";
@@ -92,6 +93,11 @@ public class AvatarCreator : MonoBehaviour
         activeDNASlot = _activeDNASlot;
     }
 
+    public void SetActiveColorField(string _activeColorField)
+    {
+        activeColorField = _activeColorField;
+    }
+
     public void SliderChange(float value)
     {
         DNA[activeDNASlot].Set(value);
@@ -112,10 +118,15 @@ public class AvatarCreator : MonoBehaviour
 
     }
 
-    public void ModifyEyeColor(Color color)
+    public void ModifyFieldColor(Color color)
     {
-        Debug.Log("modified eye color");
-        avatar.SetColor("Eyes", color);
+        avatar.SetColor(activeColorField, color);
+        avatar.UpdateColors(true);
+    }
+
+    public void ModifyFieldColorDarkness(float value)
+    {
+        //avatar.SetColor(activeColorField, avatar.GetColor(activeColorField) * value);
         avatar.UpdateColors(true);
     }
 

@@ -107,14 +107,6 @@ namespace Michsky.UI.ModernUIPack {
         {
             Debug.Log(settingIndex);
             QualitySettings.SetQualityLevel(settingIndex);
-            if (settingIndex < 3)
-            {
-                //grassTerrain.GetComponent<Terrain>().enabled = false;
-            }
-            else
-            {
-                //grassTerrain.GetComponent<Terrain>().enabled = true;
-            }
         }
 
         public void SetVolume(float volume)
