@@ -386,11 +386,12 @@ public class ThirdPersonUserControl : MonoBehaviour
 
                     if(Vector3.Distance(transform.position, autoTarget) < 0.1)  { // Reached target
                         //handshake finishing action
+                        StartShakingHands();
                         toggleInformation[5] = IsShakingHands();
                         Debug.Log("toggleInformation" + toggleInformation.ToString());
                         //m_Character.Move(new Vector3(0, 0, 0), false, false, false, false, false);
-                        GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(new Vector3(0, 0, 0), toggleInformation));
                         m_Character.StartShakeHand();
+                        GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(new Vector3(0, 0, 0), toggleInformation));
                         canMove = true;
                         autoPilot = false;
                         Debug.Log("target reached");

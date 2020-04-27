@@ -91,6 +91,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			string[] parameters;
 			
 			Debug.Log("4N Move Received: " + moveState);
+
+			if (moveState ="" || moveState == null) {
+				return;
+			}
+
             //"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
             parameters = moveState.Split(' ');
 
