@@ -15,19 +15,11 @@ MonoBehaviour:
   label: 
   resourcesOnly: 0
   recipeType: Wardrobe
-  DisplayValue: 
+  DisplayValue: Skirt3
   compatibleRaces:
-  - HumanFemaleHighPoly
-  - HumanFemale
-  - HumanFemaleDCS
+  - HumanFemaleHD
   wardrobeRecipeThumbs:
-  - race: HumanFemaleHighPoly
-    filename: 
-    thumb: {fileID: 0}
-  - race: HumanFemale
-    filename: 
-    thumb: {fileID: 0}
-  - race: HumanFemaleDCS
+  - race: HumanFemaleHD
     filename: 
     thumb: {fileID: 0}
   wardrobeSlot: Legs
@@ -35,11 +27,8 @@ MonoBehaviour:
   HideTags: []
   suppressWardrobeSlots: []
   activeWardrobeSet: []
-  MeshHideAssets:
-  - {fileID: 11400000, guid: b0cba4aecb9435e499f2b2e9923e67d9, type: 2}
-  - {fileID: 11400000, guid: 7f2ede3b5275d984693a2efb9c8118d0, type: 2}
-  - {fileID: 11400000, guid: e771fcba4fe9e24469fca856b41ed973, type: 2}
-  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"F_Mini_Skirt","scale":100,"copyIdx":-1,"overlays":[{"id":"F_Mini_Skirt_Overlay_3","colorIdx":0,"rect":[0,0,0,0]}]}],"colors":[],"fColors":[{"name":"Skirt","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
+  MeshHideAssets: []
+  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"F_Mini_Skirt","scale":100,"copyIdx":-1,"overlays":[{"id":"F_Mini_Skirt_Overlay_3","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"Skirt","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
   replaces: Nothing

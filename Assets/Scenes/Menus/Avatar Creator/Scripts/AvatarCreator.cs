@@ -18,14 +18,19 @@ public class AvatarCreator : MonoBehaviour
     public string currentHair = "";
     public string currentFullOutfit = "";
     public string currentTop = "";
+    public string currentBottom = "";
+    public string currentShoes = "";
 
     public List<GameObject> mensOptions;
     public List<GameObject> womensOptions;
 
     public List<GameObject> mensHairOptions;
-    public List<GameObject> womensHairOptions;
     public List<GameObject> mensTopOptions;
+
+    public List<GameObject> womensHairOptions;
     public List<GameObject> womensTopOptions;
+    public List<GameObject> womensBottomOptions;
+    public List<GameObject> womensShoeOptions;
 
     public string avatarRecipe;
 
@@ -36,6 +41,8 @@ public class AvatarCreator : MonoBehaviour
 
         womensOptions.AddRange(womensHairOptions);
         womensOptions.AddRange(womensTopOptions);
+        womensOptions.AddRange(womensBottomOptions);
+        womensOptions.AddRange(womensShoeOptions);
     }
 
     void OnEnable()
@@ -162,6 +169,38 @@ public class AvatarCreator : MonoBehaviour
         {
             currentTop = top;
             avatar.SetSlot("Chest", top);
+            avatar.BuildCharacter();
+        }
+    }
+
+    public void ModifyBottom(string bottom)
+    {
+        if (currentBottom == bottom)
+        {
+            avatar.ClearSlot("Legs");
+            avatar.BuildCharacter();
+            currentBottom = "";
+        }
+        else
+        {
+            currentBottom = bottom;
+            avatar.SetSlot("Legs", bottom);
+            avatar.BuildCharacter();
+        }
+    }
+
+    public void ModifyShoes(string shoes)
+    {
+        if (currentShoes == shoes)
+        {
+            avatar.ClearSlot("Feet");
+            avatar.BuildCharacter();
+            currentShoes = "";
+        }
+        else
+        {
+            currentShoes = shoes;
+            avatar.SetSlot("Feet", shoes);
             avatar.BuildCharacter();
         }
     }

@@ -15,31 +15,21 @@ MonoBehaviour:
   label: 
   resourcesOnly: 0
   recipeType: Wardrobe
-  DisplayValue: 
+  DisplayValue: Pants1
   compatibleRaces:
-  - HumanFemaleHighPoly
-  - HumanFemale
-  - HumanFemaleDCS
+  - HumanFemaleHD
   wardrobeRecipeThumbs:
-  - race: HumanFemaleHighPoly
-    filename: 
-    thumb: {fileID: 0}
-  - race: HumanFemale
-    filename: 
-    thumb: {fileID: 0}
-  - race: HumanFemaleDCS
+  - race: HumanFemaleHD
     filename: 
     thumb: {fileID: 0}
   wardrobeSlot: Legs
-  Hides: []
+  Hides:
+  - FemaleLegsHD
   HideTags: []
   suppressWardrobeSlots: []
   activeWardrobeSet: []
-  MeshHideAssets:
-  - {fileID: 11400000, guid: eadf0fcc6bee16c4ab17debe572d53d9, type: 2}
-  - {fileID: 11400000, guid: 38fcefdc474c9b240933aeab44b2cf4d, type: 2}
-  - {fileID: 11400000, guid: 3852aea5a303fda4582d3c8dde632749, type: 2}
-  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"F_Trousers_LP","scale":100,"copyIdx":-1,"overlays":[{"id":"F_Trousers_LP_Overlay","colorIdx":0,"rect":[0,0,0,0]}]}],"colors":[],"fColors":[{"name":"Trousers","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
+  MeshHideAssets: []
+  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"F_Trousers_LP","scale":100,"copyIdx":-1,"overlays":[{"id":"F_Trousers_LP_Overlay","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"Trousers","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
   replaces: Nothing

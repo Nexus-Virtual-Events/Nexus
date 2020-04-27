@@ -15,7 +15,7 @@ MonoBehaviour:
   label: 
   resourcesOnly: 0
   recipeType: Wardrobe
-  DisplayValue: 
+  DisplayValue: Shoes1
   compatibleRaces:
   - HumanFemaleHD
   wardrobeRecipeThumbs:

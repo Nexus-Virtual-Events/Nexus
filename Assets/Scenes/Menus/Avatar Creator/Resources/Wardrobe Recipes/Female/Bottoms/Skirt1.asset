@@ -15,7 +15,7 @@ MonoBehaviour:
   label: 
   resourcesOnly: 0
   recipeType: Wardrobe
-  DisplayValue: 
+  DisplayValue: Skirt1
   compatibleRaces:
   - HumanFemaleHD
   wardrobeRecipeThumbs:
