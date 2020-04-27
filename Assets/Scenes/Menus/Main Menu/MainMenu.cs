@@ -23,7 +23,7 @@ namespace Michsky.UI.ModernUIPack
     {
         public TMP_InputField _email;
         public TMP_InputField _password;
-        public Text _warningText;
+        public TMP_Text _warningText;
 
         public string scene;
         public string displayName;
