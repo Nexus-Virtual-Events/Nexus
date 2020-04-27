@@ -109,25 +109,26 @@ public class ThirdPersonUserControl : MonoBehaviour
         }
     }
 
+
     public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
     {
+        Debug.Log("Interaction type: " + newInteraction);
 
+        float DISTANCE_FOR_HANDSHAKE = 0.8f;
         if (!_realtimeView.isOwnedLocally) { return; }
 
         Vector3 otherPosition = sourceCharacter.transform.position;
         Vector3 diff = (otherPosition - transform.position);
 
-        if (diff.magnitude < 1) {
-            diff = new Vector3(0, 0, 0);
-        }
+        Vector3 centerTarget = (diff/2) + transform.position;
 
-        Vector3 target = ((diff/2) * 0.7f) + transform.position;
-
-        Debug.Log("target: " + target.ToString());
+        Vector3 centerToTargetVect = (transform.position - centerTarget);
+        centerToTargetVect.Normalize();
+        Vector3 moveToTarget = centerTarget + centerToTargetVect * (DISTANCE_FOR_HANDSHAKE/2);
 
         canMove = false;
         autoPilot = true;
-        autoTarget = target;
+        autoTarget = moveToTarget;
     }
 
     int maxId = -1;
@@ -340,7 +341,7 @@ public class ThirdPersonUserControl : MonoBehaviour
 #endif
 
                 // pass all parameters to the character control script
-                m_Character.Move(m_Move, crouch, m_Jump, clap, wave, sit, false);
+                m_Character.Move(m_Move, crouch, m_Jump, clap, wave, sit);
 
                 bool[] toggleInformation = new bool[6];
                 toggleInformation[0] = crouch;
@@ -360,7 +361,7 @@ public class ThirdPersonUserControl : MonoBehaviour
                 if (autoPilot)
                 {
 
-                    m_Character.Move(autoTarget - transform.position, false, false, false, false, false, false);
+                    m_Character.Move(autoTarget - transform.position, false, false, false, false, false);
                     bool[] toggleInformation = new bool[6];
                     toggleInformation[0] = false;
                     toggleInformation[1] = false;
@@ -371,14 +372,14 @@ public class ThirdPersonUserControl : MonoBehaviour
 
                     GetComponent<UpdateMove>().characterMove = parseMoveToString(autoTarget - transform.position, toggleInformation);
 
-                    if(Vector3.Distance(transform.position, autoTarget) < 0.2)
+                    if(Vector3.Distance(transform.position, autoTarget) < 0.1)
                     {
                         //handshake finishing action
                         toggleInformation[5] = true;
                         Debug.Log("toggleInformation" + toggleInformation.ToString());
-                        m_Character.Move(new Vector3(0, 0, 0), false, false, false, false, false, true);
+                        //m_Character.Move(new Vector3(0, 0, 0), false, false, false, false, false);
                         GetComponent<UpdateMove>().characterMove = parseMoveToString(new Vector3(0, 0, 0), toggleInformation);
-
+                        m_Character.StartShakeHand();
                         canMove = true;
                         autoPilot = false;
                         Debug.Log("target reached");

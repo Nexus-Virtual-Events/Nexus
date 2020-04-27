@@ -32,7 +32,7 @@ namespace Normal.Realtime.Examples {
             System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
             int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
-            //Debug.Log("interactionModifier");
+            Debug.Log("Interaction Perform: " + interactionString);
             //Debug.Log(interactionModifier);
             //Debug.Log(selfId);
             //Debug.Log(Utils.interactionMap);
