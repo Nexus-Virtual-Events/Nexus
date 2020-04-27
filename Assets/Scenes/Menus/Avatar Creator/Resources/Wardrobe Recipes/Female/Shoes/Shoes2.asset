@@ -10,35 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0188188c253e0c4bb9b46e19fa7312e, type: 3}
-  m_Name: F_Shoes2_1
+  m_Name: Shoes2
   m_EditorClassIdentifier: 
   label: 
   resourcesOnly: 0
   recipeType: Wardrobe
   DisplayValue: 
   compatibleRaces:
-  - HumanFemaleHighPoly
-  - HumanFemale
-  - HumanFemaleDCS
+  - HumanFemaleHD
   wardrobeRecipeThumbs:
-  - race: HumanFemaleHighPoly
-    filename: 
-    thumb: {fileID: 0}
-  - race: HumanFemale
-    filename: 
-    thumb: {fileID: 0}
-  - race: HumanFemaleDCS
+  - race: HumanFemaleHD
     filename: 
     thumb: {fileID: 0}
   wardrobeSlot: Feet
   Hides:
-  - FemaleFeet
+  - FemaleFeetHD
   HideTags: []
   suppressWardrobeSlots: []
   activeWardrobeSet: []
   MeshHideAssets:
   - {fileID: 11400000, guid: 9673587e9a1a8514f9a9a3538b37936b, type: 2}
-  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"F_Shoes2","scale":100,"copyIdx":-1,"overlays":[{"id":"F_Shoes2_Overlay","colorIdx":0,"rect":[0,0,0,0]}]}],"colors":[],"fColors":[{"name":"Shoes","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
+  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"F_Shoes2","scale":100,"copyIdx":-1,"overlays":[{"id":"F_Shoes2_Overlay_2","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"Shoes","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
   replaces: Nothing
