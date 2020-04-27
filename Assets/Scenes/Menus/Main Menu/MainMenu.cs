@@ -30,6 +30,7 @@ namespace Michsky.UI.ModernUIPack
         private string key = "NexusConnects";
 
         string url = "http://the-nexus.herokuapp.com/authenticate_with_unity";
+        //string url = "http://127.0.0.1:5000/authenticate_with_uniy";
 
         //private void Start()
         //{
@@ -69,6 +70,10 @@ namespace Michsky.UI.ModernUIPack
             form.AddField("email", _email.text);
             form.AddField("password", _password.text);
             form.AddField("key", key);
+
+            Debug.Log(_email.text);
+            Debug.Log(_password.text);
+
 
             using (UnityWebRequest www = UnityWebRequest.Post(url, form))
             {
