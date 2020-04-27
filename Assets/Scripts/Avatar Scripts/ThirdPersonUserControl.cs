@@ -265,7 +265,7 @@ public class ThirdPersonUserControl : MonoBehaviour
 
    private int startedShakingHandsAt = 0;
     private bool IsShakingHands () {
-        if (Time.frameCount > startedShakingHandsAt + 8) {
+        if (Time.frameCount > startedShakingHandsAt + 2) {
             return false;
         }
         else {
