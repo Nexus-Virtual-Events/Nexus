@@ -89,7 +89,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public void ForeignMove(string moveState)
         {
 			string[] parameters;
-
+			
+			Debug.Log("4N Move Received: " + moveState);
             //"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
             parameters = moveState.Split(' ');
 
@@ -104,6 +105,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			Move(move, isCrouching, isOnGround, isClapping, isWaving, isSitting);
 
+			if (isShakingHand) {
+				Debug.Log("4N Shaking Hands");
+				m_Animator.SetTrigger("ShakeHandOnce");
+			}
         }
 
 
