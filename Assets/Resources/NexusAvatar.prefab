@@ -670,11 +670,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _realtime: {fileID: 0}
-  _sceneViewUUID: 
+  _sceneViewUUID: e91eed71b182c84495e8b79a258cc62a
   _sceneViewOwnedByCreatingClient: 1
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 1
+  _isRootPrefabView: 0
   _components:
   - componentID: 1
     component: {fileID: 25737989898212969}
@@ -761,7 +761,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0438f0ae83ab74924bf0e5c461621a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterMove: 
 --- !u!114 &-3032141482420646000
 MonoBehaviour:
   m_ObjectHideFlags: 0
