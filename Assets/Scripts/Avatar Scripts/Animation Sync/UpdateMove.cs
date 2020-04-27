@@ -6,7 +6,7 @@ using Normal.Realtime;
 
 public class UpdateMove : MonoBehaviour
 {
-    private string characterMove;
+    public string characterMove;
     private string _prevCharacterMove;
 
     private MoveSync _moveSync;
@@ -24,14 +24,6 @@ public class UpdateMove : MonoBehaviour
     {
         _realtimeView = GetComponent<RealtimeView>();
         _realtimeTransform = GetComponent<RealtimeTransform>();
-    }
-
-    public void UpdateCharacterMove (string newMove) {
-        characterMove = newMove;
-    }
-
-    public string GetCharacterMove () {
-        return characterMove;
     }
 
     private void Update()
