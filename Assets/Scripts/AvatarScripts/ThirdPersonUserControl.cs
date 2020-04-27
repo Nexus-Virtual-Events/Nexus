@@ -124,7 +124,11 @@ public class ThirdPersonUserControl : MonoBehaviour
 
         Vector3 centerToTargetVect = (transform.position - centerTarget);
         centerToTargetVect.Normalize();
-        Vector3 moveToTarget = centerTarget + centerToTargetVect * (DISTANCE_FOR_HANDSHAKE/2);
+        
+        Vector3 dirVector = Quaternion.AngleAxis(16, Vector3.up) * centerToTargetVect;
+
+        Debug.Log("Turn: " + gameObject.name + " :" + centerToTargetVect + " -- " + dirVector);
+        Vector3 moveToTarget = centerTarget + dirVector * (DISTANCE_FOR_HANDSHAKE/2);
 
         canMove = false;
         autoPilot = true;
