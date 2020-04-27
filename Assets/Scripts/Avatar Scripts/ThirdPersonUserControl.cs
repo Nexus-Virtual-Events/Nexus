@@ -263,6 +263,20 @@ public class ThirdPersonUserControl : MonoBehaviour
         return animationString;
     }
 
+    private int startedShakingHandsAt = 0;
+    private bool IsShakingHands () {
+        if (Time.frameCount > startedShakingHandsAt + 8) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private void StartShakingHands () {
+        startedShakingHandsAt = Time.frameCount;
+    }
+
     // Fixed update is called in sync with physics
     private void FixedUpdate()
     {
@@ -270,7 +284,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         if (!_realtimeView.isOwnedLocally)
         {
 
-            m_Character.ForeignMove(GetComponent<UpdateMove>().characterMove);
+            m_Character.ForeignMove(GetComponent<UpdateMove>().GetCharacterMove());
         }
         else
         {
@@ -349,10 +363,10 @@ public class ThirdPersonUserControl : MonoBehaviour
                 toggleInformation[2] = clap;
                 toggleInformation[3] = wave;
                 toggleInformation[4] = sit;
-                toggleInformation[5] = false;
+                toggleInformation[5] = IsShakingHands();
 
 
-                GetComponent<UpdateMove>().characterMove = parseMoveToString(m_Move, toggleInformation);
+                GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(m_Move, toggleInformation));
 
                 m_Jump = false;
             }
@@ -368,21 +382,21 @@ public class ThirdPersonUserControl : MonoBehaviour
                     toggleInformation[2] = false;
                     toggleInformation[3] = false;
                     toggleInformation[4] = false;
-                    toggleInformation[5] = false;
+                    toggleInformation[5] = IsShakingHands();
 
-                    GetComponent<UpdateMove>().characterMove = parseMoveToString(autoTarget - transform.position, toggleInformation);
-
-                    if(Vector3.Distance(transform.position, autoTarget) < 0.1)
-                    {
+                    if(Vector3.Distance(transform.position, autoTarget) < 0.1)  { // Reached target
                         //handshake finishing action
-                        toggleInformation[5] = true;
+                        toggleInformation[5] = IsShakingHands();
                         Debug.Log("toggleInformation" + toggleInformation.ToString());
                         //m_Character.Move(new Vector3(0, 0, 0), false, false, false, false, false);
-                        GetComponent<UpdateMove>().characterMove = parseMoveToString(new Vector3(0, 0, 0), toggleInformation);
+                        GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(new Vector3(0, 0, 0), toggleInformation));
                         m_Character.StartShakeHand();
                         canMove = true;
                         autoPilot = false;
                         Debug.Log("target reached");
+                    }
+                    else {
+                        GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(autoTarget - transform.position, toggleInformation));
                     }
                 }
             }
