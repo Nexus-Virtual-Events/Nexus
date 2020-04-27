@@ -47,6 +47,7 @@ public class ThirdPersonUserControl : MonoBehaviour
     private bool canMove = true;
     private bool autoPilot = false;
     private Vector3 autoTarget;
+    private Vector3 rotateTowardsTarget;
 
     private GameObject FocusCameraPosition;
     private Transform cameraStay;
@@ -114,7 +115,8 @@ public class ThirdPersonUserControl : MonoBehaviour
     {
         Debug.Log("Interaction type: " + newInteraction);
 
-        float DISTANCE_FOR_HANDSHAKE = 0.8f;
+        float DISTANCE_FOR_HANDSHAKE = 1.0f;
+
         if (!_realtimeView.isOwnedLocally) { return; }
 
         Vector3 otherPosition = sourceCharacter.transform.position;
@@ -125,14 +127,15 @@ public class ThirdPersonUserControl : MonoBehaviour
         Vector3 centerToTargetVect = (transform.position - centerTarget);
         centerToTargetVect.Normalize();
         
-        Vector3 dirVector = Quaternion.AngleAxis(16, Vector3.up) * centerToTargetVect;
+        Vector3 dirVector = Quaternion.AngleAxis(90, Vector3.up) * centerToTargetVect;
 
-        Debug.Log("Turn: " + gameObject.name + " :" + centerToTargetVect + " -- " + dirVector);
-        Vector3 moveToTarget = centerTarget + dirVector * (DISTANCE_FOR_HANDSHAKE/2);
+        Vector3 moveToTarget = centerTarget + centerToTargetVect * (DISTANCE_FOR_HANDSHAKE/2);
+        Vector3 lookAtTarget = centerToTargetVect + dirVector * 0.2;
 
         canMove = false;
         autoPilot = true;
         autoTarget = moveToTarget;
+        rotateTowardsTarget = lookAtTarget;
     }
 
     int maxId = -1;
@@ -378,7 +381,6 @@ public class ThirdPersonUserControl : MonoBehaviour
             {
                 if (autoPilot)
                 {
-
                     m_Character.Move(autoTarget - transform.position, false, false, false, false, false);
                     bool[] toggleInformation = new bool[6];
                     toggleInformation[0] = false;
@@ -388,10 +390,10 @@ public class ThirdPersonUserControl : MonoBehaviour
                     toggleInformation[4] = false;
                     toggleInformation[5] = IsShakingHands();
 
-
                     if(Vector3.Distance(transform.position, autoTarget) < 0.1)
                     {
                         //handshake finishing action
+                        transform.LookAt(rotateTowardsTarget);
                         StartShakingHands();
                         toggleInformation[5] = IsShakingHands();
                         Debug.Log("toggleInformation" + toggleInformation.ToString());
