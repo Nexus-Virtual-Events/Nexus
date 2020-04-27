@@ -74,7 +74,7 @@ namespace Michsky.UI.ModernUIPack
             Debug.Log(_email.text);
             Debug.Log(_password.text);
 
-
+            _warningText.text = "Loading...";
             using (UnityWebRequest www = UnityWebRequest.Post(url, form))
             {
                 yield return www.SendWebRequest();
@@ -82,6 +82,7 @@ namespace Michsky.UI.ModernUIPack
                 if (www.isNetworkError)
                 {
                     Debug.Log(www.error);
+                    _warningText.text = "There seems to be a network error";
                 }
                 else
                 {
