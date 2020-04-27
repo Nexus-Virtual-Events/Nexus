@@ -130,7 +130,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         Vector3 dirVector = Quaternion.AngleAxis(90, Vector3.up) * centerToTargetVect;
 
         Vector3 moveToTarget = centerTarget + centerToTargetVect * (DISTANCE_FOR_HANDSHAKE/2);
-        Vector3 lookAtTarget = centerTarget + dirVector * 0.2f;
+        Vector3 lookAtTarget = centerTarget + dirVector * 0.3f;
 
         canMove = false;
         autoPilot = true;
