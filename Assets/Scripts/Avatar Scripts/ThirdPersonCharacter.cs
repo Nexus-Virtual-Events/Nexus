@@ -92,7 +92,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			
 			Debug.Log("4N Move Received: " + moveState);
 
-			if (moveState ="" || moveState == null) {
+			if (moveState == "" || moveState == null) {
 				return;
 			}
 

@@ -48,7 +48,7 @@ public class MoveSync : RealtimeComponent
     private void UpdateMove()
     {
         // Get the color from the model and set it on the mesh renderer.
-        GetComponent<UpdateMove>().characterMove = _model.move;
+        GetComponent<UpdateMove>().UpdateCharacterMove(_model.move);
     }
 
     public void SetMove(string move)
