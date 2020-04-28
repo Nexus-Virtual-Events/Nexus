@@ -4,9 +4,8 @@ using System.Collections;
 using System;
 //Added to detect whether the pointer is over a UI element...
 using UnityEngine.EventSystems;
+using UMA;
 
-namespace UMA.Examples
-{
     //DOS MODIFIED really we want this to 'look at' the target bone but move with the Global one
     //not sure how to do that though...
     //TODO if the user changes the size of the head to be really big we end up inside. We need this to calculate its minimum distance based on the size of thecapsule collider (assuming this is correct
@@ -19,14 +18,14 @@ namespace UMA.Examples
         public mouseBtnOpts mouseButtonToUse = mouseBtnOpts.Right;
 
         public Transform target;
-        public float distance = 5.0f;
+        public float distance = 7.0f;
         public float xSpeed = 120.0f;
         public float ySpeed = 120.0f;
         public float scrollrate = 3.0f;
         public float yMinLimit = -20f;
         public float yMaxLimit = 80f;
 
-        public float distanceMin = .5f;
+        public float distanceMin = 7f;
         public float distanceMax = 15f;
         public Vector3 Offset;
         public bool AlwaysOn = false;
@@ -58,6 +57,19 @@ namespace UMA.Examples
         class TempTransform {
             public Vector3 position;
             public Quaternion rotation;
+        }
+
+        private float tempScrollRate;  
+
+        public void MouseEnter()
+        {
+            tempScrollRate = scrollrate;
+            scrollrate = 0;
+        }
+
+        public void MouseExit()
+        {
+            scrollrate = tempScrollRate;
         }
 
         // Use this for initialization
@@ -268,4 +280,3 @@ namespace UMA.Examples
             return Mathf.Clamp(angle, min, max);
         }
     }
-}

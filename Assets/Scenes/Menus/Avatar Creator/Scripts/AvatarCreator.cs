@@ -5,6 +5,10 @@ using UMA;
 using UMA.CharacterSystem;
 using Michsky.UI.ModernUIPack;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System;
+using System.Collections;
+
 
 public class AvatarCreator : MonoBehaviour
 {
@@ -33,7 +37,18 @@ public class AvatarCreator : MonoBehaviour
     public List<GameObject> womensBottomOptions;
     public List<GameObject> womensShoeOptions;
 
+    public List<GameObject> hideWindowsMale;
+    public List<GameObject> hideWindowsFemale;
+
     public string avatarRecipe;
+
+    public Color color;
+    public float darkness;
+    public GameObject colorPreviewer;
+
+    private GameObject activeWindow;
+
+    private bool toggleRepeated;
 
     private void Start()
     {
@@ -44,6 +59,17 @@ public class AvatarCreator : MonoBehaviour
         womensOptions.AddRange(womensTopOptions);
         womensOptions.AddRange(womensBottomOptions);
         womensOptions.AddRange(womensShoeOptions);
+
+        darkness = 1.0f;
+
+        foreach (GameObject window in hideWindowsMale)
+        {
+            window.SetActive(false);
+        }
+        foreach (GameObject window in hideWindowsFemale)
+        {
+            window.SetActive(true);
+        }
     }
 
     void OnEnable()
@@ -71,6 +97,15 @@ public class AvatarCreator : MonoBehaviour
             {
                 wardrobeItem.SetActive(true);
             }
+
+            foreach(GameObject window in hideWindowsMale)
+            {
+                window.SetActive(false);
+            }
+            foreach (GameObject window in hideWindowsFemale)
+            {
+                window.SetActive(true);
+            }
         }
         if (!isMale && avatar.activeRace.name != "HumanFemaleHD")
         {
@@ -85,8 +120,17 @@ public class AvatarCreator : MonoBehaviour
             {
                 wardrobeItem.SetActive(false);
             }
+            foreach (GameObject window in hideWindowsMale)
+            {
+                window.SetActive(true);
+            }
+            foreach (GameObject window in hideWindowsFemale)
+            {
+                window.SetActive(false);
+            }
         }
     }
+
 
     public void SetActiveDNASlot(string _activeDNASlot)
     {
@@ -96,6 +140,8 @@ public class AvatarCreator : MonoBehaviour
     public void SetActiveColorField(string _activeColorField)
     {
         activeColorField = _activeColorField;
+        darkness = 1.0f;
+        color = Color.white;
     }
 
     public void SliderChange(float value)
@@ -118,15 +164,26 @@ public class AvatarCreator : MonoBehaviour
 
     }
 
-    public void ModifyFieldColor(Color color)
+    public void ModifyFieldColor(Color _color)
     {
-        avatar.SetColor(activeColorField, color);
-        avatar.UpdateColors(true);
+        color = _color;
+        colorPreviewer.GetComponent<Image>().color = color;
+        ApplyColorSettings();
     }
 
     public void ModifyFieldColorDarkness(float value)
     {
-        //avatar.SetColor(activeColorField, avatar.GetColor(activeColorField) * value);
+        darkness = 1.0f - value;
+        ApplyColorSettings();
+    }
+
+    public void ApplyColorSettings(){
+        avatar.SetColor(activeColorField, color * darkness);
+        colorPreviewer.GetComponent<Image>().color = color * darkness;
+        Color tempColor = colorPreviewer.GetComponent<Image>().color;
+        //stupid alpha shit
+        tempColor.a = 1f;
+        colorPreviewer.GetComponent<Image>().color = tempColor;
         avatar.UpdateColors(true);
     }
 
@@ -216,19 +273,61 @@ public class AvatarCreator : MonoBehaviour
         }
     }
 
+
+
+    public void ToggleVisibility(GameObject window)
+    {
+        if (window != null)
+        {
+            Animator windowAnimator = window.GetComponent<Animator>();
+            if (windowAnimator != null)
+            {
+                bool isOpen = windowAnimator.GetBool("Open");
+                windowAnimator.SetBool("Open", !isOpen);
+                if (isOpen)
+                    window.transform.SetAsFirstSibling();
+                else
+                    window.transform.SetAsLastSibling();
+            }
+        }
+    }
+
+    private bool isCoroutineExecuting;
+    IEnumerator ExecuteAfterTime(float time, Action task)
+    {
+        if (isCoroutineExecuting)
+            yield break;
+        isCoroutineExecuting = true;
+        yield return new WaitForSeconds(time);
+        task();
+        isCoroutineExecuting = false;
+    }
+
     public void ToggleWindowVisibility(string windowName)
     {
         GameObject window = GameObject.Find(windowName);
-        Animator windowAnimator = window.GetComponent<Animator>();
-        if(windowAnimator != null)
+
+        if (activeWindow == window)
         {
-            bool isOpen = windowAnimator.GetBool("Open");
-            windowAnimator.SetBool("Open", !isOpen);
-            if(isOpen)
-                window.transform.SetAsFirstSibling();
-            else
-                window.transform.SetAsLastSibling();
+            ToggleVisibility(window);
+            toggleRepeated = true;
+    
+            StartCoroutine(ExecuteAfterTime(0.05f, () =>
+            {
+                Camera.main.GetComponent<MouseOrbitImproved>().SwitchTargetBone("Head");
+            }));
         }
+        else
+        {
+            if (!toggleRepeated) {
+                ToggleVisibility(activeWindow);
+            }
+            ToggleVisibility(window);
+            toggleRepeated = false;
+        }
+
+        activeWindow = window;
+
     }
 
     public void SaveAvatar()
