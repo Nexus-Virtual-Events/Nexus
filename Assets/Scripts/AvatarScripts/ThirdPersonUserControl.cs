@@ -109,11 +109,8 @@ public class ThirdPersonUserControl : MonoBehaviour
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
         }
 
-<<<<<<< HEAD
         gameObject.name = "Avatar_" + getID();
-=======
         //playerName = GetChildWithName(gameObject, "Player Name");
->>>>>>> f05d738e549034a805b403730b869826252566f9
 
     }
 
