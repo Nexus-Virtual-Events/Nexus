@@ -53,7 +53,6 @@ public class ThirdPersonUserControl : MonoBehaviour
     private Transform cameraStay;
     private string prevFocusState;
 
-
     private void Awake()
     {
         _realtimeView = GetComponent<RealtimeView>();
@@ -110,10 +109,27 @@ public class ThirdPersonUserControl : MonoBehaviour
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
         }
 
+<<<<<<< HEAD
         gameObject.name = "Avatar_" + getID();
+=======
+        //playerName = GetChildWithName(gameObject, "Player Name");
+>>>>>>> f05d738e549034a805b403730b869826252566f9
 
     }
 
+    GameObject GetChildWithName(GameObject obj, string name)
+    {
+        Transform trans = obj.transform;
+        Transform childTrans = trans.Find(name);
+        if (childTrans != null)
+        {
+            return childTrans.gameObject;
+        }
+        else
+        {
+            return null;
+        }
+    }
 
     private string[] stringToArray(string s)
     {
