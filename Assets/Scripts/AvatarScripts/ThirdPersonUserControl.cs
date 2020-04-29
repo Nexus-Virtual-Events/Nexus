@@ -109,6 +109,9 @@ public class ThirdPersonUserControl : MonoBehaviour
             // Set as remote avatar
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
         }
+
+        gameObject.name = "Avatar_" + getID();
+
     }
 
 
