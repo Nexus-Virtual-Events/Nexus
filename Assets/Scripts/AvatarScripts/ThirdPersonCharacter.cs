@@ -10,7 +10,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		[SerializeField] float m_MovingTurnSpeed = 360;
 		[SerializeField] float m_StationaryTurnSpeed = 180;
 		[SerializeField] float m_JumpPower = 12f;
-		[Range(1f, 4f)][SerializeField] float m_GravityMultiplier = 2f;
+		[Range(1f, 4f)] [SerializeField] float m_GravityMultiplier = 2f;
 		[SerializeField] float m_RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
 		[SerializeField] float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
@@ -81,40 +81,37 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			UpdateAnimator(move);
 		}
 
-		public void StartShakeHand () {
+		public void StartShakeHandAnimation()
+		{
 			m_Animator.SetTrigger("ShakeHandOnce");
 		}
 
 
-        public void ForeignMove(string moveState)
-        {
+		public void ForeignMove(string moveState)
+		{
 			string[] parameters;
-			
+
 			//Debug.Log("4N Move Received: " + moveState);
 
-			if (moveState == "" || moveState == null) {
+			if (moveState == "" || moveState == null)
+			{
 				return;
 			}
 
-            //"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
-            parameters = moveState.Split(' ');
+			//"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
+			parameters = moveState.Split(' ');
 
-            Vector3 move = new Vector3(float.Parse(parameters[0]), float.Parse(parameters[1]), float.Parse(parameters[2]));
-            bool isCrouching = int.Parse(parameters[3]) != 0;
-            bool isOnGround = int.Parse(parameters[4]) != 0;
-            bool isClapping = int.Parse(parameters[5]) != 0;
+			Vector3 move = new Vector3(float.Parse(parameters[0]), float.Parse(parameters[1]), float.Parse(parameters[2]));
+			bool isCrouching = int.Parse(parameters[3]) != 0;
+			bool isOnGround = int.Parse(parameters[4]) != 0;
+			bool isClapping = int.Parse(parameters[5]) != 0;
 			bool isWaving = int.Parse(parameters[6]) != 0;
 			bool isSitting = int.Parse(parameters[7]) != 0;
 			bool isShakingHand = int.Parse(parameters[8]) != 0;
 
 
 			Move(move, isCrouching, isOnGround, isClapping, isWaving, isSitting);
-
-			if (isShakingHand) {
-				Debug.Log("4N Shaking Hands");
-				m_Animator.SetTrigger("ShakeHandOnce");
-			}
-        }
+		}
 
 
 		void ScaleCapsuleForCrouching(bool crouch)
@@ -258,11 +255,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			bool _stuck = false;
 
 			_timer += Time.deltaTime;
-            if(_timer > .5f)
-            {
+			if (_timer > .5f)
+			{
 				_timer = 0;
-                if(Mathf.Abs(prevY - transform.position.y) < 0.01)
-                {
+				if (Mathf.Abs(prevY - transform.position.y) < 0.01)
+				{
 					_stuck = true;
 				}
 				prevY = transform.position.y;

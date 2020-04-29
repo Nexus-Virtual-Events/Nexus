@@ -104,38 +104,63 @@ public class ThirdPersonUserControl : MonoBehaviour
             _recipeSync = GameObject.FindObjectOfType<RecipeSync>();
             _recipeSync.SetRecipe(PlayerPrefs.GetString("playerRecipe"));
         }
-        else {
+        else
+        {
             // Set as remote avatar
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
         }
     }
 
 
+    private string[] stringToArray(string s)
+    {
+        string[] parameters;
+
+        //"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
+        parameters = s.Split(' ');
+        return parameters;
+    }
+
+
     public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
     {
         Debug.Log("Interaction type: " + newInteraction);
+        Debug.Log("ReactToInteractionchange from " + getID().ToString());
 
-        float DISTANCE_FOR_HANDSHAKE = 1.0f;
+        string[] parameters = stringToArray(newInteraction);
 
-        if (!_realtimeView.isOwnedLocally) { return; }
+        if (parameters[2] == "1")
+        {
+            float DISTANCE_FOR_HANDSHAKE = 1.0f;
 
-        Vector3 otherPosition = sourceCharacter.transform.position;
-        Vector3 diff = (otherPosition - transform.position);
+            if (_realtimeView.isOwnedLocally)
+            {
 
-        Vector3 centerTarget = (diff/2) + transform.position;
+                Vector3 otherPosition = sourceCharacter.transform.position;
+                Vector3 diff = (otherPosition - transform.position);
 
-        Vector3 centerToTargetVect = (transform.position - centerTarget);
-        centerToTargetVect.Normalize();
-        
-        Vector3 dirVector = Quaternion.AngleAxis(90, Vector3.up) * centerToTargetVect;
+                Vector3 centerTarget = (diff / 2) + transform.position;
 
-        Vector3 moveToTarget = centerTarget + centerToTargetVect * (DISTANCE_FOR_HANDSHAKE/2);
-        Vector3 lookAtTarget = centerTarget + dirVector * 0.3f;
+                Vector3 centerToTargetVect = (transform.position - centerTarget);
+                centerToTargetVect.Normalize();
 
-        canMove = false;
-        autoPilot = true;
-        autoTarget = moveToTarget;
-        rotateTowardsTarget = lookAtTarget;
+                Vector3 dirVector = Quaternion.AngleAxis(90, Vector3.up) * centerToTargetVect;
+
+                Vector3 moveToTarget = centerTarget + centerToTargetVect * (DISTANCE_FOR_HANDSHAKE / 2);
+                Vector3 lookAtTarget = centerTarget + dirVector * 0.3f;
+
+                canMove = false;
+                autoPilot = true;
+                autoTarget = moveToTarget;
+                rotateTowardsTarget = lookAtTarget;
+            }
+        }
+        else if (parameters[2] == "2")
+        {
+            Debug.Log("shaking hand");
+            m_Character.StartShakeHandAnimation();
+        }
+
     }
 
     int maxId = -1;
@@ -159,14 +184,14 @@ public class ThirdPersonUserControl : MonoBehaviour
             return;
         }
 
-        Debug.Log("podium changed to "+ newPodium.ToString());
+        Debug.Log("podium changed to " + newPodium.ToString());
 
         float maxDistance = 1000;
 
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
             float dist = (player.transform.position - GameObject.Find("Podium").transform.position).magnitude;
-                
+
             if (dist < maxDistance)
             {
                 maxDistance = dist;
@@ -176,11 +201,11 @@ public class ThirdPersonUserControl : MonoBehaviour
 
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
-            if(maxId != -1)
-                if(player.GetComponent<ThirdPersonUserControl>().getID() == maxId)
-                    {
-                        player.GetComponent<AudioSource>().spatialBlend = 0;
-                    }
+            if (maxId != -1)
+                if (player.GetComponent<ThirdPersonUserControl>().getID() == maxId)
+                {
+                    player.GetComponent<AudioSource>().spatialBlend = 0;
+                }
         }
 
     }
@@ -199,7 +224,7 @@ public class ThirdPersonUserControl : MonoBehaviour
             canMove = false;
             GameObject.Find("Realtime").GetComponent<AdminPanel>().FocusCamera();
         }
-        else if(prevFocusState == "1" && eventManager.GetEvents()[2] == '0')
+        else if (prevFocusState == "1" && eventManager.GetEvents()[2] == '0')
         {
             Camera.main.transform.position = cameraStay.position;
             Camera.main.transform.rotation = cameraStay.rotation;
@@ -230,7 +255,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         // If this CubePlayer prefab is not owned by this client, bail.
         if (!_realtimeView.isOwnedLocally)
             return;
-        
+
         // Move the camera
         if (!isCameraParented)
         {
@@ -270,20 +295,6 @@ public class ThirdPersonUserControl : MonoBehaviour
         return animationString;
     }
 
-   private int startedShakingHandsAt = 0;
-    private bool IsShakingHands () {
-        if (Time.frameCount > startedShakingHandsAt + 2) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    private void StartShakingHands () {
-        startedShakingHandsAt = Time.frameCount;
-    }
-
     // Fixed update is called in sync with physics
     private void FixedUpdate()
     {
@@ -292,6 +303,7 @@ public class ThirdPersonUserControl : MonoBehaviour
         {
 
             m_Character.ForeignMove(GetComponent<UpdateMove>().GetCharacterMove());
+
         }
         else
         {
@@ -370,7 +382,6 @@ public class ThirdPersonUserControl : MonoBehaviour
                 toggleInformation[2] = clap;
                 toggleInformation[3] = wave;
                 toggleInformation[4] = sit;
-                toggleInformation[5] = IsShakingHands();
 
 
                 GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(m_Move, toggleInformation));
@@ -388,23 +399,26 @@ public class ThirdPersonUserControl : MonoBehaviour
                     toggleInformation[2] = false;
                     toggleInformation[3] = false;
                     toggleInformation[4] = false;
-                    toggleInformation[5] = IsShakingHands();
 
-                    if(Vector3.Distance(transform.position, autoTarget) < 0.1)
+                    if (Vector3.Distance(transform.position, autoTarget) < 0.1)
                     {
                         //handshake finishing action
                         transform.LookAt(rotateTowardsTarget);
-                        StartShakingHands();
-                        toggleInformation[5] = IsShakingHands();
                         Debug.Log("toggleInformation" + toggleInformation.ToString());
                         //m_Character.Move(new Vector3(0, 0, 0), false, false, false, false, false);
-                        m_Character.StartShakeHand();
+                        m_Character.StartShakeHandAnimation();
                         GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(new Vector3(0, 0, 0), toggleInformation));
                         canMove = true;
                         autoPilot = false;
                         Debug.Log("target reached");
+
+                        System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+                        int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+                        interactionModifier.SendNewValue(getID().ToString() + " " + getID().ToString() + " " + Utils.interactionMap.Reverse["TriggerShakeHand"] + " " + cur_time.ToString());
+
                     }
-                    else {
+                    else
+                    {
                         GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(autoTarget - transform.position, toggleInformation));
                     }
                 }
