@@ -13,6 +13,7 @@ public class Utils : MonoBehaviour
         Physics.IgnoreLayerCollision(9, 10);
         interactionMap = new Map<int, string>();
         interactionMap.Add(1, "ShakeHand");
+        interactionMap.Add(2, "TriggerShakeHand");
     }
 }
 
