@@ -13,6 +13,7 @@ namespace Normal.Realtime.Examples {
         public void ExitMenu()
         {
             Destroy(transform.parent.gameObject);
+            GameObject.Find("Realtime").GetComponent<PlayerInteraction>().isInstantiated = false;
         }
 
         public void Start()
