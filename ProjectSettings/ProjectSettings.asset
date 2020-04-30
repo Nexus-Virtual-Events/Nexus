@@ -42,13 +42,13 @@ PlayerSettings:
   m_SplashScreenLogos:
   - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2
-  - logo: {fileID: 3286163911610860551, guid: 68d4fb50712f54e0ba775388a6295ee8, type: 3}
-    duration: 2
+  - logo: {fileID: 21300000, guid: ceeb604a0b81f4cb0a03f066d90b308d, type: 3}
+    duration: 4
   m_VirtualRealitySplashScreen: {fileID: 6192944022281365145, guid: a88a4022b212548b1884944bff683de8,
     type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1280
-  defaultScreenHeight: 720
+  defaultScreenHeight: 800
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
@@ -71,9 +71,9 @@ PlayerSettings:
   androidRenderOutsideSafeArea: 0
   androidUseSwappy: 0
   androidBlitType: 0
-  defaultIsNativeResolution: 1
+  defaultIsNativeResolution: 0
   macRetinaSupport: 1
-  runInBackground: 1
+  runInBackground: 0
   captureSingleScreen: 0
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
@@ -83,8 +83,8 @@ PlayerSettings:
   submitAnalytics: 1
   usePlayerLog: 1
   bakeCollisionMeshes: 0
-  forceSingleInstance: 0
-  useFlipModelSwapchain: 1
+  forceSingleInstance: 1
+  useFlipModelSwapchain: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
   macAppStoreCategory: public.app-category.games
@@ -94,7 +94,7 @@ PlayerSettings:
   xboxEnableKinect: 0
   xboxEnableKinectAutoTracking: 0
   xboxEnableFitness: 0
-  visibleInBackground: 1
+  visibleInBackground: 0
   allowFullscreenSwitch: 1
   fullscreenMode: 0
   xboxSpeechDB: 0
@@ -122,7 +122,7 @@ PlayerSettings:
     4:3: 0
     5:4: 0
     16:10: 1
-    16:9: 1
+    16:9: 0
     Others: 0
   bundleVersion: 0.1.1
   preloadedAssets: []
@@ -577,7 +577,7 @@ PlayerSettings:
   splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: b2017989926f44bcfb5b4dd63cd4ee4d,
     type: 3}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
-  blurSplashScreenBackground: 1
+  blurSplashScreenBackground: 0
   spritePackerPolicy: 
   webGLMemorySize: 16
   webGLExceptionSupport: 1
