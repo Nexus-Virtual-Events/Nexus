@@ -37,7 +37,7 @@ namespace Normal.Realtime.Examples {
             //Debug.Log(selfId);
             //Debug.Log(Utils.interactionMap);
             interactionModifier.SendNewValue(selfId.ToString() + " " + getOtherID().ToString() + " " + Utils.interactionMap.Reverse[interactionString] + " " + cur_time.ToString());
-            ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(ActionRouter.GetCurrentCharacter(), interactionString);
+            ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(ActionRouter.GetCurrentCharacter(), selfId.ToString() + " " + getOtherID().ToString() + " " + Utils.interactionMap.Reverse[interactionString] + " " + cur_time.ToString());
         }
 
     }
