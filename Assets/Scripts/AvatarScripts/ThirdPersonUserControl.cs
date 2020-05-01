@@ -422,7 +422,6 @@ public class ThirdPersonUserControl : MonoBehaviour
                         transform.LookAt(rotateTowardsTarget);
                         Debug.Log("toggleInformation" + toggleInformation.ToString());
                         //m_Character.Move(new Vector3(0, 0, 0), false, false, false, false, false);
-                        m_Character.StartShakeHandAnimation();
                         GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(new Vector3(0, 0, 0), toggleInformation));
                         canMove = true;
                         autoPilot = false;
