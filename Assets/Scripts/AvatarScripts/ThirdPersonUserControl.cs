@@ -141,7 +141,7 @@ public class ThirdPersonUserControl : MonoBehaviour
     public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
     {
         Debug.Log("Interaction type: " + newInteraction);
-        Debug.Log("ReactToInteractionchange from " + getID().ToString());
+        Debug.Log("ReactToInteractionchange from " + gameObject.name);
 
         string[] parameters = stringToArray(newInteraction);
 
