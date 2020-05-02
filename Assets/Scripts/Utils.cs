@@ -2,12 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
 
 
 public class Utils : MonoBehaviour
 {
     public static Map<int, string> interactionMap;
     public static Dictionary<int, float[]> animationRequirements = new Dictionary<int, float[]>();
+    public static string[] animations;
+    public static UnityEngine.KeyCode[] animationEnums;
+
 
     private void Start()
     {
@@ -17,6 +22,25 @@ public class Utils : MonoBehaviour
         //interactionMap.Add(2, "TriggerShakeHand");
         animationRequirements.Add(1, new[]{1.0f, 0.55f});
 
+
+        animations = new[]
+        {
+            "OnGround",
+            "Sit",
+            "Crouch",
+            "Clap",
+            "Wave", 
+            "Samba"
+        };
+
+        animationEnums = new[]
+        {
+            KeyCode.C,
+            KeyCode.Alpha1,
+            KeyCode.Alpha2,
+            KeyCode.Alpha3
+
+        };
     }
 
 }

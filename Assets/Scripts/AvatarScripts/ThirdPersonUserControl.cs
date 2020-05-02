@@ -55,6 +55,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     private string currentInteraction;
 
+    private int numberOfAnimations;
+
     private void Awake()
     {
         _realtimeView = GetComponent<RealtimeView>();
@@ -112,6 +114,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
 
         gameObject.name = "Avatar_" + getID();
+        numberOfAnimations = Utils.animations.Length;
         //playerName = GetChildWithName(gameObject, "Player Name");
 
     }
@@ -304,6 +307,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         // Make sure we own the transform so that RealtimeTransform knows to use this client's transform to synchronize remote clients.
         _realtimeTransform.RequestOwnership();
+
         if (canMove)
         {
             if (!m_Jump)
@@ -363,15 +367,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 // read inputs
                 float h = CrossPlatformInputManager.GetAxis("Horizontal");
                 float v = CrossPlatformInputManager.GetAxis("Vertical");
-                bool crouch = Input.GetKey(KeyCode.C);
-                bool clap = Input.GetKey(KeyCode.Alpha1);
-                bool wave = Input.GetKey(KeyCode.Alpha2);
-
-                if (sit)
-                {
-                    GetComponent<CapsuleCollider>().enabled = false;
-                    GetComponent<Rigidbody>().useGravity = false;
-                }
 
                 if ((h != 0f || v != 0f) && sit)
                 {
@@ -382,6 +377,30 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     GetComponent<Rigidbody>().useGravity = true;
 
                 }
+
+                if (sit)
+                {
+                    GetComponent<CapsuleCollider>().enabled = false;
+                    GetComponent<Rigidbody>().useGravity = false;
+                }
+
+                bool[] animationStates = new bool[numberOfAnimations];
+
+                animationStates[0] = m_Jump;
+                animationStates[1] = sit;
+
+                for(int i = 2; i < numberOfAnimations; i += 1)
+                {
+                    animationStates[i] = Input.GetKey(Utils.animationEnums[i - 2]);
+                }
+                
+
+                //bool crouch = Input.GetKey(KeyCode.C);
+                //bool clap = Input.GetKey(KeyCode.Alpha1);
+                //bool wave = Input.GetKey(KeyCode.Alpha2);
+                //bool samba = Input.GetKey(KeyCode.Alpha3);
+
+                
 
                 // calculate move direction to pass to character
                 if (m_Cam != null)
@@ -401,15 +420,15 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 #endif
 
                 // pass all parameters to the character control script
-                m_Character.Move(m_Move, crouch, m_Jump, clap, wave, sit);
+                m_Character.Move(m_Move, animationStates);
 
-                bool[] animationStates = new bool[5];
-                animationStates[0] = crouch;
-                animationStates[1] = m_Jump;
-                animationStates[2] = clap;
-                animationStates[3] = wave;
-                animationStates[4] = sit;
+                //animationStates[1] = m_Jump;
 
+                //animationStates[0] = crouch;
+                //animationStates[2] = clap;
+                //animationStates[3] = wave;
+                //animationStates[4] = sit;
+                //animationStates[5] = samba;
 
                 GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(m_Move, animationStates));
 
@@ -419,13 +438,18 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             {
                 if (autoPilot)
                 {
-                    m_Character.Move(autoTarget - transform.position, false, false, false, false, false);
-                    bool[] animationStates = new bool[5];
-                    animationStates[0] = false;
-                    animationStates[1] = false;
-                    animationStates[2] = false;
-                    animationStates[3] = false;
-                    animationStates[4] = false;
+                    bool[] falseArray = new bool[numberOfAnimations];
+                    for(int i=0;i < numberOfAnimations; i += 1)
+                    {
+                        falseArray[i] = false;
+                    }
+                    m_Character.Move(autoTarget - transform.position, falseArray);
+
+                    bool[] animationStates = new bool[numberOfAnimations];
+                    for(int i = 0; i < Utils.animations.Length; i += 1)
+                    {
+                        animationStates[i] = false;
+                    }
 
                     if (Vector3.Distance(transform.position, autoTarget) < 0.1)
                     {
