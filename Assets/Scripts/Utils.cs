@@ -9,7 +9,6 @@ public class Utils : MonoBehaviour
     public static Map<int, string> interactionMap;
     public static Dictionary<int, float[]> animationRequirements = new Dictionary<int, float[]>();
 
-
     private void Start()
     {
         Physics.IgnoreLayerCollision(9, 10);
@@ -20,9 +19,7 @@ public class Utils : MonoBehaviour
 
     }
 
-
 }
-
 
 
 
