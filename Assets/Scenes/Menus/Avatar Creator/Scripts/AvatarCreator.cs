@@ -143,7 +143,7 @@ public class AvatarCreator : MonoBehaviour
 
     public void SetActiveColorField(string _activeColorField)
     {
-        Debug.Log(_activeColorField);
+        colorSelectorText.text = _activeColorField + " Color";
         activeColorField = _activeColorField;
         darkness = 1.0f;
         color = Color.white;
@@ -325,7 +325,7 @@ public class AvatarCreator : MonoBehaviour
     {
         GameObject window = GameObject.Find(windowName);
 
-        if (activeWindow == window)
+        if (activeWindow == window && windowName != "ColorSelector")
         {
             ToggleVisibility(window);
             toggleRepeated = true;
