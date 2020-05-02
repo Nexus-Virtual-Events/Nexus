@@ -8,7 +8,7 @@ using Normal.Realtime;
 
 
 [RequireComponent(typeof(ThirdPersonCharacter))]
-public class ThirdPersonUserControl : MonoBehaviour
+public class ThirdPersonUserControl : MultiplayerMonoBehavior
 {
 
     public RealtimeView _realtimeView;
@@ -137,11 +137,32 @@ public class ThirdPersonUserControl : MonoBehaviour
         return parameters;
     }
 
+    public void ReceivedRemoteAction (string lastAction) {
+
+        if (_realtimeView.isOwnedLocally)
+        {
+            // This method only applies to remote avatars
+            return;
+        }
+
+        string[] actionParts = lastAction.Split('_');
+
+        switch (actionParts[0]) {
+            case "SHAKEHAND":
+                m_Character.StartShakeHandAnimation();
+                return;
+            default:
+                LOG("Unrecognized action received");
+                return;
+        }
+
+    }
+
 
     public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
     {
-        Debug.Log("Interaction type: " + newInteraction);
-        Debug.Log("ReactToInteractionchange from " + gameObject.name);
+        LOG("Interaction type: " + newInteraction);
+        LOG("ReactToInteractionchange from " + gameObject.name);
 
         string[] parameters = stringToArray(newInteraction);
 
@@ -171,12 +192,6 @@ public class ThirdPersonUserControl : MonoBehaviour
                 rotateTowardsTarget = lookAtTarget;
             }
         }
-        else if (parameters[2] == "2")
-        {
-            Debug.Log("shaking hand");
-            m_Character.StartShakeHandAnimation();
-        }
-
     }
 
     int maxId = -1;
@@ -301,15 +316,16 @@ public class ThirdPersonUserControl : MonoBehaviour
         }
     }
 
-    private string parseMoveToString(Vector3 move, bool[] toggleAnimations)
+    private string SerializeMove(Vector3 move, bool[] animationStates)
     {
         string animationString = move.x.ToString() + " " + move.y.ToString() + " " + move.z.ToString() + " ";
-        foreach (bool animation in toggleAnimations)
+        foreach (bool animation in animationStates)
         {
             animationString += Convert.ToInt16(animation) + " ";
         }
         return animationString;
     }
+    
 
     // Fixed update is called in sync with physics
     private void FixedUpdate()
@@ -353,13 +369,11 @@ public class ThirdPersonUserControl : MonoBehaviour
                 bool clap = Input.GetKey(KeyCode.Alpha1);
                 bool wave = Input.GetKey(KeyCode.Alpha2);
 
-
                 if (sit)
                 {
                     GetComponent<CapsuleCollider>().enabled = false;
                     GetComponent<Rigidbody>().useGravity = false;
                 }
-
 
                 if ((h != 0f || v != 0f) && sit)
                 {
@@ -370,7 +384,6 @@ public class ThirdPersonUserControl : MonoBehaviour
                     GetComponent<Rigidbody>().useGravity = true;
 
                 }
-
 
                 // calculate move direction to pass to character
                 if (m_Cam != null)
@@ -392,15 +405,15 @@ public class ThirdPersonUserControl : MonoBehaviour
                 // pass all parameters to the character control script
                 m_Character.Move(m_Move, crouch, m_Jump, clap, wave, sit);
 
-                bool[] toggleInformation = new bool[6];
-                toggleInformation[0] = crouch;
-                toggleInformation[1] = m_Jump;
-                toggleInformation[2] = clap;
-                toggleInformation[3] = wave;
-                toggleInformation[4] = sit;
+                bool[] animationStates = new bool[5];
+                animationStates[0] = crouch;
+                animationStates[1] = m_Jump;
+                animationStates[2] = clap;
+                animationStates[3] = wave;
+                animationStates[4] = sit;
 
 
-                GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(m_Move, toggleInformation));
+                GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(m_Move, animationStates));
 
                 m_Jump = false;
             }
@@ -409,36 +422,41 @@ public class ThirdPersonUserControl : MonoBehaviour
                 if (autoPilot)
                 {
                     m_Character.Move(autoTarget - transform.position, false, false, false, false, false);
-                    bool[] toggleInformation = new bool[6];
-                    toggleInformation[0] = false;
-                    toggleInformation[1] = false;
-                    toggleInformation[2] = false;
-                    toggleInformation[3] = false;
-                    toggleInformation[4] = false;
+                    bool[] animationStates = new bool[5];
+                    animationStates[0] = false;
+                    animationStates[1] = false;
+                    animationStates[2] = false;
+                    animationStates[3] = false;
+                    animationStates[4] = false;
 
                     if (Vector3.Distance(transform.position, autoTarget) < 0.1)
                     {
-                        //handshake finishing action
-                        transform.LookAt(rotateTowardsTarget);
-                        Debug.Log("toggleInformation" + toggleInformation.ToString());
-                        //m_Character.Move(new Vector3(0, 0, 0), false, false, false, false, false);
-                        GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(new Vector3(0, 0, 0), toggleInformation));
-                        canMove = true;
-                        autoPilot = false;
-                        Debug.Log("target reached");
-
-                        System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
-                        int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-                        interactionModifier.SendNewValue(getID().ToString() + " " + getID().ToString() + " " + Utils.interactionMap.Reverse["TriggerShakeHand"] + " " + cur_time.ToString());
-
+                        ArrivedAtHandShakeDistance(animationStates);
                     }
                     else
                     {
-                        GetComponent<UpdateMove>().UpdateCharacterMove(parseMoveToString(autoTarget - transform.position, toggleInformation));
+                        GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(autoTarget - transform.position, animationStates));
                     }
                 }
             }
         }
     }
-}
 
+    private void ArrivedAtHandShakeDistance (bool[] currentAnimationStates) {
+        //handshake finishing action
+        transform.LookAt(rotateTowardsTarget);
+        LOG("Animation State: " + currentAnimationStates.ToString());
+
+        GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(new Vector3(0, 0, 0), currentAnimationStates));
+        canMove = true;
+        autoPilot = false;
+
+        System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+
+        // Update Move Here
+        GetComponent<MoveSync>().SetLastAction("SHAKEHAND_" + cur_time.ToString());
+
+        m_Character.StartShakeHandAnimation();
+    }
+}

@@ -4,7 +4,7 @@ using UnityEngine;
 using Normal.Realtime;
 
 
-public class UpdateMove : MonoBehaviour
+public class UpdateMove : MultiplayerMonoBehavior
 {
     private string characterMove;
     private string _prevCharacterMove;
