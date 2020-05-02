@@ -82,9 +82,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			UpdateAnimator(move);
 		}
 
-		public void StartAnimation(string animationIndex)
+		public void StartAnimation(string animationIndex, bool isLocal)
 		{
-			m_Animator.SetTrigger(Utils.interactionMap.Forward[Convert.ToInt32(animationIndex)]);
+			string animationTrigger = Utils.interactionMap.Forward[Convert.ToInt32(animationIndex)];
+            if (isLocal)
+            {
+				animationTrigger += "0";
+            }
+			else
+			{
+				animationTrigger += "1";
+			}
+			m_Animator.SetTrigger(animationTrigger);
 		}
 
 

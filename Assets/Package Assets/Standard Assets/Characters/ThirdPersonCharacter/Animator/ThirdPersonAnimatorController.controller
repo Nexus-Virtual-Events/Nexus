@@ -165,7 +165,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ShakeHand
+    m_ConditionEvent: ShakeHand0
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: ShakeHand1
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5620224391592936151}
@@ -327,7 +330,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: ShakeHand
+  - m_Name: ShakeHand1
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: ShakeHand0
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
