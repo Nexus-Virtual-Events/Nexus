@@ -230,9 +230,9 @@ public class AvatarCreator : MonoBehaviour
     {
         if (currentFullOutfit == fullOutfit)
         {
-            avatar.ClearSlot("FullOutfit");
+            avatar.SetSlot("FullOutfit", "BlackSuit1");
             avatar.BuildCharacter();
-            currentFullOutfit = "";
+            //currentFullOutfit = "BlackSuit2";
         }
         else
         {
@@ -246,9 +246,8 @@ public class AvatarCreator : MonoBehaviour
     {
         if (currentTop == top)
         {
-            avatar.ClearSlot("Chest");
+            avatar.SetSlot("Chest", "CropTop2");
             avatar.BuildCharacter();
-            currentTop = "";
         }
         else
         {
@@ -262,9 +261,8 @@ public class AvatarCreator : MonoBehaviour
     {
         if (currentBottom == bottom)
         {
-            avatar.ClearSlot("Legs");
+            avatar.SetSlot("Legs", "Skirt2");
             avatar.BuildCharacter();
-            currentBottom = "";
         }
         else
         {
@@ -278,9 +276,8 @@ public class AvatarCreator : MonoBehaviour
     {
         if (currentShoes == shoes)
         {
-            avatar.ClearSlot("Feet");
+            avatar.SetSlot("Feet", "Shoes2");
             avatar.BuildCharacter();
-            currentShoes = "";
         }
         else
         {
