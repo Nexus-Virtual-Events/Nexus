@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -81,9 +82,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			UpdateAnimator(move);
 		}
 
-		public void StartShakeHandAnimation()
+		public void StartAnimation(string animationIndex)
 		{
-			m_Animator.SetTrigger("ShakeHandOnce");
+			m_Animator.SetTrigger(Utils.interactionMap.Forward[Convert.ToInt32(animationIndex)]);
 		}
 
 

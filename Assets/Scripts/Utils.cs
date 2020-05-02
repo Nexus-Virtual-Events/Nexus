@@ -7,6 +7,8 @@ using UnityEngine;
 public class Utils : MonoBehaviour
 {
     public static Map<int, string> interactionMap;
+    public static Dictionary<int, float[]> animationRequirements = new Dictionary<int, float[]>();
+
 
     private void Start()
     {
@@ -14,7 +16,11 @@ public class Utils : MonoBehaviour
         interactionMap = new Map<int, string>();
         interactionMap.Add(1, "ShakeHand");
         interactionMap.Add(2, "TriggerShakeHand");
+        animationRequirements.Add(1, new[]{1.0f, 0.3f});
+
     }
+
+
 }
 
 
