@@ -30,7 +30,9 @@ public class Utils : MonoBehaviour
             "Crouch",
             "Clap",
             "Wave", 
-            "Samba"
+            "Samba",
+            "HipHop",
+            "Cheer"
         };
 
         animationEnums = new[]
@@ -38,7 +40,10 @@ public class Utils : MonoBehaviour
             KeyCode.C,
             KeyCode.Alpha1,
             KeyCode.Alpha2,
-            KeyCode.Alpha3
+            KeyCode.Alpha3,
+            KeyCode.Alpha4,
+            KeyCode.Alpha5
+
 
         };
     }

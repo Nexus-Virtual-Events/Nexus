@@ -118,8 +118,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				return;
 			}
 
-			Debug.Log("MoveState:"+ moveState);
-
 			//"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
 			parameters = moveState.Split(' ');
 
