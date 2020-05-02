@@ -21,6 +21,7 @@ public class AvatarCreator : MonoBehaviour
     public string activeColorField;
 
     public string currentHair = "";
+    public string currentFacialHair = "";
     public string currentFullOutfit = "";
     public string currentTop = "";
     public string currentBottom = "";
@@ -208,6 +209,22 @@ public class AvatarCreator : MonoBehaviour
             avatar.BuildCharacter();
         }
     }
+
+    public void ModifyFacialHair(string s) {
+        if (currentHair == s)
+        {
+            avatar.ClearSlot("Beard");
+            avatar.BuildCharacter();
+            currentHair = "";
+        }
+        else
+        {
+            currentHair = s;
+            avatar.SetSlot("Beard", s);
+            avatar.BuildCharacter();
+        }
+    }
+
 
     public void ModifyFullOutfit(string fullOutfit)
     {
