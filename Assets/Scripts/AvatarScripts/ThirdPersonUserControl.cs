@@ -53,6 +53,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private Transform cameraStay;
     private string prevFocusState;
 
+    private string currentInteraction;
+
     private void Awake()
     {
         _realtimeView = GetComponent<RealtimeView>();
@@ -147,14 +149,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         string[] actionParts = lastAction.Split('_');
 
-        switch (actionParts[0]) {
-            case "SHAKEHAND":
-                m_Character.StartShakeHandAnimation();
-                return;
-            default:
-                LOG("Unrecognized action received");
-                return;
-        }
+        m_Character.StartAnimation(actionParts[0]);
 
     }
 
@@ -166,9 +161,11 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         string[] parameters = stringToArray(newInteraction);
 
+        currentInteraction = parameters[2];
+
         if (parameters[2] == "1")
         {
-            float DISTANCE_FOR_HANDSHAKE = 1.0f;
+            float[] animationReq = Utils.animationRequirements[2];
 
             if (_realtimeView.isOwnedLocally)
             {
@@ -183,14 +180,15 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
                 Vector3 dirVector = Quaternion.AngleAxis(90, Vector3.up) * centerToTargetVect;
 
-                Vector3 moveToTarget = centerTarget + centerToTargetVect * (DISTANCE_FOR_HANDSHAKE / 2);
-                Vector3 lookAtTarget = centerTarget + dirVector * 0.3f;
+                Vector3 moveToTarget = centerTarget + centerToTargetVect * (animationReq[0] / 2);
+                Vector3 lookAtTarget = centerTarget + dirVector * animationReq[1];
 
                 canMove = false;
                 autoPilot = true;
                 autoTarget = moveToTarget;
                 rotateTowardsTarget = lookAtTarget;
             }
+
         }
     }
 
@@ -431,7 +429,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
                     if (Vector3.Distance(transform.position, autoTarget) < 0.1)
                     {
-                        ArrivedAtHandShakeDistance(animationStates);
+                        ArrivedAtAnimationDistance(animationStates);
                     }
                     else
                     {
@@ -442,7 +440,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
     }
 
-    private void ArrivedAtHandShakeDistance (bool[] currentAnimationStates) {
+    private void ArrivedAtAnimationDistance (bool[] currentAnimationStates) {
         //handshake finishing action
         transform.LookAt(rotateTowardsTarget);
         LOG("Animation State: " + currentAnimationStates.ToString());
@@ -455,8 +453,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
         // Update Move Here
-        GetComponent<MoveSync>().SetLastAction("SHAKEHAND_" + cur_time.ToString());
-
-        m_Character.StartShakeHandAnimation();
+        GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
+        m_Character.StartAnimation(currentInteraction);
     }
 }
