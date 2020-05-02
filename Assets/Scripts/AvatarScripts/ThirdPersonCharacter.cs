@@ -107,8 +107,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			bool isClapping = int.Parse(parameters[5]) != 0;
 			bool isWaving = int.Parse(parameters[6]) != 0;
 			bool isSitting = int.Parse(parameters[7]) != 0;
-			bool isShakingHand = int.Parse(parameters[8]) != 0;
-
 
 			Move(move, isCrouching, isOnGround, isClapping, isWaving, isSitting);
 		}

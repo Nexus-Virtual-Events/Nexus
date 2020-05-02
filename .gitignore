@@ -62,3 +62,5 @@ crashlytics-build.properties
 
 Assets/Scenes/Menus/Avatar Creator/Wardrobe Recipes/
 
+**/*.DS_Store
+*.DS_Store
