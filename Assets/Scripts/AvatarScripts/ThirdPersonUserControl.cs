@@ -165,7 +165,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         if (parameters[2] == "1")
         {
-            float[] animationReq = Utils.animationRequirements[2];
+            float[] animationReq = Utils.animationRequirements[Convert.ToInt32(parameters[2])];
 
             if (_realtimeView.isOwnedLocally)
             {
