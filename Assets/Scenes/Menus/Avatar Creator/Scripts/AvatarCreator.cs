@@ -47,6 +47,7 @@ public class AvatarCreator : MonoBehaviour
     public Color color;
     public float darkness;
     public GameObject colorPreviewer;
+    public GameObject hairColorPreviewer;
 
     private GameObject activeWindow;
 
@@ -188,7 +189,13 @@ public class AvatarCreator : MonoBehaviour
         Color tempColor = colorPreviewer.GetComponent<Image>().color;
         //stupid alpha shit
         tempColor.a = 1f;
+
         colorPreviewer.GetComponent<Image>().color = tempColor;
+        if(activeColorField == "Hair")
+        {
+            hairColorPreviewer.GetComponent<Image>().color = tempColor;
+        }
+
         avatar.UpdateColors(true);
     }
 
