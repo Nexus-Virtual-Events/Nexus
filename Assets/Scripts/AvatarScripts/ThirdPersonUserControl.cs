@@ -149,7 +149,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         string[] actionParts = lastAction.Split('_');
 
-        m_Character.StartAnimation(actionParts[0]);
+        m_Character.StartAnimation(actionParts[0], false);
 
     }
 
@@ -454,6 +454,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         // Update Move Here
         GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
-        m_Character.StartAnimation(currentInteraction);
+        m_Character.StartAnimation(currentInteraction, true);
     }
 }
