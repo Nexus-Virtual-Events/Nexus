@@ -55,7 +55,7 @@ public class MoveSync : RealtimeComponent
 
     private void UpdateMove()
     {
-       GetComponent<UpdateMove>().UpdateCharacterMove(_model.move);
+        GetComponent<UpdateMove>().UpdateCharacterMove(_model.move);
     }
 
     private void TriggerReceivedAction() {
