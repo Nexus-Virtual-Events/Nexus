@@ -453,7 +453,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
         // Update Move Here
-        GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
+        GetComponent<MoveSync>().SetLastAction("1" + "_" + cur_time.ToString());
         m_Character.StartAnimation(currentInteraction);
     }
 }
