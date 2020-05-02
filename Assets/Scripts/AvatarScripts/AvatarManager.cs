@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using Normal.Realtime;
+using UnityEditor;
 
 namespace Michsky.UI.ModernUIPack {
     public class AvatarManager : MonoBehaviour {
@@ -47,7 +48,6 @@ namespace Michsky.UI.ModernUIPack {
             for (int i = 0; i < resolutions.Length; i++)
             {
                 string option = resolutions[i].width.ToString() + " x " + resolutions[i].height.ToString();
-                Debug.Log("Resolution " + i.ToString() + ": " + option);
                 ResolutionSelector.Item item = new ResolutionSelector.Item(option);
                 resolutionOptions.Add(item);
 
@@ -124,6 +124,13 @@ namespace Michsky.UI.ModernUIPack {
             GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
             Loading.sceneString = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("Loading");
+        }
+
+        public void QuitGame()
+        {
+            Destroy(localPlayer);
+            GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
+            Application.Quit();
         }
     }
 }
