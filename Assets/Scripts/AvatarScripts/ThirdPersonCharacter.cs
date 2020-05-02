@@ -19,7 +19,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		Rigidbody m_Rigidbody;
 		Animator m_Animator;
-		bool m_IsGrounded;
 		float m_OrigGroundCheckDistance;
 		const float k_Half = 0.5f;
 		float m_TurnAmount;
@@ -28,10 +27,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		float m_CapsuleHeight;
 		Vector3 m_CapsuleCenter;
 		CapsuleCollider m_Capsule;
+
+		bool m_IsGrounded;
+
+		bool m_Sitting;
 		bool m_Crouching;
 		bool m_Clapping;
 		bool m_Waving;
-		bool m_Sitting;
+		bool m_Samba;
+
+		bool[] m_States = new bool[Utils.animations.Length];
+
+		private int numberOfAnimations;
 
 		void Start()
 		{
@@ -43,10 +50,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
+
+
+			numberOfAnimations = Utils.animations.Length;
 		}
 
 
-		public void Move(Vector3 move, bool crouch, bool jump, bool clap, bool wave, bool sit)
+		public void Move(Vector3 move, bool[] animationStates)
 		{
 
 			// convert the world relative moveInput vector into a local-relative
@@ -58,24 +68,23 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			move = Vector3.ProjectOnPlane(move, m_GroundNormal);
 			m_TurnAmount = Mathf.Atan2(move.x, move.z);
 			m_ForwardAmount = move.z;
-			m_Clapping = clap;
-			m_Waving = wave;
-			m_Sitting = sit;
 
+			m_States = animationStates;
 
 			ApplyExtraTurnRotation();
 
 			// control and velocity handling is different when grounded and airborne:
 			if (m_IsGrounded)
 			{
-				HandleGroundedMovement(crouch, jump);
+                //it takes in crouch(3) and jump(0)
+				HandleGroundedMovement(m_States[3], m_States[0]);
 			}
 			else
 			{
 				HandleAirborneMovement();
 			}
 
-			ScaleCapsuleForCrouching(crouch);
+			ScaleCapsuleForCrouching(m_States[3]);
 			PreventStandingInLowHeadroom();
 
 			// send input and other state parameters to the animator
@@ -109,17 +118,21 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				return;
 			}
 
+			Debug.Log("MoveState:"+ moveState);
+
 			//"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
 			parameters = moveState.Split(' ');
 
 			Vector3 move = new Vector3(float.Parse(parameters[0]), float.Parse(parameters[1]), float.Parse(parameters[2]));
-			bool isCrouching = int.Parse(parameters[3]) != 0;
-			bool isOnGround = int.Parse(parameters[4]) != 0;
-			bool isClapping = int.Parse(parameters[5]) != 0;
-			bool isWaving = int.Parse(parameters[6]) != 0;
-			bool isSitting = int.Parse(parameters[7]) != 0;
 
-			Move(move, isCrouching, isOnGround, isClapping, isWaving, isSitting);
+			bool[] foreignAnimationStates = new bool[numberOfAnimations];
+
+            for(int i = 0; i < numberOfAnimations; i += 1)
+            {
+				foreignAnimationStates[i] = parameters[i + 3] != "0";
+            }
+
+			Move(move, foreignAnimationStates);
 		}
 
 
@@ -167,11 +180,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// update the animator parameters
 			m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
 			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
-			m_Animator.SetBool("Crouch", m_Crouching);
-			m_Animator.SetBool("OnGround", m_IsGrounded);
-			m_Animator.SetBool("Clap", m_Clapping);
-			m_Animator.SetBool("Wave", m_Waving);
-			m_Animator.SetBool("Sit", m_Sitting);
+
+
+			//m_Animator.SetBool(Utils.animations[0], !m_States[0]);
+			for (int i = 0; i < numberOfAnimations; i++)
+            {
+				m_Animator.SetBool(Utils.animations[i], m_States[i]);
+            }
+			m_Animator.SetBool(Utils.animations[0], m_IsGrounded);
+
 
 			if (!m_IsGrounded)
 			{
