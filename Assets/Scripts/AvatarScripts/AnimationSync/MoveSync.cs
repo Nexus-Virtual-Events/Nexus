@@ -23,6 +23,7 @@ public class MoveSync : RealtimeComponent
             {
                 // Unregister from events
                 _model.moveDidChange -= MoveDidChange;
+                _model.lastActionDidChange -= LastActionDidChange;
             }
 
             // Store the model
@@ -35,20 +36,34 @@ public class MoveSync : RealtimeComponent
 
                 // Register for events so we'll know if the color changes later
                 _model.moveDidChange += MoveDidChange;
+                _model.lastActionDidChange += LastActionDidChange;
             }
         }
     }
 
-    private void MoveDidChange(MoveSyncModel model, string value)
+    private void MoveDidChange(MoveSyncModel model, string move)
     {
         // Update the mesh renderer
         UpdateMove();
     }
 
+    private void LastActionDidChange(MoveSyncModel model, string lastAction)
+    {
+        // Update the mesh renderer
+        TriggerReceivedAction();
+    }
+
     private void UpdateMove()
     {
-        // Get the color from the model and set it on the mesh renderer.
-        GetComponent<UpdateMove>().UpdateCharacterMove(_model.move);
+       GetComponent<UpdateMove>().UpdateCharacterMove(_model.move);
+    }
+
+    private void TriggerReceivedAction() {
+        GetComponent<ThirdPersonUserControl>().ReceivedRemoteAction(_model.lastAction);
+    }
+
+    public void SetLastAction (string action) {
+        _model.lastAction = action;
     }
 
     public void SetMove(string move)
