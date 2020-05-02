@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using TMPro;
 
 
 public class AvatarCreator : MonoBehaviour
@@ -50,6 +51,8 @@ public class AvatarCreator : MonoBehaviour
     private GameObject activeWindow;
 
     private bool toggleRepeated;
+
+    public TMP_Text colorSelectorText;
 
     private void Start()
     {
@@ -140,6 +143,7 @@ public class AvatarCreator : MonoBehaviour
 
     public void SetActiveColorField(string _activeColorField)
     {
+        Debug.Log(_activeColorField);
         activeColorField = _activeColorField;
         darkness = 1.0f;
         color = Color.white;
