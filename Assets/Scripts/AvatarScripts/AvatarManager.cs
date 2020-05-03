@@ -108,7 +108,7 @@ namespace Michsky.UI.ModernUIPack {
         {
             Debug.Log(settingIndex);
             QualitySettings.SetQualityLevel(settingIndex);
-            if(settingIndex == 3)
+            if(settingIndex >= 2)
             {
                 ToggleTrees();
             }
