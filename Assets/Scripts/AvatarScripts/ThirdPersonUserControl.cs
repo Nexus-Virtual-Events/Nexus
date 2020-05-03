@@ -465,18 +465,19 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     private void ArrivedAtAnimationDistance (bool[] currentAnimationStates) {
         //handshake finishing action
-        transform.LookAt(rotateTowardsTarget);
+        //transform.LookAt(rotateTowardsTarget);
         LOG("Animation State: " + currentAnimationStates.ToString());
 
         GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(new Vector3(0, 0, 0), currentAnimationStates));
-        canMove = true;
-        autoPilot = false;
-
+        
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
         // Update Move Here
         GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
         m_Character.StartAnimation(currentInteraction, true);
+
+        canMove = true;
+        autoPilot = false;
     }
 }
