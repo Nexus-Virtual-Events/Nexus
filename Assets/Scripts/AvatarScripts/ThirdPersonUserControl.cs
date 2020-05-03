@@ -166,8 +166,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         currentInteraction = parameters[2];
 
-        if (parameters[2] == "1")
-        {
+       
             float[] animationReq = Utils.animationRequirements[Convert.ToInt32(parameters[2])];
 
             if (_realtimeView.isOwnedLocally)
@@ -192,7 +191,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 rotateTowardsTarget = lookAtTarget;
             }
 
-        }
+        
     }
 
     int maxId = -1;
