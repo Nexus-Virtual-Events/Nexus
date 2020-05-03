@@ -1,17 +1,11 @@
 fileFormatVersion: 2
-guid: 64c964fc9d9da467fb185cfb31d66e4f
+guid: e5257e92144d649e7b3fff1a9af90bc2
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: 1319632466090317796
     second: UMA_Male_Rig|Male_FacialExpressions
-  - first:
-      74: -3961891214275552199
-    second: UMA_Male_Rig|Male_FacialExpressions.001
-  - first:
-      74: 1646179703873595649
-    second: UMA_Male_Rig|UMA_Male_Rig.001|UMA_Male_Rig|Male_FacialExpressions|UMA_Male_R
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -43,7 +37,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -89,7 +83,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 100
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
