@@ -332,7 +332,7 @@ public class AvatarCreator : MonoBehaviour
     {
         GameObject window = GameObject.Find(windowName);
 
-        if (activeWindow == window && windowName != "ColorSelector")
+        if (activeWindow == window)
         {
             ToggleVisibility(window);
             toggleRepeated = true;
