@@ -465,7 +465,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     private void ArrivedAtAnimationDistance (bool[] currentAnimationStates) {
         //handshake finishing action
-        //transform.LookAt(rotateTowardsTarget);
+        transform.LookAt(rotateTowardsTarget);
         LOG("Animation State: " + currentAnimationStates.ToString());
 
         GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(new Vector3(0, 0, 0), currentAnimationStates));
