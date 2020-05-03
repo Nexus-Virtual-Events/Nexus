@@ -14,9 +14,10 @@ namespace Michsky.UI.ModernUIPack {
         public ModalWindowManager settingsWindow;
         public NotificationManager connectedNotification;
         public NotificationManager eventStartingNotification;
-        //public GameObject grassTerrain;
         private EventManager eventManager;
         private GameObject localPlayer;
+
+        public GameObject trees;
 
         //public AudioMixer audioMixer;
 
@@ -107,6 +108,10 @@ namespace Michsky.UI.ModernUIPack {
         {
             Debug.Log(settingIndex);
             QualitySettings.SetQualityLevel(settingIndex);
+            if(settingIndex == 3)
+            {
+                ToggleTrees();
+            }
         }
 
         public void SetVolume(float volume)
@@ -114,9 +119,9 @@ namespace Michsky.UI.ModernUIPack {
             //audioMixer.SetFloat("Volume", volume);
         }
 
-        public void ToggleGrass()
+        public void ToggleTrees()
         {
-            //grassTerrain.GetComponent<Terrain>().enabled = !grassTerrain.GetComponent<Terrain>().enabled;
+            trees.SetActive(!trees.activeSelf);
         }
 
         public void Respawn()
