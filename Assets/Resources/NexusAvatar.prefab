@@ -658,6 +658,8 @@ MonoBehaviour:
   foreignAvatarRecipe: 
   sit: 0
   positionBeforeSitting: {x: 0, y: 0, z: 0}
+  diplomaPrefab: {fileID: -927199367670048503, guid: da9d1c142abad4a338a8978fee38ae9d,
+    type: 3}
 --- !u!114 &5344741582037746108
 MonoBehaviour:
   m_ObjectHideFlags: 0

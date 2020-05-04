@@ -57,6 +57,18 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     private int numberOfAnimations;
 
+    public GameObject diplomaPrefab;
+    private GameObject diploma;
+
+    private GameObject rightHand;
+
+    public GameObject GetChildWithName(GameObject fromGameObject, string withName)
+    {
+        Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>(true);
+        foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
+        return null;
+    }
+
     private void Awake()
     {
         _realtimeView = GetComponent<RealtimeView>();
@@ -71,6 +83,33 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     public int getID()
     {
         return _realtimeView.ownerID;
+    }
+
+    private bool isDiplomaInstantiated;
+
+    public void GetDiploma()
+    {
+        if(rightHand == null)
+        {
+            rightHand = GetChildWithName(ActionRouter.GetLocalAvatar(), "RightHand");
+        }
+
+        if (isDiplomaInstantiated)
+        {
+            Debug.Log("diploma was already instantiated");
+            return;
+        }
+        diploma = Instantiate(diplomaPrefab, rightHand.transform, false);
+        diploma.transform.parent = rightHand.transform;
+        diploma.transform.rotation = diploma.transform.rotation * Quaternion.Euler(0f, 0f, 90f);
+        diploma.transform.position = diploma.transform.position - new Vector3(0f, 0.1f, 0f);
+        isDiplomaInstantiated = true;
+    }
+
+    public void GiveDiploma()
+    {
+        Destroy(diploma);
+        isDiplomaInstantiated = false;
     }
 
     private void Start()
@@ -113,24 +152,13 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
         }
 
+        
+
         gameObject.name = "Avatar_" + getID();
         numberOfAnimations = Utils.animations.Length;
         //playerName = GetChildWithName(gameObject, "Player Name");
 
-    }
-
-    GameObject GetChildWithName(GameObject obj, string name)
-    {
-        Transform trans = obj.transform;
-        Transform childTrans = trans.Find(name);
-        if (childTrans != null)
-        {
-            return childTrans.gameObject;
-        }
-        else
-        {
-            return null;
-        }
+  
     }
 
     private string[] stringToArray(string s)
@@ -375,6 +403,15 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     GetComponent<CapsuleCollider>().enabled = true;
                     GetComponent<Rigidbody>().useGravity = true;
 
+                }
+
+                if (Input.GetKey(KeyCode.I))
+                {
+                    GetDiploma();
+                }
+                if (Input.GetKey(KeyCode.O))
+                {
+                    GiveDiploma();
                 }
 
                 if (sit)
