@@ -17,7 +17,7 @@ public class UniversalEventCountdown : MonoBehaviour
     private DateTime startTime;
     private TimeSpan timeLeft;
     public TMP_Text eventStartingNotificationDescription;
-    public string scene = "The Bowl";
+    public string scene = "The Circle";
     private EventManager eventManager;
     private GameObject localPlayer;
 
@@ -38,7 +38,7 @@ public class UniversalEventCountdown : MonoBehaviour
         //Debug.Log(eventManager.isInitialized());
         if (eventManager.GetEvents()[0] == '0')
         {
-            scene = "The Bowl";
+            scene = "The Circle";
             eventReceived = false;
         }
         if (eventManager.GetEvents()[1] == '1')

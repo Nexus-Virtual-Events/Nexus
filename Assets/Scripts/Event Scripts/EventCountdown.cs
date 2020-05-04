@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using Normal.Realtime;
 using Michsky.UI.ModernUIPack;
-using Normal.Realtime;
 
 public class EventCountdown : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class EventCountdown : MonoBehaviour
     private float currentTime = 0f;
     public float countdownDuration = 10.0f;
     public TMP_Text eventStartingNotificationDescription;
-    public string scene = "The Bowl";
+    public string scene = "The Circle";
     private EventManager eventManager;
     private GameObject localPlayer;
 
@@ -39,7 +38,7 @@ public class EventCountdown : MonoBehaviour
         if (cameraString == eventManager.GetEvents()[2]){
             if (eventManager.GetEvents()[0] == '0')
             {
-                scene = "The Bowl";
+                scene = "The Circle";
             }
 
             countdownDuration = 10.0f;
