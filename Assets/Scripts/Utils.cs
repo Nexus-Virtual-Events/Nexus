@@ -14,7 +14,7 @@ public class Utils : MonoBehaviour
     public static UnityEngine.KeyCode[] animationEnums;
 
 
-    private void Start()
+    private void Awake()
     {
         Physics.IgnoreLayerCollision(9, 10);
         interactionMap = new Map<int, string>();
@@ -23,8 +23,7 @@ public class Utils : MonoBehaviour
 
         //interactionMap.Add(2, "TriggerShakeHand");
         animationRequirements.Add(1, new[]{1.0f, 0.55f});
-        animationRequirements.Add(2, new[]{1.0f, 0.55f});
-
+        animationRequirements.Add(2, new[]{0.6f, 0.4f});
 
 
         animations = new[]

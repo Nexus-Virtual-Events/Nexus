@@ -36,7 +36,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		bool m_Waving;
 		bool m_Samba;
 
-		bool[] m_States = new bool[Utils.animations.Length];
+		bool[] m_States;
 
 		private int numberOfAnimations;
 
@@ -53,6 +53,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 
 			numberOfAnimations = Utils.animations.Length;
+
+			m_States = new bool[Utils.animations.Length];
 		}
 
 
