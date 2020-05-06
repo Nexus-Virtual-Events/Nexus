@@ -187,8 +187,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
     {
-        LOG("Interaction type: " + newInteraction);
-        LOG("ReactToInteractionchange from " + gameObject.name);
+        //LOG("Interaction type: " + newInteraction);
+        //LOG("ReactToInteractionchange from " + gameObject.name);
 
         string[] parameters = stringToArray(newInteraction);
 
@@ -503,7 +503,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private void ArrivedAtAnimationDistance (bool[] currentAnimationStates) {
         //handshake finishing action
         transform.LookAt(rotateTowardsTarget);
-        LOG("Animation State: " + currentAnimationStates.ToString());
+        //LOG("Animation State: " + currentAnimationStates.ToString());
 
         GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(new Vector3(0, 0, 0), currentAnimationStates));
         

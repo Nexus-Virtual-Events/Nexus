@@ -37,6 +37,7 @@ public class EventSync : RealtimeComponent
     private void EventsDidChange(EventSyncModel model, string value)
     {
         // Update the mesh renderer
+        Debug.Log("EVENTS: Update event called");
         UpdateEvents();
     }
 

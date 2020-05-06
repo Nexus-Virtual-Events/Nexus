@@ -126,15 +126,18 @@ namespace Michsky.UI.ModernUIPack {
 
         public void Respawn()
         {
-            GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
+            Realtime.Destroy(localPlayer.GetComponent<RealtimeView>());
+            Destroy(localPlayer);
+            //GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
             Loading.sceneString = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("Loading");
         }
 
         public void QuitGame()
         {
+            Realtime.Destroy(localPlayer.GetComponent<RealtimeView>());
             Destroy(localPlayer);
-            GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
+            //GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
             Application.Quit();
         }
     }
