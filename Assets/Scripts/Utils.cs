@@ -22,9 +22,10 @@ public class Utils : MonoBehaviour
         interactionMap.Add(2, "Diploma");
 
         //interactionMap.Add(2, "TriggerShakeHand");
-        animationRequirements.Add(1, new[]{1.0f, 0.55f});
-        animationRequirements.Add(2, new[]{0.8f, 0.45f});
-
+        if (!animationRequirements.ContainsKey(1))
+            animationRequirements.Add(1, new[]{1.0f, 0.55f});
+        if (!animationRequirements.ContainsKey(2))
+            animationRequirements.Add(2, new[]{0.8f, 0.45f});
 
         animations = new[]
         {
