@@ -10,6 +10,7 @@ public class Utils : MonoBehaviour
 {
     public static Map<int, string> interactionMap;
     public static Dictionary<int, float[]> animationRequirements = new Dictionary<int, float[]>();
+    public static Dictionary<string, string> sceneIndices = new Dictionary<string, string>();
     public static string[] animations;
     public static UnityEngine.KeyCode[] animationEnums;
 
@@ -50,8 +51,13 @@ public class Utils : MonoBehaviour
             KeyCode.Alpha5,
             //KeyCode.H
 
-
         };
+
+        if (!sceneIndices.ContainsKey("1"))
+            sceneIndices.Add("1", "The Lobby");
+        if (!sceneIndices.ContainsKey("2"))
+            sceneIndices.Add("2", "Colross");
+
     }
 
 }

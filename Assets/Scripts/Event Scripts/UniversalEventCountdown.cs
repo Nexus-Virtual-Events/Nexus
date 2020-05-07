@@ -13,11 +13,11 @@ public class UniversalEventCountdown : MonoBehaviour
 {
 
     private DateTime currentTime;
-    public int countdownDuration;
+    private int countdownDuration = 1;
     private DateTime startTime;
     private TimeSpan timeLeft;
     public TMP_Text eventStartingNotificationDescription;
-    public string scene = "The Circle";
+    public string scene;
     private EventManager eventManager;
     private GameObject localPlayer;
 
@@ -38,7 +38,7 @@ public class UniversalEventCountdown : MonoBehaviour
         //Debug.Log(eventManager.isInitialized());
         if (eventManager.GetEvents()[0] == '0')
         {
-            scene = "The Circle";
+            scene = "Colross";
             eventReceived = false;
         }
         if (eventManager.GetEvents()[1] == '1')
@@ -62,7 +62,8 @@ public class UniversalEventCountdown : MonoBehaviour
             {
                 Debug.Log("Event loading from Universal Countdown: "+ eventManager.GetEvents());
                 GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
-                Loading.sceneString = scene;
+                Debug.Log(Utils.sceneIndices["2"]);
+                Loading.sceneString = Utils.sceneIndices["2"];
                 SceneManager.LoadScene("Loading");
             }
 
