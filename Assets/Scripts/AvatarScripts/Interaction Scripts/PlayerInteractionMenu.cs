@@ -12,7 +12,7 @@ namespace Normal.Realtime.Examples {
 
         public void ExitMenu()
         {
-            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
             GameObject.Find("Realtime").GetComponent<PlayerInteraction>().isInstantiated = false;
         }
 
@@ -20,8 +20,15 @@ namespace Normal.Realtime.Examples {
         {
             localAvatar = ActionRouter.GetLocalAvatar();
             interactionModifier = localAvatar.GetComponent<ModifyInteraction>();
-            selfId = localAvatar.GetComponent<ThirdPersonUserControl>().getID();
-           
+            selfId = localAvatar.GetComponent<ThirdPersonUserControl>().getID(); 
+        }
+
+        public void Update()
+        {
+            if (Input.GetKey(KeyCode.H))
+            {
+                PerformAction("ShakeHand");
+            }
         }
 
         private int getOtherID()
@@ -39,6 +46,7 @@ namespace Normal.Realtime.Examples {
             //Debug.Log(Utils.interactionMap);
             interactionModifier.SendNewValue(selfId.ToString() + " " + getOtherID().ToString() + " " + Utils.interactionMap.Reverse[interactionString] + " " + cur_time.ToString());
             ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(ActionRouter.GetCurrentCharacter(), selfId.ToString() + " " + getOtherID().ToString() + " " + Utils.interactionMap.Reverse[interactionString] + " " + cur_time.ToString());
+            ExitMenu();
         }
 
     }

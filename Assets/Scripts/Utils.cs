@@ -37,7 +37,7 @@ public class Utils : MonoBehaviour
             "Samba",
             "HipHop",
             "Cheer",
-            "IndividualShakeHand",
+            //"IndividualShakeHand",
         };
 
         animationEnums = new[]
@@ -48,7 +48,7 @@ public class Utils : MonoBehaviour
             KeyCode.Alpha3,
             KeyCode.Alpha4,
             KeyCode.Alpha5,
-            KeyCode.H
+            //KeyCode.H
 
 
         };

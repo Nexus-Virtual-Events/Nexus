@@ -281,7 +281,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			bool _stuck = false;
 
 			_timer += Time.deltaTime;
-			if (_timer > .5f)
+			if (_timer > .05f)
 			{
 				_timer = 0;
 				if (Mathf.Abs(prevY - transform.position.y) < 0.01)
