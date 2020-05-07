@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/Loading/Loading.unity
     guid: bae65e66fdbe64c1c980435d9e548010
   - enabled: 1
-    path: Assets/Scenes/Rooms/The Lobby/The Lobby.unity
+    path: Assets/Scenes/Rooms/The Lobby/Playground.unity
     guid: 0606eb716a7706f469cbe9fceae4bd88
   - enabled: 1
     path: Assets/Scenes/Rooms/PDS Graduation/Colross.unity
     guid: cb20489322ac141a4a772216be477051
+  - enabled: 1
+    path: Assets/Scenes/Rooms/The Lobby/The Lobby.unity
+    guid: 13e60c6a3b596ac42a906b647d09f3c7
   m_configObjects: {}
