@@ -144,7 +144,7 @@ public class AvatarCreator : MonoBehaviour
 
     public void SetActiveColorField(string _activeColorField)
     {
-        colorSelectorText.text = _activeColorField + " Color";
+        colorSelectorText.text = _activeColorField;
         activeColorField = _activeColorField;
         darkness = 1.0f;
         color = Color.white;
