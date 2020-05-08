@@ -22,7 +22,7 @@ MonoBehaviour:
   - race: HumanMaleHD
     filename: 
     thumb: {fileID: 0}
-  wardrobeSlot: Face
+  wardrobeSlot: Beard
   Hides: []
   HideTags: []
   suppressWardrobeSlots: []

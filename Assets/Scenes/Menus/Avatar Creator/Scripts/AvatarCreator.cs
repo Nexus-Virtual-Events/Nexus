@@ -55,26 +55,44 @@ public class AvatarCreator : MonoBehaviour
 
     public TMP_Text colorSelectorText;
 
+    public GameObject[] menWindows;
+    public GameObject[] womenWindows;
+
+    public GameObject[] menItems;
+    public GameObject[] womenItems;
+
+    private GameObject[] selectors;
+
+
     private void Start()
     {
-        mensOptions.AddRange(mensHairOptions);
-        mensOptions.AddRange(mensTopOptions);
+        //mensOptions.AddRange(mensHairOptions);
+        //mensOptions.AddRange(mensTopOptions);
 
-        womensOptions.AddRange(womensHairOptions);
-        womensOptions.AddRange(womensTopOptions);
-        womensOptions.AddRange(womensBottomOptions);
-        womensOptions.AddRange(womensShoeOptions);
+        //womensOptions.AddRange(womensHairOptions);
+        //womensOptions.AddRange(womensTopOptions);
+        //womensOptions.AddRange(womensBottomOptions);
+        //womensOptions.AddRange(womensShoeOptions);
 
         darkness = 1.0f;
 
-        foreach (GameObject window in hideWindowsMale)
-        {
-            window.SetActive(false);
-        }
-        foreach (GameObject window in hideWindowsFemale)
-        {
-            window.SetActive(true);
-        }
+        //foreach (GameObject window in hideWindowsMale)
+        //{
+        //    window.SetActive(false);
+        //}
+        //foreach (GameObject window in hideWindowsFemale)
+        //{
+        //    window.SetActive(true);
+        //}
+
+        menWindows = GameObject.FindGameObjectsWithTag("MenWindow");
+        womenWindows = GameObject.FindGameObjectsWithTag("WomenWindow");
+        menItems = GameObject.FindGameObjectsWithTag("MenItem");
+        womenItems = GameObject.FindGameObjectsWithTag("WomenItem");
+
+        SetMale();
+
+        selectors = GameObject.FindGameObjectsWithTag("Selector");
     }
 
     void OnEnable()
@@ -87,52 +105,91 @@ public class AvatarCreator : MonoBehaviour
         avatar.CharacterUpdated.RemoveListener(Updated);
     }
 
+    void debugList(GameObject[] list)
+    {
+        foreach (GameObject window in list)
+        {
+            Debug.Log(window.name);
+        }
+    }
+
+    void SetMale()
+    {
+        foreach (GameObject window in womenWindows)
+        {
+            window.SetActive(false);
+            //window.GetComponent<CanvasRenderer>().SetAlpha(0);
+        }
+
+        foreach (GameObject window in menWindows)
+        {
+            window.SetActive(true);
+            //window.GetComponent<CanvasRenderer>().SetAlpha(1);
+        }
+
+        foreach (GameObject item in womenItems)
+        {
+            item.SetActive(false);
+            //item.GetComponent<CanvasRenderer>().SetAlpha(0);
+        }
+        foreach (GameObject item in menItems)
+        {
+            item.SetActive(true);
+            //item.GetComponent<CanvasRenderer>().SetAlpha(1);
+
+        }
+    }
+
+    void SetFemale()
+    {
+        foreach (GameObject window in womenWindows)
+        {
+            window.SetActive(true);
+            //window.GetComponent<CanvasRenderer>().SetAlpha(1);
+        }
+
+        foreach (GameObject window in menWindows)
+        {
+            window.SetActive(false);
+            //window.GetComponent<CanvasRenderer>().SetAlpha(0);
+        }
+
+        foreach (GameObject item in womenItems)
+        {
+            item.SetActive(true);
+            //item.GetComponent<CanvasRenderer>().SetAlpha(1);
+        }
+        foreach (GameObject item in menItems)
+        {
+            item.SetActive(false);
+            //item.GetComponent<CanvasRenderer>().SetAlpha(0);
+
+        }
+    }
+
+   
     public void ModifySex(bool isMale)
     {
+        Debug.Log(womenWindows.Length);
+        debugList(womenWindows);
+        Debug.Log(menWindows.Length);
+        debugList(menWindows);
+        Debug.Log(womenItems.Length);
+        debugList(womenItems);
+        Debug.Log(menItems.Length);
+        debugList(menItems);
+
+
         if (isMale && avatar.activeRace.name != "HumanMaleHD")
         {
             avatar.ChangeRace("HumanMaleHD");
-
-            foreach (GameObject wardrobeItem in womensOptions)
-            {
-                wardrobeItem.SetActive(false);
-            }
-
-            foreach (GameObject wardrobeItem in mensOptions)
-            {
-                wardrobeItem.SetActive(true);
-            }
-
-            foreach(GameObject window in hideWindowsMale)
-            {
-                window.SetActive(false);
-            }
-            foreach (GameObject window in hideWindowsFemale)
-            {
-                window.SetActive(true);
-            }
+            SetMale();
+            
         }
         if (!isMale && avatar.activeRace.name != "HumanFemaleHD")
         {
             avatar.ChangeRace("HumanFemaleHD");
-
-            foreach (GameObject wardrobeItem in womensOptions)
-            {
-                wardrobeItem.SetActive(true);
-            }
-
-            foreach (GameObject wardrobeItem in mensOptions)
-            {
-                wardrobeItem.SetActive(false);
-            }
-            foreach (GameObject window in hideWindowsMale)
-            {
-                window.SetActive(true);
-            }
-            foreach (GameObject window in hideWindowsFemale)
-            {
-                window.SetActive(false);
-            }
+            SetFemale();
         }
     }
 
@@ -222,16 +279,47 @@ public class AvatarCreator : MonoBehaviour
     }
 
     public void ModifyFacialHair(string s) {
-        if (currentHair == s)
+        if (currentFacialHair == s)
         {
             avatar.ClearSlot("Beard");
+            avatar.BuildCharacter();
+            currentFacialHair = "";
+        }
+        else
+        {
+            currentFacialHair = s;
+            avatar.SetSlot("Beard", s);
+            avatar.BuildCharacter();
+        }
+    }
+
+    public void RemoveFacialHair()
+    {
+        avatar.ClearSlot("Beard");
+        avatar.BuildCharacter();
+        currentFacialHair = "";
+    }
+
+    public void RemoveHair()
+    {
+        avatar.ClearSlot("Hair");
+        avatar.BuildCharacter();
+        currentHair = "";
+    }
+
+
+    public void ModifyFace(string s)
+    {
+        if (currentHair == s)
+        {
+            avatar.ClearSlot("Face");
             avatar.BuildCharacter();
             currentHair = "";
         }
         else
         {
             currentHair = s;
-            avatar.SetSlot("Beard", s);
+            avatar.SetSlot("Face", s);
             avatar.BuildCharacter();
         }
     }

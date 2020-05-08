@@ -8,6 +8,11 @@ TagManager:
   - Women's Hair
   - Chair
   - PlayerName
+  - WomenItem
+  - MenItem
+  - WomenWindow
+  - MenWindow
+  - Selector
   layers:
   - Default
   - TransparentFX

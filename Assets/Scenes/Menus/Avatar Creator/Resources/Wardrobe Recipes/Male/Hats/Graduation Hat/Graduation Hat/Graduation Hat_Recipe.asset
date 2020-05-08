@@ -26,8 +26,17 @@ MonoBehaviour:
   - race: HumanMaleHD
     filename: 
     thumb: {fileID: 0}
-  wardrobeSlot: Hair
-  Hides: []
+  wardrobeSlot: Helmet
+  Hides:
+  - M_Hair 2
+  - M_hair 3 band
+  - M_Hair 3
+  - M_Hair 4
+  - M_Hair 5
+  - M_Hair 7 band
+  - M_hair 8
+  - M_Hair_9
+  - M_Hair 7
   HideTags: []
   suppressWardrobeSlots: []
   activeWardrobeSet: []
