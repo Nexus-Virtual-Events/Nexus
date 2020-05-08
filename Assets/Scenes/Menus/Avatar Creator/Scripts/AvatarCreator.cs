@@ -142,6 +142,7 @@ public class AvatarCreator : MonoBehaviour
 
     void SetFemale()
     {
+
         foreach (GameObject window in womenWindows)
         {
             window.SetActive(true);
@@ -167,7 +168,14 @@ public class AvatarCreator : MonoBehaviour
         }
     }
 
-   
+    private void Update()
+    {
+        if(DNA["breastSize"].Get()>.3f)
+            DNA["breastSize"].Set(0.3f);
+            avatar.BuildCharacter();
+    }
+
+
     public void ModifySex(bool isMale)
     {
         Debug.Log(womenWindows.Length);
@@ -232,6 +240,7 @@ public class AvatarCreator : MonoBehaviour
         color = _color;
         colorPreviewer.GetComponent<Image>().color = color;
         ApplyColorSettings();
+    
     }
 
     public void ModifyFieldColorDarkness(float value)
@@ -241,17 +250,21 @@ public class AvatarCreator : MonoBehaviour
     }
 
     public void ApplyColorSettings(){
-        avatar.SetColor(activeColorField, color * darkness);
+
+        
+        avatar.SetColor(activeColorField, new Color((color * darkness).r, (color * darkness).g, (color * darkness).b));
         colorPreviewer.GetComponent<Image>().color = color * darkness;
+   
         Color tempColor = colorPreviewer.GetComponent<Image>().color;
         //stupid alpha shit
         tempColor.a = 1f;
 
         colorPreviewer.GetComponent<Image>().color = tempColor;
-        if(activeColorField == "Hair")
+        if (activeColorField == "Hair")
         {
             hairColorPreviewer.GetComponent<Image>().color = tempColor;
         }
+        tempColor.a = 1f;
 
         avatar.UpdateColors(true);
     }
