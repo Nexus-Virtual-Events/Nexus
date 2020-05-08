@@ -79,10 +79,14 @@ namespace Normal.Realtime {
             if (normalizedVolume > 1.0f)
                 normalizedVolume = 1.0f;
 
-            if(normalizedVolume < .2)
+            if(normalizedVolume < .3)
             {
                 normalizedVolume = 0;
+                Debug.Log("silent");
             }
+
+            Debug.Log(normalizedVolume);
+
 
             voiceVolume = normalizedVolume;
         }
