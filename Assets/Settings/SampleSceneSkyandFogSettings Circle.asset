@@ -16,7 +16,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   rotation:
     m_OverrideState: 1
-    m_Value: 282
+    m_Value: 115
     min: 0
     max: 360
   skyIntensityMode:
@@ -31,11 +31,11 @@ MonoBehaviour:
     min: 0
   upperHemisphereLuxValue:
     m_OverrideState: 0
-    m_Value: 1.6275674
+    m_Value: 1.6276205
     min: 0
   upperHemisphereLuxColor:
     m_OverrideState: 0
-    m_Value: {x: 0.22720794, y: 0.32192862, z: 0.5}
+    m_Value: {x: 0.22720791, y: 0.32192317, z: 0.5}
   desiredLuxValue:
     m_OverrideState: 0
     m_Value: 20000
