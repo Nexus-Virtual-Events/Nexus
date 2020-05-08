@@ -1031,8 +1031,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effectGradient:
     serializedVersion: 2
-    key0: {r: 0.97647065, g: 0.14901961, b: 0.28627452, a: 1}
-    key1: {r: 1, g: 0.6045604, b: 0.5235849, a: 1}
+    key0: {r: 0.45490196, g: 0.45490196, b: 0.7490196, a: 1}
+    key1: {r: 0.20392157, g: 0.5411765, b: 0.78039217, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}

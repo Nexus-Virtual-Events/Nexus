@@ -69,7 +69,7 @@ namespace Normal.Realtime {
             }
 
             // These are arbitrary values I picked from my own testing.
-            float volumeMinDb = -42.0f;
+            float volumeMinDb = -30.0f;
             float volumeMaxDb = -5.0f;
             float volumeRange = volumeMaxDb - volumeMinDb;
 
