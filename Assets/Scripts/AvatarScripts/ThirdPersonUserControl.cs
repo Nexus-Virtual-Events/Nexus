@@ -354,7 +354,23 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
         return animationString;
     }
-    
+
+    private void StandUp()
+    {
+        Debug.Log("Stand up");
+        sit = false;
+        transform.position = positionBeforeSitting;
+        //GetComponent<CapsuleCollider>().enabled = true;
+        Physics.IgnoreCollision(ActionRouter.GetCurrentChair().GetComponent<Collider>(), GetComponent<Collider>(), false);
+        //GetComponent<Rigidbody>().useGravity = true;
+    }
+
+    private void SitDown()
+    {
+        //GetComponent<CapsuleCollider>().enabled = false;
+        Physics.IgnoreCollision(ActionRouter.GetCurrentChair().GetComponent<Collider>(), GetComponent<Collider>());
+        //GetComponent<Rigidbody>().useGravity = false;
+    }
 
     // Fixed update is called in sync with physics
     private void FixedUpdate()
@@ -397,13 +413,11 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
                 if ((h != 0f || v != 0f) && sit)
                 {
-                    Debug.Log("Stand up");
-                    sit = false;
-                    transform.position = positionBeforeSitting;
-                    //GetComponent<CapsuleCollider>().enabled = true;
-                    Physics.IgnoreCollision(ActionRouter.GetCurrentChair().GetComponent<Collider>(), GetComponent<Collider>(), false);
-                    //GetComponent<Rigidbody>().useGravity = true;
-
+                    StandUp();
+                }
+                if(sit && positionBeforeSitting != null && Vector3.Distance(positionBeforeSitting, transform.position) > 0.2f)
+                {
+                    StandUp();
                 }
 
                 if (Input.GetKey(KeyCode.I))
@@ -417,9 +431,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
                 if (sit)
                 {
-                    //GetComponent<CapsuleCollider>().enabled = false;
-                    Physics.IgnoreCollision(ActionRouter.GetCurrentChair().GetComponent<Collider>(), GetComponent<Collider>());
-                    //GetComponent<Rigidbody>().useGravity = false;
+                    SitDown();
                 }
 
                 bool[] animationStates = new bool[numberOfAnimations];
