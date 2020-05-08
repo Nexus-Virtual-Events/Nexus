@@ -75,6 +75,9 @@ public class AvatarCreator : MonoBehaviour
         {
             window.SetActive(true);
         }
+
+
+
     }
 
     void OnEnable()

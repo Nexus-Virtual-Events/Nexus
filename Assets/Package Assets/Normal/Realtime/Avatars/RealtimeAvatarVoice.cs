@@ -82,11 +82,7 @@ namespace Normal.Realtime {
             if(normalizedVolume < .3)
             {
                 normalizedVolume = 0;
-                Debug.Log("silent");
             }
-
-            Debug.Log(normalizedVolume);
-
 
             voiceVolume = normalizedVolume;
         }

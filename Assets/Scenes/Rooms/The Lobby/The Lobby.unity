@@ -5068,7 +5068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _appKey: 00012ed2-55ea-4de1-bde4-2c45df2dca9d
-  _roomToJoinOnStart: The Circle
+  _roomToJoinOnStart: The Lobby
   _joinRoomOnStart: 1
   _debugLogging: 1
 --- !u!4 &340237025
@@ -21943,7 +21943,7 @@ PrefabInstance:
     - target: {fileID: 82147416425015254, guid: f49b1865d907dca4a807588585397534,
         type: 3}
       propertyPath: m_Volume
-      value: 0.11
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 82147416425015254, guid: f49b1865d907dca4a807588585397534,
         type: 3}

@@ -400,8 +400,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     Debug.Log("Stand up");
                     sit = false;
                     transform.position = positionBeforeSitting;
-                    GetComponent<CapsuleCollider>().enabled = true;
-                    GetComponent<Rigidbody>().useGravity = true;
+                    //GetComponent<CapsuleCollider>().enabled = true;
+                    Physics.IgnoreCollision(ActionRouter.GetCurrentChair().GetComponent<Collider>(), GetComponent<Collider>(), false);
+                    //GetComponent<Rigidbody>().useGravity = true;
 
                 }
 
@@ -416,8 +417,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
                 if (sit)
                 {
-                    GetComponent<CapsuleCollider>().enabled = false;
-                    GetComponent<Rigidbody>().useGravity = false;
+                    //GetComponent<CapsuleCollider>().enabled = false;
+                    Physics.IgnoreCollision(ActionRouter.GetCurrentChair().GetComponent<Collider>(), GetComponent<Collider>());
+                    //GetComponent<Rigidbody>().useGravity = false;
                 }
 
                 bool[] animationStates = new bool[numberOfAnimations];
