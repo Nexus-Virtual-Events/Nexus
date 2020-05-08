@@ -79,6 +79,9 @@ namespace Normal.Realtime {
             if (normalizedVolume > 1.0f)
                 normalizedVolume = 1.0f;
 
+            if (normalizedVolume < 0.3f)
+                normalizedVolume = 0;
+
             voiceVolume = normalizedVolume;
         }
 

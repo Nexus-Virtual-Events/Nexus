@@ -66,10 +66,12 @@ namespace Michsky.UI.ModernUIPack {
         }
 
         private void DidConnectToRoom(Realtime realtime) {
+
+            Transform _spawn = GameObject.Find("Spawn").transform;
             // Instantiate the CubePlayer for this client once we've successfully connected to the room
             localPlayer = Realtime.Instantiate("NexusAvatar",                 // Prefab name
-                                position: Vector3.up,          // Start 1 meter in the air
-                                rotation: Quaternion.identity, // No rotation
+                                position: _spawn.position,          // Start 1 meter in the air
+                                rotation: _spawn.rotation, // No rotation
                            ownedByClient: true,                // Make sure the RealtimeView on this prefab is owned by this client
                 preventOwnershipTakeover: true,                // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
                              useInstance: realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.

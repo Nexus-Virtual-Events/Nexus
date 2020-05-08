@@ -89,7 +89,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     public void GetDiploma()
     {
-        if(rightHand == null)
+        if (rightHand == null)
         {
             rightHand = GetChildWithName(ActionRouter.GetLocalAvatar(), "RightHand");
         }
@@ -152,13 +152,13 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
         }
 
-        
+
 
         gameObject.name = "Avatar_" + getID();
         numberOfAnimations = Utils.animations.Length;
         //playerName = GetChildWithName(gameObject, "Player Name");
 
-  
+
     }
 
     private string[] stringToArray(string s)
@@ -170,7 +170,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         return parameters;
     }
 
-    public void ReceivedRemoteAction (string lastAction) {
+    public void ReceivedRemoteAction(string lastAction)
+    {
 
         if (_realtimeView.isOwnedLocally)
         {
@@ -194,32 +195,32 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         currentInteraction = parameters[2];
 
-       
-            float[] animationReq = Utils.animationRequirements[Convert.ToInt32(parameters[2])];
 
-            if (_realtimeView.isOwnedLocally)
-            {
+        float[] animationReq = Utils.animationRequirements[Convert.ToInt32(parameters[2])];
 
-                Vector3 otherPosition = sourceCharacter.transform.position;
-                Vector3 diff = (otherPosition - transform.position);
+        if (_realtimeView.isOwnedLocally)
+        {
 
-                Vector3 centerTarget = (diff / 2) + transform.position;
+            Vector3 otherPosition = sourceCharacter.transform.position;
+            Vector3 diff = (otherPosition - transform.position);
 
-                Vector3 centerToTargetVect = (transform.position - centerTarget);
-                centerToTargetVect.Normalize();
+            Vector3 centerTarget = (diff / 2) + transform.position;
 
-                Vector3 dirVector = Quaternion.AngleAxis(90, Vector3.up) * centerToTargetVect;
+            Vector3 centerToTargetVect = (transform.position - centerTarget);
+            centerToTargetVect.Normalize();
 
-                Vector3 moveToTarget = centerTarget + centerToTargetVect * (animationReq[0] / 2);
-                Vector3 lookAtTarget = centerTarget + dirVector * animationReq[1];
+            Vector3 dirVector = Quaternion.AngleAxis(90, Vector3.up) * centerToTargetVect;
 
-                canMove = false;
-                autoPilot = true;
-                autoTarget = moveToTarget;
-                rotateTowardsTarget = lookAtTarget;
-            }
+            Vector3 moveToTarget = centerTarget + centerToTargetVect * (animationReq[0] / 2);
+            Vector3 lookAtTarget = centerTarget + dirVector * animationReq[1];
 
-        
+            canMove = false;
+            autoPilot = true;
+            autoTarget = moveToTarget;
+            rotateTowardsTarget = lookAtTarget;
+        }
+
+
     }
 
     int maxId = -1;
@@ -354,7 +355,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
         return animationString;
     }
-    
+
 
     // Fixed update is called in sync with physics
     private void FixedUpdate()
@@ -400,8 +401,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     Debug.Log("Stand up");
                     sit = false;
                     transform.position = positionBeforeSitting;
-                    GetComponent<CapsuleCollider>().enabled = true;
-                    GetComponent<Rigidbody>().useGravity = true;
+                    //GetComponent<CapsuleCollider>().enabled = true;
+                    Physics.IgnoreCollision(ActionRouter.GetCurrentChair().GetComponent<Collider>(), GetComponent<Collider>(), false);
+                    //GetComponent<Rigidbody>().useGravity = true;
 
                 }
 
@@ -416,8 +418,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
                 if (sit)
                 {
-                    GetComponent<CapsuleCollider>().enabled = false;
-                    GetComponent<Rigidbody>().useGravity = false;
+                    //GetComponent<CapsuleCollider>().enabled = false;
+                    Physics.IgnoreCollision(ActionRouter.GetCurrentChair().GetComponent<Collider>(), GetComponent<Collider>());
+                    //GetComponent<Rigidbody>().useGravity = false;
                 }
 
                 bool[] animationStates = new bool[numberOfAnimations];
@@ -425,18 +428,18 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 animationStates[0] = m_Jump;
                 animationStates[1] = sit;
 
-                for(int i = 2; i < numberOfAnimations; i += 1)
+                for (int i = 2; i < numberOfAnimations; i += 1)
                 {
                     animationStates[i] = Input.GetKey(Utils.animationEnums[i - 2]);
                 }
-                
+
 
                 //bool crouch = Input.GetKey(KeyCode.C);
                 //bool clap = Input.GetKey(KeyCode.Alpha1);
                 //bool wave = Input.GetKey(KeyCode.Alpha2);
                 //bool samba = Input.GetKey(KeyCode.Alpha3);
 
-                
+
 
                 // calculate move direction to pass to character
                 if (m_Cam != null)
@@ -475,14 +478,14 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 if (autoPilot)
                 {
                     bool[] falseArray = new bool[numberOfAnimations];
-                    for(int i=0;i < numberOfAnimations; i += 1)
+                    for (int i = 0; i < numberOfAnimations; i += 1)
                     {
                         falseArray[i] = false;
                     }
                     m_Character.Move(autoTarget - transform.position, falseArray);
 
                     bool[] animationStates = new bool[numberOfAnimations];
-                    for(int i = 0; i < Utils.animations.Length; i += 1)
+                    for (int i = 0; i < Utils.animations.Length; i += 1)
                     {
                         animationStates[i] = false;
                     }
@@ -500,13 +503,14 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
     }
 
-    private void ArrivedAtAnimationDistance (bool[] currentAnimationStates) {
+    private void ArrivedAtAnimationDistance(bool[] currentAnimationStates)
+    {
         //handshake finishing action
         transform.LookAt(rotateTowardsTarget);
         //LOG("Animation State: " + currentAnimationStates.ToString());
 
         GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(new Vector3(0, 0, 0), currentAnimationStates));
-        
+
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 

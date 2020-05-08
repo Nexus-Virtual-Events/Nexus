@@ -9,13 +9,18 @@ using System.IO;
 public class Utils : MonoBehaviour
 {
     public static Map<int, string> interactionMap;
-    public static Dictionary<int, float[]> animationRequirements = new Dictionary<int, float[]>();
+    public static Dictionary<int, float[]> animationRequirements;
+    public static Dictionary<string, string> sceneNames;
     public static string[] animations;
     public static UnityEngine.KeyCode[] animationEnums;
 
 
     private void Awake()
     {
+
+        sceneNames = new Dictionary<string, string>();
+        animationRequirements = new Dictionary<int, float[]>();
+
         Physics.IgnoreLayerCollision(9, 10);
         interactionMap = new Map<int, string>();
         interactionMap.Add(1, "ShakeHand");
@@ -52,6 +57,11 @@ public class Utils : MonoBehaviour
 
 
         };
+
+        if (!sceneNames.ContainsKey("1"))
+            sceneNames.Add("1", "The Lobby");
+        if (!sceneNames.ContainsKey("2"))
+            sceneNames.Add("2", "The Circle");
     }
 
 }
