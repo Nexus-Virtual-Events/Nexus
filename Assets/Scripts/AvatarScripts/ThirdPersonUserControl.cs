@@ -59,6 +59,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     public GameObject diplomaPrefab;
     private GameObject diploma;
+    public GameObject diplomaUI;
 
     private GameObject rightHand;
 
@@ -104,6 +105,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         diploma.transform.rotation = diploma.transform.rotation * Quaternion.Euler(0f, 0f, 90f);
         diploma.transform.position = diploma.transform.position - new Vector3(0f, 0.1f, 0f);
         isDiplomaInstantiated = true;
+
+
+        Animator diplomaAnimator = diplomaUI.GetComponent<Animator>();
+        if(diplomaAnimator != null) diplomaAnimator.SetBool("open", true);
     }
 
     public void GiveDiploma()

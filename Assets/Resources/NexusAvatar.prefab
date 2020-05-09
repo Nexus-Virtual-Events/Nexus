@@ -660,6 +660,7 @@ MonoBehaviour:
   positionBeforeSitting: {x: 0, y: 0, z: 0}
   diplomaPrefab: {fileID: -927199367670048503, guid: da9d1c142abad4a338a8978fee38ae9d,
     type: 3}
+  diplomaUI: {fileID: 0}
 --- !u!114 &5344741582037746108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,11 +774,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _realtime: {fileID: 0}
-  _sceneViewUUID: 
+  _sceneViewUUID: ab8dd852652c5345a8e1758ca240b5b2
   _sceneViewOwnedByCreatingClient: 0
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 1
+  _isRootPrefabView: 0
   _components:
   - componentID: 1
     component: {fileID: 25737989898212969}
