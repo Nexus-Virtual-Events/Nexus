@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 using System.IO;
+using Michsky.UI.ModernUIPack;
 
 
 public class Utils : MonoBehaviour
@@ -13,6 +15,12 @@ public class Utils : MonoBehaviour
     public static Dictionary<string, string> sceneNames;
     public static string[] animations;
     public static UnityEngine.KeyCode[] animationEnums;
+
+    public void MoveToRoom(string roomName)
+    {
+        Loading.sceneString = roomName;
+        SceneManager.LoadScene("Loading");
+    }
 
 
     private void Awake()
@@ -65,6 +73,8 @@ public class Utils : MonoBehaviour
     }
 
 }
+
+
 
 
 

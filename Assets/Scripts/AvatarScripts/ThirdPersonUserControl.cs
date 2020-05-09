@@ -281,6 +281,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         {
             cameraStay = Camera.main.transform;
             camScript.AssignPlayer(FocusCameraPosition.transform);
+            Camera.main.GetComponent<SimpleCameraController>().enabled = true;
+            //Camera.main.GetComponent<ThirdPersonUserControl>().enabled = true;
             canMove = false;
             GameObject.Find("Realtime").GetComponent<AdminPanel>().FocusCamera();
         }
@@ -289,6 +291,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             Camera.main.transform.position = cameraStay.position;
             Camera.main.transform.rotation = cameraStay.rotation;
             camScript.AssignPlayer(transform);
+            Camera.main.GetComponent<SimpleCameraController>().enabled = false;
+            //Camera.main.GetComponent<ThirdPersonUserControl>().enabled = true;
             canMove = true;
             GameObject.Find("Realtime").GetComponent<AdminPanel>().UnfocusCamera();
         }

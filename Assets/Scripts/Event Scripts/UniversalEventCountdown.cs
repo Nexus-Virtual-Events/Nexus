@@ -60,13 +60,12 @@ public class UniversalEventCountdown : MonoBehaviour
 
             if (timeLeft <= TimeSpan.Zero)
             {
-                Debug.Log("Event loading from Universal Countdown: "+ eventManager.GetEvents());
-                GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
-                Loading.sceneString = scene;
-                SceneManager.LoadScene("Loading");
+                //GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
+                //Loading.sceneString = scene;
+                //SceneManager.LoadScene("Loading");
             }
 
-            eventStartingNotificationDescription.text = "A virtual event is starting! You will automatically join the event in " + string.Format("{0}", timeLeft.Seconds) + " seconds.";
+            eventStartingNotificationDescription.text = "The main event has opened.";
         }
     }
 

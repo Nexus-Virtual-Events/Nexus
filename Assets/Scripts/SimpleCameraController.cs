@@ -6,11 +6,15 @@
 
 using UnityEngine;
 
-namespace UnityTemplateProjects
-{
     public class SimpleCameraController : MonoBehaviour
     {
-        class CameraState
+
+        private Vector3 initPos;
+        private float sensitivity;
+        private float moveRadius;
+
+
+    class CameraState
         {
             public float yaw;
             public float pitch;
@@ -49,6 +53,11 @@ namespace UnityTemplateProjects
                 z = Mathf.Lerp(z, target.z, positionLerpPct);
             }
 
+            public Vector3 GetPosition()
+            {
+                return new Vector3(x, y, z);
+            }
+
             public void UpdateTransform(Transform t)
             {
                 t.eulerAngles = new Vector3(pitch, yaw, roll);
@@ -82,7 +91,15 @@ namespace UnityTemplateProjects
             m_InterpolatingCameraState.SetFromTransform(transform);
         }
 
-        Vector3 GetInputTranslationDirection()
+        private void Start()
+        {
+            initPos = GameObject.Find("Podium").transform.position;
+         sensitivity = 2f;
+        moveRadius = Vector3.Distance(m_TargetCameraState.GetPosition(), initPos) * 1.3f;
+
+         }
+
+    Vector3 GetInputTranslationDirection()
         {
             Vector3 direction = new Vector3();
             if (Input.GetKey(KeyCode.W))
@@ -111,7 +128,8 @@ namespace UnityTemplateProjects
             }
             return direction;
         }
-        
+
+ 
         void Update()
         {
             Vector3 translation = Vector3.zero;
@@ -126,29 +144,29 @@ namespace UnityTemplateProjects
 				UnityEditor.EditorApplication.isPlaying = false; 
 				#endif
             }
-            // Hide and lock cursor when right mouse button pressed
-            if (Input.GetMouseButtonDown(1))
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+        // Hide and lock cursor when right mouse button pressed
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //Cursor.lockState = CursorLockMode.Locked;
+        //}
 
-            // Unlock and show cursor when right mouse button released
-            if (Input.GetMouseButtonUp(1))
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
+        // Unlock and show cursor when right mouse button released
+        //if (Input.GetMouseButtonUp(1))
+        //{
+        Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
+        //}
 
-            // Rotation
-            if (Input.GetMouseButton(1))
-            {
-                var mouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y") * (invertY ? 1 : -1));
+        // Rotation
+        //if (Input.GetMouseButton(1))
+        //    {
+                var mouseMovement = new Vector2(sensitivity*Input.GetAxis("Mouse X"), sensitivity*Input.GetAxis("Mouse Y") * (invertY ? 1 : -1));
                 
                 var mouseSensitivityFactor = mouseSensitivityCurve.Evaluate(mouseMovement.magnitude);
 
                 m_TargetCameraState.yaw += mouseMovement.x * mouseSensitivityFactor;
                 m_TargetCameraState.pitch += mouseMovement.y * mouseSensitivityFactor;
-            }
+            //}
             
             // Translation
             translation = GetInputTranslationDirection() * Time.deltaTime;
@@ -156,18 +174,32 @@ namespace UnityTemplateProjects
             // Speed up movement when shift key held
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                translation *= 10.0f;
+                translation *= 2.0f;
             }
 
             // Modify movement by a boost factor (defined in Inspector and modified in play mode through the mouse scroll wheel)
             boost += Input.mouseScrollDelta.y * 0.2f;
             translation *= Mathf.Pow(2.0f, boost);
 
-#elif USE_INPUT_SYSTEM 
+#elif USE_INPUT_SYSTEM
             // TODO: make the new input system work
 #endif
 
-            m_TargetCameraState.Translate(translation);
+            Debug.Log("position:");
+            Debug.Log(m_TargetCameraState.GetPosition());
+            Debug.Log("Distance");
+            Debug.Log(Vector3.Distance(m_TargetCameraState.GetPosition(), initPos));
+
+            //Debug.Log(Camera.main.transform.position);
+            //Debug.Log(initPos);
+            if (Vector3.Distance(m_TargetCameraState.GetPosition(), initPos) < moveRadius)
+            {
+                m_TargetCameraState.Translate(translation);
+            }
+            else
+            {
+            m_TargetCameraState.Translate(-2f * translation);
+        }
 
             // Framerate-independent interpolation
             // Calculate the lerp amount, such that we get 99% of the way to our target in the specified time
@@ -179,4 +211,3 @@ namespace UnityTemplateProjects
         }
     }
 
-}
