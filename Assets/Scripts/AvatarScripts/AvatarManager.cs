@@ -12,6 +12,7 @@ namespace Michsky.UI.ModernUIPack {
 
         public ModalWindowManager welcomeWindow;
         public ModalWindowManager settingsWindow;
+        public ModalWindowManager adminPanelWindow;
         public NotificationManager connectedNotification;
         public NotificationManager eventStartingNotification;
         private EventManager eventManager;
@@ -104,6 +105,11 @@ namespace Michsky.UI.ModernUIPack {
         public void ShowSettingsWindow()
         {
             settingsWindow.OpenWindow();
+        }
+
+        public void ShowAdminPanelWindow()
+        {
+            adminPanelWindow.OpenWindow();
         }
 
         public void SetGraphicsSetting(int settingIndex)
