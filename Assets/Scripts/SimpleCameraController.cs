@@ -198,7 +198,7 @@ using UnityEngine;
             }
             else
             {
-            m_TargetCameraState.Translate(-2f * translation);
+            m_TargetCameraState.Translate(-4f * translation);
         }
 
             // Framerate-independent interpolation
