@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2035111234}
-  m_IndirectSpecularColor: {r: 186.95497, g: 255.8649, b: 351.55087, a: 1}
+  m_IndirectSpecularColor: {r: 186.72588, g: 255.50114, b: 350.89774, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -539,6 +539,177 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14811153}
   m_CullTransparentMesh: 0
+--- !u!1001 &16148986
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1346264473260158, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_Name
+      value: YoutubeSimplified (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346264473260158, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -64.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 27.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.16479635
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.64164823
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.14383698
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7351467
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 82.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271034587217290, guid: f49b1865d907dca4a807588585397534, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 25.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 114643942583524530, guid: f49b1865d907dca4a807588585397534,
+        type: 3}
+      propertyPath: videoPlayer
+      value: 
+      objectReference: {fileID: 16148989}
+    - target: {fileID: 114643942583524530, guid: f49b1865d907dca4a807588585397534,
+        type: 3}
+      propertyPath: showPlayerControls
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114643942583524530, guid: f49b1865d907dca4a807588585397534,
+        type: 3}
+      propertyPath: loadYoutubeUrlsOnly
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654752377565014, guid: f49b1865d907dca4a807588585397534,
+        type: 3}
+      propertyPath: autoPlay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654752377565014, guid: f49b1865d907dca4a807588585397534,
+        type: 3}
+      propertyPath: fullscreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114654752377565014, guid: f49b1865d907dca4a807588585397534,
+        type: 3}
+      propertyPath: url
+      value: https://www.youtube.com/watch?v=o9t-aOmfQCE
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114654752377565014, guid: f49b1865d907dca4a807588585397534, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: f49b1865d907dca4a807588585397534, type: 3}
+--- !u!1 &16148987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1346264473260158, guid: f49b1865d907dca4a807588585397534,
+    type: 3}
+  m_PrefabInstance: {fileID: 16148986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &16148988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1572396203552944, guid: f49b1865d907dca4a807588585397534,
+    type: 3}
+  m_PrefabInstance: {fileID: 16148986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!328 &16148989 stripped
+VideoPlayer:
+  m_CorrespondingSourceObject: {fileID: 328868761493553900, guid: f49b1865d907dca4a807588585397534,
+    type: 3}
+  m_PrefabInstance: {fileID: 16148986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &16148990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16148987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1011e140c5c34458f64fd8ad5095b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _realtime: {fileID: 114226563101166209}
+  _sceneViewUUID: c94b4bd091fc474ebb6fc8f44b32b61f
+  _sceneViewOwnedByCreatingClient: 0
+  _sceneViewPreventOwnershipTakeover: 0
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _isRootPrefabView: 0
+  _components:
+  - componentID: 1
+    component: {fileID: 16148991}
+    componentIDHasBeenUsed: 1
+  _parentView: {fileID: 0}
+  _childViews: []
+--- !u!114 &16148991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16148987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31828c1447e704817b9e09547f2f9abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &16148992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16148987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d8707129f134266b064c5f3d952f31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://www.youtube.com/watch?v=HLLRmiLYH6goutube.com/watch?v=HLLRmiLYH6g
+  autoPlay: 1
+  linkInputObject: {fileID: 1304953013859715}
+  screen: {fileID: 16148988}
+  enableButtonText: {fileID: 651558244}
 --- !u!1 &36244517
 GameObject:
   m_ObjectHideFlags: 0
@@ -6155,7 +6326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: b5fe14a425fd6436a8e8293a25ccc54d, type: 2}
   m_StaticLightingSkyUniqueID: 1
-  m_SkySettings: {fileID: 1428484722}
+  m_SkySettings: {fileID: 1444373041}
   m_SkySettingsFromProfile: {fileID: -1658960478407648048, guid: b5fe14a425fd6436a8e8293a25ccc54d,
     type: 2}
 --- !u!4 &313761475
@@ -29488,107 +29659,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412847103}
   m_CullTransparentMesh: 0
---- !u!114 &1428484722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b6606ef2548734bb6d11b9d160bc7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  rotation:
-    m_OverrideState: 0
-    m_Value: 115
-    min: 0
-    max: 360
-  skyIntensityMode:
-    m_OverrideState: 0
-    m_Value: 0
-  exposure:
-    m_OverrideState: 0
-    m_Value: 10
-  multiplier:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  upperHemisphereLuxValue:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  upperHemisphereLuxColor:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0, z: 0}
-  desiredLuxValue:
-    m_OverrideState: 0
-    m_Value: 20000
-  updateMode:
-    m_OverrideState: 0
-    m_Value: 0
-  updatePeriod:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-  includeSunInBaking:
-    m_OverrideState: 0
-    m_Value: 0
-  hdriSky:
-    m_OverrideState: 0
-    m_Value: {fileID: 8900000, guid: 251ddc633ea20db46a3628b2b36a9d8d, type: 3}
-  enableBackplate:
-    m_OverrideState: 0
-    m_Value: 0
-  backplateType:
-    m_OverrideState: 0
-    m_Value: 0
-  groundLevel:
-    m_OverrideState: 0
-    m_Value: 0
-  scale:
-    m_OverrideState: 0
-    m_Value: {x: 32, y: 32}
-  projectionDistance:
-    m_OverrideState: 0
-    m_Value: 16
-    min: 0.0000001
-  plateRotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  plateTexRotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  plateTexOffset:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0}
-  blendAmount:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 100
-  shadowTint:
-    m_OverrideState: 0
-    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
-  pointLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
-  dirLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
-  rectLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
 --- !u!1 &1434937494
 GameObject:
   m_ObjectHideFlags: 0
@@ -29820,6 +29890,107 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436800349}
   m_CullTransparentMesh: 0
+--- !u!114 &1444373041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b6606ef2548734bb6d11b9d160bc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  rotation:
+    m_OverrideState: 0
+    m_Value: 115
+    min: 0
+    max: 360
+  skyIntensityMode:
+    m_OverrideState: 0
+    m_Value: 0
+  exposure:
+    m_OverrideState: 0
+    m_Value: 10
+  multiplier:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxValue:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxColor:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 0}
+  desiredLuxValue:
+    m_OverrideState: 0
+    m_Value: 20000
+  updateMode:
+    m_OverrideState: 0
+    m_Value: 0
+  updatePeriod:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+  includeSunInBaking:
+    m_OverrideState: 0
+    m_Value: 0
+  hdriSky:
+    m_OverrideState: 0
+    m_Value: {fileID: 8900000, guid: 251ddc633ea20db46a3628b2b36a9d8d, type: 3}
+  enableBackplate:
+    m_OverrideState: 0
+    m_Value: 0
+  backplateType:
+    m_OverrideState: 0
+    m_Value: 0
+  groundLevel:
+    m_OverrideState: 0
+    m_Value: 0
+  scale:
+    m_OverrideState: 0
+    m_Value: {x: 32, y: 32}
+  projectionDistance:
+    m_OverrideState: 0
+    m_Value: 16
+    min: 0.0000001
+  plateRotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  plateTexRotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  plateTexOffset:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0}
+  blendAmount:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 100
+  shadowTint:
+    m_OverrideState: 0
+    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    hdr: 0
+    showAlpha: 1
+    showEyeDropper: 1
+  pointLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  dirLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  rectLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!1 &1455360231
 GameObject:
   m_ObjectHideFlags: 0
