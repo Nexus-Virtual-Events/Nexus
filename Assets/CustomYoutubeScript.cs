@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Video;
 using System;
 using TMPro;
+using Michsky.UI.ModernUIPack;
+using UnityEngine.UI;
 
 public class CustomYoutubeScript : MonoBehaviour
 {
@@ -33,6 +35,8 @@ public class CustomYoutubeScript : MonoBehaviour
 
     private int prevEnabled;
 
+    public GameObject volumeSlider;
+
 
     private void Awake()
     {
@@ -41,10 +45,10 @@ public class CustomYoutubeScript : MonoBehaviour
         player.videoPlayer = videoPlayer;
 
         currentTime = 0;
-        enabled = 1;
+        enabled = 0;
         fullscreen = 0;
         isPaused = 0;
-        volume = 1;
+        volume = 0.5f;
         youtubeUrl = "";
     }
 
@@ -61,6 +65,7 @@ public class CustomYoutubeScript : MonoBehaviour
         linkInput = linkInputObject.GetComponent<TMP_InputField>();
         // PlayNew(Convert.ToInt32(youtubeSync.GetYoutubeParameter(3)));
         prevEnabled = Convert.ToInt32(youtubeSync.GetYoutubeParameter(0));
+        volume = float.Parse(youtubeSync.GetYoutubeParameter(4));
     }
 
     public void SetNewUrl(){
@@ -69,7 +74,6 @@ public class CustomYoutubeScript : MonoBehaviour
         currentTime = 0;
         fullscreen = 0;
         isPaused = 0;
-        volume = 1;
     }
 
     public void ToggleEnableScreen(){
@@ -79,6 +83,10 @@ public class CustomYoutubeScript : MonoBehaviour
 
     private void UpdateModel(){
         youtubeSync.SetYoutube(YoutubeToString(enabled, fullscreen, isPaused, player.GetCurrentTime(), volume, youtubeUrl));
+    }
+
+    public void ChangeVolume(float f){
+        volume = f;
     }
 
     private string prevUrl = "";
@@ -99,6 +107,10 @@ public class CustomYoutubeScript : MonoBehaviour
             }
             prevEnabled = enabled;
         }
+        player.videoPlayer.SetDirectAudioVolume(0, volume);
+        volumeSlider.GetComponent<Slider>().value = volume;
+        
+
     }
 
     public void ReceiveUpdate(int _enabled, int _fullscreen , int _isPaused, int _currentTime, float _volume, string _youtubeUrl){
