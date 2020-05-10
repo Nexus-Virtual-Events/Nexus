@@ -2,8 +2,8 @@
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-namespace Michsky.UI.ModernUIPack
-{
+// namespace Michsky.UI.ModernUIPack
+// {
     public class SwitchManager : MonoBehaviour
     {
         [Header("SETTINGS")]
@@ -101,4 +101,4 @@ namespace Michsky.UI.ModernUIPack
             }
         }
     }
-}
+// }
