@@ -109,8 +109,9 @@ public class CustomYoutubeScript : MonoBehaviour
             }
             prevEnabled = enabled;
         }
-        myVideoPlayer.GetComponent<AudioSource>().volume = volume;
+
         volumeSlider.GetComponent<Slider>().value = volume;
+        myVideoPlayer.GetComponent<AudioSource>().volume = volume;
         
 
     }
