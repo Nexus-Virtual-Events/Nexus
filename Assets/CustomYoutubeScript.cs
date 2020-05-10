@@ -31,6 +31,8 @@ public class CustomYoutubeScript : MonoBehaviour
 
     public GameObject enableButtonText;
 
+    private int prevEnabled;
+
 
     private void Awake()
     {
@@ -58,6 +60,7 @@ public class CustomYoutubeScript : MonoBehaviour
         // linkInputObject = GameObject.Find("LinkInput");
         linkInput = linkInputObject.GetComponent<TMP_InputField>();
         // PlayNew(Convert.ToInt32(youtubeSync.GetYoutubeParameter(3)));
+        prevEnabled = Convert.ToInt32(youtubeSync.GetYoutubeParameter(0));
     }
 
     public void SetNewUrl(){
@@ -79,7 +82,6 @@ public class CustomYoutubeScript : MonoBehaviour
     }
 
     private string prevUrl = "";
-    private int prevEnabled;
     private void UpdateScreen(){
         if(youtubeUrl != prevUrl){
             PlayNew(youtubeUrl);
