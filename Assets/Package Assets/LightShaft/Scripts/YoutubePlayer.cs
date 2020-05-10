@@ -468,6 +468,13 @@ public class YoutubePlayer : MonoBehaviour
 
     double lastTimePlayed = Mathf.Infinity;
 
+    public int GetTotalDuration(){
+        return Mathf.RoundToInt(videoPlayer.frameCount / videoPlayer.frameRate);
+    }
+
+    public int GetCurrentTime(){
+        return Mathf.RoundToInt(videoPlayer.frame / videoPlayer.frameRate);
+    }
     void FixedUpdate()
     {
         //buffering detect 
@@ -591,6 +598,7 @@ public class YoutubePlayer : MonoBehaviour
                 mainControllerUi.SetActive(true);
             //End video controller area
         }
+
 
 
         if (decryptedUrlForAudio)
@@ -1678,8 +1686,8 @@ public class YoutubePlayer : MonoBehaviour
     [Tooltip("Total Time")]
     public Text totalTimeString;
 
-    private float totalVideoDuration;
-    private float currentVideoDuration;
+    public float totalVideoDuration;
+    public float currentVideoDuration;
     private bool videoSeekDone = false;
     private bool videoAudioSeekDone = false;
     private bool lowRes;

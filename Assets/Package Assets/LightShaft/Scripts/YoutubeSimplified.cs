@@ -33,6 +33,7 @@ public class YoutubeSimplified : MonoBehaviour
         player.autoPlayOnStart = autoPlay;
         player.videoQuality = YoutubePlayer.YoutubeVideoQuality.STANDARD;
 
+
         if(autoPlay)
             player.Play(url);
     }
