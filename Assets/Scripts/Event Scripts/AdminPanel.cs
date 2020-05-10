@@ -20,6 +20,9 @@ public class AdminPanel : MonoBehaviour
     private GameObject localAvatar;
     ModifyPodium podiumModifier;
 
+    public GameObject playersTab;
+    public GameObject playerManagementCardPrefab;
+    public GameObject[] players;
 
     // Start is called before the first frame update
     void Start()
@@ -141,6 +144,25 @@ public class AdminPanel : MonoBehaviour
         {
             Debug.Log("No local avatar or podium modifier found");
             podiumModifier = GameObject.Find("Podium").GetComponent<ModifyPodium>();
+        }
+    }
+
+    public void GetPlayers()
+    {
+        foreach (Transform child in playersTab.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            GameObject playerManagementCard = Instantiate(playerManagementCardPrefab);
+
+            string playerName = player.transform.Find("Player Name").GetComponent<TMP_Text>().text;
+            playerManagementCard.transform.Find("Normal/PlayerName").GetComponent<TMP_Text>().text = playerName;
+
+            playerManagementCard.transform.SetParent(playersTab.transform, false);
         }
     }
 }
