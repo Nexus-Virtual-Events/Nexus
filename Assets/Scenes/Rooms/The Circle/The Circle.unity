@@ -7644,8 +7644,9 @@ GameObject:
   - component: {fileID: 374209872}
   - component: {fileID: 374209871}
   - component: {fileID: 374209870}
+  - component: {fileID: 374209875}
   m_Layer: 5
-  m_Name: Material
+  m_Name: Screen Visible?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7795,6 +7796,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374209868}
   m_CullTransparentMesh: 0
+--- !u!114 &374209875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374209868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &376589638
 GameObject:
   m_ObjectHideFlags: 0
@@ -10350,7 +10372,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472595274}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -19427,7 +19449,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884883614}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -38192,7 +38214,7 @@ GameObject:
   - component: {fileID: 1771285106}
   - component: {fileID: 1771285105}
   m_Layer: 5
-  m_Name: Volume Title (1)
+  m_Name: Screen Visible? Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42792,7 +42814,7 @@ GameObject:
   - component: {fileID: 2088459878}
   - component: {fileID: 2088459877}
   m_Layer: 5
-  m_Name: ScreenContent Title
+  m_Name: Screen Content Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43650,6 +43672,7 @@ GameObject:
   - component: {fileID: 114546120723623855}
   - component: {fileID: 95253660581819077}
   - component: {fileID: 114063748820611955}
+  - component: {fileID: 1304953013859716}
   m_Layer: 5
   m_Name: LinkInput
   m_TagString: Untagged
@@ -43657,6 +43680,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1304953013859716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304953013859715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1358253060028571
 GameObject:
   m_ObjectHideFlags: 0
