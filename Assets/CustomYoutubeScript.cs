@@ -29,7 +29,9 @@ public class CustomYoutubeScript : MonoBehaviour
 
     public GameObject screen;
 
-    public GameObject mySwitch;
+    public GameObject enableButtonText;
+
+    private int prevEnabled;
 
 
     private void Awake()
@@ -58,6 +60,7 @@ public class CustomYoutubeScript : MonoBehaviour
         // linkInputObject = GameObject.Find("LinkInput");
         linkInput = linkInputObject.GetComponent<TMP_InputField>();
         // PlayNew(Convert.ToInt32(youtubeSync.GetYoutubeParameter(3)));
+        prevEnabled = Convert.ToInt32(youtubeSync.GetYoutubeParameter(0));
     }
 
     public void SetNewUrl(){
@@ -69,21 +72,16 @@ public class CustomYoutubeScript : MonoBehaviour
         volume = 1;
     }
 
-    public void enableScreen(){
-        enabled = 1;
+    public void ToggleEnableScreen(){
+        enabled = 1 - enabled;
+        Debug.Log(enabled);
     }
-
-    public void disableScreen(){
-        enabled = 0;
-    }
-
 
     private void UpdateModel(){
         youtubeSync.SetYoutube(YoutubeToString(enabled, fullscreen, isPaused, player.GetCurrentTime(), volume, youtubeUrl));
     }
 
     private string prevUrl = "";
-    private int prevEnabled = 1;
     private void UpdateScreen(){
         if(youtubeUrl != prevUrl){
             PlayNew(youtubeUrl);
@@ -92,11 +90,11 @@ public class CustomYoutubeScript : MonoBehaviour
         if(enabled != prevEnabled){
             Debug.Log("switch from model!");
             if(enabled == 0){
-                mySwitch.GetComponent<SwitchManager>().isOn = false;
+                enableButtonText.GetComponent<TMP_Text>().text = "OFF";
                 screen.GetComponent<MeshRenderer>().enabled = false;
             }
             else{
-                mySwitch.GetComponent<SwitchManager>().isOn = true;
+                enableButtonText.GetComponent<TMP_Text>().text= "ON";
                 screen.GetComponent<MeshRenderer>().enabled = true;
             }
             prevEnabled = enabled;
