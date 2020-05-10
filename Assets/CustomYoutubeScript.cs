@@ -37,6 +37,8 @@ public class CustomYoutubeScript : MonoBehaviour
 
     public GameObject volumeSlider;
 
+    public GameObject myVideoPlayer;
+
 
     private void Awake()
     {
@@ -107,7 +109,7 @@ public class CustomYoutubeScript : MonoBehaviour
             }
             prevEnabled = enabled;
         }
-        player.videoPlayer.SetDirectAudioVolume(0, volume);
+        myVideoPlayer.GetComponent<AudioSource>().volume = volume;
         volumeSlider.GetComponent<Slider>().value = volume;
         
 
