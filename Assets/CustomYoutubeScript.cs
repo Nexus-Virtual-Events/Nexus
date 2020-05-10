@@ -25,7 +25,11 @@ public class CustomYoutubeScript : MonoBehaviour
     public GameObject linkInputObject;
     private TMP_InputField linkInput;
 
-    private bool inControl;
+    private bool urlInControl;
+
+    public GameObject screen;
+
+    public GameObject mySwitch;
 
 
     private void Awake()
@@ -35,7 +39,7 @@ public class CustomYoutubeScript : MonoBehaviour
         player.videoPlayer = videoPlayer;
 
         currentTime = 0;
-        enabled = 0;
+        enabled = 1;
         fullscreen = 0;
         isPaused = 0;
         volume = 1;
@@ -44,7 +48,7 @@ public class CustomYoutubeScript : MonoBehaviour
 
     private void Start()
     {
-        inControl = false;
+        urlInControl = false;
         
         youtubeSync = GetComponent<YoutubeSync>();
         InvokeRepeating("UpdateModel", 0, 0.5f);
@@ -65,17 +69,38 @@ public class CustomYoutubeScript : MonoBehaviour
         volume = 1;
     }
 
+    public void enableScreen(){
+        enabled = 1;
+    }
+
+    public void disableScreen(){
+        enabled = 0;
+    }
+
 
     private void UpdateModel(){
         youtubeSync.SetYoutube(YoutubeToString(enabled, fullscreen, isPaused, player.GetCurrentTime(), volume, youtubeUrl));
-        // linkInput.text = youtubeUrl;
     }
 
     private string prevUrl = "";
+    private int prevEnabled = 1;
     private void UpdateScreen(){
-        if(youtubeUrl != prevUrl)
+        if(youtubeUrl != prevUrl){
             PlayNew(youtubeUrl);
-        prevUrl = youtubeUrl;
+            prevUrl = youtubeUrl;
+        }
+        if(enabled != prevEnabled){
+            Debug.Log("switch from model!");
+            if(enabled == 0){
+                mySwitch.GetComponent<SwitchManager>().isOn = false;
+                screen.GetComponent<MeshRenderer>().enabled = false;
+            }
+            else{
+                mySwitch.GetComponent<SwitchManager>().isOn = true;
+                screen.GetComponent<MeshRenderer>().enabled = true;
+            }
+            prevEnabled = enabled;
+        }
     }
 
     public void ReceiveUpdate(int _enabled, int _fullscreen , int _isPaused, int _currentTime, float _volume, string _youtubeUrl){
@@ -87,12 +112,14 @@ public class CustomYoutubeScript : MonoBehaviour
         fullscreen = _fullscreen;
     }
 
-    public void InControl(){
-        inControl = true;
+    public void UrlInControl(){
+        Debug.Log("In control");
+        urlInControl = true;
     }
 
-    public void OutControl(){
-        inControl = false;
+    public void UrlOutControl(){
+        Debug.Log("Out control");
+        urlInControl = false;
     }
 
     private void Update(){
