@@ -22,6 +22,10 @@ public class Utils : MonoBehaviour
         SceneManager.LoadScene("Loading");
     }
 
+    public void ChangeGlobalVolume(float f){
+        AudioListener.volume = f;
+    }
+
 
     private void Awake()
     {
