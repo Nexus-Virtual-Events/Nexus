@@ -551,6 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5344741582037746087}
   - component: {fileID: 5344741582037746080}
+  - component: {fileID: -108497971591182043}
   - component: {fileID: 5344741582037746081}
   - component: {fileID: 5344741582037746082}
   - component: {fileID: 5344741582037746083}
@@ -609,6 +610,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-108497971591182043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344741582037746110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ccf0aca83da034382f6c51b124b8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diplomaPrefab: {fileID: -927199367670048503, guid: da9d1c142abad4a338a8978fee38ae9d,
+    type: 3}
 --- !u!54 &5344741582037746081
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -797,6 +812,9 @@ MonoBehaviour:
     componentIDHasBeenUsed: 1
   - componentID: 6
     component: {fileID: -3292913170641518607}
+    componentIDHasBeenUsed: 1
+  - componentID: 7
+    component: {fileID: -108497971591182043}
     componentIDHasBeenUsed: 1
   _parentView: {fileID: 0}
   _childViews: []

@@ -63,13 +63,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     private GameObject rightHand;
 
-    public GameObject GetChildWithName(GameObject fromGameObject, string withName)
-    {
-        Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>(true);
-        foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
-        return null;
-    }
-
+    
     private void Awake()
     {
         _realtimeView = GetComponent<RealtimeView>();
@@ -85,36 +79,23 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     {
         return _realtimeView.ownerID;
     }
-
-    private bool isDiplomaInstantiated;
-
-    public void GetDiploma()
-    {
-        if (rightHand == null)
-        {
-            rightHand = GetChildWithName(ActionRouter.GetLocalAvatar(), "RightHand");
+    private bool diplomaGotten = false;
+    public void GetDiploma(){
+        System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+        if(!diplomaGotten){
+            GetComponent<StateSync>().SetState("0_1_0_"+cur_time.ToString());
+            diplomaGotten = true;
         }
-
-        if (isDiplomaInstantiated)
-        {
-            Debug.Log("diploma was already instantiated");
-            return;
-        }
-        diploma = Instantiate(diplomaPrefab, rightHand.transform, false);
-        diploma.transform.parent = rightHand.transform;
-        diploma.transform.rotation = diploma.transform.rotation * Quaternion.Euler(0f, 0f, 90f);
-        diploma.transform.position = diploma.transform.position - new Vector3(0f, 0.1f, 0f);
-        isDiplomaInstantiated = true;
-
-
-        Animator diplomaAnimator = diplomaUI.GetComponent<Animator>();
-        if(diplomaAnimator != null) diplomaAnimator.SetBool("open", true);
     }
 
-    public void GiveDiploma()
-    {
-        Destroy(diploma);
-        isDiplomaInstantiated = false;
+    public void GiveDiploma(){
+        System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+        if(diplomaGotten){
+            GetComponent<StateSync>().SetState("0_0_0_"+cur_time.ToString());
+            diplomaGotten = false;
+        }
     }
 
     private void Start()
