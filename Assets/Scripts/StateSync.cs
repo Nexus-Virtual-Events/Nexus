@@ -49,7 +49,7 @@ public class StateSync : RealtimeComponent {
     {
         if (rightHand == null)
         {
-            rightHand = GetChildWithName(ActionRouter.GetLocalAvatar(), "RightHand");
+            rightHand = GetChildWithName(gameObject, "RightHand");
         }
 
         if (isDiplomaInstantiated)
