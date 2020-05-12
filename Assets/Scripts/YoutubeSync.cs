@@ -41,6 +41,11 @@ public class YoutubeSync : RealtimeComponent {
     }
 
     public string GetYoutubeParameter(int parameter){
+
+        if(_model == null){
+            return "";
+        }
+
         if(_model.youtube == null || _model.youtube == ""){
             return "";
         }

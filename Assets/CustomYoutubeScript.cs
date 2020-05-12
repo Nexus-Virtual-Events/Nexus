@@ -76,20 +76,31 @@ public class CustomYoutubeScript : MonoBehaviour
         // linkInputObject = GameObject.Find("LinkInput");
         linkInput = linkInputObject.GetComponent<TMP_InputField>();
         // PlayNew(Convert.ToInt32(youtubeSync.GetYoutubeParameter(3)));
-        prevEnabled = Convert.ToInt32(youtubeSync.GetYoutubeParameter(0));
+       
+    }
+    private bool isSyncReady = false;
+    private void Initialize(){
+         prevEnabled = Convert.ToInt32(youtubeSync.GetYoutubeParameter(0));
         prevPaused = Convert.ToInt32(youtubeSync.GetYoutubeParameter(2));
-
+        volume = float.Parse(youtubeSync.GetYoutubeParameter(4));
+        currentTimeStamp = youtubeSync.GetYoutubeParameter(6);
+        currentTime = Convert.ToInt32(youtubeSync.GetYoutubeParameter(3));
         if(prevPaused == 1){
             pauseTime = prevPaused;
         }
-
-        volume = float.Parse(youtubeSync.GetYoutubeParameter(4));
-        currentTimeStamp = youtubeSync.GetYoutubeParameter(6);
         prevTimeStamp = currentTimeStamp;
-        currentTime = Convert.ToInt32(youtubeSync.GetYoutubeParameter(3));
     }
 
     private void Update(){
+        if(isSyncReady){
+            try{
+                Initialize();
+                isSyncReady = true;
+            }catch{
+
+            }
+        }
+
         // UpdateModel();
         // UpdateScreen();
     }
