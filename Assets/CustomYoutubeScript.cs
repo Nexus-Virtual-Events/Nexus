@@ -43,6 +43,12 @@ public class CustomYoutubeScript : MonoBehaviour
     public GameObject timeTextObject;
     public GameObject videoTimeSlider;
 
+    private int pauseTime;
+
+    private string currentTimeStamp;
+    private string prevTimeStamp;
+
+
 
     private void Awake()
     {
@@ -63,8 +69,8 @@ public class CustomYoutubeScript : MonoBehaviour
         urlInControl = false;
         
         youtubeSync = GetComponent<YoutubeSync>();
-        InvokeRepeating("UpdateModel", 0, 0.5f);
-        InvokeRepeating("UpdateScreen", 0, 0.5f);
+        InvokeRepeating("UpdateModel", 0, 0.1f);
+        InvokeRepeating("UpdateScreen", 0, 0.1f);
 
         Debug.Log("object:"+linkInputObject.ToString());
         // linkInputObject = GameObject.Find("LinkInput");
@@ -73,7 +79,19 @@ public class CustomYoutubeScript : MonoBehaviour
         prevEnabled = Convert.ToInt32(youtubeSync.GetYoutubeParameter(0));
         prevPaused = Convert.ToInt32(youtubeSync.GetYoutubeParameter(2));
 
+        if(prevPaused == 1){
+            pauseTime = prevPaused;
+        }
+
         volume = float.Parse(youtubeSync.GetYoutubeParameter(4));
+        currentTimeStamp = youtubeSync.GetYoutubeParameter(6);
+        prevTimeStamp = currentTimeStamp;
+        currentTime = Convert.ToInt32(youtubeSync.GetYoutubeParameter(3));
+    }
+
+    private void Update(){
+        // UpdateModel();
+        // UpdateScreen();
     }
 
     private string FormatTime(int time)
@@ -112,7 +130,7 @@ public class CustomYoutubeScript : MonoBehaviour
     }
 
     private void UpdateModel(){
-        youtubeSync.SetYoutube(YoutubeToString(enabled, fullscreen, isPaused, player.GetCurrentTime(), volume, youtubeUrl));
+        youtubeSync.SetYoutube(YoutubeToString(enabled, fullscreen, isPaused, currentTime, volume, youtubeUrl, currentTimeStamp));
     }
 
     public void ChangeVolume(float f){
@@ -120,9 +138,11 @@ public class CustomYoutubeScript : MonoBehaviour
     }
 
     private string prevUrl = "";
+
+    private bool playerEdit;
     private void UpdateScreen(){
         if(youtubeUrl != prevUrl){
-            PlayNew(youtubeUrl, 0);
+            PlayNew(youtubeUrl, currentTime);
             prevUrl = youtubeUrl;
         }
         if(enabled != prevEnabled){
@@ -140,37 +160,45 @@ public class CustomYoutubeScript : MonoBehaviour
         if(isPaused != prevPaused){
             Debug.Log("switch from model!");
             if(isPaused == 0){
-                PlayNew(youtubeUrl, player.GetCurrentTime());
+                StartVideo();
                 // enableButtonText.GetComponent<TMP_Text>().text = "OFF";
                 // screen.GetComponent<MeshRenderer>().enabled = false;
             }
             else{
-                player.Pause();
+                PauseVideo();
                 // enableButtonText.GetComponent<TMP_Text>().text= "ON";
                 // screen.GetComponent<MeshRenderer>().enabled = true;
             }
             prevPaused = isPaused;
         }
 
+        if(currentTimeStamp != prevTimeStamp && playerEdit){
+                    // Debug.Log("different timestamp: seeking");
+                    player.Seek(currentTime);
+                    player.Play();
+                    prevTimeStamp = currentTimeStamp;
+                }
+
+        if(!playerEdit){
+            currentTime = player.GetCurrentTime();
+            videoTimeSlider.GetComponent<Slider>().value = 100f * ((float)player.GetCurrentTime()/(float)player.GetTotalDuration());
+        }
+
         volumeSlider.GetComponent<Slider>().value = volume;
         myVideoPlayer.GetComponent<AudioSource>().volume = volume;
         
         timeTextObject.GetComponent<TMP_Text>().text = FormatTime(player.GetCurrentTime());
-        Debug.Log("current time:" + player.GetCurrentTime());
-        Debug.Log("total time:" + player.GetTotalDuration());
-        Debug.Log(100f * ((float)player.GetCurrentTime()/(float)player.GetTotalDuration()));
-
-        videoTimeSlider.GetComponent<Slider>().value = 100f * ((float)player.GetCurrentTime()/(float)player.GetTotalDuration());
 
     }
 
-    public void ReceiveUpdate(int _enabled, int _fullscreen , int _isPaused, int _currentTime, float _volume, string _youtubeUrl){
+    public void ReceiveUpdate(int _enabled, int _fullscreen , int _isPaused, int _currentTime, float _volume, string _youtubeUrl, string timeStamp){
         enabled = _enabled;
         currentTime = _currentTime;
         isPaused = _isPaused;
         volume = _volume;
         youtubeUrl = _youtubeUrl;
         fullscreen = _fullscreen;
+        currentTimeStamp = timeStamp;
     }
 
     public void UrlInControl(){
@@ -183,19 +211,23 @@ public class CustomYoutubeScript : MonoBehaviour
         urlInControl = false;
     }
 
-    private void Update(){
-        
-    }
 
-
-    private string YoutubeToString(int _enabled, int _fullscreen , int _isPaused, int _currentTime, float _volume, string _youtubeUrl){
+    private string YoutubeToString(int _enabled, int _fullscreen , int _isPaused, int _currentTime, float _volume, string _youtubeUrl, string _timeStamp){
         return _enabled.ToString() + "_" + _fullscreen.ToString() + "_" + _isPaused.ToString() + "_" + _currentTime.ToString() 
-        + "_" + _volume.ToString() + "_" + _youtubeUrl.ToString(); 
+        + "_" + _volume.ToString() + "_" + _youtubeUrl + "_" + _timeStamp; 
     }
 
     public void PlayNew(string url, int time){
         player.Play(url);
         player.Seek(time);
+    }
+
+    public void PlayerEdit(){
+        playerEdit = true;
+    }
+
+    public void PlayerUnedit(){
+        playerEdit = false;
     }
 
     // public void Play(int time)
@@ -214,14 +246,44 @@ public class CustomYoutubeScript : MonoBehaviour
         // if(autoPlay)
         //     player.Play(url);
     // }
+    private bool changedTime;
+    public void ChangeTime(float f){
+        if(playerEdit){
+            currentTime = (int)(f*(float)player.GetTotalDuration()/100f);
+            // Debug.Log("currentTime from change" + currentTime.ToString());
+            currentTimeStamp = Math.Round((DateTime.Now - new DateTime(1970, 1, 1)).TotalMilliseconds).ToString();
+            // youtubeSync.SetYoutube(YoutubeToString(enabled, fullscreen, isPaused, player.GetCurrentTime(), volume, youtubeUrl, currentTimeStamp));
+        }
+    }
 
-    // public void StartVideo(){
-    //     player.Start();
-    // }
+    public void StartVideo(){
+        Debug.Log("video start");
+        player.Seek(pauseTime);
+        player.Play();
+    }
 
-    // public void PauseVideo(){
-    //     player.Pause();
-    // }
+    public void AddFive(){
+        if(player.GetCurrentTime() + 5 < player.GetTotalDuration()){
+            player.Seek(player.GetCurrentTime() + 5);
+            player.Play();
+            return;
+        }
+        Debug.Log("add5");
+    }
+
+    public void SubtractFive(){
+        if(player.GetCurrentTime() - 5 > 0){
+            player.Seek(player.GetCurrentTime() - 5);
+            player.Play();
+            return;
+        }
+    }
+
+    public void PauseVideo(){
+        Debug.Log("video start");
+        player.Pause();
+        pauseTime = player.GetCurrentTime();
+    }
 
     public void TogglePause(){
         isPaused = 1 - isPaused;
