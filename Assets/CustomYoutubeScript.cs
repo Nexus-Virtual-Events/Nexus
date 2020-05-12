@@ -117,7 +117,6 @@ public class CustomYoutubeScript : MonoBehaviour
     }
 
     public void SetNewUrl(){
-        Debug.Log("url update");
         youtubeUrl = linkInput.text;
         currentTime = 0;
         fullscreen = 0;
@@ -146,7 +145,6 @@ public class CustomYoutubeScript : MonoBehaviour
             prevUrl = youtubeUrl;
         }
         if(enabled != prevEnabled){
-            Debug.Log("switch from model!");
             if(enabled == 0){
                 enableButtonText.GetComponent<TMP_Text>().text = "OFF";
                 screen.GetComponent<MeshRenderer>().enabled = false;
@@ -158,7 +156,6 @@ public class CustomYoutubeScript : MonoBehaviour
             prevEnabled = enabled;
         }
         if(isPaused != prevPaused){
-            Debug.Log("switch from model!");
             if(isPaused == 0){
                 StartVideo();
                 // enableButtonText.GetComponent<TMP_Text>().text = "OFF";
