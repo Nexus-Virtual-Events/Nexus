@@ -83,19 +83,14 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     public void GetDiploma(){
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-        if(!diplomaGotten){
-            GetComponent<StateSync>().SetState("0_1_0_"+cur_time.ToString());
-            diplomaGotten = true;
-        }
+        GetComponent<StateSync>().SetState("0_1_0_"+cur_time.ToString());
+            
     }
 
     public void GiveDiploma(){
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-        if(diplomaGotten){
-            GetComponent<StateSync>().SetState("0_0_0_"+cur_time.ToString());
-            diplomaGotten = false;
-        }
+        GetComponent<StateSync>().SetState("0_0_0_"+cur_time.ToString());
     }
 
     private bool firstAnimationOfInitial = true;
@@ -123,6 +118,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
         else{
             if(firstAnimationOfMiddle){
+                GetDiploma();
                 // GiveDiploma();  
             }
             if(!firstAnimationOfMiddle){
