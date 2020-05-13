@@ -26,14 +26,6 @@ public class Utils : MonoBehaviour
         AudioListener.volume = f;
     }
 
-    public void GiveDiplomaEvent(){
-        Debug.Log("Give diploma event");
-    }
-    public void GetDiplomaEvent(){
-        Debug.Log("Get diploma event");
-    }
-
-
     private void Awake()
     {
 
@@ -49,7 +41,7 @@ public class Utils : MonoBehaviour
         if (!animationRequirements.ContainsKey(1))
             animationRequirements.Add(1, new[]{1.0f, 0.55f});
         if (!animationRequirements.ContainsKey(2))
-            animationRequirements.Add(2, new[]{0.8f, 0.45f});
+            animationRequirements.Add(2, new[]{0.6f, 0.45f});
 
         animations = new[]
         {

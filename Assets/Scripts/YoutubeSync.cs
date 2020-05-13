@@ -72,7 +72,7 @@ public class YoutubeSync : RealtimeComponent {
     }
 
     public void SetYoutube(string youtube) {
-        Debug.Log("currentTimeSet:"+ youtube.Split('_')[3]);
+        // Debug.Log("currentTimeSet:"+ youtube.Split('_')[3]);
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
         _model.youtube = youtube;

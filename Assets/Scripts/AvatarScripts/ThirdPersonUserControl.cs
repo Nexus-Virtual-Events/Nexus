@@ -98,6 +98,16 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
     }
 
+    
+    public void GiveDiplomaEvent(){
+        GiveDiploma();
+        Debug.Log("Give diploma event");
+    }
+    public void GetDiplomaEvent(){
+        GetDiploma();
+        Debug.Log("Get diploma event");
+    }
+
     private void Start()
     {
         // get the transform of the main camera
