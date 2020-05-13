@@ -26,6 +26,13 @@ public class Utils : MonoBehaviour
         AudioListener.volume = f;
     }
 
+    public void GiveDiplomaEvent(){
+        Debug.Log("Give diploma event");
+    }
+    public void GetDiplomaEvent(){
+        Debug.Log("Get diploma event");
+    }
+
 
     private void Awake()
     {

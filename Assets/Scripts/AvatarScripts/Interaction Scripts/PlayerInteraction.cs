@@ -98,7 +98,9 @@ public class PlayerInteraction : MonoBehaviour
             if (_interactionMenu == null || !IsCloseEnough(_interactedObject) || _interactedObject == null)
             {
                 isInstantiated = false;
-                Destroy(_interactionMenu.gameObject);
+                try{
+                    Destroy(_interactionMenu.gameObject);
+                }catch{}
                 _interactedObject = null;
             }
             else
