@@ -2610,6 +2610,7 @@ namespace UMA.CharacterSystem
             {
                 activeRace.SetRaceData();
             }
+
             umaRecipe = activeRace.racedata.baseRaceRecipe;
 
             List<string> HiddenSlots = new List<string>();//why was this HashSet list is faster for our purposes (http://stackoverflow.com/questions/150750/hashset-vs-list-performance)

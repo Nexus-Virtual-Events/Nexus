@@ -18,7 +18,6 @@ public class EventManager : MonoBehaviour
         if (OnEventsChange == null)
             OnEventsChange = new UnityEvent();
 
-        Debug.Log("EventManager initialized:" + events);
         isInitializedBool = true;
 
     }

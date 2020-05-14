@@ -61,7 +61,6 @@ namespace Michsky.UI.ModernUIPack {
             }
 
             resolutionSelector.itemList = resolutionOptions;
-            Debug.Log(resolutionSelector.itemList);
             resolutionSelector.defaultIndex = currentResolutionIndex;
             resolutionSelector.index = currentResolutionIndex;
         }

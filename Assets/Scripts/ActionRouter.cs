@@ -24,19 +24,16 @@ public class ActionRouter : MonoBehaviour
 
     public static void SetCurrentChair(GameObject o)
     {
-        Debug.Log("current chair set");
         currentChair = o;
     }
 
     public static void SetLocalAvatar(GameObject o)
     {
-        Debug.Log("[Action Router] Current Avatar set: " + o);
         localAvatar = o;
     }
 
     public static void SetCurrentCharacter(GameObject o)
     {
-        Debug.Log("[Action Router] Current Character set");
         currentCharacter = o;
     }
 

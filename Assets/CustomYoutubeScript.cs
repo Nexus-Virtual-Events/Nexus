@@ -72,7 +72,6 @@ public class CustomYoutubeScript : MonoBehaviour
         InvokeRepeating("UpdateModel", 0, 0.1f);
         InvokeRepeating("UpdateScreen", 0, 0.1f);
 
-        Debug.Log("object:"+linkInputObject.ToString());
         // linkInputObject = GameObject.Find("LinkInput");
         linkInput = linkInputObject.GetComponent<TMP_InputField>();
         // PlayNew(Convert.ToInt32(youtubeSync.GetYoutubeParameter(3)));

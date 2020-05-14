@@ -50,7 +50,6 @@ public class RecipeSync : RealtimeComponent
 
     public void SetRecipe(string recipe)
     {
-        Debug.Log("Set Recipe called");
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
         _model.avatarRecipe = recipe;

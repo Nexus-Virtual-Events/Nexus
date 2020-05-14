@@ -198,6 +198,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         {
             // Set as remote avatar
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
+            avatar.ClearSlots();
+            avatar.LoadFromRecipeString(avatarRecipe);
+
         }
 
 
@@ -351,19 +354,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     private void Update()
     {
-
-        // render new avatars by checking if the number of players has changed
-        currentNumPlayers = GameObject.FindGameObjectsWithTag("Player").Length;
-        if (currentNumPlayers != prevNumPlayers)
-        {
-            if (avatarRecipe != null && avatarRecipe.Length > 100)
-            {
-                avatar.ClearSlots();
-                avatar.LoadFromRecipeString(avatarRecipe);
-                prevNumPlayers = currentNumPlayers;
-            }
-        }
-
         // If this CubePlayer prefab is not owned by this client, bail.
         if (!_realtimeView.isOwnedLocally)
             return;
