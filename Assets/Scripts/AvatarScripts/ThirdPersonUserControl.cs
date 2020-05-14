@@ -103,11 +103,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private GameObject chest;
 
     public void GetPinned(){
-        chest = GetChildWithName(gameObject, "RightOuterBreast");
-        rosette = Instantiate(diplomaPrefab, chest.transform, false);
-        rosette.transform.parent = chest.transform;
-        rosette.transform.rotation *= Quaternion.Euler(0f, 0f, 90f);
-        rosette.transform.Translate(0,0.04f, 0);
+        System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+        GetComponent<StateSync>().SetState("0_2_0_"+cur_time.ToString());
     }
    
 

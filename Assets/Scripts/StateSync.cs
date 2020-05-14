@@ -68,6 +68,20 @@ public class StateSync : RealtimeComponent {
     {
         Destroy(diploma);
     }
+    private GameObject chest;
+    private GameObject rosette;
+    private void GetPinned(){
+        chest = GetChildWithName(gameObject, "RightOuterBreast");
+        rosette = Instantiate(diplomaPrefab, chest.transform, false);
+        rosette.transform.parent = chest.transform;
+        rosette.transform.rotation *= Quaternion.Euler(0f, 0f, 90f);
+        rosette.transform.Translate(0,0.04f, 0);
+    }
+    private void Unpin(){
+        if(rosette){
+            Destroy(rosette);
+        }
+    }
 
     public GameObject GetChildWithName(GameObject fromGameObject, string withName)
     {
@@ -93,6 +107,10 @@ public class StateSync : RealtimeComponent {
         }
         if(parameters[1] == "0"){
             GiveDiploma();
+        }
+        if(parameters[1] == "2"){
+            Unpin();
+            GetPinned();
         }
     }
 
