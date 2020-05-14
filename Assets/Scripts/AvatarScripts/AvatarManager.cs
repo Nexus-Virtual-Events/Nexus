@@ -26,6 +26,8 @@ namespace Michsky.UI.ModernUIPack {
         Resolution[] resolutions;
         UnityEvent[] onResolutionChanges;
 
+        private bool isConnected;
+
 
         private void Awake() {
             // Get the Realtime component on this game object
@@ -33,6 +35,7 @@ namespace Michsky.UI.ModernUIPack {
 
             // Notify us when Realtime successfully connects to the room
             _realtime.didConnectToRoom += DidConnectToRoom;
+            _realtime.didDisconnectFromRoom += DidDisconnectFromRoom;
 
         }
 
@@ -76,6 +79,10 @@ namespace Michsky.UI.ModernUIPack {
                 preventOwnershipTakeover: true,                // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
                              useInstance: realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
             ShowWelcomeWindow();
+        }
+
+        private void DidDisconnectFromRoom(Realtime realtime){
+            Debug.Log("DISCONNECT!");
         }
 
         public void ShowWelcomeWindow()
