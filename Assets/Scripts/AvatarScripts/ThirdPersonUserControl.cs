@@ -93,36 +93,50 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     private bool firstAnimationOfInitial = true;
     private bool firstAnimationOfMiddle = true;
+    
     public void DiplomaEventInitial(int i){
         if(i==0){
              if(firstAnimationOfInitial){
-                GetDiploma();  
+                GetDiploma(); 
+                firstAnimationOfInitial = false;
+                return;
             }
             if(!firstAnimationOfInitial){
                 firstAnimationOfInitial = true;
             }
-            firstAnimationOfInitial = false;
+        }
+        if(i==1){
+            if(firstAnimationOfInitial){
+                GiveDiploma();  
+                firstAnimationOfInitial = false;
+                return;
+            }
+            if(!firstAnimationOfInitial){
+                firstAnimationOfInitial = true;
+            }
         }
     }
     public void DiplomaEventMiddle(int i){
        if(i==0){
             if(firstAnimationOfMiddle){
-                GiveDiploma();  
+                GiveDiploma();
+                firstAnimationOfMiddle = false;
+                return;
             }
             if(!firstAnimationOfMiddle){
                 firstAnimationOfMiddle = true;
             }
-            firstAnimationOfMiddle = false;
         }
         else{
             if(firstAnimationOfMiddle){
-                // GiveDiploma();  
+                // GiveDiploma(); 
+                firstAnimationOfMiddle = false;
+                return;
             }
             if(!firstAnimationOfMiddle){
                 GetDiploma();
                 firstAnimationOfMiddle = true;
             }
-            firstAnimationOfMiddle = false;
         }
     }
 
