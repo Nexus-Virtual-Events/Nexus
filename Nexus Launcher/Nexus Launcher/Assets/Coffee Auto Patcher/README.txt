@@ -1,1 +1,0 @@
-Build the Patcher to the same Build Directory as your game. View the User Guide for more information

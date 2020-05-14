@@ -1,0 +1,47 @@
+{
+  "exe_fileName": "open",
+  "exe_arguments": "\"{exedir}/Patcher.app\" --args --installdir \"{installdir}\" --secret \"{secret}\"",
+  "manifest_version": 4,
+  "target": "open",
+  "target_arguments": [
+    {
+      "value": [
+        "{exedir}/Patcher.app"
+      ]
+    },
+    {
+      "value": [
+        "--args"
+      ]
+    },
+    {
+      "value": [
+        "--installdir",
+        "{installdir}"
+      ]
+    },
+    {
+      "value": [
+        "--lockfile",
+        "{lockfile}"
+      ]
+    },
+    {
+      "value": [
+        "--secret",
+        "{secret}"
+      ]
+    },
+    {
+      "value": [
+        "--{network-status}"
+      ]
+    }
+  ],
+  "capabilities": [
+    "pack1_compression_lzma2",
+    "security_fix_944",
+    "preselected_executable",
+    "execution_arguments"
+  ]
+}
