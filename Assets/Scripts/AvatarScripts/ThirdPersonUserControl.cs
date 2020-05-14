@@ -91,9 +91,25 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         GetComponent<StateSync>().SetState("0_0_0_"+cur_time.ToString());
     }
 
-    public void GetPinned(){
-        Debug.Log("getting pinned");
+    private GameObject rosette;
+
+     public GameObject GetChildWithName(GameObject fromGameObject, string withName)
+    {
+        Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>(true);
+        foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
+        return null;
     }
+
+    private GameObject chest;
+
+    public void GetPinned(){
+        chest = GetChildWithName(gameObject, "RightOuterBreast");
+        rosette = Instantiate(diplomaPrefab, chest.transform, false);
+        rosette.transform.parent = chest.transform;
+        rosette.transform.rotation *= Quaternion.Euler(0f, 0f, 90f);
+        rosette.transform.Translate(0,0.04f, 0);
+    }
+   
 
     private bool firstAnimationOfInitial = true;
     private bool firstAnimationOfMiddle = true;
