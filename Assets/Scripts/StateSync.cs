@@ -54,7 +54,9 @@ public class StateSync : RealtimeComponent {
         diploma = Instantiate(diplomaPrefab, rightHand.transform, false);
         diploma.transform.parent = rightHand.transform;
         diploma.transform.rotation = diploma.transform.rotation * Quaternion.Euler(0f, 0f, 90f);
-        diploma.transform.position = diploma.transform.position - new Vector3(0f, 0.1f, 0f);
+        diploma.transform.Translate(new Vector3(0f, 0.1f, 0f), Space.Self);
+        diploma.transform.rotation = diploma.transform.rotation * Quaternion.Euler(90f, 0f, 0f);
+        diploma.transform.Translate(new Vector3(0f, -0.05f, 0f), Space.Self);
 
         Debug.Log(diploma);
 

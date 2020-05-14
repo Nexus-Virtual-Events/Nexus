@@ -91,6 +91,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         GetComponent<StateSync>().SetState("0_0_0_"+cur_time.ToString());
     }
 
+    public void GetPinned(){
+        Debug.Log("getting pinned");
+    }
+
     private bool firstAnimationOfInitial = true;
     private bool firstAnimationOfMiddle = true;
     
@@ -112,6 +116,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 return;
             }
             if(!firstAnimationOfInitial){
+                GiveDiploma();
+                GetPinned();
                 firstAnimationOfInitial = true;
             }
         }
