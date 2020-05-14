@@ -79,57 +79,64 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     {
         return _realtimeView.ownerID;
     }
-    private bool diplomaGotten = false;
     public void GetDiploma(){
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-        if(!diplomaGotten){
-            GetComponent<StateSync>().SetState("0_1_0_"+cur_time.ToString());
-            diplomaGotten = true;
-        }
+        GetComponent<StateSync>().SetState("0_1_0_"+cur_time.ToString());
     }
 
     public void GiveDiploma(){
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-        if(diplomaGotten){
-            GetComponent<StateSync>().SetState("0_0_0_"+cur_time.ToString());
-            diplomaGotten = false;
-        }
+        GetComponent<StateSync>().SetState("0_0_0_"+cur_time.ToString());
     }
 
     private bool firstAnimationOfInitial = true;
     private bool firstAnimationOfMiddle = true;
+    
     public void DiplomaEventInitial(int i){
         if(i==0){
              if(firstAnimationOfInitial){
-                GetDiploma();  
+                GetDiploma(); 
+                firstAnimationOfInitial = false;
+                return;
             }
             if(!firstAnimationOfInitial){
                 firstAnimationOfInitial = true;
             }
-            firstAnimationOfInitial = false;
+        }
+        if(i==1){
+            if(firstAnimationOfInitial){
+                GiveDiploma();  
+                firstAnimationOfInitial = false;
+                return;
+            }
+            if(!firstAnimationOfInitial){
+                firstAnimationOfInitial = true;
+            }
         }
     }
     public void DiplomaEventMiddle(int i){
        if(i==0){
             if(firstAnimationOfMiddle){
-                GiveDiploma();  
+                GiveDiploma();
+                firstAnimationOfMiddle = false;
+                return;
             }
             if(!firstAnimationOfMiddle){
                 firstAnimationOfMiddle = true;
             }
-            firstAnimationOfMiddle = false;
         }
         else{
             if(firstAnimationOfMiddle){
-                // GiveDiploma();  
+                // GiveDiploma(); 
+                firstAnimationOfMiddle = false;
+                return;
             }
             if(!firstAnimationOfMiddle){
                 GetDiploma();
                 firstAnimationOfMiddle = true;
             }
-            firstAnimationOfMiddle = false;
         }
     }
 

@@ -43,7 +43,6 @@ public class StateSync : RealtimeComponent {
     public GameObject diplomaPrefab;
     private GameObject diploma;
 
-    private bool isDiplomaInstantiated;
     private GameObject rightHand;
     private void GetDiploma()
     {
@@ -52,11 +51,6 @@ public class StateSync : RealtimeComponent {
             rightHand = GetChildWithName(gameObject, "RightHand");
         }
 
-        if (isDiplomaInstantiated)
-        {
-            Debug.Log("diploma was already instantiated");
-            return;
-        }
         diploma = Instantiate(diplomaPrefab, rightHand.transform, false);
         diploma.transform.parent = rightHand.transform;
         diploma.transform.rotation = diploma.transform.rotation * Quaternion.Euler(0f, 0f, 90f);
