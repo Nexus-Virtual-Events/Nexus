@@ -113,8 +113,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private bool firstAnimationOfMiddle = true;
     
     public void DiplomaEventInitial(int i){
+       if(isAnimationLocal){return;}
+
         if(i==0){
-             if(firstAnimationOfInitial){
+            if(firstAnimationOfInitial){
                 GetDiploma(); 
                 firstAnimationOfInitial = false;
                 return;
@@ -137,6 +139,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
     }
     public void DiplomaEventMiddle(int i){
+       if(isAnimationLocal){return;}
+
        if(i==0){
             if(firstAnimationOfMiddle){
                 GiveDiploma();
@@ -455,14 +459,14 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
                 }
 
-                if (Input.GetKey(KeyCode.I))
-                {
-                    GetDiploma();
-                }
-                if (Input.GetKey(KeyCode.O))
-                {
-                    GiveDiploma();
-                }
+                // if (Input.GetKey(KeyCode.I))
+                // {
+                //     GetDiploma();
+                // }
+                // if (Input.GetKey(KeyCode.O))
+                // {
+                //     GiveDiploma();
+                // }
 
                 if (sit)
                 {
