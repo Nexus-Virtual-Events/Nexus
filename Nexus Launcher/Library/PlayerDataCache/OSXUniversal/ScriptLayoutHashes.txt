@@ -35,7 +35,7 @@ d53a0f2640b8100ffb4404334930d028 Assembly-CSharp.dll:Michsky.UI.ModernUIPack.UIM
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp-firstpass.dll:UniRx.Triggers.ObservableVisibleTrigger
 31beb897e94855c76e271cb3cf9e695a Assembly-CSharp.dll:Michsky.UI.ModernUIPack.CustomDropdown
-8df7ae0330e4d2f5d7ee4ee123a1f55c Assembly-CSharp.dll:PatchKit.Unity.Patcher.UI.MessagePanel
+4d0794bc41bad9f87b91df7af778a4d3 Assembly-CSharp.dll:PatchKit.Unity.Patcher.UI.MessagePanel
 b9f6fc307bf8c57490d5a924365ea244 Assembly-CSharp.dll:Michsky.UI.ModernUIPack.UIManagerSwitch
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
