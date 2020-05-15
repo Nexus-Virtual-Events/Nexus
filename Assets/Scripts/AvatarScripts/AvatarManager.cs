@@ -106,33 +106,33 @@ namespace Michsky.UI.ModernUIPack {
 
         void Update () {
             
-                // if (nmrReconnectTrial >= 5) {
-                //     Debug.Log("Not trying again");
-                //     return;
-                // }
+                if (nmrReconnectTrial >= 5) {
+                    Debug.Log("Not trying again");
+                    return;
+                }
 
-                // if (_realtime.disconnected && !_realtime.connecting && Time.time > lastReconnectTrial + 3 * nmrReconnectTrial) {
-                //     nmrReconnectTrial += 1;
-                //     lastReconnectTrial = Time.time;
-                //     Debug.Log("TRYING TO CONNECT");
-                //     Loading.sceneString = SceneManager.GetActiveScene().name;
-                //     SceneManager.LoadScene("Loading");
-                //     System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
-                //     int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
-                // }
+                if (_realtime.disconnected && !_realtime.connecting && Time.time > lastReconnectTrial + 3 * nmrReconnectTrial) {
+                    nmrReconnectTrial += 1;
+                    lastReconnectTrial = Time.time;
+                    Debug.Log("TRYING TO CONNECT");
+                    Loading.sceneString = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene("Loading");
+                    System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+                    int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+                }
 
-                // if(_realtime.connecting){
-                //     if (startedConnecting < 0) {
-                //         Debug.Log("Started CONNECTING");
-                //         startedConnecting = Time.time;
-                //     }
+                if(_realtime.connecting){
+                    if (startedConnecting < 0) {
+                        Debug.Log("Started CONNECTING");
+                        startedConnecting = Time.time;
+                    }
 
-                //     if (Time.time > startedConnecting + 10.0f) {
-                //         Debug.Log("FORCE DISCONNECT");
-                //         startedConnecting = -1;
-                //         ForceDisconnect();
-                //     }
-                // }
+                    if (Time.time > startedConnecting + 5.0f) {
+                        Debug.Log("FORCE DISCONNECT");
+                        startedConnecting = -1;
+                        ForceDisconnect();
+                    }
+                }
 
                 // if(!DidConnect){
                 //     _realtime.Disconnect();
