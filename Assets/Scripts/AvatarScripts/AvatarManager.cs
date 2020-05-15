@@ -97,12 +97,16 @@ namespace Michsky.UI.ModernUIPack {
                 preventOwnershipTakeover: true,                // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
                              useInstance: realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
             ShowWelcomeWindow();
+
+            nmrLoadingReconnectTrial = 0;
         }
 
         private int nmrReconnectTrial = 0;
         private float lastReconnectTrial = 0;
 
         private float startedConnecting = -1;
+
+        private int nmrLoadingReconnectTrial = 0;
 
         void Update () {
             
@@ -113,34 +117,27 @@ namespace Michsky.UI.ModernUIPack {
 
                 if (_realtime.disconnected && !_realtime.connecting && Time.time > lastReconnectTrial + 3 * nmrReconnectTrial) {
                     nmrReconnectTrial += 1;
+                    Debug.Log(nmrReconnectTrial);
+
                     lastReconnectTrial = Time.time;
                     Debug.Log("TRYING TO CONNECT");
-                    Loading.sceneString = SceneManager.GetActiveScene().name;
-                    SceneManager.LoadScene("Loading");
-                    System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
-                    int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+                    _realtime.Connect("The Circle");
                 }
 
                 if(_realtime.connecting){
+                    Debug.Log(nmrLoadingReconnectTrial);
                     if (startedConnecting < 0) {
                         Debug.Log("Started CONNECTING");
                         startedConnecting = Time.time;
+                        nmrLoadingReconnectTrial += 1;
                     }
 
-                    if (Time.time > startedConnecting + 5.0f) {
+                    if (Time.time > startedConnecting + 1.0f * nmrLoadingReconnectTrial) {
                         Debug.Log("FORCE DISCONNECT");
                         startedConnecting = -1;
                         ForceDisconnect();
                     }
                 }
-
-                // if(!DidConnect){
-                //     _realtime.Disconnect();
-                //     Debug.Log("TRYING TO CONNECT");
-                //     Loading.sceneString = SceneManager.GetActiveScene().name;
-                //     SceneManager.LoadScene("Loading");
-                // }
-
                 
             }
 
