@@ -117,7 +117,6 @@ namespace Michsky.UI.ModernUIPack {
 
                 if (_realtime.disconnected && !_realtime.connecting && Time.time > lastReconnectTrial + 3 * nmrReconnectTrial) {
                     nmrReconnectTrial += 1;
-                    Debug.Log(nmrReconnectTrial);
 
                     lastReconnectTrial = Time.time;
                     Debug.Log("TRYING TO CONNECT");
@@ -142,7 +141,8 @@ namespace Michsky.UI.ModernUIPack {
             }
 
         private void DidDisconnectFromRoom(Realtime realtime){
-
+            
+            MainCamera.transform.parent = null;
             MainCamera.SetActive(false);
             FallBackCamera.SetActive(true);
             ReconnectUI.SetActive(true);
