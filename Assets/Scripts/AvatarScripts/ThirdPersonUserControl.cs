@@ -200,14 +200,15 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
             avatar.ClearSlots();
             avatar.LoadFromRecipeString(avatarRecipe);
-
         }
-
-
 
         gameObject.name = "Avatar_" + getID();
         numberOfAnimations = Utils.animations.Length;
         //playerName = GetChildWithName(gameObject, "Player Name");
+
+        Debug.Log(">>>>");
+        Debug.Log(GetComponent<StateSync>().GetState());
+        Debug.Log(">>>>");
 
 
     }

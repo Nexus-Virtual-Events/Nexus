@@ -26,6 +26,11 @@ namespace Michsky.UI.ModernUIPack {
         Resolution[] resolutions;
         UnityEvent[] onResolutionChanges;
 
+        public GameObject MainCamera;
+        public GameObject FallBackCamera;
+
+        public GameObject ReconnectUI;
+
         private bool isConnected;
 
 
@@ -39,6 +44,13 @@ namespace Michsky.UI.ModernUIPack {
 
         }
 
+        public void ConnectToRoom() {
+            _realtime.Connect("The Circle");
+        }
+
+        public void ForceDisconnect () {
+            _realtime.Disconnect();
+        }
         private void Start()
         {
             eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
@@ -68,7 +80,13 @@ namespace Michsky.UI.ModernUIPack {
             resolutionSelector.index = currentResolutionIndex;
         }
 
+        private bool DidConnect;
         private void DidConnectToRoom(Realtime realtime) {
+            Debug.Log("DID CONNECT");
+
+            MainCamera.SetActive(true);
+            FallBackCamera.SetActive(false);
+            ReconnectUI.SetActive(false);
 
             Transform _spawn = GameObject.Find("Spawn").transform;
             // Instantiate the CubePlayer for this client once we've successfully connected to the room
@@ -81,8 +99,60 @@ namespace Michsky.UI.ModernUIPack {
             ShowWelcomeWindow();
         }
 
+        private int nmrReconnectTrial = 0;
+        private float lastReconnectTrial = 0;
+
+        private float startedConnecting = -1;
+
+        void Update () {
+            
+                // if (nmrReconnectTrial >= 5) {
+                //     Debug.Log("Not trying again");
+                //     return;
+                // }
+
+                // if (_realtime.disconnected && !_realtime.connecting && Time.time > lastReconnectTrial + 3 * nmrReconnectTrial) {
+                //     nmrReconnectTrial += 1;
+                //     lastReconnectTrial = Time.time;
+                //     Debug.Log("TRYING TO CONNECT");
+                //     Loading.sceneString = SceneManager.GetActiveScene().name;
+                //     SceneManager.LoadScene("Loading");
+                //     System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+                //     int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+                // }
+
+                // if(_realtime.connecting){
+                //     if (startedConnecting < 0) {
+                //         Debug.Log("Started CONNECTING");
+                //         startedConnecting = Time.time;
+                //     }
+
+                //     if (Time.time > startedConnecting + 10.0f) {
+                //         Debug.Log("FORCE DISCONNECT");
+                //         startedConnecting = -1;
+                //         ForceDisconnect();
+                //     }
+                // }
+
+                // if(!DidConnect){
+                //     _realtime.Disconnect();
+                //     Debug.Log("TRYING TO CONNECT");
+                //     Loading.sceneString = SceneManager.GetActiveScene().name;
+                //     SceneManager.LoadScene("Loading");
+                // }
+
+                
+            }
+
         private void DidDisconnectFromRoom(Realtime realtime){
-            Debug.Log("DISCONNECT!");
+
+            MainCamera.SetActive(false);
+            FallBackCamera.SetActive(true);
+            ReconnectUI.SetActive(true);
+
+            nmrReconnectTrial = 0;
+            lastReconnectTrial = 0;
+            startedConnecting = -1;
         }
 
         public void ShowWelcomeWindow()
@@ -140,7 +210,8 @@ namespace Michsky.UI.ModernUIPack {
 
         public void Respawn()
         {
-            Realtime.Destroy(localPlayer.GetComponent<RealtimeView>());
+            // Realtime.Destroy(localPlayer.GetComponent<RealtimeView>());
+            _realtime.Disconnect();
             Destroy(localPlayer);
             //GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
             Loading.sceneString = SceneManager.GetActiveScene().name;

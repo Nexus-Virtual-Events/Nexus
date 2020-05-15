@@ -77,6 +77,7 @@ public class StateSync : RealtimeComponent {
         rosette.transform.rotation *= Quaternion.Euler(0f, 0f, 90f);
         rosette.transform.Translate(0,0.04f, 0);
     }
+
     private void Unpin(){
         if(rosette){
             Destroy(rosette);
@@ -88,6 +89,16 @@ public class StateSync : RealtimeComponent {
         Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>(true);
         foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
         return null;
+    }
+
+    public string GetState(){
+        if(_model.state != ""){
+            return _model.state;
+        }
+        else{
+            Debug.Log("model.state missing");
+            return "";
+        }
     }
 
     
