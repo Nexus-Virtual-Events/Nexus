@@ -81,6 +81,8 @@ namespace Michsky.UI.ModernUIPack {
         }
 
         private bool DidConnect;
+
+        private Transform _spawn;
         private void DidConnectToRoom(Realtime realtime) {
             Debug.Log("DID CONNECT");
 
@@ -88,7 +90,7 @@ namespace Michsky.UI.ModernUIPack {
             FallBackCamera.SetActive(false);
             ReconnectUI.SetActive(false);
 
-            Transform _spawn = GameObject.Find("Spawn").transform;
+            _spawn = GameObject.Find("Spawn").transform;
             // Instantiate the CubePlayer for this client once we've successfully connected to the room
             localPlayer = Realtime.Instantiate("NexusAvatar",                 // Prefab name
                                 position: _spawn.position,          // Start 1 meter in the air
@@ -123,6 +125,10 @@ namespace Michsky.UI.ModernUIPack {
                     _realtime.Connect("The Circle");
                 }
 
+                if(nmrLoadingReconnectTrial > 10){
+                    Application.Quit();
+                }
+
                 if(_realtime.connecting){
                     Debug.Log(nmrLoadingReconnectTrial);
                     if (startedConnecting < 0) {
@@ -139,7 +145,6 @@ namespace Michsky.UI.ModernUIPack {
                 }
                 
             }
-
         private void DidDisconnectFromRoom(Realtime realtime){
             
             MainCamera.transform.parent = null;
@@ -150,6 +155,12 @@ namespace Michsky.UI.ModernUIPack {
             nmrReconnectTrial = 0;
             lastReconnectTrial = 0;
             startedConnecting = -1;
+
+            FallBackCamera.transform.position = MainCamera.transform.position;
+            FallBackCamera.transform.rotation = MainCamera.transform.rotation;
+            _spawn.position = localPlayer.transform.position;
+            _spawn.rotation = localPlayer.transform.rotation;
+
         }
 
         public void ShowWelcomeWindow()
