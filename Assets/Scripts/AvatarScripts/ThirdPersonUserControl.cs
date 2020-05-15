@@ -233,17 +233,22 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         string[] actionParts = lastAction.Split('_');
 
-        m_Character.StartAnimation(actionParts[0], false);
+        m_Character.StartAnimation(actionParts[0], isAnimationLocal);
 
     }
 
-
+    private bool isAnimationLocal;
     public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
     {
-        //LOG("Interaction type: " + newInteraction);
-        //LOG("ReactToInteractionchange from " + gameObject.name);
+        LOG("Interaction type: " + newInteraction);
+        LOG("ReactToInteractionchange from " + gameObject.name);
 
         string[] parameters = stringToArray(newInteraction);
+
+        isAnimationLocal = false;
+        if(Convert.ToInt32(parameters[0]) == _realtimeView.ownerID){
+            isAnimationLocal = true;
+        }
 
         currentInteraction = parameters[2];
 
@@ -477,13 +482,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 }
 
 
-                //bool crouch = Input.GetKey(KeyCode.C);
-                //bool clap = Input.GetKey(KeyCode.Alpha1);
-                //bool wave = Input.GetKey(KeyCode.Alpha2);
-                //bool samba = Input.GetKey(KeyCode.Alpha3);
-
-
-
                 // calculate move direction to pass to character
                 if (m_Cam != null)
                 {
@@ -504,13 +502,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 // pass all parameters to the character control script
                 m_Character.Move(m_Move, animationStates);
 
-                //animationStates[1] = m_Jump;
-
-                //animationStates[0] = crouch;
-                //animationStates[2] = clap;
-                //animationStates[3] = wave;
-                //animationStates[4] = sit;
-                //animationStates[5] = samba;
 
                 GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(m_Move, animationStates));
 
@@ -559,7 +550,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         // Update Move Here
         GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
-        m_Character.StartAnimation(currentInteraction, true);
+        m_Character.StartAnimation(currentInteraction, !isAnimationLocal);
 
         canMove = true;
         autoPilot = false;
