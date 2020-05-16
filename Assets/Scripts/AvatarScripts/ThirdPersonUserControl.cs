@@ -113,55 +113,55 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private bool firstAnimationOfMiddle = true;
     
     public void DiplomaEventInitial(int i){
-       if(isAnimationLocal){return;}
+    //    if(isAnimationLocal){return;}
 
-        if(i==0){
-            if(firstAnimationOfInitial){
-                GetDiploma(); 
-                firstAnimationOfInitial = false;
-                return;
-            }
-            if(!firstAnimationOfInitial){
-                firstAnimationOfInitial = true;
-            }
-        }
-        if(i==1){
-            if(firstAnimationOfInitial){
-                GiveDiploma();  
-                firstAnimationOfInitial = false;
-                return;
-            }
-            if(!firstAnimationOfInitial){
-                GiveDiploma();
-                GetPinned();
-                firstAnimationOfInitial = true;
-            }
-        }
+    //     if(i==0){
+    //         if(firstAnimationOfInitial){
+    //             GetDiploma(); 
+    //             firstAnimationOfInitial = false;
+    //             return;
+    //         }
+    //         if(!firstAnimationOfInitial){
+    //             firstAnimationOfInitial = true;
+    //         }
+    //     }
+    //     if(i==1){
+    //         if(firstAnimationOfInitial){
+    //             GiveDiploma();  
+    //             firstAnimationOfInitial = false;
+    //             return;
+    //         }
+    //         if(!firstAnimationOfInitial){
+    //             GiveDiploma();
+    //             GetPinned();
+    //             firstAnimationOfInitial = true;
+    //         }
+    //     }
     }
     public void DiplomaEventMiddle(int i){
-       if(isAnimationLocal){return;}
+    //    if(isAnimationLocal){return;}
 
-       if(i==0){
-            if(firstAnimationOfMiddle){
-                GiveDiploma();
-                firstAnimationOfMiddle = false;
-                return;
-            }
-            if(!firstAnimationOfMiddle){
-                firstAnimationOfMiddle = true;
-            }
-        }
-        else{
-            if(firstAnimationOfMiddle){
-                // GiveDiploma(); 
-                firstAnimationOfMiddle = false;
-                return;
-            }
-            if(!firstAnimationOfMiddle){
-                GetDiploma();
-                firstAnimationOfMiddle = true;
-            }
-        }
+    //    if(i==0){
+    //         if(firstAnimationOfMiddle){
+    //             GiveDiploma();
+    //             firstAnimationOfMiddle = false;
+    //             return;
+    //         }
+    //         if(!firstAnimationOfMiddle){
+    //             firstAnimationOfMiddle = true;
+    //         }
+    //     }
+    //     else{
+    //         if(firstAnimationOfMiddle){
+    //             // GiveDiploma(); 
+    //             firstAnimationOfMiddle = false;
+    //             return;
+    //         }
+    //         if(!firstAnimationOfMiddle){
+    //             GetDiploma();
+    //             firstAnimationOfMiddle = true;
+    //         }
+    //     }
     }
 
     private void Start()
