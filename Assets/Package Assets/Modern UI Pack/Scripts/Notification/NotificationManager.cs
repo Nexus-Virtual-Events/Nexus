@@ -8,17 +8,17 @@ namespace Michsky.UI.ModernUIPack
 
         void Start()
         {
-            notificationAnimator = gameObject.GetComponent<Animator>();
+            // notificationAnimator = gameObject.GetComponent<Animator>();
         }
 
         public void OpenNotification()
         {
-            notificationAnimator.Play("In");
+            // notificationAnimator.Play("In");
         }
 
         public void CloseNotification()
         {
-            notificationAnimator.Play("Out");
+            // notificationAnimator.Play("Out");
         }
     }
 }
