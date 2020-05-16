@@ -104,7 +104,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			{
 				animationTrigger = animationTrigger + "1";
 			}
-			// Debug.Log("animationTrigger" + animationTrigger.ToString() + " from " + gameObject.name);
+			Debug.Log("animationTrigger" + animationTrigger.ToString() + " from " + gameObject.name);
 			m_Animator.SetTrigger(animationTrigger);
 		}
 
