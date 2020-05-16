@@ -35,7 +35,7 @@ public class StateSync : RealtimeComponent {
 
     private void StateDidChange(StateSyncModel model, string value) {
         // Update the mesh renderer
-        Debug.Log("state did change!");
+        // Debug.Log("state did change!");
         UpdateModel();
     }
 

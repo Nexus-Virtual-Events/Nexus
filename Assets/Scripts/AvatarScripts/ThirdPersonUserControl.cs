@@ -210,11 +210,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         numberOfAnimations = Utils.animations.Length;
         //playerName = GetChildWithName(gameObject, "Player Name");
 
-        Debug.Log(">>>>");
-        Debug.Log(GetComponent<StateSync>().GetState());
-        Debug.Log(">>>>");
-
-
     }
 
     private string[] stringToArray(string s)

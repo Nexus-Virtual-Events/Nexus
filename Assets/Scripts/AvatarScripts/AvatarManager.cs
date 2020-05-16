@@ -86,7 +86,7 @@ namespace Michsky.UI.ModernUIPack {
 
         private Transform _spawn;
         private void DidConnectToRoom(Realtime realtime) {
-            Debug.Log("DID CONNECT");
+            // Debug.Log("DID CONNECT");
 
             MainCamera.SetActive(true);
             FallBackCamera.SetActive(false);
@@ -130,15 +130,14 @@ namespace Michsky.UI.ModernUIPack {
                 }
 
                 if(_realtime.connecting){
-                    Debug.Log(nmrLoadingReconnectTrial);
                     if (startedConnecting < 0) {
-                        Debug.Log("Started CONNECTING");
+                        // Debug.Log("Started CONNECTING");
                         startedConnecting = Time.time;
                         nmrLoadingReconnectTrial += 1;
                     }
 
-                    if (Time.time > startedConnecting + 1.0f * nmrLoadingReconnectTrial) {
-                        Debug.Log("FORCE DISCONNECT");
+                    if (Time.time > startedConnecting + 5.0f * nmrLoadingReconnectTrial) {
+                        // Debug.Log("FORCE DISCONNECT");
                         startedConnecting = -1;
                         ForceDisconnect();
                     }
@@ -147,10 +146,16 @@ namespace Michsky.UI.ModernUIPack {
             }
         private void DidDisconnectFromRoom(Realtime realtime){
             
-            MainCamera.transform.parent = null;
-            MainCamera.SetActive(false);
+            if(MainCamera){
+                MainCamera.transform.parent = null;
+                MainCamera.SetActive(false);
+            }
+            if(FallBackCamera){
             FallBackCamera.SetActive(true);
+            }
+            if(ReconnectUI){
             ReconnectUI.SetActive(true);
+            }
 
             nmrReconnectTrial = 0;
             lastReconnectTrial = 0;
@@ -159,8 +164,10 @@ namespace Michsky.UI.ModernUIPack {
             FallBackCamera.transform.position = MainCamera.transform.position;
             FallBackCamera.transform.rotation = MainCamera.transform.rotation;
             
-            _spawn.position = localPlayer.transform.position;
-            _spawn.rotation = localPlayer.transform.rotation;
+            if(localPlayer){
+                _spawn.position = localPlayer.transform.position;
+                _spawn.rotation = localPlayer.transform.rotation;
+            }
 
         }
 
@@ -229,7 +236,8 @@ namespace Michsky.UI.ModernUIPack {
 
         public void QuitGame()
         {
-            Realtime.Destroy(localPlayer.GetComponent<RealtimeView>());
+            // Realtime.Destroy(localPlayer.GetComponent<RealtimeView>());
+            _realtime.Disconnect();
             Destroy(localPlayer);
             //GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
             Application.Quit();
