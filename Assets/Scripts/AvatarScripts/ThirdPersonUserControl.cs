@@ -113,7 +113,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private bool firstAnimationOfMiddle = true;
     
     public void DiplomaEventInitial(int i){
-       if(isAnimationLocal){return;}
 
         if(i==0){
             if(firstAnimationOfInitial){
@@ -139,7 +138,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
     }
     public void DiplomaEventMiddle(int i){
-       if(isAnimationLocal){return;}
 
        if(i==0){
             if(firstAnimationOfMiddle){
@@ -192,19 +190,12 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         if (_realtimeView.isOwnedLocally)
         {
             ActionRouter.SetLocalAvatar(transform.gameObject);
-            // avatar.ClearSlots();
-            // avatarRecipe = PlayerPrefs.GetString("playerRecipe");
-            // avatar.LoadFromRecipeString(avatarRecipe);
-            //SET RECIPE UPON ENTERING THE GAME
             _recipeSync.SetRecipe(PlayerPrefs.GetString("playerRecipe"));
 
         }
         else
         {
-            // Set as remote avatar
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
-            // avatar.ClearSlots();
-            // avatar.LoadFromRecipeString(avatarRecipe);
         }
 
         avatar.ClearSlots();
@@ -212,8 +203,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         gameObject.name = "Avatar_" + getID();
         numberOfAnimations = Utils.animations.Length;
-        //playerName = GetChildWithName(gameObject, "Player Name");
-
     }
 
     private string[] stringToArray(string s)
