@@ -178,15 +178,15 @@ namespace Michsky.UI.ModernUIPack {
 
         public void ReactToEvent()
         {
-            // if (eventManager.GetEvents() == null) return;
-            // if (eventManager.GetEvents()[1] == '1')
-            // {
-            //     eventStartingNotification.OpenNotification();
-            // }
-            // else if (eventManager.GetEvents()[1] == '0')
-            // {
-            //     eventStartingNotification.CloseNotification();
-            // }
+            if (eventManager.GetEvents() == null) return;
+            if (eventManager.GetEvents()[1] == '1')
+            {
+                eventStartingNotification.OpenNotification();
+            }
+            else if (eventManager.GetEvents()[1] == '0')
+            {
+                eventStartingNotification.CloseNotification();
+            }
         }
 
         public void ShowSettingsWindow()
