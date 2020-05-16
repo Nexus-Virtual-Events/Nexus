@@ -41,6 +41,10 @@ public class RecipeSync : RealtimeComponent
         UpdateRecipe();
     }
 
+    public string GetRecipe(){
+        return _model.avatarRecipe;
+    }
+
     private void UpdateRecipe()
     {
         // Get the color from the model and set it on the mesh renderer.

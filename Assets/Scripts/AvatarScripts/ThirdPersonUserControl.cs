@@ -186,25 +186,28 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         interactionModifier = GetComponent<ModifyInteraction>();
 
 
+        RecipeSync _recipeSync;
+        _recipeSync = GameObject.FindObjectOfType<RecipeSync>();
+        _recipeSync.SetRecipe(PlayerPrefs.GetString("playerRecipe"));
+
         if (_realtimeView.isOwnedLocally)
         {
             ActionRouter.SetLocalAvatar(transform.gameObject);
-            avatar.ClearSlots();
-            avatarRecipe = PlayerPrefs.GetString("playerRecipe");
-            avatar.LoadFromRecipeString(avatarRecipe);
-
+            // avatar.ClearSlots();
+            // avatarRecipe = PlayerPrefs.GetString("playerRecipe");
+            // avatar.LoadFromRecipeString(avatarRecipe);
             //SET RECIPE UPON ENTERING THE GAME
-            RecipeSync _recipeSync;
-            _recipeSync = GameObject.FindObjectOfType<RecipeSync>();
-            _recipeSync.SetRecipe(PlayerPrefs.GetString("playerRecipe"));
         }
         else
         {
             // Set as remote avatar
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
-            avatar.ClearSlots();
-            avatar.LoadFromRecipeString(avatarRecipe);
+            // avatar.ClearSlots();
+            // avatar.LoadFromRecipeString(avatarRecipe);
         }
+
+        avatar.ClearSlots();
+        avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
 
         gameObject.name = "Avatar_" + getID();
         numberOfAnimations = Utils.animations.Length;
@@ -453,15 +456,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     //GetComponent<Rigidbody>().useGravity = true;
 
                 }
-
-                // if (Input.GetKey(KeyCode.I))
-                // {
-                //     GetDiploma();
-                // }
-                // if (Input.GetKey(KeyCode.O))
-                // {
-                //     GiveDiploma();
-                // }
 
                 if (sit)
                 {
