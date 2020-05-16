@@ -188,7 +188,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         RecipeSync _recipeSync;
         _recipeSync = GetComponent<RecipeSync>();
-        _recipeSync.SetRecipe(PlayerPrefs.GetString("playerRecipe"));
 
         if (_realtimeView.isOwnedLocally)
         {
@@ -197,6 +196,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             // avatarRecipe = PlayerPrefs.GetString("playerRecipe");
             // avatar.LoadFromRecipeString(avatarRecipe);
             //SET RECIPE UPON ENTERING THE GAME
+            _recipeSync.SetRecipe(PlayerPrefs.GetString("playerRecipe"));
+
         }
         else
         {

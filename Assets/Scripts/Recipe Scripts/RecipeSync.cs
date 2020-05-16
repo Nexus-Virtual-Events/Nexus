@@ -48,8 +48,8 @@ public class RecipeSync : RealtimeComponent
     private void UpdateRecipe()
     {
         // Get the color from the model and set it on the mesh renderer.
-        userControlScript = GetComponent<ThirdPersonUserControl>();
-        userControlScript.avatarRecipe = _model.avatarRecipe;
+        // userControlScript = GetComponent<ThirdPersonUserControl>();
+        // userControlScript.avatarRecipe = _model.avatarRecipe;
     }
 
     public void SetRecipe(string recipe)
