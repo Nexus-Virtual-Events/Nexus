@@ -159,8 +159,10 @@ namespace Michsky.UI.ModernUIPack {
             FallBackCamera.transform.position = MainCamera.transform.position;
             FallBackCamera.transform.rotation = MainCamera.transform.rotation;
             
-            _spawn.position = localPlayer.transform.position;
-            _spawn.rotation = localPlayer.transform.rotation;
+            if(localPlayer){
+                _spawn.position = localPlayer.transform.position;
+                _spawn.rotation = localPlayer.transform.rotation;
+            }
 
         }
 
