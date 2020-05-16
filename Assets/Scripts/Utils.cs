@@ -16,8 +16,6 @@ public class Utils : MonoBehaviour
     public static string[] animations;
     public static UnityEngine.KeyCode[] animationEnums;
 
-    public GameObject AdminUI;
-
     public void MoveToRoom(string roomName)
     {
         Loading.sceneString = roomName;
@@ -30,10 +28,7 @@ public class Utils : MonoBehaviour
 
     private void Awake()
     {
-        AdminUI.SetActive(false);
-        if(PlayerPrefs.GetString("isAdmin") == "true"){
-            AdminUI.SetActive(true);
-        }
+
         sceneNames = new Dictionary<string, string>();
         animationRequirements = new Dictionary<int, float[]>();
 
