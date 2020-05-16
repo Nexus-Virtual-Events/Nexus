@@ -222,6 +222,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         string[] actionParts = lastAction.Split('_');
 
+        Debug.Log(">> Starting action remotely from "+ gameObject.name);
         m_Character.StartAnimation(actionParts[0], isAnimationLocal);
 
     }
@@ -237,7 +238,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         isAnimationLocal = false;
         if(Convert.ToInt32(parameters[0]) == _realtimeView.ownerID){
             isAnimationLocal = true;
-            Debug.Log("animationTrigger - animation is local");
+            Debug.Log(">> animationTrigger - animation is local");
+        }
+        else{
+            Debug.Log(">> animation is not local");
         }
 
         currentInteraction = parameters[2];
@@ -531,6 +535,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         // Update Move Here
         GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
+        Debug.Log(">> starting animation locally from " + gameObject.name);
         m_Character.StartAnimation(currentInteraction, isAnimationLocal);
 
         canMove = true;
