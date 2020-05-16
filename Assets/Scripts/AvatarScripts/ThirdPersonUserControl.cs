@@ -187,7 +187,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
 
         RecipeSync _recipeSync;
-        _recipeSync = GameObject.FindObjectOfType<RecipeSync>();
+        _recipeSync = GetComponent<RecipeSync>();
         _recipeSync.SetRecipe(PlayerPrefs.GetString("playerRecipe"));
 
         if (_realtimeView.isOwnedLocally)
