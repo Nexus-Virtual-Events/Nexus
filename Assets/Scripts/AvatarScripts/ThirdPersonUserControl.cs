@@ -113,7 +113,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private bool firstAnimationOfMiddle = true;
     
     public void DiplomaEventInitial(int i){
-
         if(i==0){
             if(firstAnimationOfInitial){
                 GetDiploma(); 
@@ -183,7 +182,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         interactionModifier = GetComponent<ModifyInteraction>();
 
-
         RecipeSync _recipeSync;
         _recipeSync = GetComponent<RecipeSync>();
 
@@ -191,7 +189,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         {
             ActionRouter.SetLocalAvatar(transform.gameObject);
             _recipeSync.SetRecipe(PlayerPrefs.GetString("playerRecipe"));
-
         }
         else
         {
@@ -240,6 +237,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         isAnimationLocal = false;
         if(Convert.ToInt32(parameters[0]) == _realtimeView.ownerID){
             isAnimationLocal = true;
+            Debug.Log("animation is local");
         }
 
         currentInteraction = parameters[2];
