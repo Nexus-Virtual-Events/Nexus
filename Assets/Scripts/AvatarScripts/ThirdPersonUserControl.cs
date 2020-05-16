@@ -223,6 +223,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         string[] actionParts = lastAction.Split('_');
 
         Debug.Log(">> Starting action remotely from "+ gameObject.name);
+        Debug.Log(">> animation is local? " + isAnimationLocal.ToString());
         m_Character.StartAnimation(actionParts[0], isAnimationLocal);
 
     }
@@ -536,6 +537,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         // Update Move Here
         GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
         Debug.Log(">> starting animation locally from " + gameObject.name);
+        Debug.Log(">> animation is local? " + isAnimationLocal.ToString());
         m_Character.StartAnimation(currentInteraction, isAnimationLocal);
 
         canMove = true;
