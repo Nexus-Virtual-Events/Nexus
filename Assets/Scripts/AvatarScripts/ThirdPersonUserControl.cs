@@ -237,6 +237,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         isAnimationLocal = false;
         if(Convert.ToInt32(parameters[0]) == _realtimeView.ownerID){
             isAnimationLocal = true;
+            Debug.Log("animationTrigger - animation is local");
         }
 
         currentInteraction = parameters[2];
@@ -530,7 +531,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         // Update Move Here
         GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
-        m_Character.StartAnimation(currentInteraction, !isAnimationLocal);
+        m_Character.StartAnimation(currentInteraction, isAnimationLocal);
 
         canMove = true;
         autoPilot = false;
