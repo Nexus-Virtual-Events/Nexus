@@ -212,9 +212,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     public void ReceivedRemoteAction(string lastAction)
     {
-
-        if (_realtimeView.isOwnedLocally) {return;}
-
         string[] actionParts = lastAction.Split('_');
 
         Debug.Log(">> Starting action remotely from "+ gameObject.name);
@@ -541,7 +538,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
         Debug.Log(">> starting animation locally from " + gameObject.name);
         Debug.Log(">> animation is local? " + isAnimationLocal.ToString() + " " + _realtimeView.ownerID);
-        m_Character.StartAnimation(currentInteraction, isAnimationLocal);
+        // m_Character.StartAnimation(currentInteraction, isAnimationLocal);
 
         canMove = true;
         autoPilot = false;
