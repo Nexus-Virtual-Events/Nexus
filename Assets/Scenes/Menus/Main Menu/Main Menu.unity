@@ -2192,7 +2192,7 @@ PrefabInstance:
     - target: {fileID: 114546121057269954, guid: a7f6fce2117a1d0419a238b750d744f8,
         type: 3}
       propertyPath: m_CharacterLimit
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114546121057269954, guid: a7f6fce2117a1d0419a238b750d744f8,
         type: 3}
