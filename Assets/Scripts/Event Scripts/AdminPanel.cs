@@ -160,7 +160,7 @@ public class AdminPanel : MonoBehaviour
             GameObject playerManagementCard = Instantiate(playerManagementCardPrefab);
 
             string playerName = player.transform.Find("Player Name").GetComponent<TMP_Text>().text;
-            playerManagementCard.transform.Find("Normal/PlayerName").GetComponent<TMP_Text>().text = playerName;
+            playerManagementCard.transform.Find("PlayerName").GetComponent<TMP_Text>().text = playerName;
 
             playerManagementCard.transform.SetParent(playersTab.transform, false);
         }
