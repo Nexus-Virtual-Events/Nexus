@@ -230,7 +230,8 @@ public class AvatarCreator : MonoBehaviour
     {
         SaveAvatar();
 
-        Loading.sceneString = sceneString;
+        RoomRouter.sceneName = sceneString;
+        Loading.sceneString = "Room Router";
         SceneManager.LoadScene("Loading");
 
     }
