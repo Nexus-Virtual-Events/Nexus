@@ -58,11 +58,11 @@ public class ModifyInteraction : MonoBehaviour
             return;
         }
 
-        if (parameters[1] != ActionRouter.GetLocalAvatar().GetComponent<RealtimeView>().ownerID.ToString() && parameters[0] != parameters[1])
-        {
-            Debug.Log("Self is not the target");
-            return;
-        }
+        // if (parameters[1] != ActionRouter.GetLocalAvatar().GetComponent<RealtimeView>().ownerID.ToString() && parameters[0] != parameters[1])
+        // {
+        //     Debug.Log("Self is not the target");
+        //     return;
+        // }
 
         Debug.Log("Self is the target --> ReactToInteractionChange");
         ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(gameObject, newIntreactionReceived);

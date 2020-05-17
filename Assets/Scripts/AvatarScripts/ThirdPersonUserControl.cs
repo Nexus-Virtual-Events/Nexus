@@ -62,7 +62,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     public GameObject diplomaUI;
 
     private GameObject rightHand;
-
     
     private void Awake()
     {
@@ -214,16 +213,12 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     public void ReceivedRemoteAction(string lastAction)
     {
 
-        if (_realtimeView.isOwnedLocally)
-        {
-            // This method only applies to remote avatars
-            return;
-        }
+        if (_realtimeView.isOwnedLocally) {return;}
 
         string[] actionParts = lastAction.Split('_');
 
         Debug.Log(">> Starting action remotely from "+ gameObject.name);
-        Debug.Log(">> animation is local? " + isAnimationLocal.ToString());
+        Debug.Log(">> animation is local? " + isAnimationLocal.ToString() + " " + _realtimeView.ownerID);
         m_Character.StartAnimation(actionParts[0], isAnimationLocal);
 
     }
@@ -231,17 +226,18 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private bool isAnimationLocal;
     public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
     {
+        Debug.Log(">> interaction change");
         // LOG("Interaction type: " + newInteraction);
         // LOG("ReactToInteractionchange from " + gameObject.name);
 
         string[] parameters = stringToArray(newInteraction);
 
-        isAnimationLocal = false;
-        if(Convert.ToInt32(parameters[0]) == _realtimeView.ownerID){
+        if(Convert.ToInt32(parameters[0]) == _realtimeView.ownerID && Convert.ToInt32(parameters[0]) != Convert.ToInt32(parameters[1])){
             isAnimationLocal = true;
             Debug.Log(">> animationTrigger - animation is local");
         }
         else{
+            isAnimationLocal = false;
             Debug.Log(">> animation is not local");
         }
 
@@ -537,7 +533,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         // Update Move Here
         GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
         Debug.Log(">> starting animation locally from " + gameObject.name);
-        Debug.Log(">> animation is local? " + isAnimationLocal.ToString());
+        Debug.Log(">> animation is local? " + isAnimationLocal.ToString() + " " + _realtimeView.ownerID);
         m_Character.StartAnimation(currentInteraction, isAnimationLocal);
 
         canMove = true;
