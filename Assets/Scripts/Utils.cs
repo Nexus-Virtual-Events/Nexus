@@ -6,6 +6,8 @@ using System;
 using UnityEngine.SceneManagement;
 using System.IO;
 using Michsky.UI.ModernUIPack;
+using TMPro;
+
 
 
 public class Utils : MonoBehaviour
@@ -89,6 +91,21 @@ public class Utils : MonoBehaviour
     public void AskMic(){
         StartCoroutine(AskForMicAccess());
     }    
+
+    public static GameObject GetChildWithName(GameObject fromGameObject, string withName)
+    {
+        Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>(true);
+        foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
+        return null;
+    }
+
+    public void KickPlayer(string s){
+        foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player")){
+            if(Utils.GetChildWithName(player, "Player Name").GetComponent<TMP_Text>().text == s){
+                player.GetComponent<ThirdPersonUserControl>().KickPlayer();
+            }
+        }
+    }
 
     public IEnumerator AskForMicAccess()
     {
