@@ -160,6 +160,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
     }
 
+    private bool isRecipeSet;
+
+    private RecipeSync _recipeSync;
+
     private void Start()
     {
         // get the transform of the main camera
@@ -181,7 +185,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         interactionModifier = GetComponent<ModifyInteraction>();
 
-        RecipeSync _recipeSync;
         _recipeSync = GetComponent<RecipeSync>();
 
         if (_realtimeView.isOwnedLocally)
@@ -194,11 +197,18 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
         }
 
-        avatar.ClearSlots();
-        avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
+        try{
+            avatar.ClearSlots();
+            avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
+        }catch{
+            Debug.Log("uma skin error");
+        }
 
         if(_recipeSync.GetRecipe() == "" || _recipeSync.GetRecipe() == null){
             Debug.Log("NO RECIPE?");
+        }
+        else{
+            isRecipeSet = true;
         }
 
         gameObject.name = "Avatar_" + getID();
@@ -359,6 +369,24 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     public bool isPinned = false;
     private void Update()
     {
+
+        if(!isRecipeSet){
+             try{
+            avatar.ClearSlots();
+            avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
+            }catch{
+                Debug.Log("uma skin error");
+            }
+
+
+            if(_recipeSync.GetRecipe() == "" || _recipeSync.GetRecipe() == null){
+                Debug.Log("NO RECIPE?");
+            }
+            else{
+                isRecipeSet = true;
+            }
+        }
+
         if(!isPinned && shouldBePinned){
             GameObject chest = GetChildWithName(gameObject, "RightOuterBreast");
             if (chest) {
