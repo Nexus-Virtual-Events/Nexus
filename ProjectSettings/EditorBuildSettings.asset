@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/Loading/Loading.unity
     guid: bae65e66fdbe64c1c980435d9e548010
   - enabled: 1
-    path: Assets/Scenes/Rooms/The Lobby/Room Router.unity
-    guid: d51df498980e045b2b284642cd8d16b4
+    path: Assets/Scenes/Rooms/The Lobby/The Lobby.unity
+    guid: 0606eb716a7706f469cbe9fceae4bd88
   - enabled: 1
     path: Assets/Scenes/Rooms/The Circle/The Circle.unity
     guid: 1a5aa53a3c5ef47efabd7f78d47e9149

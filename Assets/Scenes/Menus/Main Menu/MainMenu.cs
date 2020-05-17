@@ -134,8 +134,7 @@ namespace Michsky.UI.ModernUIPack
 
 
             AvatarCreator.sceneString = scene;
-            Loading.sceneString = "Avatar Creator";
-            SceneManager.LoadScene("Loading");
+            SceneManager.LoadScene("Avatar Creator");
         }
     }
 
