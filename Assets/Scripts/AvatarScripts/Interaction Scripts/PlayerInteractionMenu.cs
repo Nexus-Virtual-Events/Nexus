@@ -29,6 +29,10 @@ namespace Normal.Realtime.Examples {
             {
                 PerformAction("ShakeHand");
             }
+            if (Input.GetKey(KeyCode.P))
+            {
+                PerformAction("Diploma");
+            }
         }
 
         private int getOtherID()
