@@ -10,6 +10,12 @@ public class ChairInteractionMenu : MonoBehaviour
         Destroy(transform.gameObject);
     }
 
+    public void Update(){
+        if(Input.GetKey(KeyCode.S)){
+            SitDown();
+        }
+    }
+
 
     public void SitDown()
     {

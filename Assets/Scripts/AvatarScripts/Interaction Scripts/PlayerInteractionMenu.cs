@@ -33,6 +33,10 @@ namespace Normal.Realtime.Examples {
             {
                 PerformAction("Diploma");
             }
+            if (Input.GetKey(KeyCode.K) && PlayerPrefs.GetString("isAdmin") == "true")
+            {
+                PerformAction("Kick");
+            }
         }
 
         private int getOtherID()
