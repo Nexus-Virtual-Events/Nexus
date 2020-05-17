@@ -35,7 +35,8 @@ public class Utils : MonoBehaviour
         Physics.IgnoreLayerCollision(9, 10);
         interactionMap = new Map<int, string>();
         interactionMap.Add(1, "ShakeHand");
-        interactionMap.Add(2, "Diploma");
+        interactionMap.Add(2, "Diploma0");
+        interactionMap.Add(2, "Diploma1");
 
         //interactionMap.Add(2, "TriggerShakeHand");
         if (!animationRequirements.ContainsKey(1))
