@@ -232,17 +232,20 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         string[] parameters = stringToArray(newInteraction);
 
+        string otherCharacterID = "";
+        
         if(Convert.ToInt32(parameters[0]) != _realtimeView.ownerID && Convert.ToInt32(parameters[1]) != _realtimeView.ownerID){
             return;
         }
 
         if(Convert.ToInt32(parameters[0]) == _realtimeView.ownerID && Convert.ToInt32(parameters[0]) != Convert.ToInt32(parameters[1])){
             isAnimationLocal = true;
+            otherCharacterID = parameters[1];
             Debug.Log(">> animationTrigger - animation is local");
         }
         else{
+            otherCharacterID = parameters[0];
             isAnimationLocal = false;
-            Debug.Log(">> animation is not local");
         }
 
         currentInteraction = parameters[2];
@@ -253,7 +256,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         if (_realtimeView.isOwnedLocally)
         {
 
-            Vector3 otherPosition = sourceCharacter.transform.position;
+            Vector3 otherPosition = GameObject.Find("Avatar_" + otherCharacterID).transform.position;
             Vector3 diff = (otherPosition - transform.position);
 
             Vector3 centerTarget = (diff / 2) + transform.position;
