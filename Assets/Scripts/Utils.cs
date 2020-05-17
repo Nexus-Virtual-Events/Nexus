@@ -36,7 +36,7 @@ public class Utils : MonoBehaviour
         interactionMap = new Map<int, string>();
         interactionMap.Add(1, "ShakeHand");
         interactionMap.Add(2, "Diploma0");
-        interactionMap.Add(2, "Diploma1");
+        interactionMap.Add(3, "Diploma1");
 
         //interactionMap.Add(2, "TriggerShakeHand");
         if (!animationRequirements.ContainsKey(1))
