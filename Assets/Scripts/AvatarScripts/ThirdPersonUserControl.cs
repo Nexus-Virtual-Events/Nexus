@@ -197,6 +197,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         avatar.ClearSlots();
         avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
 
+        if(_recipeSync.GetRecipe() == "" || _recipeSync.GetRecipe() == null){
+            Debug.Log("NO RECIPE?");
+        }
+
         gameObject.name = "Avatar_" + getID();
         numberOfAnimations = Utils.animations.Length;
 
