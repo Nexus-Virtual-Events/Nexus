@@ -140,8 +140,8 @@ public class NexusVideo
     private void onJoinChannelSuccess(string channelName, uint uid, int elapsed)
     {
         Debug.Log("JoinChannelSuccessHandler: uid = " + uid);
-        GameObject textVersionGameObject = GameObject.Find("VersionText");
-        textVersionGameObject.GetComponent<Text>().text = "SDK Version : " + getSdkVersion();
+        //GameObject textVersionGameObject = GameObject.Find("VersionText");
+        //textVersionGameObject.GetComponent<Text>().text = "SDK Version : " + getSdkVersion();
     }
 
     // When a remote user joined, this delegate will be called. Typically
