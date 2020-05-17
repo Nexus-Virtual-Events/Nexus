@@ -546,7 +546,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
         currentInteraction = Utils.interactionMap.Forward[Convert.ToInt32(currentInteraction)];
-        if (isAnimationLocal)
+        if (isAnimationLocal && currentInteraction != 1.ToString())
         {
             currentInteraction += "0";
         }
