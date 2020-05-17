@@ -68,7 +68,7 @@ public class StateSync : RealtimeComponent {
     {
         Destroy(diploma);
     }
-    private GameObject chest;
+    public GameObject chest;
     private GameObject rosette;
     private void GetPinned(){
         chest = GetChildWithName(gameObject, "RightOuterBreast");
@@ -78,7 +78,11 @@ public class StateSync : RealtimeComponent {
         rosette.transform.Translate(0,0.04f, 0);
     }
 
+
     private void Unpin(){
+        GetComponent<ThirdPersonUserControl>().shouldBePinned = false;
+        GetComponent<ThirdPersonUserControl>().isPinned = false;
+
         if(rosette){
             Destroy(rosette);
         }
@@ -101,8 +105,6 @@ public class StateSync : RealtimeComponent {
         }
     }
 
-    
-
     private void UpdateModel() {
         // Get the color from the model and set it on the mesh renderer.
         // _meshRenderer.material.color = _model.color;
@@ -121,7 +123,7 @@ public class StateSync : RealtimeComponent {
         }
         if(parameters[1] == "2"){
             Unpin();
-            GetPinned();
+            GetComponent<ThirdPersonUserControl>().shouldBePinned = true;
         }
     }
 
