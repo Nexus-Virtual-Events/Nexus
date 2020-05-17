@@ -16,6 +16,7 @@ namespace Michsky.UI.ModernUIPack
         public int code;
         public string admin;
         public string name;
+        public string isStudent;
 
     }
 
@@ -106,7 +107,7 @@ namespace Michsky.UI.ModernUIPack
                         Debug.Log("Success!");
                         Debug.Log(info.name);
                         Debug.Log(info.admin);
-                        StartGame(info.name, info.admin);
+                        StartGame(info.name, info.admin, info.isStudent);
                     }
                     else if (info.code == 403)
                     {
@@ -124,11 +125,13 @@ namespace Michsky.UI.ModernUIPack
 
         }
 
-        public void StartGame(string name, string isAdmin)
+        public void StartGame(string name, string isAdmin, string isStudent)
         {
             Debug.Log("StartGame() Called!");
             PlayerPrefs.SetString("playerName", name);
             PlayerPrefs.SetString("isAdmin", isAdmin);
+            PlayerPrefs.SetString("isStudent", isStudent);
+
 
             AvatarCreator.sceneString = scene;
             SceneManager.LoadScene("Avatar Creator");

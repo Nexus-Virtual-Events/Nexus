@@ -95,6 +95,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		public void StartAnimation(string animationIndex)
 		{
+			if(animationIndex == ""){
+				return;
+			}
 			string animationTrigger = Utils.interactionMap.Forward[Convert.ToInt32(animationIndex)];
 			Debug.Log("animationTrigger" + animationTrigger.ToString() + " from " + gameObject.name);
 			m_Animator.SetTrigger(animationTrigger);
