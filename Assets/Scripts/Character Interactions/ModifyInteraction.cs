@@ -64,7 +64,6 @@ public class ModifyInteraction : MonoBehaviour
         //     return;
         // }
 
-        Debug.Log("Self is the target --> ReactToInteractionChange");
-        ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(gameObject, newIntreactionReceived);
+        ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().ReactToInteractionChange(newIntreactionReceived);
     }
 }

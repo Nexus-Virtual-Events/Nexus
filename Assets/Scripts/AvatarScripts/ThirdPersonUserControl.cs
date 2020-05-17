@@ -224,13 +224,17 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     }
 
     private bool isAnimationLocal;
-    public void ReactToInteractionChange(GameObject sourceCharacter, string newInteraction)
+    public void ReactToInteractionChange(string newInteraction)
     {
         Debug.Log(">> interaction change");
         // LOG("Interaction type: " + newInteraction);
         // LOG("ReactToInteractionchange from " + gameObject.name);
 
         string[] parameters = stringToArray(newInteraction);
+
+        if(Convert.ToInt32(parameters[0]) != _realtimeView.ownerID && Convert.ToInt32(parameters[1]) != _realtimeView.ownerID){
+            return;
+        }
 
         if(Convert.ToInt32(parameters[0]) == _realtimeView.ownerID && Convert.ToInt32(parameters[0]) != Convert.ToInt32(parameters[1])){
             isAnimationLocal = true;
