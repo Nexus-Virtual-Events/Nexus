@@ -1,1 +1,0 @@
-Copy All Contents of this folder into your game and Set the UpdateExampleScene as Scene 0 in your build or Place the UpdateOperator Prefab in your Startup Screen to Check for Updates on launch.
