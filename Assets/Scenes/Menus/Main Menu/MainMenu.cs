@@ -133,8 +133,9 @@ namespace Michsky.UI.ModernUIPack
             PlayerPrefs.SetString("isStudent", isStudent);
 
 
-            AvatarCreator.sceneString = scene;
-            SceneManager.LoadScene("Avatar Creator");
+            RoomRouter.sceneString = scene;
+            Loading.sceneString = "Room Router";
+            SceneManager.LoadScene("Loading");
         }
     }
 

@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class RoomRouter : MonoBehaviour
+namespace Michsky.UI.ModernUIPack
 {
-    // Start is called before the first frame update
-    void Start()
+    public class RoomRouter : MonoBehaviour
     {
-        
-    }
+        public static string sceneString;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void RouteToRoom(string roomName)
+        {
+            PlayerPrefs.SetString("roomName", roomName);
+            AvatarCreator.sceneString = sceneString;
+            Loading.sceneString = "Avatar Creator";
+            SceneManager.LoadScene("Loading");
+        }
     }
 }

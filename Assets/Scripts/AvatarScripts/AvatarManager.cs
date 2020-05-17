@@ -41,14 +41,15 @@ namespace Michsky.UI.ModernUIPack {
             // Notify us when Realtime successfully connects to the room
             _realtime.didConnectToRoom += DidConnectToRoom;
             _realtime.didDisconnectFromRoom += DidDisconnectFromRoom;
+            _realtime._roomToJoinOnStart = PlayerPrefs.GetString("roomName");
 
             _spawn = GameObject.Find("Spawn").transform;
 
         }
 
-        public void ConnectToRoom() {
-            _realtime.Connect("The Circle");
-        }
+        //public void ConnectToRoom() {
+        //    _realtime.Connect("The Circle");
+        //}
 
         public void ForceDisconnect () {
             _realtime.Disconnect();
