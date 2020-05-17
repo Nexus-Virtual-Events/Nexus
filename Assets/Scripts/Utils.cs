@@ -84,6 +84,23 @@ public class Utils : MonoBehaviour
             sceneNames.Add("2", "The Circle");
     }
 
+    public void AskMic(){
+        StartCoroutine(AskForMicAccess());
+    }    
+
+    public IEnumerator AskForMicAccess()
+    {
+        yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
+        if (Application.HasUserAuthorization(UserAuthorization.Microphone))
+        {
+            Debug.Log("Microphone found");
+        }
+        else
+        {
+            Debug.Log("Microphone not found");
+        }
+    
+    }
 }
 
 
