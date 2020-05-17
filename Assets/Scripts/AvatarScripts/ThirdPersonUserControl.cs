@@ -90,6 +90,19 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         GetComponent<StateSync>().SetState("0_0_0_"+cur_time.ToString());
     }
 
+    public void KickPlayer(){
+        System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
+        GetComponent<StateSync>().SetState("1_0_0_"+cur_time.ToString());
+    }
+
+    public void CheckIfKicked(){
+        string[] parameters = GetComponent<StateSync>().GetState().Split('_');
+        if(parameters[0] == "1"){
+            Application.Quit();
+        }
+    }
+
     private GameObject rosette;
 
      public GameObject GetChildWithName(GameObject fromGameObject, string withName)
@@ -213,6 +226,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         gameObject.name = "Avatar_" + getID();
         numberOfAnimations = Utils.animations.Length;
+
+        InvokeRepeating("CheckIfKicked", 2, 5.0f);
 
     }
 
