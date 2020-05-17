@@ -33,16 +33,10 @@ namespace Michsky.UI.ModernUIPack {
 
         private bool isConnected;
 
-        public static string roomName;
-
 
         private void Awake() {
             // Get the Realtime component on this game object
             _realtime = GetComponent<Realtime>();
-            Realtime._roomToJoinOnStart = roomName;
-
-            Debug.Log("Setted Room Name: " + Realtime._roomToJoinOnStart);
-            Debug.Log("Realtime Room Name: " + Realtime._roomToJoinOnStart);
 
             // Notify us when Realtime successfully connects to the room
             _realtime.didConnectToRoom += DidConnectToRoom;
@@ -53,7 +47,7 @@ namespace Michsky.UI.ModernUIPack {
         }
 
         public void ConnectToRoom() {
-            _realtime.Connect(roomName);
+            _realtime.Connect("The Circle");
         }
 
         public void ForceDisconnect () {

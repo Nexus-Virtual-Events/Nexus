@@ -139,7 +139,7 @@ namespace Normal.Realtime {
         public event RealtimeEvent didDisconnectFromRoom;
 
         [SerializeField] private string _appKey = "";
-        [SerializeField] public static string _roomToJoinOnStart = "Test Room";
+        [SerializeField] private string _roomToJoinOnStart = "Test Room";
         [SerializeField] private bool   _joinRoomOnStart   = true;
         [SerializeField] private bool   _debugLogging      = false;
 
