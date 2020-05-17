@@ -215,8 +215,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     {
         string[] actionParts = lastAction.Split('_');
 
-        Debug.Log(">> Starting action from "+ gameObject.name);
-        Debug.Log(">> animation is local? " + isAnimationLocal.ToString() + " " + _realtimeView.ownerID);
+        Debug.Log(">> Starting action" + lastAction);
         m_Character.StartAnimation(actionParts[0]);
 
     }
@@ -545,19 +544,20 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
 
-        if(currentInteraction == "2"){
-            currentInteraction = Utils.interactionMap.Forward[Convert.ToInt32(currentInteraction)];
-            if (isAnimationLocal)
-            {
-                currentInteraction += "0";
-            }
-            else
-            {
-                currentInteraction += "1";
-            }
-            currentInteraction = Utils.interactionMap.Reverse[currentInteraction].ToString();
+       
+        currentInteraction = Utils.interactionMap.Forward[Convert.ToInt32(currentInteraction)];
+        if (isAnimationLocal)
+        {
+            currentInteraction += "0";
         }
+        else
+        {
+            currentInteraction += "1";
+        }
+        currentInteraction = Utils.interactionMap.Reverse[currentInteraction].ToString();
+       
         // Update Move Here
+        Debug.Log("CURRENT INTERACTION "+ currentInteraction);
         GetComponent<MoveSync>().SetLastAction(currentInteraction + "_" + cur_time.ToString());
         // m_Character.StartAnimation(currentInteraction, isAnimationLocal);
 
