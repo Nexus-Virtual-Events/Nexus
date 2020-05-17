@@ -12,7 +12,7 @@ public class ChairInteractionMenu : MonoBehaviour
 
     public void Update(){
         if(Input.GetKey(KeyCode.S)){
-            SitDown();
+            Invoke("DoSomething", 0.05f);
         }
     }
 
