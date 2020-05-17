@@ -11,8 +11,8 @@ public class ChairInteractionMenu : MonoBehaviour
     }
 
     public void Update(){
-        if(Input.GetKey(KeyCode.S)){
-            Invoke("SitDown", 0.05f);
+        if(Input.GetKey(KeyCode.Q)){
+            SitDown();
         }
     }
 
