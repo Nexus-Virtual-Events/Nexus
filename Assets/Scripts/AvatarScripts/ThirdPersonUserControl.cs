@@ -353,20 +353,18 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         prevFocusState = eventManager.GetEvents()[2].ToString();
     }
     public bool shouldBePinned;
-    public bool isPinned;
+    public bool isPinned = false;
     private void Update()
     {
         if(!isPinned && shouldBePinned){
-            if(!_realtimeView.isOwnedLocally){
-                GameObject chest = GetChildWithName(gameObject, "RightOuterBreast");
-                if (chest) {
-                    rosette = Instantiate(diplomaPrefab, chest.transform, false);
-                    rosette.transform.parent = chest.transform;
-                    rosette.transform.rotation *= Quaternion.Euler(0f, 0f, 90f);
-                    rosette.transform.Translate(0,0.04f, 0);
-                    isPinned = true;
-                }
-            }  
+            GameObject chest = GetChildWithName(gameObject, "RightOuterBreast");
+            if (chest) {
+                rosette = Instantiate(diplomaPrefab, chest.transform, false);
+                rosette.transform.parent = chest.transform;
+                rosette.transform.rotation *= Quaternion.Euler(0f, 0f, 90f);
+                rosette.transform.Translate(0,0.04f, 0);
+                isPinned = true;
+            }
         } 
         // If this CubePlayer prefab is not owned by this client, bail.
         if (!_realtimeView.isOwnedLocally)
