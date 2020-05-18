@@ -104,7 +104,6 @@ public class StateSync : RealtimeComponent {
             return "";
         }
     }
-
     private void UpdateModel() {
         // Get the color from the model and set it on the mesh renderer.
         // _meshRenderer.material.color = _model.color;

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5903963454956364121}
   - component: {fileID: 6403408365217537614}
   - component: {fileID: 7634672203687685285}
+  - component: {fileID: -3321796096210444516}
   m_Layer: 5
   m_Name: Player Management Card
   m_TagString: Untagged
@@ -63,6 +64,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &-3321796096210444516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216466457770667977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6932b77891045c3a9f8f9fe62113dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &687376392788881094
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +222,7 @@ GameObject:
   - component: {fileID: 4958144849705928722}
   - component: {fileID: 9120952693559093911}
   m_Layer: 5
-  m_Name: PlayerName
+  m_Name: PlayerManagementCard
   m_TagString: PlayerManagementCardName
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,7 +320,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 2
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -336,7 +349,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 10
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -820,7 +833,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 98.28, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 60.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2375772085697808626
@@ -1341,7 +1354,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4407589862400526987}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3321796096210444516}
+        m_MethodName: Kick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &6278672976439784993
 Animator:
   serializedVersion: 3

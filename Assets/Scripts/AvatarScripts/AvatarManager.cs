@@ -170,6 +170,8 @@ namespace Michsky.UI.ModernUIPack {
                 _spawn.rotation = localPlayer.transform.rotation;
             }
 
+            Destroy(localPlayer);
+
         }
 
         public void ShowWelcomeWindow()
@@ -229,7 +231,7 @@ namespace Michsky.UI.ModernUIPack {
         {
             // Realtime.Destroy(localPlayer.GetComponent<RealtimeView>());
             _realtime.Disconnect();
-            Destroy(localPlayer);
+            // Destroy(localPlayer);
             //GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
             Loading.sceneString = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("Loading");
@@ -239,7 +241,7 @@ namespace Michsky.UI.ModernUIPack {
         {
             // Realtime.Destroy(localPlayer.GetComponent<RealtimeView>());
             _realtime.Disconnect();
-            Destroy(localPlayer);
+            // Destroy(localPlayer);
             //GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
             Application.Quit();
         }

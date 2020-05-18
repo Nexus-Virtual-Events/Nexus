@@ -54,7 +54,7 @@ public class Utils : MonoBehaviour
         if (!animationRequirements.ContainsKey(1))
             animationRequirements.Add(1, new[]{1.0f, 0.55f});
         if (!animationRequirements.ContainsKey(2))
-            animationRequirements.Add(2, new[]{0.6f, 0.45f});
+            animationRequirements.Add(4, new[]{0.6f, 0.45f});
 
         animations = new[]
         {
@@ -99,13 +99,9 @@ public class Utils : MonoBehaviour
         return null;
     }
 
-    public void KickPlayer(string s){
-        foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player")){
-            if(Utils.GetChildWithName(player, "Player Name").GetComponent<TMP_Text>().text == s){
-                player.GetComponent<ThirdPersonUserControl>().KickPlayer();
-            }
-        }
-    }
+    // public void KickPlayer(string s){
+        
+    // }
 
     public IEnumerator AskForMicAccess()
     {

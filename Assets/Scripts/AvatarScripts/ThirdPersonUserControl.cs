@@ -91,6 +91,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     }
 
     public void KickPlayer(){
+        Debug.Log("Kick player executed");
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
         GetComponent<StateSync>().SetState("1_0_0_"+cur_time.ToString());
@@ -99,13 +100,14 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     public void CheckIfKicked(){
         string[] parameters = GetComponent<StateSync>().GetState().Split('_');
         if(parameters[0] == "1"){
+            Debug.Log("someone is getting kicked");
             Application.Quit();
         }
     }
 
     private GameObject rosette;
 
-     public GameObject GetChildWithName(GameObject fromGameObject, string withName)
+    public GameObject GetChildWithName(GameObject fromGameObject, string withName)
     {
         Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>(true);
         foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
