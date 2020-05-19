@@ -62,6 +62,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     public GameObject diplomaUI;
 
     private GameObject rightHand;
+
+    private Vector3 prevPosition;
+
     
     private void Awake()
     {
@@ -120,6 +123,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         int cur_time = (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
         GetComponent<StateSync>().SetState("0_2_0_"+cur_time.ToString());
+    }
+
+    private void CheckPrevPosition(){
+        prevPosition = gameObject.transform.position;
     }
    
 
@@ -226,10 +233,14 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             isRecipeSet = true;
         }
 
+        CheckPrevPosition();
+
         gameObject.name = "Avatar_" + getID();
         numberOfAnimations = Utils.animations.Length;
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
+        InvokeRepeating("CheckPrevPosition", 3, 6.0f);
+
     }
 
     private string[] stringToArray(string s)
@@ -306,6 +317,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     }
 
     int maxId = -1;
+
+    private void disableAutoPilot(){
+        autoPilot = false;
+    }
 
     public void ReactToPodiumChange(int newPodium)
     {
@@ -457,7 +472,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         return animationString;
     }
 
-
     // Fixed update is called in sync with physics
     private void FixedUpdate()
     {
@@ -575,12 +589,15 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     else
                     {
                         GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(autoTarget - transform.position, animationStates));
+                        if(Vector3.Distance(prevPosition, gameObject.transform.position) < 0.05){
+                            autoPilot = false;
+                        }
                     }
                 }
             }
         }
     }
-
+   
     private void ArrivedAtAnimationDistance(bool[] currentAnimationStates)
     {
         //handshake finishing action
