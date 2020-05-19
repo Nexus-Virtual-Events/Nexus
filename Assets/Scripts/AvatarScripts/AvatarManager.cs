@@ -89,6 +89,7 @@ namespace Michsky.UI.ModernUIPack {
         private void DidConnectToRoom(Realtime realtime) {
             // Debug.Log("DID CONNECT");
 
+
             MainCamera.SetActive(true);
             FallBackCamera.SetActive(false);
             ReconnectUI.SetActive(false);
@@ -104,7 +105,7 @@ namespace Michsky.UI.ModernUIPack {
             ShowWelcomeWindow();
 
             nmrLoadingReconnectTrial = 0;
-            InvokeRepeating("BringAllTransforms", 15.0f, 3.0f);
+            InvokeRepeating("BringAllTransforms", 15.0f, 2.0f);
 
         }
 

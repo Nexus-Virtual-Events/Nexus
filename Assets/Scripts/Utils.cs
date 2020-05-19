@@ -46,11 +46,12 @@ public class Utils : MonoBehaviour
         animationRequirements = new Dictionary<int, float[]>();
         layerIndices = new Dictionary<string, int>();
         localPlayers = new List<GameObject>();
-        layerNames = new string[numberOfRooms];
+        layerNames = new string[15];
 
         for(int i =0; i < numberOfRooms; i++){
             layerNames[i] = "Room " + (i+1).ToString();
         }
+        layerNames[numberOfRooms + 1] = "Hidden";
 
 
         layerIndices.Add("Admin", 11);
@@ -63,6 +64,8 @@ public class Utils : MonoBehaviour
         layerIndices.Add("Room 7", 18);
         layerIndices.Add("Room 8", 19);
         layerIndices.Add("Room 9", 20);
+        layerIndices.Add("Hidden", 21);
+
 
         
 
@@ -116,8 +119,8 @@ public class Utils : MonoBehaviour
         if (!sceneNames.ContainsKey("2"))
             sceneNames.Add("2", "The Circle");
 
-        for(int i=11; i<20; i++){
-            for(int j=11; j<20; j++){
+        for(int i=11; i<21; i++){
+            for(int j=11; j<21; j++){
                 if(i == j)
                     continue;
                 
