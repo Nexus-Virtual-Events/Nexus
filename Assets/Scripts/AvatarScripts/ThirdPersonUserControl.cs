@@ -104,8 +104,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         string[] parameters = GetComponent<StateSync>().GetState().Split('_');
         if(parameters[0] == "1"){
             Debug.Log("someone is getting kicked");
-            GetComponent<Realtime>().Disconnect();
+            // GetComponent<Realtime>().Disconnect();
             Application.Quit();
+            // EditorApplication. Exit(0);
         }
     }
 
