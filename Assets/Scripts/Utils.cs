@@ -18,6 +18,8 @@ public class Utils : MonoBehaviour
     public static string[] animations;
     public static UnityEngine.KeyCode[] animationEnums;
 
+    public static List<GameObject> localPlayers;
+
     public static Dictionary<string, int> layerIndices;
     public GameObject adminWindow;
 
@@ -40,6 +42,7 @@ public class Utils : MonoBehaviour
         sceneNames = new Dictionary<string, string>();
         animationRequirements = new Dictionary<int, float[]>();
         layerIndices = new Dictionary<string, int>();
+
 
         layerIndices.Add("Admin", 11);
         layerIndices.Add("Room 1", 12);

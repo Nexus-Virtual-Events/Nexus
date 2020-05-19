@@ -100,6 +100,7 @@ namespace Michsky.UI.ModernUIPack {
                 preventOwnershipTakeover: true,                // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
                              useInstance: realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
             localPlayer.layer = Utils.layerIndices[_realtime._roomToJoinOnStart];
+            Utils.localPlayers.Add(localPlayer);
             ShowWelcomeWindow();
 
             nmrLoadingReconnectTrial = 0;
