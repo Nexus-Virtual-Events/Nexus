@@ -19,7 +19,7 @@ public class RoomRouterManager : MonoBehaviour
         
     }
 
-    public void JoinAdminRoom(){
-        PlayerPrefs.SetString("adminRoom", "true");
-    }
+    // public void JoinRegularRoom(){
+    //     PlayerPrefs.SetString("adminRoom", "true");
+    // }
 }

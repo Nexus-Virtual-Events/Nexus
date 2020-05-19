@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: b9b369a359d9a486babc8b6217ae4f19
+=======
+<<<<<<< HEAD:Assets/Resources/Textures/Rosette.meta
+guid: d671a2f70823243c18be4bc6267313a5
+=======
+guid: b9b369a359d9a486babc8b6217ae4f19
+>>>>>>> 9888b1105f853f76b76bd412edf980fc66114815:Assets/Scenes/Menus/Rooms/The Circle/The Circle_Profiles/The Lobby/Scripts/AvatarScripts.meta
+>>>>>>> 9888b1105f853f76b76bd412edf980fc66114815
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -6,7 +6,7 @@ public class SceneRoomRouter : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] userRooms;
-    private string currentLayer;
+    public static string currentLayer;
     LayerMask myMask;
     void Start()
     {

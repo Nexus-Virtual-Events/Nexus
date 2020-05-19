@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Package Assets/UMA/InternalDataStore/InEditor.meta
 guid: 6cfc7a53c647d43bcbbc8a8830429a25
+=======
+guid: 67937b2dc25134c67b3b95faf84c8b55
+>>>>>>> 9888b1105f853f76b76bd412edf980fc66114815:Assets/Scenes/Menus/Rooms/The Bowl.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

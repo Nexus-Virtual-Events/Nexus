@@ -11,10 +11,18 @@ namespace Michsky.UI.ModernUIPack
 
         public void RouteToRoom(string roomName)
         {
+            if(roomName == "Admin"){
+                PlayerPrefs.SetString("adminRoom", "true");
+            }
+            else{
+                PlayerPrefs.SetString("adminRoom", "false");
+            }
+
             PlayerPrefs.SetString("roomName", roomName);
             AvatarCreator.sceneString = sceneString;
             Loading.sceneString = "Avatar Creator";
             SceneManager.LoadScene("Loading");
+
         }
     }
 }
