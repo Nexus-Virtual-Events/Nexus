@@ -104,7 +104,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         string[] parameters = GetComponent<StateSync>().GetState().Split('_');
         if(parameters[0] == "1"){
             Debug.Log("someone is getting kicked");
+            // GetComponent<Realtime>().Disconnect();
             Application.Quit();
+            // EditorApplication. Exit(0);
         }
     }
 
@@ -125,8 +127,15 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         GetComponent<StateSync>().SetState("0_2_0_"+cur_time.ToString());
     }
 
-    private void CheckPrevPosition(){
+    private void SetPrevPosition(){
         prevPosition = gameObject.transform.position;
+    }
+    private void CancelAnimationIfNeeded(){
+        if(Vector3.Distance(prevPosition, gameObject.transform.position) < 0.05){
+                            Debug.Log("breaking animation");
+                            autoPilot = false;
+                            canMove = true;
+                        }
     }
    
 
@@ -233,13 +242,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             isRecipeSet = true;
         }
 
-        CheckPrevPosition();
-
         gameObject.name = "Avatar_" + getID();
         numberOfAnimations = Utils.animations.Length;
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
-        InvokeRepeating("CheckPrevPosition", 3, 6.0f);
 
     }
 
@@ -312,6 +318,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             autoTarget = moveToTarget;
             rotateTowardsTarget = lookAtTarget;
         }
+
+        SetPrevPosition();
+        Invoke("CancelAnimationIfNeeded", 5);
 
 
     }
@@ -569,6 +578,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             {
                 if (autoPilot)
                 {
+
                     bool[] falseArray = new bool[numberOfAnimations];
                     for (int i = 0; i < numberOfAnimations; i += 1)
                     {
@@ -589,9 +599,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     else
                     {
                         GetComponent<UpdateMove>().UpdateCharacterMove(SerializeMove(autoTarget - transform.position, animationStates));
-                        if(Vector3.Distance(prevPosition, gameObject.transform.position) < 0.05){
-                            autoPilot = false;
-                        }
+                        
                     }
                 }
             }
