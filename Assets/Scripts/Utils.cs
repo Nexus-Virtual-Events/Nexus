@@ -18,6 +18,7 @@ public class Utils : MonoBehaviour
     public static string[] animations;
     public static UnityEngine.KeyCode[] animationEnums;
 
+    public static Dictionary<string, int> layerIndices;
     public GameObject adminWindow;
 
     public void MoveToRoom(string roomName)
@@ -38,6 +39,22 @@ public class Utils : MonoBehaviour
 
         sceneNames = new Dictionary<string, string>();
         animationRequirements = new Dictionary<int, float[]>();
+        layerIndices = new Dictionary<string, int>();
+
+        layerIndices.Add("Admin", 11);
+        layerIndices.Add("Room 1", 12);
+        layerIndices.Add("Room 2", 13);
+        layerIndices.Add("Room 3", 14);
+        layerIndices.Add("Room 4", 15);
+        layerIndices.Add("Room 5", 16);
+        layerIndices.Add("Room 6", 17);
+        layerIndices.Add("Room 7", 18);
+        layerIndices.Add("Room 8", 19);
+        layerIndices.Add("Room 9", 20);
+
+        
+
+
 
         Physics.IgnoreLayerCollision(9, 10);
         interactionMap = new Map<int, string>();
@@ -86,6 +103,15 @@ public class Utils : MonoBehaviour
             sceneNames.Add("1", "The Lobby");
         if (!sceneNames.ContainsKey("2"))
             sceneNames.Add("2", "The Circle");
+
+        for(int i=11; i<20; i++){
+            for(int j=11; j<20; j++){
+                if(i == j)
+                    continue;
+                
+                Physics.IgnoreLayerCollision(i, j);
+            }
+        }
     }
 
     public void AskMic(){
