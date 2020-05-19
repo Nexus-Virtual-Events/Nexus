@@ -21,6 +21,7 @@ public class Utils : MonoBehaviour
     public static List<GameObject> localPlayers;
 
     public static Dictionary<string, int> layerIndices;
+    public static string[] layerNames;
     public GameObject adminWindow;
 
     public void MoveToRoom(string roomName)
@@ -33,6 +34,8 @@ public class Utils : MonoBehaviour
         AudioListener.volume = f;
     }
 
+    private int numberOfRooms = 9;
+
     private void Awake()
     {
         if(PlayerPrefs.GetString("isAdmin") != "true"){
@@ -43,6 +46,11 @@ public class Utils : MonoBehaviour
         animationRequirements = new Dictionary<int, float[]>();
         layerIndices = new Dictionary<string, int>();
         localPlayers = new List<GameObject>();
+        layerNames = new string[numberOfRooms];
+
+        for(int i =0; i < numberOfRooms; i++){
+            layerNames[i] = "Room " + (i+1).ToString();
+        }
 
 
         layerIndices.Add("Admin", 11);

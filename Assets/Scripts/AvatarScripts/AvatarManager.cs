@@ -99,13 +99,12 @@ namespace Michsky.UI.ModernUIPack {
                            ownedByClient: true,                // Make sure the RealtimeView on this prefab is owned by this client
                 preventOwnershipTakeover: true,                // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
                              useInstance: realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
-            localPlayer.layer = Utils.layerIndices[_realtime._roomToJoinOnStart];
+            localPlayer.layer = LayerMask.NameToLayer(_realtime._roomToJoinOnStart);
             Utils.localPlayers.Add(localPlayer);
             ShowWelcomeWindow();
 
             nmrLoadingReconnectTrial = 0;
-
-            InvokeRepeating("BringAllTransforms", 3.0f, 3.0f);
+            InvokeRepeating("BringAllTransforms", 15.0f, 3.0f);
 
         }
 
