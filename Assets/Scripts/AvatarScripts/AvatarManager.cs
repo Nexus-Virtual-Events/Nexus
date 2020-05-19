@@ -105,7 +105,9 @@ namespace Michsky.UI.ModernUIPack {
             ShowWelcomeWindow();
 
             nmrLoadingReconnectTrial = 0;
-            InvokeRepeating("BringAllTransforms", 15.0f, 2.0f);
+            if(PlayerPrefs.GetString("adminRoom") == "true"){
+                InvokeRepeating("BringAllTransforms", 15.0f, 2.0f);
+            }
 
         }
 
