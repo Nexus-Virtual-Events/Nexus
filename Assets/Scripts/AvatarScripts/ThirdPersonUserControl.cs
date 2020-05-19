@@ -230,16 +230,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         numberOfAnimations = Utils.animations.Length;
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
-        InvokeRepeating("BringAllTransforms", 10f, 5.0f);
-
-    }
-
-    private void BringAllTransforms(){
-        Transform localTransform = gameObject.transform; 
-        foreach(GameObject local in Utils.localPlayers){
-            local.transform.position = localTransform.position;
-            local.transform.rotation = localTransform.rotation;
-        }
     }
 
     private string[] stringToArray(string s)

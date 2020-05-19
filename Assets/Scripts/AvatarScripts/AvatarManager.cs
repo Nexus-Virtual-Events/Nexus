@@ -104,7 +104,22 @@ namespace Michsky.UI.ModernUIPack {
             ShowWelcomeWindow();
 
             nmrLoadingReconnectTrial = 0;
+
+            InvokeRepeating("BringAllTransforms", 3.0f, 3.0f);
+
         }
+
+        private void BringAllTransforms(){
+            if(localPlayer != null){
+                Debug.Log("bringing all transforms togetther");
+                Transform localTransform = localPlayer.transform; 
+                foreach(GameObject local in Utils.localPlayers){
+                    local.transform.position = localTransform.position;
+                    local.transform.rotation = localTransform.rotation;
+                    }
+            }
+        }
+
 
         private int nmrReconnectTrial = 0;
         private float lastReconnectTrial = 0;

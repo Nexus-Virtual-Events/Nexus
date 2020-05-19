@@ -42,6 +42,7 @@ public class Utils : MonoBehaviour
         sceneNames = new Dictionary<string, string>();
         animationRequirements = new Dictionary<int, float[]>();
         layerIndices = new Dictionary<string, int>();
+        localPlayers = new List<GameObject>();
 
 
         layerIndices.Add("Admin", 11);
