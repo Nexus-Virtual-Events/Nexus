@@ -100,7 +100,6 @@ public class StateSync : RealtimeComponent {
             return _model.state;
         }
         else{
-            Debug.Log("model.state missing");
             return "";
         }
     }

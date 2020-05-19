@@ -576,7 +576,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             {
                 if (autoPilot)
                 {
-                    Debug.Log("on autopilot");
 
                     bool[] falseArray = new bool[numberOfAnimations];
                     for (int i = 0; i < numberOfAnimations; i += 1)
