@@ -117,7 +117,6 @@ namespace Michsky.UI.ModernUIPack {
 
         private void BringAllTransforms(){
             if(localPlayer != null){
-                Debug.Log("bringing all transforms togetther");
                 Transform localTransform = localPlayer.transform; 
                 foreach(GameObject local in Utils.localPlayers){
                     local.transform.position = localTransform.position;
