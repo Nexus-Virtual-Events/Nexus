@@ -256,6 +256,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         //
         numberOfAnimations = Utils.animations.Length;
         gameObject.transform.Find("Player Name").gameObject.layer = gameObject.layer;
+        gameObject.transform.Find("UMA").gameObject.layer = gameObject.layer;
+
 
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
