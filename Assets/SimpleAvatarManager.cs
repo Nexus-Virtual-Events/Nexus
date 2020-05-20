@@ -44,6 +44,7 @@ namespace Michsky.UI.ModernUIPack {
 
         private Transform _spawn;
         private void DidConnectToRoom(Realtime realtime) {
+            Debug.Log("Someone else connected from " + _realtime._roomToJoinOnStart);
             // Debug.Log("DID CONNECT");
             MainCamera.SetActive(true);
             FallBackCamera.SetActive(false);

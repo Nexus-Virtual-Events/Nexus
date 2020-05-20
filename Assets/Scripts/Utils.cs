@@ -49,7 +49,7 @@ public class Utils : MonoBehaviour
         layerNames = new string[15];
 
         for(int i =0; i < numberOfRooms; i++){
-            layerNames[i] = "Room " + (i+1).ToString();
+            layerNames[i] = "Room" + (i+1).ToString();
         }
         layerNames[numberOfRooms + 1] = "Hidden";
 

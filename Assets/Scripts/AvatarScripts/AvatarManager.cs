@@ -89,7 +89,8 @@ namespace Michsky.UI.ModernUIPack {
 
        
         private void DidConnectToRoom(Realtime realtime) {
-            // Debug.Log("DID CONNECT");
+
+            Debug.Log("Connected from AvatarManager as " + _realtime._roomToJoinOnStart);
 
             MainCamera.SetActive(true);
             FallBackCamera.SetActive(false);
@@ -101,7 +102,9 @@ namespace Michsky.UI.ModernUIPack {
                            ownedByClient: true,                // Make sure the RealtimeView on this prefab is owned by this client
                 preventOwnershipTakeover: true,                // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
                              useInstance: realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
+            
             localPlayer.layer = LayerMask.NameToLayer(_realtime._roomToJoinOnStart);
+            Debug.Log(">> room to layer "+ LayerMask.NameToLayer(_realtime._roomToJoinOnStart));
             Utils.localPlayers.Add(localPlayer);
             ShowWelcomeWindow();
             if(PlayerPrefs.GetString("adminRoom") == "true"){

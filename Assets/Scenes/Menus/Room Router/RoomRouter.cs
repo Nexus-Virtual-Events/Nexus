@@ -18,7 +18,12 @@ namespace Michsky.UI.ModernUIPack
                 PlayerPrefs.SetString("adminRoom", "false");
             }
 
-            PlayerPrefs.SetString("roomName", "Room "+roomIndex.ToString());
+            if(roomIndex != 5){
+                PlayerPrefs.SetString("roomName", "Room"+roomIndex.ToString());
+            }
+            else{
+                PlayerPrefs.SetString("roomName", "Admin"+roomIndex.ToString());
+            }
             AvatarCreator.sceneString = sceneString;
             Loading.sceneString = "Avatar Creator";
             SceneManager.LoadScene("Loading");
