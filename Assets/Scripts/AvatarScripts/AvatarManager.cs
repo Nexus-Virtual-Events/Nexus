@@ -78,8 +78,8 @@ namespace Michsky.UI.ModernUIPack {
             }
             else
             {
-                roomText.text = "Administrator";
-                roomImage.sprite = roomSprites[5];
+                // roomText.text = "Administrator";
+                // roomImage.sprite = roomSprites[5];
             }
 
 
