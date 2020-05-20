@@ -255,8 +255,11 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         gameObject.layer = LayerMask.NameToLayer(_realtimeView.realtime._roomToJoinOnStart);
         //
         numberOfAnimations = Utils.animations.Length;
-        gameObject.transform.Find("Player Name").gameObject.layer = gameObject.layer;
+        GameObject playerName = gameObject.transform.Find("Player Name").gameObject;
+        playerName.layer = gameObject.layer;
+        playerName.transform.GetChild(0).gameObject.layer = gameObject.layer;
         gameObject.transform.Find("UMA").gameObject.layer = gameObject.layer;
+
 
 
 
