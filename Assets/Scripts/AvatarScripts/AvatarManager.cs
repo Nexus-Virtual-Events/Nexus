@@ -116,7 +116,7 @@ namespace Michsky.UI.ModernUIPack {
         }
 
         private void BringAllTransforms(){
-            if(localPlayer != null){
+            if(localPlayer != null && LayerMask.LayerToName(localPlayer.layer) == SceneRoomRouter.currentLayer){
                 Transform localTransform = localPlayer.transform; 
                 foreach(GameObject local in Utils.localPlayers){
                     local.transform.position = localTransform.position;
