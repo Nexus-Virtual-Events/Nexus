@@ -5,6 +5,8 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using Normal.Realtime;
 using UnityEditor;
+using UnityEngine.UI;
+using TMPro;
 
 namespace Michsky.UI.ModernUIPack {
     public class AvatarManager : MonoBehaviour {
@@ -33,6 +35,10 @@ namespace Michsky.UI.ModernUIPack {
 
         private bool isConnected;
 
+        public TMP_Text roomText;
+        public Image roomImage;
+
+        public List<Sprite> roomSprites;
 
         private void Awake() {
             // Get the Realtime component on this game object
@@ -41,9 +47,45 @@ namespace Michsky.UI.ModernUIPack {
             // Notify us when Realtime successfully connects to the room
             _realtime.didConnectToRoom += DidConnectToRoom;
             _realtime.didDisconnectFromRoom += DidDisconnectFromRoom;
-            _realtime._roomToJoinOnStart = PlayerPrefs.GetString("roomName");
+
+            string roomIndex = PlayerPrefs.GetString("roomName");
+            _realtime._roomToJoinOnStart = roomIndex;
+
+            if(roomIndex == "Room 1")
+            {
+                roomText.text = "Azure Akita";
+                roomImage.sprite = roomSprites[0];
+            }
+            else if(roomIndex == "Room 2")
+            {
+                roomText.text = "Crimson Koala";
+                roomImage.sprite = roomSprites[1];
+            }
+            else if (roomIndex == "Room 3")
+            {
+                roomText.text = "Golden Grizzly";
+                roomImage.sprite = roomSprites[2];
+            }
+            else if(roomIndex == "Room 4")
+            {
+                roomText.text = "Ivory Ibex";
+                roomImage.sprite = roomSprites[3];
+            }
+            else if (roomIndex == "Room 5")
+            {
+                roomText.text = "Jade Jackal";
+                roomImage.sprite = roomSprites[4];
+            }
+            else
+            {
+                roomText.text = "Administrator";
+                roomImage.sprite = roomSprites[5];
+            }
+
 
             _spawn = GameObject.Find("Spawn").transform;
+
+
 
         }
 

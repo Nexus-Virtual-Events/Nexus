@@ -19,10 +19,10 @@ namespace Michsky.UI.ModernUIPack
             }
 
             if(roomIndex != 5){
-                PlayerPrefs.SetString("roomName", "Room"+roomIndex.ToString());
+                PlayerPrefs.SetString("roomName", "Room"+(roomIndex+1).ToString());
             }
             else{
-                PlayerPrefs.SetString("roomName", "Admin"+roomIndex.ToString());
+                PlayerPrefs.SetString("roomName", "Admin"+(roomIndex+1).ToString());
             }
             AvatarCreator.sceneString = sceneString;
             Loading.sceneString = "Avatar Creator";
