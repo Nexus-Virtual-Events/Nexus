@@ -167,7 +167,7 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 		if (Physics.SphereCast(checkPos, 0.2f, target - checkPos, out RaycastHit hit, relCameraPosMag))
 		{
 			// ... if it is not the player...
-			if(hit.transform != player && !hit.transform.GetComponent<Collider>().isTrigger)
+			if(hit.transform != player && LayerMask.LayerToName(hit.transform.gameObject.layer) == SceneRoomRouter.currentLayer && !hit.transform.GetComponent<Collider>().isTrigger)
 			{
 				// This position isn't appropriate.
 				return false;
@@ -184,7 +184,7 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 		Vector3 origin = player.position + (Vector3.up * deltaPlayerHeight);
 		if (Physics.SphereCast(origin, 0.2f, checkPos - origin, out RaycastHit hit, maxDistance))
 		{
-			if(hit.transform != player && hit.transform != transform && !hit.transform.GetComponent<Collider>().isTrigger)
+			if(hit.transform != player && hit.transform != transform && LayerMask.LayerToName(hit.transform.gameObject.layer) == SceneRoomRouter.currentLayer && !hit.transform.GetComponent<Collider>().isTrigger)
 			{
 				return false;
 			}

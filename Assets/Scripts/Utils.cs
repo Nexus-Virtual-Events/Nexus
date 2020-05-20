@@ -119,8 +119,8 @@ public class Utils : MonoBehaviour
         if (!sceneNames.ContainsKey("2"))
             sceneNames.Add("2", "The Circle");
 
-        for(int i=11; i<21; i++){
-            for(int j=11; j<21; j++){
+        for(int i=11; i<22; i++){
+            for(int j=11; j<22; j++){
                 if(i == j)
                     continue;
                 
@@ -128,6 +128,24 @@ public class Utils : MonoBehaviour
             }
         }
     }
+
+    // private float offsetx = 0f;
+    // private float offsety = 1.25f;
+    // private float offsetz = -2f;
+    public static void AssignCameraToPlayer(GameObject player){
+            Debug.Log(">>>" + LayerMask.LayerToName(player.layer));
+            GameObject m_MainCamera = Camera.main.gameObject;
+            Camera.main.gameObject.layer = player.layer;
+            m_MainCamera.transform.parent = player.transform;
+            Vector3 offset = new Vector3(0f, 1.25f, -2f);
+            m_MainCamera.transform.position = player.transform.position + offset;
+            m_MainCamera.transform.LookAt(player.transform);
+
+            // playerCamera = m_MainCamera.transform;
+
+            ThirdPersonOrbitCamBasic camScript = m_MainCamera.transform.GetComponent<ThirdPersonOrbitCamBasic>();
+            camScript.AssignPlayer(player.transform);
+        }
 
     public void AskMic(){
         StartCoroutine(AskForMicAccess());

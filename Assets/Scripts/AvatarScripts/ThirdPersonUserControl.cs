@@ -222,6 +222,11 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         {
             ActionRouter.SetLocalAvatar(transform.gameObject);
             _recipeSync.SetRecipe(PlayerPrefs.GetString("playerRecipe"));
+
+            if((PlayerPrefs.GetString("adminRoom") == "true" &&  LayerMask.LayerToName(gameObject.layer) == SceneRoomRouter.currentLayer) || PlayerPrefs.GetString("adminRoom") != "true"){
+                Utils.AssignCameraToPlayer(gameObject);
+                Debug.Log("Camera assigned!");
+            }
         }
         else
         {
@@ -247,6 +252,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
 
+        // gameObject.transform.Find("Player Name").gameObject.layer = gameObject.layer;
     }
 
     private string[] stringToArray(string s)
@@ -442,21 +448,21 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             return;
 
         // Move the camera
-        if (!isCameraParented)
-        {
-            m_MainCamera = Camera.main.gameObject;
-            m_MainCamera.transform.parent = transform;
-            Vector3 offset = new Vector3(offsetx, offsety, offsetz);
-            m_MainCamera.transform.position = transform.position + offset;
-            m_MainCamera.transform.LookAt(transform);
+        // if (!isCameraParented)
+        // {
+        //     m_MainCamera = Camera.main.gameObject;
+        //     m_MainCamera.transform.parent = transform;
+        //     Vector3 offset = new Vector3(offsetx, offsety, offsetz);
+        //     m_MainCamera.transform.position = transform.position + offset;
+        //     m_MainCamera.transform.LookAt(transform);
 
-            playerCamera = m_MainCamera.transform;
+        //     playerCamera = m_MainCamera.transform;
 
-            camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic>();
-            camScript.AssignPlayer(transform);
+        //     camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic>();
+        //     camScript.AssignPlayer(transform);
 
-            isCameraParented = true;
-        }
+        //     isCameraParented = true;
+        // }
 
         // Make sure we own the transform so that RealtimeTransform knows to use this client's transform to synchronize remote clients.
         _realtimeTransform.RequestOwnership();
@@ -495,21 +501,21 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         {
 
             // Move the camera
-            if (!isCameraParented)
-            {
-                m_MainCamera = Camera.main.gameObject;
-                m_MainCamera.transform.parent = transform;
-                Vector3 offset = new Vector3(offsetx, offsety, offsetz);
-                m_MainCamera.transform.position = transform.position + offset + new Vector3(0, -1, 0);
-                m_MainCamera.transform.LookAt(transform);
+            // if (!isCameraParented)
+            // {
+            //     m_MainCamera = Camera.main.gameObject;
+            //     m_MainCamera.transform.parent = transform;
+            //     Vector3 offset = new Vector3(offsetx, offsety, offsetz);
+            //     m_MainCamera.transform.position = transform.position + offset + new Vector3(0, -1, 0);
+            //     m_MainCamera.transform.LookAt(transform);
 
-                playerCamera = m_MainCamera.transform;
+            //     playerCamera = m_MainCamera.transform;
 
-                camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic>();
-                camScript.AssignPlayer(transform);
+            //     camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic>();
+            //     camScript.AssignPlayer(transform);
 
-                isCameraParented = true;
-            }
+            //     isCameraParented = true;
+            // }
 
             // Make sure we own the transform so that RealtimeTransform knows to use this client's transform to synchronize remote clients.
             _realtimeTransform.RequestOwnership();
