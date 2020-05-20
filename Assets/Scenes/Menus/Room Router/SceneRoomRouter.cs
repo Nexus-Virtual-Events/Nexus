@@ -7,6 +7,8 @@ public class SceneRoomRouter : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] userRooms;
     public static string currentLayer;
+
+    public GameObject[] roomTabs;
     LayerMask myMask;
     void Start()
     {
@@ -23,7 +25,12 @@ public class SceneRoomRouter : MonoBehaviour
             currentLayer = Utils.layerNames[0];
             myMask = makeLayerVisible(myMask, LayerMask.NameToLayer(currentLayer));
             Camera.main.cullingMask = myMask;
-        }        
+        }    
+        else{
+            foreach(GameObject room in roomTabs){
+                room.SetActive(false);
+            }
+        }    
         
       
 
@@ -38,7 +45,7 @@ public class SceneRoomRouter : MonoBehaviour
         // Debug.Log(">>>");
     }
 
-    void ChangeRoomView(string newLayer){
+    public void ChangeRoomView(string newLayer){
         myMask = Camera.main.cullingMask;
         myMask = makeLayerInvisible(myMask, LayerMask.NameToLayer(currentLayer));
         myMask = makeLayerVisible(myMask, LayerMask.NameToLayer(newLayer));
