@@ -233,7 +233,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
         else
         {
-            transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
+            // transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
         }
 
         try{
