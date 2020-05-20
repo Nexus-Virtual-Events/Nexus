@@ -14,14 +14,14 @@ public class AgoraMainMenu : MonoBehaviour
     private ArrayList permissionList = new ArrayList();
     static NexusVideo app = null;
 
-    private string HomeSceneName = "Main Menu";
+    private string HomeSceneName = "Avatar Creator";
 
     private string PlaySceneName = "The Circle";
 
     // PLEASE KEEP THIS App ID IN SAFE PLACE
     // Get your own App ID at https://dashboard.agora.io/
     [SerializeField]
-    private string AppID = "your_appid";
+    private string AppID = "896e38e8d51c4e8393b1827d6b9caa49";
 
     void Awake()
     {
@@ -73,7 +73,7 @@ public class AgoraMainMenu : MonoBehaviour
         }
 
         // join channel and jump to next scene
-        app.join("circle");
+        app.join(PlayerPrefs.GetString("roomName"));
         SceneManager.sceneLoaded += OnLevelFinishedLoading; // configure GameObject after scene is loaded
         SceneManager.LoadScene(PlaySceneName, LoadSceneMode.Single);
     }

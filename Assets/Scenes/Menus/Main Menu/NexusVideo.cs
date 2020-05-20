@@ -208,7 +208,7 @@ public class NexusVideo
 
         // make the object draggable
         go.AddComponent<UIElementDragger>();
-        GameObject canvas = GameObject.Find("Canvas");
+        GameObject canvas = GameObject.Find("Player HUD");
         if (canvas != null)
         {
             go.transform.parent = canvas.transform;
