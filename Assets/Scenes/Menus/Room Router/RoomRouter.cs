@@ -19,7 +19,7 @@ namespace Michsky.UI.ModernUIPack
             }
 
             if(roomIndex != 5){
-                PlayerPrefs.SetString("roomName", "Room "+(roomIndex+1).ToString());
+                PlayerPrefs.SetString("roomName", "Room"+(roomIndex+1).ToString());
             }
             else{
                 PlayerPrefs.SetString("roomName", "Admin");
@@ -43,11 +43,11 @@ namespace Michsky.UI.ModernUIPack
 
             if (index != 5)
             {
-                PlayerPrefs.SetString("roomName", "Room " + (index + 1).ToString());
+                PlayerPrefs.SetString("roomName", "Room" + (index + 1).ToString());
             }
             else
             {
-                PlayerPrefs.SetString("roomName", "Admin " + (index + 1).ToString());
+                PlayerPrefs.SetString("roomName", "Admin");
             }
             AvatarCreator.sceneString = sceneString;
             Loading.sceneString = "Avatar Creator";
