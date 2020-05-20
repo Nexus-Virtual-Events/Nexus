@@ -86,9 +86,10 @@ namespace Michsky.UI.ModernUIPack {
         private bool DidConnect;
 
         private Transform _spawn;
+
+       
         private void DidConnectToRoom(Realtime realtime) {
             // Debug.Log("DID CONNECT");
-
 
             MainCamera.SetActive(true);
             FallBackCamera.SetActive(false);
@@ -103,11 +104,14 @@ namespace Michsky.UI.ModernUIPack {
             localPlayer.layer = LayerMask.NameToLayer(_realtime._roomToJoinOnStart);
             Utils.localPlayers.Add(localPlayer);
             ShowWelcomeWindow();
-
-            nmrLoadingReconnectTrial = 0;
             if(PlayerPrefs.GetString("adminRoom") == "true"){
+                localPlayer.layer = LayerMask.NameToLayer("Hidden");
                 InvokeRepeating("BringAllTransforms", 15.0f, 2.0f);
             }
+
+            nmrLoadingReconnectTrial = 0;
+            
+
 
         }
 
