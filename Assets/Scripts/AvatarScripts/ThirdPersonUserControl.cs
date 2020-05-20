@@ -251,11 +251,20 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
 
         gameObject.name = "Avatar_" + getID();
+        Debug.Log("!!>> TP ROOM NAME: " + _realtimeView.realtime._roomToJoinOnStart);
+        gameObject.layer = LayerMask.NameToLayer(_realtimeView.realtime._roomToJoinOnStart);
+        //
         numberOfAnimations = Utils.animations.Length;
+        GameObject playerName = gameObject.transform.Find("Player Name").gameObject;
+        playerName.layer = gameObject.layer;
+        playerName.transform.GetChild(0).gameObject.layer = gameObject.layer;
+        gameObject.transform.Find("UMA").gameObject.layer = gameObject.layer;
+
+
+
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
 
-        // gameObject.transform.Find("Player Name").gameObject.layer = gameObject.layer;
     }
 
     private string[] stringToArray(string s)

@@ -22,7 +22,7 @@ namespace Michsky.UI.ModernUIPack
                 PlayerPrefs.SetString("roomName", "Room "+(roomIndex+1).ToString());
             }
             else{
-                PlayerPrefs.SetString("roomName", "Admin "+(roomIndex+1).ToString());
+                PlayerPrefs.SetString("roomName", "Admin");
             }
             AvatarCreator.sceneString = sceneString;
             Loading.sceneString = "Avatar Creator";

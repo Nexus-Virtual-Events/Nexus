@@ -173,7 +173,7 @@ namespace Normal.Realtime {
                 if (createAudioPreprocessor) {
                     // Turn on echo cancellation for mobile devices;
                     //bool echoCancellation = Application.isMobilePlatform && Application.platform != RuntimePlatform.IPhonePlayer;
-                    bool echoCancellation = true;
+                    bool echoCancellation = false;
                     _audioPreprocessor = new AudioPreprocessor(_microphoneSampleRate,_microphoneFrameSize,                  // Input stream
                                                                true,                                                        // Automatic gain control
                                                                true,                                                        // Noise suppression
