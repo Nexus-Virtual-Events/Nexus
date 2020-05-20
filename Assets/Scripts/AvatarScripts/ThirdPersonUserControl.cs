@@ -227,6 +227,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 Utils.AssignCameraToPlayer(gameObject);
                 Debug.Log("Camera assigned!");
             }
+            else{
+                gameObject.transform.Find("Player Name").gameObject.SetActive(false);
+            }
         }
         else
         {
