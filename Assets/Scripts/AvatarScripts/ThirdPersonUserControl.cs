@@ -255,10 +255,11 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         gameObject.layer = LayerMask.NameToLayer(_realtimeView.realtime._roomToJoinOnStart);
         //
         numberOfAnimations = Utils.animations.Length;
+        gameObject.transform.Find("Player Name").gameObject.layer = gameObject.layer;
+
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
 
-        // gameObject.transform.Find("Player Name").gameObject.layer = gameObject.layer;
     }
 
     private string[] stringToArray(string s)
