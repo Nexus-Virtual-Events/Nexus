@@ -8,17 +8,17 @@ namespace Michsky.UI.ModernUIPack
     public class RoomRouter : MonoBehaviour
     {
         public static string sceneString;
-
-        public void RouteToRoom(string roomName)
+        public int roomIndex;
+        public void RouteToRoom()
         {
-            if(roomName == "Admin"){
+            if(roomIndex == 5){
                 PlayerPrefs.SetString("adminRoom", "true");
             }
             else{
                 PlayerPrefs.SetString("adminRoom", "false");
             }
 
-            PlayerPrefs.SetString("roomName", roomName);
+            PlayerPrefs.SetString("roomName", roomIndex.ToString());
             AvatarCreator.sceneString = sceneString;
             Loading.sceneString = "Avatar Creator";
             SceneManager.LoadScene("Loading");
