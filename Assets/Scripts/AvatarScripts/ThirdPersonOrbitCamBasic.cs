@@ -161,18 +161,20 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 	// Check for collision from camera to player.
 	bool ViewingPosCheck (Vector3 checkPos, float deltaPlayerHeight)
 	{
-		// Cast target.
-		// Vector3 target = player.position + (Vector3.up * deltaPlayerHeight);
-		// // If a raycast from the check position to the player hits something...
-		// if (Physics.SphereCast(checkPos, 0.2f, target - checkPos, out RaycastHit hit, relCameraPosMag))
-		// {
-		// 	// ... if it is not the player...
-		// 	if(hit.transform != player && LayerMask.LayerToName(hit.transform.gameObject.layer) == SceneRoomRouter.currentLayer && !hit.transform.GetComponent<Collider>().isTrigger)
-		// 	{
-		// 		// This position isn't appropriate.
-		// 		return false;
-		// 	}
-		// }
+		if(PlayerPrefs.GetString("adminRoom") != "true"){
+			// Cast target.
+			Vector3 target = player.position + (Vector3.up * deltaPlayerHeight);
+			// If a raycast from the check position to the player hits something...
+			if (Physics.SphereCast(checkPos, 0.2f, target - checkPos, out RaycastHit hit, relCameraPosMag))
+			{
+				// ... if it is not the player...
+				if(hit.transform != player && LayerMask.LayerToName(hit.transform.gameObject.layer) == SceneRoomRouter.currentLayer && !hit.transform.GetComponent<Collider>().isTrigger)
+				{
+					// This position isn't appropriate.
+					return false;
+				}
+			}
+		}
 		// If we haven't hit anything or we've hit the player, this is an appropriate position.
 		return true;
 	}
@@ -180,15 +182,16 @@ public class ThirdPersonOrbitCamBasic : MonoBehaviour
 	// Check for collision from player to camera.
 	bool ReverseViewingPosCheck(Vector3 checkPos, float deltaPlayerHeight, float maxDistance)
 	{
-		// Cast origin.
-		// Vector3 origin = player.position + (Vector3.up * deltaPlayerHeight);
-		// if (Physics.SphereCast(origin, 0.2f, checkPos - origin, out RaycastHit hit, maxDistance))
-		// {
-		// 	if(hit.transform != player && hit.transform != transform && LayerMask.LayerToName(hit.transform.gameObject.layer) == SceneRoomRouter.currentLayer && !hit.transform.GetComponent<Collider>().isTrigger)
-		// 	{
-		// 		return false;
-		// 	}
-		// }
+		if(PlayerPrefs.GetString("adminRoom") != "true"){
+			Vector3 origin = player.position + (Vector3.up * deltaPlayerHeight);
+			if (Physics.SphereCast(origin, 0.2f, checkPos - origin, out RaycastHit hit, maxDistance))
+			{
+				if(hit.transform != player && hit.transform != transform && LayerMask.LayerToName(hit.transform.gameObject.layer) == SceneRoomRouter.currentLayer && !hit.transform.GetComponent<Collider>().isTrigger)
+				{
+					return false;
+				}
+			}
+		}
 		return true;
 	}
 
