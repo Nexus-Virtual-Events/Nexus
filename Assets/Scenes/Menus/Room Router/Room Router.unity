@@ -2559,6 +2559,10 @@ MonoBehaviour:
     onValueChanged:
       m_PersistentCalls:
         m_Calls: []
+  - itemTitle: Administrator (1/30)
+    onValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &265012963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2640,6 +2644,9 @@ MonoBehaviour:
   - roomIcon: {fileID: 21300000, guid: aa0eac85f20ed48dcbd75000986e1902, type: 3}
     gradientStart: {r: 0.06666667, g: 0.6, b: 0.5568628, a: 1}
     gradientEnd: {r: 0.21960784, g: 0.9372549, b: 0.49019608, a: 1}
+  - roomIcon: {fileID: 21300000, guid: ae5aaf05279df4e4c9e83c30e9ce37f9, type: 3}
+    gradientStart: {r: 1, g: 0.37254903, b: 0.42745098, a: 1}
+    gradientEnd: {r: 1, g: 0.7647059, b: 0.44313726, a: 1}
   index: 0
   normalImage: {fileID: 731574579}
   highlightedImage: {fileID: 1202551955}
