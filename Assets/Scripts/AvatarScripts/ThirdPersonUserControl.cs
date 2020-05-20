@@ -251,6 +251,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
 
         gameObject.name = "Avatar_" + getID();
+        Debug.Log("!!>> TP ROOM NAME: " + _realtimeView.realtime._roomToJoinOnStart);
+        gameObject.layer = LayerMask.NameToLayer(_realtimeView.realtime._roomToJoinOnStart);
+        //
         numberOfAnimations = Utils.animations.Length;
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);

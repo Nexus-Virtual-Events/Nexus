@@ -56,8 +56,11 @@ namespace Michsky.UI.ModernUIPack {
                            ownedByClient: true,                // Make sure the RealtimeView on this prefab is owned by this client
                 preventOwnershipTakeover: true,                // Prevent other clients from calling RequestOwnership() on the root RealtimeView.
                              useInstance: realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
+            Debug.Log(">>>> ROOM NAME: " + _realtime._roomToJoinOnStart);
             localPlayer.layer = LayerMask.NameToLayer(_realtime._roomToJoinOnStart);
             Utils.localPlayers.Add(localPlayer);
+            Debug.Log(">> Joined from Avatar Manager and assigned to layer "+ LayerMask.NameToLayer(_realtime._roomToJoinOnStart));
+
             ShowWelcomeWindow();
         
             nmrLoadingReconnectTrial = 0;
