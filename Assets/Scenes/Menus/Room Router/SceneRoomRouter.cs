@@ -51,6 +51,7 @@ public class SceneRoomRouter : MonoBehaviour
         myMask = makeLayerVisible(myMask, LayerMask.NameToLayer(newLayer));
         currentLayer = newLayer;
         Camera.main.cullingMask = myMask;
+        SceneRoomRouter.currentLayer = newLayer;
     }
 
     // Update is called once per frame
