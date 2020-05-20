@@ -106,7 +106,6 @@ namespace Michsky.UI.ModernUIPack {
             ShowWelcomeWindow();
             if(PlayerPrefs.GetString("adminRoom") == "true"){
                 localPlayer.layer = LayerMask.NameToLayer("Hidden");
-                InvokeRepeating("BringAllTransforms", 15.0f, 2.0f);
             }
 
             nmrLoadingReconnectTrial = 0;
@@ -115,15 +114,7 @@ namespace Michsky.UI.ModernUIPack {
 
         }
 
-        private void BringAllTransforms(){
-            if(localPlayer != null && LayerMask.LayerToName(localPlayer.layer) == SceneRoomRouter.currentLayer){
-                Transform localTransform = localPlayer.transform; 
-                foreach(GameObject local in Utils.localPlayers){
-                    local.transform.position = localTransform.position;
-                    local.transform.rotation = localTransform.rotation;
-                    }
-            }
-        }
+       
 
 
         private int nmrReconnectTrial = 0;

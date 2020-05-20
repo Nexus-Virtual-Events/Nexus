@@ -60,6 +60,19 @@ namespace Michsky.UI.ModernUIPack {
             ShowWelcomeWindow();
         
             nmrLoadingReconnectTrial = 0;
+
+            InvokeRepeating("BringAllTransforms", 15.0f, 2.0f);
+
+        }
+
+         private void BringAllTransforms(){
+            if(localPlayer != null && LayerMask.LayerToName(localPlayer.layer) == SceneRoomRouter.currentLayer){
+                Transform localTransform = localPlayer.transform; 
+                foreach(GameObject local in Utils.localPlayers){
+                    local.transform.position = localTransform.position;
+                    local.transform.rotation = localTransform.rotation;
+                    }
+            }
         }
 
         private int nmrReconnectTrial = 0;
