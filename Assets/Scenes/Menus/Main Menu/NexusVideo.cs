@@ -159,7 +159,9 @@ public class NexusVideo
         }
 
         // create a GameObject and assign to this new user
-        VideoSurface videoSurface = makeImageSurface(uid.ToString());
+        VideoSurface videoSurface = makeImageSurface(PlayerPrefs.GetString("playerName"));
+        VideoSurface planeVideoSurface = makePlaneSurface(PlayerPrefs.GetString("playerName"));
+
         if (!ReferenceEquals(videoSurface, null))
         {
             // configure videoSurface
@@ -167,6 +169,15 @@ public class NexusVideo
             videoSurface.SetEnable(true);
             videoSurface.SetVideoSurfaceType(AgoraVideoSurfaceType.RawImage);
             videoSurface.SetGameFps(30);
+        }
+
+        if (!ReferenceEquals(planeVideoSurface, null))
+        {
+            // configure videoSurface
+            planeVideoSurface.SetForUser(uid);
+            planeVideoSurface.SetEnable(true);
+            planeVideoSurface.SetVideoSurfaceType(AgoraVideoSurfaceType.Renderer);
+            planeVideoSurface.SetGameFps(30);
         }
     }
 
@@ -181,9 +192,7 @@ public class NexusVideo
         go.name = goName;
         // set up transform
         go.transform.Rotate(-90.0f, 0.0f, 0.0f);
-        float yPos = Random.Range(3.0f, 5.0f);
-        float xPos = Random.Range(-2.0f, 2.0f);
-        go.transform.position = new Vector3(xPos, yPos, 0f);
+        go.transform.position = new Vector3(-63.8f, 1f, 17.5f);
         go.transform.localScale = new Vector3(0.25f, 0.5f, .5f);
 
         // configure videoSurface
@@ -208,17 +217,20 @@ public class NexusVideo
 
         // make the object draggable
         go.AddComponent<UIElementDragger>();
-        GameObject canvas = GameObject.Find("Player HUD");
+        GameObject canvas = GameObject.Find("Agora Panel");
         if (canvas != null)
         {
             go.transform.parent = canvas.transform;
         }
         // set up transform
         go.transform.Rotate(0f, 0.0f, 180.0f);
-        float xPos = Random.Range(Offset - Screen.width / 2f, Screen.width / 2f - Offset);
-        float yPos = Random.Range(Offset, Screen.height / 2f - Offset);
-        go.transform.localPosition = new Vector3(xPos, yPos, 0f);
-        go.transform.localScale = new Vector3(3f, 4f, 1f);
+        //float xPos = Random.Range(Offset - Screen.width / 2f, Screen.width / 2f - Offset);
+        //float yPos = Random.Range(Offset, Screen.height / 2f - Offset);
+        //go.transform.localPosition = new Vector3(xPos, yPos, 0f);
+        
+        RectTransform videoRectTransform = go.GetComponent<RectTransform>();
+        videoRectTransform.sizeDelta = new Vector2(320, 180);
+        go.transform.localScale = new Vector3(1f, 1f, 1f);
 
         // configure videoSurface
         VideoSurface videoSurface = go.AddComponent<VideoSurface>();
