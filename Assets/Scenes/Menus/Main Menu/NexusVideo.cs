@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 using agora_gaming_rtc;
 using agora_utilities;
@@ -30,6 +31,7 @@ public class NexusVideo
 
         // init engine
         mRtcEngine = IRtcEngine.GetEngine(appId);
+        mRtcEngine.RegisterLocalUserAccount(appId, PlayerPrefs.GetString("playerName"));
 
         // enable log
         mRtcEngine.SetLogFilter(LOG_FILTER.DEBUG | LOG_FILTER.INFO | LOG_FILTER.WARNING | LOG_FILTER.ERROR | LOG_FILTER.CRITICAL);
@@ -53,7 +55,8 @@ public class NexusVideo
         mRtcEngine.EnableVideoObserver();
 
         // join channel
-        mRtcEngine.JoinChannel(channel, null, 0);
+        mRtcEngine.JoinChannelWithUserAccount(null, channel, PlayerPrefs.GetString("playerName"));
+        //mRtcEngine.JoinChannel(channel, null, 0);
 
         // Optional: if a data stream is required, here is a good place to create it
         int streamID = mRtcEngine.CreateDataStream(true, true);
@@ -133,6 +136,22 @@ public class NexusVideo
         else
         {
             quad.AddComponent<VideoSurface>();
+
+            //GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerName");
+
+            //foreach (GameObject player in players)
+            //{
+            //    if (player.GetComponent<TMP_Text>().text == goName)
+            //    {
+            //        player.name = goName;
+
+            //        // configure videoSurface
+            //        VideoSurface videoSurface = player.AddComponent<VideoSurface>();
+            //        return videoSurface;
+            //    }
+            //}
+
+            //return null;
         }
     }
 
@@ -149,6 +168,7 @@ public class NexusVideo
     private void onUserJoined(uint uid, int elapsed)
     {
         Debug.Log("onUserJoined: uid = " + uid + " elapsed = " + elapsed);
+        UserInfo newUser = mRtcEngine.GetUserInfoByUid(uid);
         // this is called in main thread
 
         // find a game object to render video stream from 'uid'
@@ -159,8 +179,8 @@ public class NexusVideo
         }
 
         // create a GameObject and assign to this new user
-        VideoSurface videoSurface = makeImageSurface(PlayerPrefs.GetString("playerName"));
-        VideoSurface planeVideoSurface = makePlaneSurface(PlayerPrefs.GetString("playerName"));
+        VideoSurface videoSurface = makeImageSurface(newUser.userAccount);
+        //VideoSurface planeVideoSurface = makePlaneSurface(PlayerPrefs.GetString("playerName"));
 
         if (!ReferenceEquals(videoSurface, null))
         {
@@ -171,33 +191,34 @@ public class NexusVideo
             videoSurface.SetGameFps(30);
         }
 
-        if (!ReferenceEquals(planeVideoSurface, null))
-        {
-            // configure videoSurface
-            planeVideoSurface.SetForUser(uid);
-            planeVideoSurface.SetEnable(true);
-            planeVideoSurface.SetVideoSurfaceType(AgoraVideoSurfaceType.Renderer);
-            planeVideoSurface.SetGameFps(30);
-        }
+        //if (!ReferenceEquals(planeVideoSurface, null))
+        //{
+        //    // configure videoSurface
+        //    planeVideoSurface.SetForUser(uid);
+        //    planeVideoSurface.SetEnable(true);
+        //    planeVideoSurface.SetVideoSurfaceType(AgoraVideoSurfaceType.Renderer);
+        //    planeVideoSurface.SetGameFps(30);
+        //}
     }
 
     public VideoSurface makePlaneSurface(string goName)
     {
-        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerName");
 
-        if (go == null)
+        foreach(GameObject player in players)
         {
-            return null;
-        }
-        go.name = goName;
-        // set up transform
-        go.transform.Rotate(-90.0f, 0.0f, 0.0f);
-        go.transform.position = new Vector3(-63.8f, 1f, 17.5f);
-        go.transform.localScale = new Vector3(0.25f, 0.5f, .5f);
+            if(player.GetComponent<TMP_Text>().text == goName)
+            {
+                player.name = goName;
 
-        // configure videoSurface
-        VideoSurface videoSurface = go.AddComponent<VideoSurface>();
-        return videoSurface;
+                // configure videoSurface
+                VideoSurface videoSurface = player.AddComponent<VideoSurface>();
+                return videoSurface;
+            }
+        }
+
+        return null;
+        
     }
 
     private const float Offset = 100;
