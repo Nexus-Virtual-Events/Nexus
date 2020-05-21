@@ -180,7 +180,7 @@ public class NexusVideo
 
         // create a GameObject and assign to this new user
         VideoSurface videoSurface = makeImageSurface(newUser.userAccount);
-        //VideoSurface planeVideoSurface = makePlaneSurface(PlayerPrefs.GetString("playerName"));
+        VideoSurface planeVideoSurface = makePlaneSurface(newUser.userAccount);
 
         if (!ReferenceEquals(videoSurface, null))
         {
