@@ -191,6 +191,7 @@ public class NexusVideo
     public VideoSurface makePlaneSurface(string goName)
     {
         GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        plane.GetComponent<MeshCollider>().enabled = false;
 
         if (plane == null) return null;
 
