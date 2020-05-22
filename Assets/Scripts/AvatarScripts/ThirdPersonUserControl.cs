@@ -455,16 +455,15 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
                 Transform localAvatar = ActionRouter.GetLocalAvatar().transform;
 
-                float radius = 2f;
+                float radius = 15f;
 
                 float distance = Vector3.Distance(localAvatar.position, transform.position);
-
-
 
                 Vector3 right = transform.worldToLocalMatrix.MultiplyVector(Vector3.right);
                 Vector3 vectorBetween = localAvatar.position - transform.position;
                 float angleBetween = Vector3.Angle(right, vectorBetween);
                 double pan = Mathf.Cos(angleBetween);
+                Debug.Log("Pan: " + pan.ToString());
 
                 double gain;
                 if(distance > 2){

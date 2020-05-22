@@ -58,6 +58,7 @@ public class NexusVideo
 
         // join channel
         mRtcEngine.JoinChannelWithUserAccount(null, channel, PlayerPrefs.GetString("playerName"));
+        //mRtcEngine.JoinChannelWithUserAccount(null, "Admin", PlayerPrefs.GetString("playerName"));
         //mRtcEngine.JoinChannel(channel, null, 0);
 
         // Optional: if a data stream is required, here is a good place to create it
