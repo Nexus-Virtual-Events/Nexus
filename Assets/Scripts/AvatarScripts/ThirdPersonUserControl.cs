@@ -240,9 +240,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         else
         {
             // Move VideoSurface from plane of name 
-            Debug.Log("Assigning Video Feed to " + gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
-            GameObject videoFeed = GameObject.Find(gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
-            videoFeed.transform.parent = gameObject.transform.Find("Player Name");
             //VideoSurface initVideoFeed = GameObject.Find(_nameSync.name).GetComponent<VideoSurface>();
             //gameObject.transform.Find("Player Name/Plane").gameObject.AddComponent<VideoSurface>();
         }
@@ -271,8 +268,13 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         playerName.transform.GetChild(0).gameObject.layer = gameObject.layer;
         gameObject.transform.Find("UMA").gameObject.layer = gameObject.layer;
 
-
-
+        if(!_realtimeView.isOwnedLocally)
+        {
+            Debug.Log(gameObject.transform.Find("Player Name").name);
+            Debug.Log("Assigning Video Feed to " + gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
+            GameObject videoFeed = GameObject.Find(gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
+            videoFeed.transform.parent = gameObject.transform.Find("Player Name");
+        }
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
 
