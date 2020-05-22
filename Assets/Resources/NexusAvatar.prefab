@@ -26,11 +26,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176775638064108184}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0.111, y: 2.105, z: 0.02}
-  m_LocalScale: {x: 0.11851866, y: 1, z: -0.06666667}
+  m_LocalPosition: {x: -0.0076999962, y: 0.035000086, z: 0.02}
+  m_LocalScale: {x: 0.118518665, y: 1, z: -0.06666667}
   m_Children: []
-  m_Father: {fileID: 5344741582037746087}
-  m_RootOrder: 2
+  m_Father: {fileID: 8893712038968174171}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!33 &3239167574320460651
 MeshFilter:
@@ -667,7 +667,6 @@ Transform:
   m_Children:
   - {fileID: 5344741581893345219}
   - {fileID: 8893712038968174171}
-  - {fileID: 2544613124387601568}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -872,11 +871,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _realtime: {fileID: 0}
-  _sceneViewUUID: 9ee84b4b1927e24b8cddb56e5ad2a16f
+  _sceneViewUUID: 
   _sceneViewOwnedByCreatingClient: 0
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
+  _isRootPrefabView: 1
   _components:
   - componentID: 1
     component: {fileID: 25737989898212969}
@@ -1180,6 +1179,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2982039229374881956}
+  - {fileID: 2544613124387601568}
   m_Father: {fileID: 5344741582037746087}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
