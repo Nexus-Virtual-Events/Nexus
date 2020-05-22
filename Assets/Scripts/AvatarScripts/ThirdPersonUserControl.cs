@@ -443,10 +443,21 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     }
     public bool shouldBePinned;
     public bool isPinned = false;
+    public bool videoSurfaceParented = false;
     private void Update()
     {
-
-        if(!isRecipeSet){
+        if(!videoSurfaceParented && !_realtimeView.isOwnedLocally)
+        {
+            if(_nameSync.GetName() != "" || _nameSync.GetName() != null)
+            {
+                Debug.Log("Searching for " + _nameSync.GetName() + "'s VideoSurface");
+                GameObject videoFeed = GameObject.Find(_nameSync.GetName());
+                videoFeed.transform.parent = gameObject.transform.Find("Player Name");
+                videoSurfaceParented = true;
+            }
+        }
+        
+        if (!isRecipeSet){
              try{
             avatar.ClearSlots();
             avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
