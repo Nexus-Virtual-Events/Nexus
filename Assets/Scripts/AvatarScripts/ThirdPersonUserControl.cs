@@ -452,8 +452,29 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             else
             {
                 GameObject videoFeed = GameObject.Find(_nameSync.GetName());
-                double pan = -1.0f;
-                double gain = 100.0f;
+
+                Transform localAvatar = ActionRouter.GetLocalAvatar().transform;
+
+                float radius = 2f;
+
+                float distance = Vector3.Distance(localAvatar.position, transform.position);
+
+
+
+                Vector3 right = transform.worldToLocalMatrix.MultiplyVector(Vector3.right);
+                Vector3 vectorBetween = localAvatar.position - transform.position;
+                float angleBetween = Vector3.Angle(right, vectorBetween);
+                double pan = Mathf.Cos(angleBetween);
+
+                double gain;
+                if(distance > 2){
+                    gain = 0f;
+                }
+                else{
+                    gain = 100f * (radius - distance)/radius;
+                }
+
+
 
                 audioEffectManager.SetRemoteVoicePosition(videoFeed.GetComponent<VideoSurface>().uid, pan, gain);
             }
