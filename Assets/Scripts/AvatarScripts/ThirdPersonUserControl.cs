@@ -5,6 +5,7 @@ using System.IO;
 using UMA.CharacterSystem;
 using System;
 using Normal.Realtime;
+using TMPro;
 
 using agora_gaming_rtc;
 using agora_utilities;
@@ -239,8 +240,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         else
         {
             // Move VideoSurface from plane of name 
-            Debug.Log("Assigning Video Feed to " + _nameSync._playerNameText.text);
-            GameObject videoFeed = GameObject.Find(_nameSync._playerNameText.text);
+            Debug.Log("Assigning Video Feed to " + gameObject.transform.Find("Player Name").GetComponent<TMP_Text>().text);
+            GameObject videoFeed = GameObject.Find(gameObject.transform.Find("Player Name").GetComponent<TMP_Text>().text);
             videoFeed.transform.parent = gameObject.transform.Find("Player Name");
             //VideoSurface initVideoFeed = GameObject.Find(_nameSync.name).GetComponent<VideoSurface>();
             //gameObject.transform.Find("Player Name/Plane").gameObject.AddComponent<VideoSurface>();
