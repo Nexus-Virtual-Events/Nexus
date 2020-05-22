@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2544613124387601568
 Transform:
   m_ObjectHideFlags: 0
@@ -26,11 +26,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176775638064108184}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -0.1242, y: -0.0039999485, z: 0.01}
-  m_LocalScale: {x: 0.1185186, y: 1, z: -0.06666667}
+  m_LocalPosition: {x: -0.0076999962, y: 0.0001001358, z: 0.01}
+  m_LocalScale: {x: 0.11851861, y: 1, z: -0.06666667}
   m_Children: []
   m_Father: {fileID: 8893712038968174171}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!33 &3239167574320460651
 MeshFilter:
@@ -106,11 +106,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2418127463680633024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.126, y: -1.769, z: 0}
+  m_LocalPosition: {x: 0, y: -1.769, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8893712038968174171}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &8909168029892367426
 MeshRenderer:
@@ -871,11 +871,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _realtime: {fileID: 0}
-  _sceneViewUUID: 
+  _sceneViewUUID: 8e2edeaea09cf848846a51f8ba257f09
   _sceneViewOwnedByCreatingClient: 0
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 1
+  _isRootPrefabView: 0
   _components:
   - componentID: 1
     component: {fileID: 25737989898212969}
@@ -1178,15 +1178,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2982039229374881956}
   - {fileID: 2544613124387601568}
+  - {fileID: 2982039229374881956}
   m_Father: {fileID: 5344741582037746087}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.2352, y: 2.24}
-  m_SizeDelta: {x: 1.0942576, y: 0.6625149}
+  m_AnchoredPosition: {x: 0.1187, y: 2.2359}
+  m_SizeDelta: {x: 1.0978537, y: 0.67078674}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6349515206616271132
 MeshRenderer:
@@ -1298,7 +1298,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_textAlignment: 257
+  m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0

@@ -271,9 +271,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         if(!_realtimeView.isOwnedLocally)
         {
             Debug.Log(gameObject.transform.Find("Player Name").name);
-            Debug.Log("Assigning Video Feed to " + gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
-            GameObject videoFeed = GameObject.Find(gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
-            videoFeed.transform.parent = gameObject.transform.Find("Player Name");
+            //Debug.Log("Assigning Video Feed to " + gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
+            //GameObject videoFeed = GameObject.Find(gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
+            //videoFeed.transform.parent = gameObject.transform.Find("Player Name");
+            gameObject.transform.Find("Player Name").gameObject.AddComponent<VideoSurface>();
         }
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
