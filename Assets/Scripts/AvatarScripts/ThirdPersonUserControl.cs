@@ -442,7 +442,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 Debug.Log("Searching for " + _nameSync.GetName() + "'s VideoSurface");
                 GameObject videoFeed = GameObject.Find(_nameSync.GetName());
                 videoFeed.transform.parent = gameObject.transform.Find("Player Name");
-                videoFeed.transform.localPosition = new Vector3(-0.007699996f, 0.03500009f, 0.02f);
+                videoFeed.transform.localPosition = new Vector3(-0.007699996f, 0.13f, 0.02f);
                 videoFeed.transform.localRotation = Quaternion.Euler(90, 0, 180);
                 videoFeed.transform.localScale = new Vector3(0.1185187f, 1f, -0.06666667f);
                 videoSurfaceParented = true;
