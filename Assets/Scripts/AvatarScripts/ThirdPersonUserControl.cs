@@ -464,11 +464,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 float angleBetween = Vector3.Angle(right, vectorBetween);
                 double pan = Mathf.Cos(angleBetween * Mathf.Deg2Rad);
 
-                // Debug.Log(ActionRouter.GetLocalAvatar().transform.position);
-                // Debug.Log(transform.position);
-                Debug.DrawLine(transform.position, localAvatar.position, Color.red);
-                Debug.DrawRay(localAvatar.position, right, Color.yellow);
-
                 double gain;
                 if(distance > radius){
                     gain = 0f;
@@ -477,9 +472,10 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     gain = 100f * (radius - distance)/radius;
                 }
 
-
-
-                audioEffectManager.SetRemoteVoicePosition(videoFeed.GetComponent<VideoSurface>().uid, pan, gain);
+                if(videoSurfaceParented)
+                {
+                    audioEffectManager.SetRemoteVoicePosition(videoFeed.GetComponent<VideoSurface>().uid, pan, gain);
+                }
             }
             
             
