@@ -69,7 +69,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     private Vector3 prevPosition;
 
-    
+    public AudioEffectManagerImpl audioEffectManager;
+
     private void Awake()
     {
         _realtimeView = GetComponent<RealtimeView>();
@@ -202,6 +203,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     private void Start()
     {
+        audioEffectManager = (AudioEffectManagerImpl)AgoraMainMenu.app.mRtcEngine.GetAudioEffectManager();
+
         // get the transform of the main camera
         if (Camera.main != null)
         {
@@ -434,9 +437,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     public bool videoSurfaceParented = false;
     private void Update()
     {
-        if(!videoSurfaceParented && !_realtimeView.isOwnedLocally)
+        if(!_realtimeView.isOwnedLocally)
         {
-            if(_nameSync.GetName() != "" || _nameSync.GetName() != null)
+            if(!videoSurfaceParented && _nameSync.GetName() != "")
             {
                 Debug.Log("Searching for " + _nameSync.GetName() + "'s VideoSurface");
                 GameObject videoFeed = GameObject.Find(_nameSync.GetName());
@@ -446,6 +449,16 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 videoFeed.transform.localScale = new Vector3(0.1185187f, 1f, -0.06666667f);
                 videoSurfaceParented = true;
             }
+            else
+            {
+                GameObject videoFeed = GameObject.Find(_nameSync.GetName());
+                double pan = -1.0f;
+                double gain = 100.0f;
+
+                audioEffectManager.SetRemoteVoicePosition(videoFeed.GetComponent<VideoSurface>().uid, pan, gain);
+            }
+            
+            
         }
         
         if (!isRecipeSet){

@@ -16,7 +16,7 @@ public class NexusVideo
 {
 
     // instance of agora engine
-    private IRtcEngine mRtcEngine;
+    public IRtcEngine mRtcEngine;
 
     // load agora engine
     public void loadEngine(string appId)
@@ -54,6 +54,7 @@ public class NexusVideo
         mRtcEngine.EnableVideo();
         // allow camera output callback
         mRtcEngine.EnableVideoObserver();
+        mRtcEngine.EnableSoundPositionIndication(true);
 
         // join channel
         mRtcEngine.JoinChannelWithUserAccount(null, channel, PlayerPrefs.GetString("playerName"));

@@ -46,6 +46,8 @@ namespace agora_gaming_rtc
         private RawImage mRawImage = null;
         private bool _initialized = false;
 
+        public uint uid;
+
         void Start()
         {
             // render video
@@ -98,7 +100,7 @@ namespace agora_gaming_rtc
                 return;
 
             // render video
-            uint uid = mUid;
+            uid = mUid;
             if (mEnable)
             {
                 // create texture if not existent
