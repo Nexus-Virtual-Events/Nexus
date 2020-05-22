@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2544613124387601568
 Transform:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7637779236084163684}
   - component: {fileID: 8767265782239948020}
   m_Layer: 0
-  m_Name: TMP SubMesh [OpenSans-Semibold SDF Material]
+  m_Name: TMP SubMesh [OpenSans-Light SDF Material + OpenSans-Semibold SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 1.7
   m_renderer: {fileID: 8909168029892367426}
   m_meshFilter: {fileID: 7637779236084163684}
   m_TextComponent: {fileID: 4562218951970189344}

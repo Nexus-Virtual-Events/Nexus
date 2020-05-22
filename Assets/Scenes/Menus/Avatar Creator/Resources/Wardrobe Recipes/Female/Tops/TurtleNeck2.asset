@@ -23,7 +23,8 @@ MonoBehaviour:
     filename: 
     thumb: {fileID: 0}
   wardrobeSlot: Chest
-  Hides: []
+  Hides:
+  - FemaleTorsoHD
   HideTags: []
   suppressWardrobeSlots:
   - Shoulders

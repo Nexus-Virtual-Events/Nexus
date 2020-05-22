@@ -6,6 +6,9 @@ using UMA.CharacterSystem;
 using System;
 using Normal.Realtime;
 
+using agora_gaming_rtc;
+using agora_utilities;
+using UnityEngine.Playables;
 
 [RequireComponent(typeof(ThirdPersonCharacter))]
 public class ThirdPersonUserControl : MultiplayerMonoBehavior
@@ -194,6 +197,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private bool isRecipeSet;
 
     private RecipeSync _recipeSync;
+    private NameSync _nameSync;
 
     private void Start()
     {
@@ -217,6 +221,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         interactionModifier = GetComponent<ModifyInteraction>();
 
         _recipeSync = GetComponent<RecipeSync>();
+        _nameSync = GetComponent<NameSync>();
 
         if (_realtimeView.isOwnedLocally)
         {
@@ -233,7 +238,12 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
         else
         {
-            // transform.gameObject.layer = LayerMask.NameToLayer("RemoteAvatar");
+            // Move VideoSurface from plane of name 
+            Debug.Log("Assigning Video Feed to " + _nameSync.name);
+            GameObject videoFeed = GameObject.Find(_nameSync.name);
+            videoFeed.transform.parent = gameObject.transform.Find("Player Name");
+            //VideoSurface initVideoFeed = GameObject.Find(_nameSync.name).GetComponent<VideoSurface>();
+            //gameObject.transform.Find("Player Name/Plane").gameObject.AddComponent<VideoSurface>();
         }
 
         try{
