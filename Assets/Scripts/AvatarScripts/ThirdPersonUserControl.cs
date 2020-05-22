@@ -239,17 +239,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
             playerName.SetActive(false);
         }
-        else
-        {
-            //Debug.Log("Searching for " + _nameSync.GetName() + "'s VideoSurface");
-            //GameObject videoFeed = GameObject.Find(_nameSync.GetName());
-            //videoFeed.transform.parent = gameObject.transform.Find("Player Name");
-            //playerFeed.AddComponent<VideoSurface>();
-
-            // Move VideoSurface from plane of name 
-            //VideoSurface initVideoFeed = GameObject.Find(_nameSync.name).GetComponent<VideoSurface>();
-            //gameObject.transform.Find("Player Name/Plane").gameObject.AddComponent<VideoSurface>();
-        }
 
         try{
             avatar.ClearSlots();
@@ -453,6 +442,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 Debug.Log("Searching for " + _nameSync.GetName() + "'s VideoSurface");
                 GameObject videoFeed = GameObject.Find(_nameSync.GetName());
                 videoFeed.transform.parent = gameObject.transform.Find("Player Name");
+                videoFeed.transform.localPosition = new Vector3(-0.007699996f, 0.03500009f, 0.02f);
+                videoFeed.transform.localRotation = Quaternion.Euler(90, 0, 180);
+                videoFeed.transform.localScale = new Vector3(0.1185187f, 1f, -0.06666667f);
                 videoSurfaceParented = true;
             }
         }
