@@ -26,11 +26,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176775638064108184}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0.111, y: 2.236, z: 0.01}
-  m_LocalScale: {x: 0.11851859, y: 1, z: -0.06666667}
+  m_LocalPosition: {x: -0.1242, y: -0.0039999485, z: 0.01}
+  m_LocalScale: {x: 0.1185186, y: 1, z: -0.06666667}
   m_Children: []
-  m_Father: {fileID: 5344741582037746087}
-  m_RootOrder: 2
+  m_Father: {fileID: 8893712038968174171}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!33 &3239167574320460651
 MeshFilter:
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7637779236084163684}
   - component: {fileID: 8767265782239948020}
   m_Layer: 0
-  m_Name: TMP SubMesh [OpenSans-Light SDF Material + OpenSans-Semibold SDF Atlas]
+  m_Name: TMP SubMesh [OpenSans-Semibold SDF Material]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.7
+  m_padding: 1.25
   m_renderer: {fileID: 8909168029892367426}
   m_meshFilter: {fileID: 7637779236084163684}
   m_TextComponent: {fileID: 4562218951970189344}
@@ -667,7 +667,6 @@ Transform:
   m_Children:
   - {fileID: 5344741581893345219}
   - {fileID: 8893712038968174171}
-  - {fileID: 2544613124387601568}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1180,6 +1179,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2982039229374881956}
+  - {fileID: 2544613124387601568}
   m_Father: {fileID: 5344741582037746087}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
