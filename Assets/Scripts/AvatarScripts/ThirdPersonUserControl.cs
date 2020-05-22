@@ -239,8 +239,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         else
         {
             // Move VideoSurface from plane of name 
-            Debug.Log("Assigning Video Feed to " + _nameSync.name);
-            GameObject videoFeed = GameObject.Find(_nameSync.name);
+            Debug.Log("Assigning Video Feed to " + _nameSync._playerNameText.text);
+            GameObject videoFeed = GameObject.Find(_nameSync._playerNameText.text);
             videoFeed.transform.parent = gameObject.transform.Find("Player Name");
             //VideoSurface initVideoFeed = GameObject.Find(_nameSync.name).GetComponent<VideoSurface>();
             //gameObject.transform.Find("Player Name/Plane").gameObject.AddComponent<VideoSurface>();
