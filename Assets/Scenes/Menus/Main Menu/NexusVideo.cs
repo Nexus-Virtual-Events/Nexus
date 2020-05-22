@@ -164,17 +164,17 @@ public class NexusVideo
         }
 
         // create a GameObject and assign to this new user
-        VideoSurface videoSurface = makeImageSurface(newUser.userAccount);
+        //VideoSurface videoSurface = makeImageSurface(newUser.userAccount);
         VideoSurface planeVideoSurface = makePlaneSurface(newUser.userAccount);
 
-        if (!ReferenceEquals(videoSurface, null))
-        {
-            // configure videoSurface
-            videoSurface.SetForUser(uid);
-            videoSurface.SetEnable(true);
-            videoSurface.SetVideoSurfaceType(AgoraVideoSurfaceType.RawImage);
-            videoSurface.SetGameFps(30);
-        }
+        //if (!ReferenceEquals(videoSurface, null))
+        //{
+        //    // configure videoSurface
+        //    videoSurface.SetForUser(uid);
+        //    videoSurface.SetEnable(true);
+        //    videoSurface.SetVideoSurfaceType(AgoraVideoSurfaceType.RawImage);
+        //    videoSurface.SetGameFps(30);
+        //}
 
         if (!ReferenceEquals(planeVideoSurface, null))
         {
