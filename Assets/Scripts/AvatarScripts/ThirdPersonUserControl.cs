@@ -37,8 +37,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     public DynamicCharacterAvatar avatar;
     public string avatarRecipe;
-    public string foreignAvatarRecipe;
-
     public bool sit = false;
     public Vector3 positionBeforeSitting;
 
@@ -242,19 +240,20 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             playerName.SetActive(false);
         }
 
-        try{
-            avatar.ClearSlots();
-            avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
-        }catch{
-            Debug.Log("uma skin error");
-        }
-
         if(_recipeSync.GetRecipe() == "" || _recipeSync.GetRecipe() == null){
-            Debug.Log("NO RECIPE?");
+            avatar.LoadFromRecipeString("");
+            Debug.Log("Started with no recipe");
         }
         else{
-            isRecipeSet = true;
+            try{
+                avatar.ClearSlots();
+                avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
+                isRecipeSet = true;
+            }catch{
+                Debug.Log("Skin error from UMA");
+            }
         }
+
 
         gameObject.name = "Avatar_" + getID();
         Debug.Log("!!>> TP ROOM NAME: " + _realtimeView.realtime._roomToJoinOnStart);
@@ -477,24 +476,21 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     audioEffectManager.SetRemoteVoicePosition(videoFeed.GetComponent<VideoSurface>().uid, pan, gain);
                 }
             }
-            
-            
         }
         
         if (!isRecipeSet){
-             try{
-            avatar.ClearSlots();
-            avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
-            }catch{
-                Debug.Log("uma skin error");
-            }
-
-
             if(_recipeSync.GetRecipe() == "" || _recipeSync.GetRecipe() == null){
-                Debug.Log("NO RECIPE?");
+                Debug.Log("No recipe in Update");
+                avatar.LoadFromRecipeString("");
             }
             else{
-                isRecipeSet = true;
+                try{
+                    avatar.ClearSlots();
+                    avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
+                    isRecipeSet = true;
+                }catch{
+                    Debug.Log("Skin error from UMA");
+                }
             }
         }
 

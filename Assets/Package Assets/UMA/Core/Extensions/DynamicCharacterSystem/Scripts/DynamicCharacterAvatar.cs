@@ -2298,7 +2298,7 @@ namespace UMA.CharacterSystem
                 if (settingsToLoad.race == null || settingsToLoad.race == "")
                 {
                     if (Debug.isDebugBuild)
-                        Debug.LogError("The sent recipe did not have an assigned Race. Avatar could not be created from the recipe");
+                        // Debug.LogError("The sent recipe did not have an assigned Race. Avatar could not be created from the recipe");
                     return false;
                 }
                 activeRace.name = settingsToLoad.race;
