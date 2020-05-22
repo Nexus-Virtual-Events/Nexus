@@ -224,6 +224,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         _recipeSync = GetComponent<RecipeSync>();
         _nameSync = GetComponent<NameSync>();
 
+        GameObject playerName = gameObject.transform.Find("Player Name").gameObject;
+        GameObject playerFeed = gameObject.transform.Find("Player Name/Plane").gameObject;
+
         if (_realtimeView.isOwnedLocally)
         {
             ActionRouter.SetLocalAvatar(transform.gameObject);
@@ -233,15 +236,18 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 Utils.AssignCameraToPlayer(gameObject);
                 Debug.Log("Camera assigned!");
             }
-            //else{
-            //    gameObject.transform.Find("Player Name").gameObject.SetActive(false);
-            //}
 
-            gameObject.transform.Find("Player Name").gameObject.SetActive(false);
+            playerName.SetActive(false);
         }
         else
         {
-            gameObject.transform.Find("Player Name/Plane").gameObject.AddComponent<VideoSurface>();
+            Debug.Log("Searching for " + playerName.GetComponent<TMP_Text>().text + "'s VideoSurface");
+            GameObject videoFeed = GameObject.Find(playerName.GetComponent<TMP_Text>().text);
+            videoFeed.transform.parent = gameObject.transform.Find("Player Name");
+            //playerFeed.AddComponent<VideoSurface>();
+
+            //playerFeed.AddComponent<VideoSurface>();
+
             // Move VideoSurface from plane of name 
             //VideoSurface initVideoFeed = GameObject.Find(_nameSync.name).GetComponent<VideoSurface>();
             //gameObject.transform.Find("Player Name/Plane").gameObject.AddComponent<VideoSurface>();
@@ -266,7 +272,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         gameObject.layer = LayerMask.NameToLayer(_realtimeView.realtime._roomToJoinOnStart);
         //
         numberOfAnimations = Utils.animations.Length;
-        GameObject playerName = gameObject.transform.Find("Player Name").gameObject;
+        playerName = gameObject.transform.Find("Player Name").gameObject;
         playerName.layer = gameObject.layer;
         playerName.transform.GetChild(0).gameObject.layer = gameObject.layer;
         gameObject.transform.Find("UMA").gameObject.layer = gameObject.layer;
@@ -275,9 +281,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         //{
         //    Debug.Log(gameObject.transform.Find("Player Name").name);
         //    //Debug.Log("Assigning Video Feed to " + gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
-        //    //GameObject videoFeed = GameObject.Find(gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
-        //    //videoFeed.transform.parent = gameObject.transform.Find("Player Name");
-        //    gameObject.transform.Find("Player Name/Plane").gameObject.AddComponent<VideoSurface>();
         //}
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
