@@ -225,7 +225,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         _nameSync = GetComponent<NameSync>();
 
         GameObject playerName = gameObject.transform.Find("Player Name").gameObject;
-        GameObject playerFeed = gameObject.transform.Find("Player Name/Plane").gameObject;
 
         if (_realtimeView.isOwnedLocally)
         {
