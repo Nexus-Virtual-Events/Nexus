@@ -12,7 +12,7 @@ public class AgoraMainMenu : MonoBehaviour
 
     // Use this for initialization
     private ArrayList permissionList = new ArrayList();
-    static NexusVideo app = null;
+    public static NexusVideo app = null;
 
     private string HomeSceneName = "Avatar Creator";
 

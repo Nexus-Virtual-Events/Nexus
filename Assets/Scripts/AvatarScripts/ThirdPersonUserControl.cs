@@ -274,7 +274,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             //Debug.Log("Assigning Video Feed to " + gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
             //GameObject videoFeed = GameObject.Find(gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
             //videoFeed.transform.parent = gameObject.transform.Find("Player Name");
-            gameObject.transform.Find("Player Name").gameObject.AddComponent<VideoSurface>();
+            gameObject.transform.Find("Player Name/Plane").gameObject.AddComponent<VideoSurface>();
         }
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
