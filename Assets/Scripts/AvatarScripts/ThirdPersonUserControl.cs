@@ -233,11 +233,11 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 Utils.AssignCameraToPlayer(gameObject);
                 Debug.Log("Camera assigned!");
             }
-            else{
-                gameObject.transform.Find("Player Name").gameObject.SetActive(false);
-            }
+            //else{
+            //    gameObject.transform.Find("Player Name").gameObject.SetActive(false);
+            //}
 
-            Destroy(gameObject.transform.Find("Player Name/Plane"));
+            gameObject.transform.Find("Player Name").gameObject.SetActive(false);
         }
         else
         {
