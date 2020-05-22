@@ -197,7 +197,7 @@ public class NexusVideo
 
         plane.name = goName;
         plane.transform.Rotate(90.0f, 0.0f, 0.0f);
-        plane.transform.position = new Vector3(0.111f, 2.186f, 0.01f);
+        plane.transform.position = new Vector3(0f, -10f, 0.01f);
         plane.transform.localScale = new Vector3(0.1185186f, 1f, 0.06666667f);
 
         VideoSurface videoSurface = plane.AddComponent<VideoSurface>();
