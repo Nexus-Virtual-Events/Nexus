@@ -241,11 +241,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
         else
         {
-            Debug.Log("Searching for " + playerName.GetComponent<TMP_Text>().text + "'s VideoSurface");
-            GameObject videoFeed = GameObject.Find(playerName.GetComponent<TMP_Text>().text);
+            Debug.Log("Searching for " + _nameSync.GetName() + "'s VideoSurface");
+            GameObject videoFeed = GameObject.Find(_nameSync.GetName());
             videoFeed.transform.parent = gameObject.transform.Find("Player Name");
-            //playerFeed.AddComponent<VideoSurface>();
-
             //playerFeed.AddComponent<VideoSurface>();
 
             // Move VideoSurface from plane of name 

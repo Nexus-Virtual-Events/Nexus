@@ -52,4 +52,9 @@ public class NameSync : RealtimeComponent
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
         _model.name = name;
     }
+
+    public string GetName()
+    {
+        return _model.name;
+    }
 }
