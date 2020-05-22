@@ -4,6 +4,7 @@ using TMPro;
 
 using agora_gaming_rtc;
 using agora_utilities;
+using UnityEngine.Playables;
 
 
 // this is an example of using Agora Unity SDK
@@ -136,22 +137,6 @@ public class NexusVideo
         else
         {
             quad.AddComponent<VideoSurface>();
-
-            //GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerName");
-
-            //foreach (GameObject player in players)
-            //{
-            //    if (player.GetComponent<TMP_Text>().text == goName)
-            //    {
-            //        player.name = goName;
-
-            //        // configure videoSurface
-            //        VideoSurface videoSurface = player.AddComponent<VideoSurface>();
-            //        return videoSurface;
-            //    }
-            //}
-
-            //return null;
         }
     }
 
@@ -191,34 +176,29 @@ public class NexusVideo
             videoSurface.SetGameFps(30);
         }
 
-        //if (!ReferenceEquals(planeVideoSurface, null))
-        //{
-        //    // configure videoSurface
-        //    planeVideoSurface.SetForUser(uid);
-        //    planeVideoSurface.SetEnable(true);
-        //    planeVideoSurface.SetVideoSurfaceType(AgoraVideoSurfaceType.Renderer);
-        //    planeVideoSurface.SetGameFps(30);
-        //}
+        if (!ReferenceEquals(planeVideoSurface, null))
+        {
+            // configure videoSurface
+            planeVideoSurface.SetForUser(uid);
+            planeVideoSurface.SetEnable(true);
+            planeVideoSurface.SetVideoSurfaceType(AgoraVideoSurfaceType.Renderer);
+            planeVideoSurface.SetGameFps(30);
+        }
     }
 
     public VideoSurface makePlaneSurface(string goName)
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerName");
+        GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
 
-        foreach(GameObject player in players)
-        {
-            if(player.GetComponent<TMP_Text>().text == goName)
-            {
-                player.name = goName;
+        if (plane == null) return null;
 
-                // configure videoSurface
-                VideoSurface videoSurface = player.AddComponent<VideoSurface>();
-                return videoSurface;
-            }
-        }
+        plane.name = goName;
+        plane.transform.Rotate(90.0f, 0.0f, 0.0f);
+        plane.transform.position = new Vector3(0.111f, 2.186f, 0.01f);
+        plane.transform.localScale = new Vector3(0.1185186f, 1f, 0.06666667f);
 
-        return null;
-        
+        VideoSurface videoSurface = plane.AddComponent<VideoSurface>();
+        return videoSurface;
     }
 
     private const float Offset = 100;
@@ -245,10 +225,6 @@ public class NexusVideo
         }
         // set up transform
         go.transform.Rotate(0f, 0.0f, 180.0f);
-        //float xPos = Random.Range(Offset - Screen.width / 2f, Screen.width / 2f - Offset);
-        //float yPos = Random.Range(Offset, Screen.height / 2f - Offset);
-        //go.transform.localPosition = new Vector3(xPos, yPos, 0f);
-        
         RectTransform videoRectTransform = go.GetComponent<RectTransform>();
         videoRectTransform.sizeDelta = new Vector2(320, 180);
         go.transform.localScale = new Vector3(1f, 1f, 1f);
