@@ -5,6 +5,7 @@ using TMPro;
 using agora_gaming_rtc;
 using agora_utilities;
 using UnityEngine.Playables;
+using System.Runtime.Remoting.Channels;
 
 
 // this is an example of using Agora Unity SDK
@@ -57,9 +58,17 @@ public class NexusVideo
         mRtcEngine.EnableSoundPositionIndication(true);
 
         // join channel
-        mRtcEngine.JoinChannelWithUserAccount(null, channel, PlayerPrefs.GetString("playerName"));
+        if(channel != "Admin") mRtcEngine.JoinChannelWithUserAccount(null, channel, PlayerPrefs.GetString("playerName"));
+        else
+        {
+            int roomCount = 5;
+            for(int roomIndex = 0; roomIndex < roomCount; roomIndex++)
+            {
+                mRtcEngine.JoinChannelWithUserAccount(null, "Room" + roomIndex.ToString(), PlayerPrefs.GetString("playerName"));
+            }
+            
+        }
         //mRtcEngine.JoinChannelWithUserAccount(null, "Admin", PlayerPrefs.GetString("playerName"));
-        //mRtcEngine.JoinChannel(channel, null, 0);
 
         // Optional: if a data stream is required, here is a good place to create it
         int streamID = mRtcEngine.CreateDataStream(true, true);
