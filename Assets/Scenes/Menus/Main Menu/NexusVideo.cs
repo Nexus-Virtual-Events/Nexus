@@ -4,8 +4,6 @@ using TMPro;
 
 using agora_gaming_rtc;
 using agora_utilities;
-using UnityEngine.Playables;
-using System.Runtime.Remoting.Channels;
 
 
 // this is an example of using Agora Unity SDK
