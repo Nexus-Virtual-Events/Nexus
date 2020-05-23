@@ -240,7 +240,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             playerName.SetActive(false);
         }
 
-
         gameObject.name = "Avatar_" + getID();
         Debug.Log("!!>> TP ROOM NAME: " + _realtimeView.realtime._roomToJoinOnStart);
         gameObject.layer = LayerMask.NameToLayer(_realtimeView.realtime._roomToJoinOnStart);
@@ -250,22 +249,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         playerName.layer = gameObject.layer;
         playerName.transform.GetChild(0).gameObject.layer = gameObject.layer;
         gameObject.transform.Find("UMA").gameObject.layer = gameObject.layer;
-
-        if (!isRecipeSet){
-            if(_recipeSync.GetRecipe() == "" || _recipeSync.GetRecipe() == null){
-                Debug.Log("No recipe in Update");
-                avatar.LoadFromRecipeString("");
-            }
-            else{
-                try{
-                    avatar.ClearSlots();
-                    avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
-                    isRecipeSet = true;
-                }catch{
-                    Debug.Log("Skin error from UMA");
-                }
-            }
-        }
 
         //if(!_realtimeView.isOwnedLocally)
         //{
@@ -483,7 +466,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         if (!isRecipeSet){
             if(_recipeSync.GetRecipe() == "" || _recipeSync.GetRecipe() == null){
                 Debug.Log("No recipe in Update");
-                avatar.LoadFromRecipeString("");
+                // avatar.LoadFromRecipeString("");
             }
             else{
                 try{
