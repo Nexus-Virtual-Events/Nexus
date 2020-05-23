@@ -17,53 +17,79 @@ public class NexusVideo
 
     // instance of agora engine
     public IRtcEngine mRtcEngine;
+    public IRtcEngine broadcastRtcEngine;
+    public bool isAdmin;
 
     // load agora engine
     public void loadEngine(string appId)
     {
         // start sdk
-        Debug.Log("initializeEngine");
+        Debug.Log("initializeEngines");
 
-        if (mRtcEngine != null)
+        if (broadcastRtcEngine != null)
         {
-            Debug.Log("Engine exists. Please unload it first!");
+            Debug.Log("Engines exist. Please unload it first!");
             return;
         }
 
-        // init engine
         mRtcEngine = IRtcEngine.GetEngine(appId);
-        mRtcEngine.RegisterLocalUserAccount(appId, PlayerPrefs.GetString("playerName"));
+        broadcastRtcEngine = IRtcEngine.GetEngine(appId);
+        broadcastRtcEngine.SetChannelProfile(CHANNEL_PROFILE.CHANNEL_PROFILE_LIVE_BROADCASTING);
 
-        // enable log
+        mRtcEngine.RegisterLocalUserAccount(appId, PlayerPrefs.GetString("playerName"));
+        broadcastRtcEngine.RegisterLocalUserAccount(appId, PlayerPrefs.GetString("playerName"));
+
         mRtcEngine.SetLogFilter(LOG_FILTER.DEBUG | LOG_FILTER.INFO | LOG_FILTER.WARNING | LOG_FILTER.ERROR | LOG_FILTER.CRITICAL);
+        broadcastRtcEngine.SetLogFilter(LOG_FILTER.DEBUG | LOG_FILTER.INFO | LOG_FILTER.WARNING | LOG_FILTER.ERROR | LOG_FILTER.CRITICAL);
     }
 
     public void join(string channel)
     {
+        isAdmin = channel == "admin";
         Debug.Log("calling join (channel = " + channel + ")");
 
-        if (mRtcEngine == null)
+        if (broadcastRtcEngine == null)
             return;
 
-        // set callbacks (optional)
-        mRtcEngine.OnJoinChannelSuccess = onJoinChannelSuccess;
-        mRtcEngine.OnUserJoined = onUserJoined;
-        mRtcEngine.OnUserOffline = onUserOffline;
+        if(!isAdmin)
+        {
+            mRtcEngine.OnJoinChannelSuccess = onJoinChannelSuccess;
+            mRtcEngine.OnUserJoined = onUserJoined;
+            mRtcEngine.OnUserOffline = onUserOffline;
+        }
+        
+        broadcastRtcEngine.OnJoinChannelSuccess = onJoinChannelSuccess;
+        broadcastRtcEngine.OnUserJoined = onUserJoined;
+        broadcastRtcEngine.OnUserOffline = onUserOffline;
 
         // enable video
-        mRtcEngine.EnableVideo();
-        // allow camera output callback
-        mRtcEngine.EnableVideoObserver();
-        mRtcEngine.EnableSoundPositionIndication(true);
+        if (!isAdmin)
+        {
+            broadcastRtcEngine.SetClientRole(CLIENT_ROLE.AUDIENCE);
+            mRtcEngine.EnableVideo();
+            mRtcEngine.EnableVideoObserver();
+            mRtcEngine.EnableSoundPositionIndication(true);
+        }
+        else
+        {
+            broadcastRtcEngine.SetClientRole(CLIENT_ROLE.BROADCASTER);
+            broadcastRtcEngine.EnableVideoObserver();
+        }
+
+        broadcastRtcEngine.EnableVideo();
 
         // join channel
-        mRtcEngine.JoinChannelWithUserAccount(null, channel, PlayerPrefs.GetString("playerName"));
-        //mRtcEngine.JoinChannelWithUserAccount(null, "Admin", PlayerPrefs.GetString("playerName"));
-        //mRtcEngine.JoinChannel(channel, null, 0);
+        if(!isAdmin)
+        {
+            mRtcEngine.JoinChannelWithUserAccount(null, channel, PlayerPrefs.GetString("playerName"));
+            int streamID = mRtcEngine.CreateDataStream(true, true);
+            Debug.Log("initializeEngine done, data stream id = " + streamID);
+        }
+        
+        broadcastRtcEngine.JoinChannelWithUserAccount(null, "Admin", PlayerPrefs.GetString("playerName"));
+        int broadcastStreamID = broadcastRtcEngine.CreateDataStream(true, true);
+        Debug.Log("initializeEngine done, data stream id = " + broadcastStreamID);
 
-        // Optional: if a data stream is required, here is a good place to create it
-        int streamID = mRtcEngine.CreateDataStream(true, true);
-        Debug.Log("initializeEngine done, data stream id = " + streamID);
     }
 
     public string getSdkVersion()
@@ -87,13 +113,15 @@ public class NexusVideo
     {
         Debug.Log("calling leave");
 
-        if (mRtcEngine == null)
+        if (broadcastRtcEngine == null)
             return;
 
         // leave channel
-        mRtcEngine.LeaveChannel();
+        if(!isAdmin) mRtcEngine.LeaveChannel();
+        broadcastRtcEngine.LeaveChannel();
         // deregister video frame observers in native-c code
-        mRtcEngine.DisableVideoObserver();
+        if (!isAdmin) mRtcEngine.DisableVideoObserver();
+        broadcastRtcEngine.DisableVideoObserver();
     }
 
     // unload agora engine
@@ -102,25 +130,27 @@ public class NexusVideo
         Debug.Log("calling unloadEngine");
 
         // delete
-        if (mRtcEngine != null)
+        if (broadcastRtcEngine != null)
         {
             IRtcEngine.Destroy();  // Place this call in ApplicationQuit
             mRtcEngine = null;
+            broadcastRtcEngine = null;
         }
     }
 
-
     public void EnableVideo(bool pauseVideo)
     {
-        if (mRtcEngine != null)
+        if (mRtcEngine != null || broadcastRtcEngine != null)
         {
             if (!pauseVideo)
             {
-                mRtcEngine.EnableVideo();
+                if (!isAdmin) mRtcEngine.EnableVideo();
+                broadcastRtcEngine.EnableVideo();
             }
             else
             {
-                mRtcEngine.DisableVideo();
+                if (!isAdmin) mRtcEngine.DisableVideo();
+                broadcastRtcEngine.DisableVideo();
             }
         }
     }
@@ -146,8 +176,6 @@ public class NexusVideo
     private void onJoinChannelSuccess(string channelName, uint uid, int elapsed)
     {
         Debug.Log("JoinChannelSuccessHandler: uid = " + uid);
-        //GameObject textVersionGameObject = GameObject.Find("VersionText");
-        //textVersionGameObject.GetComponent<Text>().text = "SDK Version : " + getSdkVersion();
     }
 
     // When a remote user joined, this delegate will be called. Typically
@@ -155,7 +183,7 @@ public class NexusVideo
     private void onUserJoined(uint uid, int elapsed)
     {
         Debug.Log("onUserJoined: uid = " + uid + " elapsed = " + elapsed);
-        UserInfo newUser = mRtcEngine.GetUserInfoByUid(uid);
+        UserInfo newUser = broadcastRtcEngine.GetUserInfoByUid(uid);
         // this is called in main thread
 
         // find a game object to render video stream from 'uid'
@@ -184,7 +212,7 @@ public class NexusVideo
             planeVideoSurface.SetForUser(uid);
             planeVideoSurface.SetEnable(true);
             planeVideoSurface.SetVideoSurfaceType(AgoraVideoSurfaceType.Renderer);
-            planeVideoSurface.SetGameFps(30);
+            planeVideoSurface.SetGameFps(60);
         }
     }
 
