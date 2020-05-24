@@ -230,9 +230,8 @@ public class AvatarCreator : MonoBehaviour
     {
         SaveAvatar();
 
-        //Loading.sceneString = sceneString;
-        //SceneManager.LoadScene("Loading");
-        SceneManager.LoadScene(sceneString);
+        Loading.sceneString = sceneString;
+        SceneManager.LoadScene("Loading");
 
     }
 
