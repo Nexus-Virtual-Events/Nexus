@@ -51,27 +51,27 @@ namespace Michsky.UI.ModernUIPack {
             string roomIndex = PlayerPrefs.GetString("roomName");
             _realtime._roomToJoinOnStart = roomIndex;
 
-            if(roomIndex == "Room 1")
+            if(roomIndex == "Room1")
             {
                 roomText.text = "Azure Akita";
                 roomImage.sprite = roomSprites[0];
             }
-            else if(roomIndex == "Room 2")
+            else if(roomIndex == "Room2")
             {
                 roomText.text = "Crimson Koala";
                 roomImage.sprite = roomSprites[1];
             }
-            else if (roomIndex == "Room 3")
+            else if (roomIndex == "Room3")
             {
                 roomText.text = "Golden Grizzly";
                 roomImage.sprite = roomSprites[2];
             }
-            else if(roomIndex == "Room 4")
+            else if(roomIndex == "Room4")
             {
                 roomText.text = "Ivory Ibex";
                 roomImage.sprite = roomSprites[3];
             }
-            else if (roomIndex == "Room 5")
+            else if (roomIndex == "Room5")
             {
                 roomText.text = "Jade Jackal";
                 roomImage.sprite = roomSprites[4];
@@ -154,10 +154,9 @@ namespace Michsky.UI.ModernUIPack {
                 localPlayer.layer = LayerMask.NameToLayer("Hidden");
             }
 
+            SendConnectionInfo("true");
+
             nmrLoadingReconnectTrial = 0;
-            
-
-
         }
 
        
@@ -231,6 +230,8 @@ namespace Michsky.UI.ModernUIPack {
 
             Destroy(localPlayer);
 
+            SendConnectionInfo("false");
+
         }
 
         public void ShowWelcomeWindow()
@@ -303,6 +304,54 @@ namespace Michsky.UI.ModernUIPack {
             // Destroy(localPlayer);
             //GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
             Application.Quit();
+        }
+
+        string url = "http://localhost:5000/change_room_count";
+    
+        public void SendConnectionInfo(string isConnecting)
+        {
+            StartCoroutine(SendPostCoroutine(isConnecting));
+        }
+
+        IEnumerator SendPostCoroutine(string isConnecting)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("room", roomIndex);
+            form.AddField("isConnecting", isConnecting);
+
+            using (UnityWebRequest www = UnityWebRequest.Post(url, form))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError)
+                {
+                    Debug.Log(www.error);
+                }
+                else
+                {
+                    Debug.Log("POST successful!");
+                    StringBuilder sb = new StringBuilder();
+                    foreach (System.Collections.Generic.KeyValuePair<string, string> dict in www.GetResponseHeaders())
+                    {
+                        sb.Append(dict.Key).Append(": \t[").Append(dict.Value).Append("]\n");
+                    }
+
+                    // Print Headers
+
+                    // Print Body
+                    LoginInfo info = JsonUtility.FromJson<LoginInfo>(www.downloadHandler.text);
+                    if(info.code == 0)
+                    {
+                        Debug.Log("Success!");
+                    }
+                    else if(info.code == 404)
+                    {
+                        Debug.Log("not found");
+                    }
+                }
+            }
+
+
         }
     }
 }
