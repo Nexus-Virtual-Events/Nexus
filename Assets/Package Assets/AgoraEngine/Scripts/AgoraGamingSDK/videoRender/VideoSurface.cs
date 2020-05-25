@@ -366,7 +366,7 @@ namespace agora_gaming_rtc
             MeshRenderer mesh = GetComponent<MeshRenderer>();
             if (mesh != null)
             {
-                mesh.material = new Material(Shader.Find("UI/Unlit/Text"));
+                mesh.material = new Material(Shader.Find("Unlit/Texture"));
             }
         }
     }

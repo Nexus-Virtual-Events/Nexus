@@ -200,6 +200,8 @@ public class NexusVideo
     {
         GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
         plane.GetComponent<MeshCollider>().enabled = false;
+        MeshRenderer planeMesh = plane.GetComponent<MeshRenderer>();
+        planeMesh.material = new Material(Shader.Find("Unlit/Texture"));
 
         if (plane == null) return null;
 
