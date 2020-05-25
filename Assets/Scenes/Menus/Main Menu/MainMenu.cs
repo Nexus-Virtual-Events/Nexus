@@ -57,16 +57,6 @@ namespace Michsky.UI.ModernUIPack
 
         IEnumerator SendPostCoroutine()
         {
-            //StartGame();
-            //Debug.Log("login activated with " + _email.text + _password.text);
-            //string jsonString = "{\"email\":\"" + _email.text + "\",\"password\":\"" + _password.text + "\",\"key\":\"" + key + "\"}";
-            //Debug.Log(jsonString);
-            ////CoroutineWithData cd = new CoroutineWithData(this, Post("http://127.0.0.1:5000/authenticate_with_unity", jsonString));
-            ////yield return cd.coroutine;
-            ////StartCoroutine(Post("http://127.0.0.1:5000/authenticate_with_unity", jsonString));
-            ////Debug.Log("result is " + cd.result);  //  'success' or 'fail'
-            ///
-
             WWWForm form = new WWWForm();
             form.AddField("email", _email.text);
             form.AddField("password", _password.text);
@@ -136,27 +126,6 @@ namespace Michsky.UI.ModernUIPack
             RoomRouter.sceneString = scene;
             Loading.sceneString = "Room Router";
             SceneManager.LoadScene("Loading");
-        }
-    }
-
-    public class CoroutineWithData
-    {
-        public Coroutine coroutine { get; private set; }
-        public object result;
-        private IEnumerator target;
-        public CoroutineWithData(MonoBehaviour owner, IEnumerator target)
-        {
-            this.target = target;
-            this.coroutine = owner.StartCoroutine(Run());
-        }
-
-        private IEnumerator Run()
-        {
-            while (target.MoveNext())
-            {
-                result = target.Current;
-                yield return result;
-            }
         }
     }
 }
