@@ -440,7 +440,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     {
         if(!_realtimeView.isOwnedLocally)
         {
-            if(!videoSurfaceParented && _nameSync.GetName() != "")
+            if(!videoSurfaceParented && _nameSync.GetName() != "" && _nameSync.GetName() != null)
             {
                 Debug.Log("Searching for " + _nameSync.GetName() + "'s VideoSurface");
                 GameObject videoFeed = GameObject.Find(_nameSync.GetName());
