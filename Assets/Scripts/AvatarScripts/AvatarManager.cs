@@ -296,7 +296,7 @@ namespace Michsky.UI.ModernUIPack {
             _realtime.Disconnect();
             // Destroy(localPlayer);
             //GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
-            Loading.sceneString = SceneManager.GetActiveScene().name;
+            Loading.sceneString = "Avatar Creator";
             SceneManager.LoadScene("Loading");
         }
 
