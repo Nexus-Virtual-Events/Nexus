@@ -157,7 +157,7 @@ namespace Michsky.UI.ModernUIPack {
                 localPlayer.layer = LayerMask.NameToLayer("Hidden");
             }
 
-            SendConnectionInfo("true");
+            // SendConnectionInfo("true");
 
             nmrLoadingReconnectTrial = 0;
         }
@@ -233,7 +233,7 @@ namespace Michsky.UI.ModernUIPack {
 
             Destroy(localPlayer);
 
-            SendConnectionInfo("false");
+            // SendConnectionInfo("false");
 
         }
 
