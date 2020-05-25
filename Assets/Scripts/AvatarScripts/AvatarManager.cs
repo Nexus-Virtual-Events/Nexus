@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Audio;
@@ -6,6 +7,8 @@ using UnityEngine.SceneManagement;
 using Normal.Realtime;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.Networking;
+using System.Text;
 using TMPro;
 
 namespace Michsky.UI.ModernUIPack {
@@ -316,7 +319,7 @@ namespace Michsky.UI.ModernUIPack {
         IEnumerator SendPostCoroutine(string isConnecting)
         {
             WWWForm form = new WWWForm();
-            form.AddField("room", roomIndex);
+            form.AddField("room", _realtime._roomToJoinOnStart);
             form.AddField("isConnecting", isConnecting);
 
             using (UnityWebRequest www = UnityWebRequest.Post(url, form))
