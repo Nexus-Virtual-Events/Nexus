@@ -122,12 +122,12 @@ public class AdminPanel : MonoBehaviour
 
     public void ToggleFocusVoiceMode()
     {
-
+        Debug.Log("toggle focus voice mode called");
         if (localAvatar && podiumModifier)
         {
             Debug.Log("requirements set");
 
-            if (localAvatar.GetComponent<AudioSource>().spatialBlend == 1)
+            if (localAvatar.GetComponent<ThirdPersonUserControl>().GetHasGlobalVoice() == false)
             {
                 Debug.Log("turning on");
                 podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
@@ -136,7 +136,7 @@ public class AdminPanel : MonoBehaviour
             else
             {
                 Debug.Log("turning off");
-                podiumModifier.SendNewValue(-1);
+                podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
                 TurnOffVoice();
             }
         }

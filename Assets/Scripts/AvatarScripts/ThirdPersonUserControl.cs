@@ -436,6 +436,17 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     public bool shouldBePinned;
     public bool isPinned = false;
     public bool videoSurfaceParented = false;
+
+    private bool hasGlobalVoice = false;
+
+    public void ChangeGlobalVoice(bool b){
+        Debug.Log("global voice changed to: " + b.ToString());
+        hasGlobalVoice = b;
+    }
+    public bool GetHasGlobalVoice(){
+        return hasGlobalVoice;
+    }
+
     private void Update()
     {
         if(!_realtimeView.isOwnedLocally)
@@ -456,23 +467,32 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
                 Transform localAvatar = ActionRouter.GetLocalAvatar().transform;
 
-                float radius = 20f;
-
-                float distance = Vector3.Distance(localAvatar.position, transform.position);
-
-                Vector3 right = localAvatar.transform.right;
-                Vector3 vectorBetween = transform.position - localAvatar.position;
-                float angleBetween = Vector3.Angle(right, vectorBetween);
-                double pan = Mathf.Cos(angleBetween * Mathf.Deg2Rad);
-
+                double pan;
                 double gain;
-                if(distance > radius){
-                    gain = 0f;
+
+                if(!hasGlobalVoice){
+                    float radius = 10f;
+
+                    float distance = Vector3.Distance(localAvatar.position, transform.position);
+
+                    Vector3 right = localAvatar.transform.right;
+                    Vector3 vectorBetween = transform.position - localAvatar.position;
+                    float angleBetween = Vector3.Angle(right, vectorBetween);
+                    pan = Mathf.Cos(angleBetween * Mathf.Deg2Rad);
+
+                    if(distance > radius){
+                        gain = 0f;
+                    }
+                    else{
+                        gain = 100f * (radius - distance)/radius;
+                    }
+
                 }
                 else{
-                    gain = 100f * (radius - distance)/radius;
+                    Debug.Log("Global voice");
+                    pan = 0;
+                    gain = 100f;
                 }
-
                 if(videoSurfaceParented)
                 {
                     audioEffectManager.SetRemoteVoicePosition(videoFeed.GetComponent<VideoSurface>().uid, pan, gain);
