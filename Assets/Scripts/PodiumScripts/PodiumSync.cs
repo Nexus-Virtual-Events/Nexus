@@ -62,8 +62,6 @@ public class PodiumSync : RealtimeComponent
         Debug.Log("SetPodium setting to: " + podium);
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
-        _model.podium = -1;
-            
         _model.podium = podium;
     }
 
