@@ -30,7 +30,7 @@ namespace Michsky.UI.ModernUIPack
         public string displayName;
         private string key = "NexusConnects";
 
-        string url = "http://www.thenexus.cloud/authenticate_with_unity";
+        string url = Utils.WebUrl + "authenticate_with_unity";
 
         public void Login()
         {

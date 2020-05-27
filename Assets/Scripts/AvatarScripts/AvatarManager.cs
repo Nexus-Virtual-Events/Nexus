@@ -314,7 +314,7 @@ namespace Michsky.UI.ModernUIPack {
             Application.Quit();
         }
 
-        string url = "http://www.thenexus.cloud/change_room_count";
+        string url = Utils.WebUrl + "change_room_count";
     
         public void SendConnectionInfo(string isConnecting)
         {

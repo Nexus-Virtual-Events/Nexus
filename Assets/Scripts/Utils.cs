@@ -24,6 +24,7 @@ public class Utils : MonoBehaviour
     public static string[] layerNames;
     public GameObject adminWindow;
     public GameObject adminGlobalButton;
+    public static string WebUrl = "http://127.0.0.1:5000/";
 
     public void MoveToRoom(string roomName)
     {

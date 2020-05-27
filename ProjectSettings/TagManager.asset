@@ -14,6 +14,7 @@ TagManager:
   - MenWindow
   - Selector
   - PlayerManagementCardName
+  - RoomCell
   layers:
   - Default
   - TransparentFX

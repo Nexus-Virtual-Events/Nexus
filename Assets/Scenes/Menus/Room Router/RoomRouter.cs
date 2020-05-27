@@ -11,19 +11,19 @@ namespace Michsky.UI.ModernUIPack
         public int roomIndex;
         public void RouteToRoom()
         {
-            if(roomIndex == 5){
-                PlayerPrefs.SetString("adminRoom", "true");
-            }
-            else{
-                PlayerPrefs.SetString("adminRoom", "false");
-            }
+            // if(roomIndex == 5){
+            //     PlayerPrefs.SetString("adminRoom", "true");
+            // }
+            // else{
+            //     PlayerPrefs.SetString("adminRoom", "false");
+            // }
 
-            if(roomIndex != 5){
-                PlayerPrefs.SetString("roomName", "Room"+(roomIndex+1).ToString());
-            }
-            else{
-                PlayerPrefs.SetString("roomName", "Admin");
-            }
+            // if(roomIndex != 5){
+            //     PlayerPrefs.SetString("roomName", "Room"+(roomIndex+1).ToString());
+            // }
+            // else{
+            //     PlayerPrefs.SetString("roomName", "Admin");
+            // }
             AvatarCreator.sceneString = sceneString;
             Loading.sceneString = "Avatar Creator";
             SceneManager.LoadScene("Loading");
@@ -32,23 +32,23 @@ namespace Michsky.UI.ModernUIPack
 
         public void RouteWithIndex(int index)
         {
-            if (index == 5)
-            {
-                PlayerPrefs.SetString("adminRoom", "true");
-            }
-            else
-            {
-                PlayerPrefs.SetString("adminRoom", "false");
-            }
+            // if (index == 5)
+            // {
+            //     PlayerPrefs.SetString("adminRoom", "true");
+            // }
+            // else
+            // {
+            //     PlayerPrefs.SetString("adminRoom", "false");
+            // }
 
-            if (index != 5)
-            {
-                PlayerPrefs.SetString("roomName", "Room" + (index + 1).ToString());
-            }
-            else
-            {
-                PlayerPrefs.SetString("roomName", "Admin");
-            }
+            // if (index != 5)
+            // {
+            //     PlayerPrefs.SetString("roomName", "Room" + (index + 1).ToString());
+            // }
+            // else
+            // {
+            //     PlayerPrefs.SetString("roomName", "Admin");
+            // }
             AvatarCreator.sceneString = sceneString;
             Loading.sceneString = "Avatar Creator";
             SceneManager.LoadScene("Loading");
