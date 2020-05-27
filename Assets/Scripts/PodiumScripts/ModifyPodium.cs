@@ -58,9 +58,9 @@ public class ModifyPodium : MonoBehaviour
                 else{
                     player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(true);
                     GameObject.Find("ActionRouter").GetComponent<ActionRouter>().ToggleGlobal(true);
+                    Debug.Log("setting " + player.GetComponent<ThirdPersonUserControl>().getID().ToString() + " to global");
 
                 }
-                Debug.Log("setting " + player.GetComponent<ThirdPersonUserControl>().getID().ToString() + " to global");
             }
         }
 
