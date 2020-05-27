@@ -127,7 +127,7 @@ public class AdminPanel : MonoBehaviour
         {
             Debug.Log("requirements set");
 
-            if (localAvatar.GetComponent<AudioSource>().spatialBlend == 1)
+            if (localAvatar.GetComponent<ThirdPersonUserControl>().GetHasGlobalVoice() == false)
             {
                 Debug.Log("turning on");
                 podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
