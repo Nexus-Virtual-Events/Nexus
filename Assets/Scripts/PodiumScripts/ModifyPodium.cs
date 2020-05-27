@@ -51,7 +51,6 @@ public class ModifyPodium : MonoBehaviour
             GameObject.Find("Realtime").GetComponent<AdminPanel>().TurnOffVoice();
             if (player.GetComponent<ThirdPersonUserControl>().getID() == prevPodium)
                 player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(false);
-            GameObject.Find("ActionRouter").GetComponent<ActionRouter>().ToggleGlobal(true);
         }
 
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
@@ -59,9 +58,6 @@ public class ModifyPodium : MonoBehaviour
             if (player.GetComponent<ThirdPersonUserControl>().getID() == newPodiumReceived)
             {
                 player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(true);
-                if(player.GetComponent<ThirdPersonUserControl>().isLocallyOwned()){
-                    GameObject.Find("ActionRouter").GetComponent<ActionRouter>().ToggleGlobal(false);
-                }
             }
         }
 
