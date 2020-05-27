@@ -130,7 +130,7 @@ public class AdminPanel : MonoBehaviour
         {
             Debug.Log("requirements set");
 
-            if (localAvatar.GetComponent<ThirdPersonUserControl>().GetHasGlobalVoice() == false)
+            if (focusVoiceButtonText.text == "TURN ON")
             {
                 Debug.Log("turning on");
                 podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
