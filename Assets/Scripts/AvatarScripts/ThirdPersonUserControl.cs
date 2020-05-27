@@ -484,6 +484,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
                 }
                 else{
+                    Debug.Log("Global voice");
                     pan = 0;
                     gain = 100f;
                 }
