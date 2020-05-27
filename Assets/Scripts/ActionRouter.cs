@@ -36,9 +36,23 @@ public class ActionRouter : MonoBehaviour
         AgoraMainMenu.app.mRtcEngine.MuteLocalVideoStream(!isCameraOff);
         isCameraOff = !isCameraOff;
         Debug.Log("isCameraOff " + isCameraOff.ToString());
+        if(isCameraOff){
+            AgoraMainMenu.app.mRtcEngine.DisableVideoObserver();
+        }
+        else{
+            AgoraMainMenu.app.mRtcEngine.EnableVideoObserver();
+        }
         highlightedCam.GetComponent<CanvasGroup>().alpha = Convert.ToSingle(isCameraOff);
-
     }
+
+    public GameObject highlightedSound;
+    private bool areSoundsOff = false;
+    public void ToggleSounds(){
+        areSoundsOff = !areSoundsOff;
+        AudioListener.volume = Convert.ToSingle(areSoundsOff);
+        highlightedSound.GetComponent<CanvasGroup>().alpha = Convert.ToSingle(areSoundsOff);
+    }
+
     // Update is called once per frame
     void Update()
     {

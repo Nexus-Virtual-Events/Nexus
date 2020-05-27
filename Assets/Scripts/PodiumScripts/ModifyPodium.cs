@@ -43,14 +43,14 @@ public class ModifyPodium : MonoBehaviour
         {
             GameObject.Find("Realtime").GetComponent<AdminPanel>().TurnOffVoice();
             if (player.GetComponent<ThirdPersonUserControl>().getID() == prevPodium)
-                player.GetComponent<AudioSource>().spatialBlend = 1;
+                player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(true);
         }
 
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
             if (player.GetComponent<ThirdPersonUserControl>().getID() == newPodiumReceived)
             {
-                player.GetComponent<AudioSource>().spatialBlend = 0;
+                player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(false);
                 Debug.Log("setting " + player.GetComponent<ThirdPersonUserControl>().getID().ToString() + " to global");
             }
         }
