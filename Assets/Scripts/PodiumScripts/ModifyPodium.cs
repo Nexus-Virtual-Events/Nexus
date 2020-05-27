@@ -60,4 +60,3 @@ public class ModifyPodium : MonoBehaviour
         //ActionRouter.GetLocalAvatar().GetComponent<ThirdPersonUserControl>().getID();
     }
 }
-w
