@@ -28,7 +28,8 @@ MonoBehaviour:
   HideTags: []
   suppressWardrobeSlots: []
   activeWardrobeSet: []
-  MeshHideAssets: []
+  MeshHideAssets:
+  - {fileID: 11400000, guid: 153410249b4c344128f700edf46ac153, type: 2}
   recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"Dress","scale":100,"copyIdx":-1,"overlays":[{"id":"Dress_Overlay","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"-","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":0,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
