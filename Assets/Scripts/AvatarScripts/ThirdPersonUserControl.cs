@@ -437,7 +437,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     public bool isPinned = false;
     public bool videoSurfaceParented = false;
 
-    private bool hasGlobalVoice;
+    private bool hasGlobalVoice = false;
 
     public void ChangeGlobalVoice(bool b){
         hasGlobalVoice = b;
@@ -466,7 +466,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 double gain;
 
                 if(hasGlobalVoice){
-                    float radius = 20f;
+                    float radius = 10f;
 
                     float distance = Vector3.Distance(localAvatar.position, transform.position);
 
@@ -475,13 +475,13 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     float angleBetween = Vector3.Angle(right, vectorBetween);
                     pan = Mathf.Cos(angleBetween * Mathf.Deg2Rad);
 
-                    
                     if(distance > radius){
                         gain = 0f;
                     }
                     else{
                         gain = 100f * (radius - distance)/radius;
                     }
+
                 }
                 else{
                     pan = 0;
