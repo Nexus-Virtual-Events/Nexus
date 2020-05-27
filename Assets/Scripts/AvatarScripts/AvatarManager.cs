@@ -157,7 +157,7 @@ namespace Michsky.UI.ModernUIPack {
                 localPlayer.layer = LayerMask.NameToLayer("Hidden");
             }
 
-            // SendConnectionInfo("true");
+            SendConnectionInfo("true");
 
             nmrLoadingReconnectTrial = 0;
         }
@@ -233,7 +233,7 @@ namespace Michsky.UI.ModernUIPack {
 
             Destroy(localPlayer);
 
-            // SendConnectionInfo("false");
+            SendConnectionInfo("false");
 
         }
 
@@ -309,7 +309,7 @@ namespace Michsky.UI.ModernUIPack {
             Application.Quit();
         }
 
-        string url = "http://localhost:5000/change_room_count";
+        string url = "http://127.0.0.1:5000/change_room_count";
     
         public void SendConnectionInfo(string isConnecting)
         {

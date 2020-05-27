@@ -30,8 +30,8 @@ namespace Michsky.UI.ModernUIPack
         public string displayName;
         private string key = "NexusConnects";
 
-        string url = "http://the-nexus.herokuapp.com/authenticate_with_unity";
-    
+        string url = "http://www.thenexus.cloud/authenticate_with_unity";
+
         public void Login()
         {
             StartCoroutine(SendPostCoroutine());
