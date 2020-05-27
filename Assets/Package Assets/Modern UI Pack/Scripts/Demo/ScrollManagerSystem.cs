@@ -15,7 +15,7 @@ namespace Michsky.UI.ModernUIPack
 
         void Update()
         {
-            if (enabeScrolling == false)
+            if (enabeScrolling == false && listScrollbar)
                 listScrollbar.value = Mathf.Lerp(listScrollbar.value, 1, 0.1f);
         }
 
