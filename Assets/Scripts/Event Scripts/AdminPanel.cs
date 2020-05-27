@@ -133,14 +133,12 @@ public class AdminPanel : MonoBehaviour
             if (localAvatar.GetComponent<ThirdPersonUserControl>().GetHasGlobalVoice() == false)
             {
                 Debug.Log("turning on");
-                // podiumModifier.ResetPodium();
                 podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
                 TurnOnVoice();
             }
             else
             {
                 Debug.Log("turning off");
-                // podiumModifier.ResetPodium();
                 podiumModifier.SendNewValue(-1);
                 TurnOffVoice();
             }

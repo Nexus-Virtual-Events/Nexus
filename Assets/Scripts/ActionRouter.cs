@@ -53,10 +53,10 @@ public class ActionRouter : MonoBehaviour
         highlightedSound.GetComponent<CanvasGroup>().alpha = Convert.ToSingle(areSoundsOff);
     }
 
-    public GameObject highlightedGlobal;
-    public void ToggleGlobal(bool b){
-       highlightedGlobal.GetComponent<CanvasGroup>().alpha = Convert.ToSingle(b);
-    }
+    // public GameObject highlightedGlobal;
+    // public void ToggleGlobal(bool b){
+    //    highlightedGlobal.GetComponent<CanvasGroup>().alpha = Convert.ToSingle(b);
+    // }
 
     // Update is called once per frame
     void Update()
