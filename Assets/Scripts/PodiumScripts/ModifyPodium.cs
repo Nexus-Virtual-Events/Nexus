@@ -34,6 +34,7 @@ public class ModifyPodium : MonoBehaviour
     }
 
     public void ResetPodium(){
+        Debug.Log("reset podium called");
         _podiumSync.SetPodium(-1);
     }
 
