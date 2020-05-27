@@ -465,7 +465,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                 double pan;
                 double gain;
 
-                if(hasGlobalVoice){
+                if(!hasGlobalVoice){
                     float radius = 10f;
 
                     float distance = Vector3.Distance(localAvatar.position, transform.position);
