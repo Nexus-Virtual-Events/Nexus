@@ -206,6 +206,8 @@ namespace Michsky.UI.ModernUIPack {
                 }
                 
             }
+
+        public GameObject podium;
         private void DidDisconnectFromRoom(Realtime realtime){
             
             if(MainCamera){
@@ -231,7 +233,8 @@ namespace Michsky.UI.ModernUIPack {
                 _spawn.rotation = localPlayer.transform.rotation;
             }
 
-            localPlayer.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(false);
+            if(localPlayer.GetComponent<ThirdPersonUserControl>().GetHasGlobalVoice())
+                podium.GetComponent<ModifyPodium>().SendNewValue(-1);
 
             Destroy(localPlayer);
 

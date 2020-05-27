@@ -126,30 +126,30 @@ public class AdminPanel : MonoBehaviour
     public void ToggleFocusVoiceMode()
     {
         Debug.Log("toggle focus voice mode called");
-        if (localAvatar && podiumModifier)
+        if (localAvatar)
         {
             Debug.Log("requirements set");
 
             if (localAvatar.GetComponent<ThirdPersonUserControl>().GetHasGlobalVoice() == false)
             {
                 Debug.Log("turning on");
-                podiumModifier.ResetPodium();
+                // podiumModifier.ResetPodium();
                 podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
                 TurnOnVoice();
             }
             else
             {
                 Debug.Log("turning off");
-                podiumModifier.ResetPodium();
-                podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
+                // podiumModifier.ResetPodium();
+                podiumModifier.SendNewValue(-1);
                 TurnOffVoice();
             }
         }
-        else
-        {
-            Debug.Log("No local avatar or podium modifier found");
-            podiumModifier = GameObject.Find("Podium").GetComponent<ModifyPodium>();
-        }
+        // else
+        // {
+            // Debug.Log("No local avatar or podium modifier found");
+            // podiumModifier = GameObject.Find("Podium").GetComponent<ModifyPodium>();
+        // }
     }
 
     public void GetPlayers()
