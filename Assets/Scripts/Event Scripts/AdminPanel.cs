@@ -122,7 +122,7 @@ public class AdminPanel : MonoBehaviour
 
     public void ToggleFocusVoiceMode()
     {
-
+        Debug.Log("toggle focus voice mode called");
         if (localAvatar && podiumModifier)
         {
             Debug.Log("requirements set");

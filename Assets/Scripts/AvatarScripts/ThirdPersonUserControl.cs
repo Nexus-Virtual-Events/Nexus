@@ -440,10 +440,15 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private bool hasGlobalVoice = false;
 
     public void ChangeGlobalVoice(bool b){
+        Debug.Log("global voice changed to: " + b.ToString());
         hasGlobalVoice = b;
     }
     private void Update()
     {
+        if(_realtimeView.isOwnedLocally){
+            Debug.Log(hasGlobalVoice);
+        }
+        Debug.Log(hasGlobalVoice);
         if(!_realtimeView.isOwnedLocally)
         {
             if(!videoSurfaceParented && _nameSync.GetName() != "" && _nameSync.GetName() != null)
