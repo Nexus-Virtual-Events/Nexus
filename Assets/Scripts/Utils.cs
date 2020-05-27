@@ -23,6 +23,7 @@ public class Utils : MonoBehaviour
     public static Dictionary<string, int> layerIndices;
     public static string[] layerNames;
     public GameObject adminWindow;
+    public GameObject adminGlobalButton;
 
     public void MoveToRoom(string roomName)
     {
@@ -40,6 +41,7 @@ public class Utils : MonoBehaviour
     {
         if(PlayerPrefs.GetString("isAdmin") != "true"){
             adminWindow.SetActive(false);
+            adminGlobalButton.SetActive(false);
         }
 
         sceneNames = new Dictionary<string, string>();
