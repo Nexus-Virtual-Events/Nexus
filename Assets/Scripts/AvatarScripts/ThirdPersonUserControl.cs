@@ -445,10 +445,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     }
     private void Update()
     {
-        if(_realtimeView.isOwnedLocally){
-            Debug.Log(hasGlobalVoice);
-        }
-        Debug.Log(hasGlobalVoice);
         if(!_realtimeView.isOwnedLocally)
         {
             if(!videoSurfaceParented && _nameSync.GetName() != "" && _nameSync.GetName() != null)
