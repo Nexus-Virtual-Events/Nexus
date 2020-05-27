@@ -136,7 +136,7 @@ public class AdminPanel : MonoBehaviour
             else
             {
                 Debug.Log("turning off");
-                podiumModifier.SendNewValue(-1);
+                podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
                 TurnOffVoice();
             }
         }

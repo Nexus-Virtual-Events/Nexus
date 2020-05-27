@@ -39,17 +39,20 @@ public class ModifyPodium : MonoBehaviour
     {
         Debug.Log("New podium received from ModifyPodium: " + newPodiumReceived.ToString());
 
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            GameObject.Find("Realtime").GetComponent<AdminPanel>().TurnOffVoice();
-            if (player.GetComponent<ThirdPersonUserControl>().getID() == prevPodium)
-                player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(false);
-        }
+        // foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        // {
+        //     GameObject.Find("Realtime").GetComponent<AdminPanel>().TurnOffVoice();
+        //     if (player.GetComponent<ThirdPersonUserControl>().getID() == prevPodium)
+        //         player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(false);
+        // }
 
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
             if (player.GetComponent<ThirdPersonUserControl>().getID() == newPodiumReceived)
             {
+                if(player.GetComponent<ThirdPersonUserControl>().GetHasGlobalVoice() == true){
+                    player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(false);
+                }
                 player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(true);
                 Debug.Log("setting " + player.GetComponent<ThirdPersonUserControl>().getID().ToString() + " to global");
             }

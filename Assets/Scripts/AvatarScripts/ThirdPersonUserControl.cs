@@ -443,7 +443,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         Debug.Log("global voice changed to: " + b.ToString());
         hasGlobalVoice = b;
     }
-    public void GetHasGlobalVoice(){
+    public bool GetHasGlobalVoice(){
         return hasGlobalVoice;
     }
 
