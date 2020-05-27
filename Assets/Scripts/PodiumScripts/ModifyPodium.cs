@@ -59,7 +59,7 @@ public class ModifyPodium : MonoBehaviour
             if (player.GetComponent<ThirdPersonUserControl>().getID() == newPodiumReceived)
             {
                 player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(true);
-                if(player.GetComponent<ThirdPersonUserControl>().isOwnedLocally){
+                if(player.GetComponent<ThirdPersonUserControl>().isLocallyOwned()){
                     GameObject.Find("ActionRouter").GetComponent<ActionRouter>().ToggleGlobal(false);
                 }
             }
