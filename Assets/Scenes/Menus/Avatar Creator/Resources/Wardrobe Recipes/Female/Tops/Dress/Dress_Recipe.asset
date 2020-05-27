@@ -15,7 +15,7 @@ MonoBehaviour:
   label: 
   resourcesOnly: 0
   recipeType: Wardrobe
-  DisplayValue: Dress
+  DisplayValue: Dress_Slot
   compatibleRaces:
   - HumanFemaleHD
   wardrobeRecipeThumbs:
@@ -23,12 +23,13 @@ MonoBehaviour:
     filename: 
     thumb: {fileID: 0}
   wardrobeSlot: FullOutfit
-  Hides: []
+  Hides:
+  - FemaleLegsHD
   HideTags: []
   suppressWardrobeSlots: []
   activeWardrobeSet: []
   MeshHideAssets: []
-  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"Dress","scale":100,"copyIdx":-1,"overlays":[]},{"id":"Dress_1","scale":100,"copyIdx":-1,"overlays":[]}],"colors":[],"fColors":[],"sharedColorCount":0,"race":"","packedDna":[]}'
+  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"Dress","scale":100,"copyIdx":-1,"overlays":[{"id":"Dress_Overlay","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"-","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":0,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
   replaces: Nothing

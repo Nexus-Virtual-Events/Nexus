@@ -2,13 +2,7 @@ fileFormatVersion: 2
 guid: 9c697d4dbf0fa41948dc91dfa1c425fc
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      74: 7800137047202973920
-    second: UMA_Female_Rig|Female_FacialExpressions
-  - first:
-      74: -465683801650886520
-    second: UMA_Female_Rig|Male_FacialExpressions
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -40,7 +34,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
