@@ -20,6 +20,8 @@ public class ModifyPodium : MonoBehaviour
     {
         // Get a reference to the color sync component
         _podiumSync = GetComponent<PodiumSync>();
+        Debug.Log("Podium sync:" + _podiumSync.ToString());
+
     }
 
     private void Awake()
@@ -30,8 +32,12 @@ public class ModifyPodium : MonoBehaviour
 
     public void SendNewValue(int newPodiumCommand)
     {
-        _podiumSync.SetPodium(-1);
         _podiumSync.SetPodium(newPodiumCommand);
+    }
+
+    public void ResetPodium(){
+        Debug.Log("reset podium called");
+        _podiumSync.SetPodium(-1);
     }
 
     private int prevPodium;
@@ -58,9 +64,9 @@ public class ModifyPodium : MonoBehaviour
                 else{
                     player.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(true);
                     GameObject.Find("ActionRouter").GetComponent<ActionRouter>().ToggleGlobal(true);
+                    Debug.Log("setting " + player.GetComponent<ThirdPersonUserControl>().getID().ToString() + " to global");
 
                 }
-                Debug.Log("setting " + player.GetComponent<ThirdPersonUserControl>().getID().ToString() + " to global");
             }
         }
 

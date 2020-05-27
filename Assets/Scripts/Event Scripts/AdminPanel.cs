@@ -25,11 +25,14 @@ public class AdminPanel : MonoBehaviour
     public GameObject[] players;
 
     // Start is called before the first frame update
+
+    public GameObject podium;
     void Start()
     {
         eventModifier = GameObject.Find("EventManager").GetComponent<ModifyEvents>();
         localAvatar = ActionRouter.GetLocalAvatar();
-        podiumModifier = GameObject.Find("Podium").GetComponent<ModifyPodium>();
+        podiumModifier = podium.GetComponent<ModifyPodium>();
+        Debug.Log("Podium modifier:" + podiumModifier.ToString());
     }
 
     // Update is called once per frame
@@ -130,12 +133,14 @@ public class AdminPanel : MonoBehaviour
             if (localAvatar.GetComponent<ThirdPersonUserControl>().GetHasGlobalVoice() == false)
             {
                 Debug.Log("turning on");
+                podiumModifier.ResetPodium();
                 podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
                 TurnOnVoice();
             }
             else
             {
                 Debug.Log("turning off");
+                podiumModifier.ResetPodium();
                 podiumModifier.SendNewValue(localAvatar.GetComponent<ThirdPersonUserControl>().getID());
                 TurnOffVoice();
             }

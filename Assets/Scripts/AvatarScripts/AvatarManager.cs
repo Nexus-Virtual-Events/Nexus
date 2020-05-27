@@ -231,6 +231,8 @@ namespace Michsky.UI.ModernUIPack {
                 _spawn.rotation = localPlayer.transform.rotation;
             }
 
+            localPlayer.GetComponent<ThirdPersonUserControl>().ChangeGlobalVoice(false);
+
             Destroy(localPlayer);
 
             SendConnectionInfo("false");
