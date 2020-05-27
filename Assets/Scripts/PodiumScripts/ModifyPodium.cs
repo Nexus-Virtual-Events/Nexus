@@ -30,6 +30,7 @@ public class ModifyPodium : MonoBehaviour
 
     public void SendNewValue(int newPodiumCommand)
     {
+        _podiumSync.SetPodium(-1);
         _podiumSync.SetPodium(newPodiumCommand);
     }
 
