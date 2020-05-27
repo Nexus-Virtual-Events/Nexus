@@ -20,6 +20,8 @@ public class ModifyPodium : MonoBehaviour
     {
         // Get a reference to the color sync component
         _podiumSync = GetComponent<PodiumSync>();
+        Debug.Log("Podium sync:" + _podiumSync.ToString());
+
     }
 
     private void Awake()

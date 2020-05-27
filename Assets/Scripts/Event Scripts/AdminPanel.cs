@@ -25,11 +25,14 @@ public class AdminPanel : MonoBehaviour
     public GameObject[] players;
 
     // Start is called before the first frame update
+
+    public GameObject podium;
     void Start()
     {
         eventModifier = GameObject.Find("EventManager").GetComponent<ModifyEvents>();
         localAvatar = ActionRouter.GetLocalAvatar();
-        podiumModifier = GameObject.Find("Podium").GetComponent<ModifyPodium>();
+        podiumModifier = podium.GetComponent<ModifyPodium>();
+        Debug.Log("Podium modifier:" + podiumModifier.ToString());
     }
 
     // Update is called once per frame
