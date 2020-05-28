@@ -39,13 +39,22 @@ public class PlayerInteraction : MonoBehaviour
 
         return Vector3.Distance(hit.transform.position, ActionRouter.GetLocalAvatar().transform.position) < minMenuDist;
     }
+    
+    public GameObject adminPanel;
+    public GameObject settingsPanel;
 
+
+    public bool IsPanelActive(){
+        return (adminPanel.GetComponent<CanvasGroup>().alpha == 1 || settingsPanel.GetComponent<CanvasGroup>().alpha == 1);
+    }
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
+            if(IsPanelActive()){
+                return;
+            }
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
