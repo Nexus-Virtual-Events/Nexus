@@ -24,6 +24,7 @@ public class ActionRouter : MonoBehaviour
     public GameObject highlightedMic;
     public void ToggleMute(){
         AgoraMainMenu.app.mRtcEngine.MuteLocalAudioStream(!isMuted);
+        AgoraMainMenu.app.mRtcEngine.EnableLocalAudio(isMuted);
         isMuted = !isMuted;
         Debug.Log("isMuted " + isMuted.ToString());
         highlightedMic.GetComponent<CanvasGroup>().alpha = Convert.ToSingle(isMuted);
