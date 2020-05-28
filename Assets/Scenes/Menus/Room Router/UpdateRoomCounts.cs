@@ -134,7 +134,7 @@ public class UpdateRoomCounts : MonoBehaviour
             string count = findBetween(countToEnd,  "\"");
             Debug.Log("count: " + count);
             
-            roomCounts.Add(name, Convert.ToInt32(count));
+            roomCounts[name] = Convert.ToInt32(count);
             
             // text.Substring(begin, end-begin+1);
             // Debug.Log(text.Substring(end-begin+3, text.Length-(end-begin+3)));
