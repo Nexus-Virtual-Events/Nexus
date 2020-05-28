@@ -157,7 +157,8 @@ namespace Michsky.UI.ModernUIPack {
                 localPlayer.layer = LayerMask.NameToLayer("Hidden");
             }
 
-            SendConnectionInfo("true");
+
+            SendConnectionInfo(GameObject.FindGameObjectsWithTag("Player").Length);
 
             nmrLoadingReconnectTrial = 0;
         }
@@ -236,9 +237,10 @@ namespace Michsky.UI.ModernUIPack {
             if(localPlayer.GetComponent<ThirdPersonUserControl>().GetHasGlobalVoice())
                 podium.GetComponent<ModifyPodium>().SendNewValue(-1);
 
+            SendConnectionInfo(GameObject.FindGameObjectsWithTag("Player").Length - 1);
+
             Destroy(localPlayer);
 
-            SendConnectionInfo("false");
 
         }
 
@@ -316,16 +318,16 @@ namespace Michsky.UI.ModernUIPack {
 
         string url = Utils.WebUrl + "change_room_count";
     
-        public void SendConnectionInfo(string isConnecting)
+        public void SendConnectionInfo(int count)
         {
-            StartCoroutine(SendPostCoroutine(isConnecting));
+            StartCoroutine(SendPostCoroutine(count));
         }
 
-        IEnumerator SendPostCoroutine(string isConnecting)
+        IEnumerator SendPostCoroutine(int count)
         {
             WWWForm form = new WWWForm();
             form.AddField("room", _realtime._roomToJoinOnStart);
-            form.AddField("isConnecting", isConnecting);
+            form.AddField("count", count);
 
             using (UnityWebRequest www = UnityWebRequest.Post(url, form))
             {

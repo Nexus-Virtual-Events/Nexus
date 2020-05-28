@@ -24,6 +24,7 @@ namespace Michsky.UI.ModernUIPack
             // else{
             //     PlayerPrefs.SetString("roomName", "Admin");
             // }
+            
             AvatarCreator.sceneString = sceneString;
             Loading.sceneString = "Avatar Creator";
             SceneManager.LoadScene("Loading");
@@ -49,10 +50,15 @@ namespace Michsky.UI.ModernUIPack
             // {
             //     PlayerPrefs.SetString("roomName", "Admin");
             // }
-            PlayerPrefs.SetString("roomName", "Room" + index.ToString());
-            AvatarCreator.sceneString = sceneString;
-            Loading.sceneString = "Avatar Creator";
-            SceneManager.LoadScene("Loading");
+            if(UpdateRoomCounts.roomCounts["Room" + index.ToString()] >= 25){
+                PlayerPrefs.SetString("roomName", "Room" + index.ToString());
+                AvatarCreator.sceneString = sceneString;
+                Loading.sceneString = "Avatar Creator";
+                SceneManager.LoadScene("Loading");
+            }
+            else{
+                Debug.Log("The room is full");
+            }
         }
     }
 }

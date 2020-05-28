@@ -23,7 +23,7 @@ public class UpdateRoomCounts : MonoBehaviour
     public GameObject[] roomCells;
 
     private ArrayList data;
-    private Dictionary<string, int> roomCounts;
+    public static Dictionary<string, int> roomCounts;
 
     private string url = Utils.WebUrl + "get_room_counts";
     void Start()
@@ -33,7 +33,7 @@ public class UpdateRoomCounts : MonoBehaviour
         // foreach(GameObject roomCell in roomCells){
         //     // Debug.Log(roomCell.name);
         // }
-        StartCoroutine(GetCounts());
+        InvokeRepeating("GetRoomCounts", 0f, 30f);
     }
     private void FindGameObjectsInChildWithTag(GameObject parent, string tag, List<GameObject> l)
         {
@@ -49,6 +49,10 @@ public class UpdateRoomCounts : MonoBehaviour
             }
                 
         }
+
+    private void GetRoomCounts(){
+        StartCoroutine(GetCounts());
+    }
     
     private GameObject FindGameObjectInChildWithName(GameObject parent, string name)
         {
@@ -127,10 +131,11 @@ public class UpdateRoomCounts : MonoBehaviour
 
             int countIndex = raw.IndexOf("count");
             string countToEnd = raw.Substring(countIndex+6, raw.Length-countIndex-6);
-            string count = findBetween(countToEnd, ":", ",");
+            string count = findBetween(countToEnd,  "\"");
             Debug.Log("count: " + count);
+            
             roomCounts.Add(name, Convert.ToInt32(count));
-
+            
             // text.Substring(begin, end-begin+1);
             // Debug.Log(text.Substring(end-begin+3, text.Length-(end-begin+3)));
             if(end-begin+3 < text.Length){
@@ -143,23 +148,5 @@ public class UpdateRoomCounts : MonoBehaviour
         while(end-begin+1 < text.Length);
 
     }
-    
-    // private void Processjson(string jsonString)
-    //  {
-    //      JsonData jsonvale = JsonMapper.ToObject(jsonString);
-    //      parseJSON parsejson;
-    //      parsejson = new parseJSON();
-        
 
-    //      parsejson.roomInfo = new ArrayList();
-    //      Debug.Log(parsejson.roomInfo.Count);
-    //     //  data = parsejson.roomInfo;
-    //     //  Debug.Log(data[0]);
-    //  }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
