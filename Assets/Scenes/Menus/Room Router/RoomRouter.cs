@@ -50,7 +50,7 @@ namespace Michsky.UI.ModernUIPack
             // {
             //     PlayerPrefs.SetString("roomName", "Admin");
             // }
-            if(UpdateRoomCounts.roomCounts["Room" + index.ToString()] >= 25){
+            if(UpdateRoomCounts.roomCounts["Room" + index.ToString()] <= 25){
                 PlayerPrefs.SetString("roomName", "Room" + index.ToString());
                 AvatarCreator.sceneString = sceneString;
                 Loading.sceneString = "Avatar Creator";
