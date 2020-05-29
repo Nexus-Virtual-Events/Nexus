@@ -31,7 +31,7 @@ MonoBehaviour:
   MeshHideAssets:
   - {fileID: 11400000, guid: 153410249b4c344128f700edf46ac153, type: 2}
   recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"Dress
-    3","scale":100,"copyIdx":-1,"overlays":[{"id":"Dress_Overlay","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"-","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":0,"race":"","packedDna":[]}'
+    3","scale":100,"copyIdx":-1,"overlays":[{"id":"Dress_Overlay","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]}],"colors":[],"fColors":[{"name":"FullOutfit","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
   replaces: Nothing

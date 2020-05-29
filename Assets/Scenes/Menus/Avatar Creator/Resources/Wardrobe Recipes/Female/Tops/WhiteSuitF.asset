@@ -34,7 +34,7 @@ MonoBehaviour:
   - Feet
   activeWardrobeSet: []
   MeshHideAssets: []
-  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"F_Suit_Cuff_LP","scale":100,"copyIdx":-1,"overlays":[{"id":"F_Suit_Top_LP_Overlay_3","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]},{"id":"F_Suit_Pants_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"F_Suit_Shirt_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"F_Suit_Shoes_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"F_Suit_Top_LP_004","scale":100,"copyIdx":0,"overlays":[]}],"colors":[],"fColors":[{"name":"Suit","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
+  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"F_Suit_Cuff_LP","scale":100,"copyIdx":-1,"overlays":[{"id":"F_Suit_Top_LP_Overlay_3","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]},{"id":"F_Suit_Pants_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"F_Suit_Shirt_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"F_Suit_Shoes_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"F_Suit_Top_LP_004","scale":100,"copyIdx":0,"overlays":[]}],"colors":[],"fColors":[{"name":"FullOutfit","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
   replaces: Nothing
