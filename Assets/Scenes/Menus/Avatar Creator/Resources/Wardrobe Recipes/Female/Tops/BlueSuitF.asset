@@ -17,25 +17,15 @@ MonoBehaviour:
   recipeType: Wardrobe
   DisplayValue: 
   compatibleRaces:
-  - HumanFemaleHighPoly
-  - HumanFemale
-  - HumanFemaleDCS
+  - HumanFemaleHD
   wardrobeRecipeThumbs:
-  - race: HumanFemaleHighPoly
-    filename: 
-    thumb: {fileID: 0}
-  - race: HumanFemale
-    filename: 
-    thumb: {fileID: 0}
-  - race: HumanFemaleDCS
+  - race: HumanFemaleHD
     filename: 
     thumb: {fileID: 0}
   wardrobeSlot: FullOutfit
   Hides:
-  - FR_High_FemaleFeet
-  - FR_High_FemaleLegs
-  - FemaleFeet
-  - FemaleLegs
+  - FemaleFeetHD
+  - FemaleLegsHD
   HideTags: []
   suppressWardrobeSlots:
   - Shoulders
@@ -43,9 +33,8 @@ MonoBehaviour:
   - Legs
   - Feet
   activeWardrobeSet: []
-  MeshHideAssets:
-  - {fileID: 11400000, guid: d11e0a520f9687a4f9ac1cd548b4f49c, type: 2}
-  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"F_Suit_Cuff_LP","scale":100,"copyIdx":-1,"overlays":[{"id":"F_Suit_Top_LP_Overlay","colorIdx":0,"rect":[0,0,0,0]}]},{"id":"F_Suit_Pants_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"F_Suit_Shirt_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"F_Suit_Shoes_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"F_Suit_Top_LP_004","scale":100,"copyIdx":0,"overlays":[]}],"colors":[],"fColors":[{"name":"Suit","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
+  MeshHideAssets: []
+  recipeString: '{"version":3,"packedSlotDataList":[],"slotsV2":[],"slotsV3":[{"id":"F_Suit_Cuff_LP","scale":100,"copyIdx":-1,"overlays":[{"id":"F_Suit_Top_LP_Overlay","colorIdx":0,"rect":[0.0,0.0,0.0,0.0]}]},{"id":"F_Suit_Pants_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"F_Suit_Shirt_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"F_Suit_Shoes_LP","scale":100,"copyIdx":0,"overlays":[]},{"id":"","scale":1,"copyIdx":-1,"overlays":[]},{"id":"F_Suit_Top_LP_004","scale":100,"copyIdx":0,"overlays":[]}],"colors":[],"fColors":[{"name":"Suit","colors":[255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0,255,255,255,255,0,0,0,0]}],"sharedColorCount":1,"race":"","packedDna":[]}'
   IncompatibleRecipes: []
   UserField: 
   replaces: Nothing
