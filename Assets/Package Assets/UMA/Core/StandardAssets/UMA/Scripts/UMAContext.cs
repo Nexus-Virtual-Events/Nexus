@@ -106,6 +106,7 @@ namespace UMA
 		/// <param name="nameHash">Name hash.</param>
 		public override RaceData GetRace(int nameHash)
 		{
+			Debug.Log(">>>" + raceLibrary.ToString());
 			return raceLibrary.GetRace(nameHash);
 		}
 

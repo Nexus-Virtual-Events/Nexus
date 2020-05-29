@@ -249,7 +249,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         playerName = gameObject.transform.Find("Player Name").gameObject;
         playerName.layer = gameObject.layer;
         playerName.transform.GetChild(0).gameObject.layer = gameObject.layer;
-        gameObject.transform.Find("UMA").gameObject.layer = gameObject.layer;
+        gameObject.transform.Find("UMA_GLIB").gameObject.layer = gameObject.layer;
 
         if (!isRecipeSet){
             if(_recipeSync.GetRecipe() == "" || _recipeSync.GetRecipe() == null){
