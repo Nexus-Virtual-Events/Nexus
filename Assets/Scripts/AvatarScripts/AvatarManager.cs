@@ -85,10 +85,7 @@ namespace Michsky.UI.ModernUIPack {
                 // roomImage.sprite = roomSprites[5];
             }
 
-
             _spawn = GameObject.Find("Spawn").transform;
-
-
 
         }
 
@@ -132,7 +129,10 @@ namespace Michsky.UI.ModernUIPack {
 
         private Transform _spawn;
 
-       
+       public void RouteToRoomRouter() {
+            SceneManager.LoadScene("Room Router");
+       }
+
         private void DidConnectToRoom(Realtime realtime) {
 
             Debug.Log("Connected from AvatarManager as " + _realtime._roomToJoinOnStart);
