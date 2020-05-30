@@ -107,9 +107,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         string[] parameters = GetComponent<StateSync>().GetState().Split('_');
         if(parameters[0] == "1"){
             Debug.Log("someone is getting kicked");
-            // GetComponent<Realtime>().Disconnect();
             Application.Quit();
-            // EditorApplication. Exit(0);
         }
     }
 
@@ -242,14 +240,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
 
         gameObject.name = "Avatar_" + getID();
-        Debug.Log("!!>> TP ROOM NAME: " + _realtimeView.realtime._roomToJoinOnStart);
-        gameObject.layer = LayerMask.NameToLayer(_realtimeView.realtime._roomToJoinOnStart);
         //
         numberOfAnimations = Utils.animations.Length;
         playerName = gameObject.transform.Find("Player Name").gameObject;
-        playerName.layer = gameObject.layer;
-        playerName.transform.GetChild(0).gameObject.layer = gameObject.layer;
-        gameObject.transform.Find("UMA_GLIB").gameObject.layer = gameObject.layer;
 
         if (!isRecipeSet){
             if(_recipeSync.GetRecipe() == "" || _recipeSync.GetRecipe() == null){
@@ -267,12 +260,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             }
         }
 
-        //if(!_realtimeView.isOwnedLocally)
-        //{
-        //    Debug.Log(gameObject.transform.Find("Player Name").name);
-        //    //Debug.Log("Assigning Video Feed to " + gameObject.transform.Find("Player Name").gameObject.GetComponent<TMP_Text>().text);
-        //}
-
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
 
     }
@@ -281,7 +268,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     {
         string[] parameters;
 
-        //"(float forwardamount) (float turnamount) (int crouching) (int onGround)"
         parameters = s.Split(' ');
         return parameters;
     }
@@ -463,6 +449,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             }
             else
             {
+                //op should this be somewhere else?
                 GameObject videoFeed = GameObject.Find(_nameSync.GetName());
 
                 Transform localAvatar = ActionRouter.GetLocalAvatar().transform;
@@ -530,24 +517,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         if (!_realtimeView.isOwnedLocally)
             return;
 
-        // Move the camera
-        // if (!isCameraParented)
-        // {
-        //     m_MainCamera = Camera.main.gameObject;
-        //     m_MainCamera.transform.parent = transform;
-        //     Vector3 offset = new Vector3(offsetx, offsety, offsetz);
-        //     m_MainCamera.transform.position = transform.position + offset;
-        //     m_MainCamera.transform.LookAt(transform);
-
-        //     playerCamera = m_MainCamera.transform;
-
-        //     camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic>();
-        //     camScript.AssignPlayer(transform);
-
-        //     isCameraParented = true;
-        // }
-
-        // Make sure we own the transform so that RealtimeTransform knows to use this client's transform to synchronize remote clients.
+        //happens 2 times
         _realtimeTransform.RequestOwnership();
 
         if (canMove)
@@ -582,24 +552,7 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
         }
         else
         {
-
-            // Move the camera
-            // if (!isCameraParented)
-            // {
-            //     m_MainCamera = Camera.main.gameObject;
-            //     m_MainCamera.transform.parent = transform;
-            //     Vector3 offset = new Vector3(offsetx, offsety, offsetz);
-            //     m_MainCamera.transform.position = transform.position + offset + new Vector3(0, -1, 0);
-            //     m_MainCamera.transform.LookAt(transform);
-
-            //     playerCamera = m_MainCamera.transform;
-
-            //     camScript = playerCamera.GetComponent<ThirdPersonOrbitCamBasic>();
-            //     camScript.AssignPlayer(transform);
-
-            //     isCameraParented = true;
-            // }
-
+            //op happens two times bro
             // Make sure we own the transform so that RealtimeTransform knows to use this client's transform to synchronize remote clients.
             _realtimeTransform.RequestOwnership();
 
