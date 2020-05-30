@@ -303,6 +303,7 @@ namespace Michsky.UI.ModernUIPack {
             _realtime.Disconnect();
             // Destroy(localPlayer);
             //GameObject.Find("Realtime").GetComponent<Realtime>().Disconnect();
+            AgoraMainMenu.app.unloadEngine();
             Loading.sceneString = "Avatar Creator";
             SceneManager.LoadScene("Loading");
         }
