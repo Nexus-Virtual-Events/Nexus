@@ -93,7 +93,7 @@ public class AvatarCreator : MonoBehaviour
         SetMale();
 
         selectors = GameObject.FindGameObjectsWithTag("Selector");
-
+        PlayerPrefs.DeleteAll();
         LoadAvatar();
     }
 
@@ -467,6 +467,7 @@ public class AvatarCreator : MonoBehaviour
     public void LoadAvatar()
     {
         avatarRecipe = PlayerPrefs.GetString("playerRecipe");
+        if (avatarRecipe == "" || avatarRecipe == null) return;
         avatar.ClearSlots();
         avatar.LoadFromRecipeString(avatarRecipe);
     }
