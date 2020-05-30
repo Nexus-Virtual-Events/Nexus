@@ -95,6 +95,8 @@ public class AvatarCreator : MonoBehaviour
         SetMale();
 
         selectors = GameObject.FindGameObjectsWithTag("Selector");
+
+        PlayerPrefs.DeleteKey("playerRcipe");
     }
 
     void OnEnable()
