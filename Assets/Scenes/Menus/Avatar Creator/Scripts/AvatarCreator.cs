@@ -20,7 +20,6 @@ public class AvatarCreator : MonoBehaviour
 
     public string activeDNASlot;
     public string activeColorField;
-
     public string currentHair = "";
     public string currentFacialHair = "";
     public string currentFullOutfit = "";
@@ -63,6 +62,8 @@ public class AvatarCreator : MonoBehaviour
 
     private GameObject[] selectors;
 
+    private string defaultRecipe;
+
 
     private void Start()
     {
@@ -81,10 +82,10 @@ public class AvatarCreator : MonoBehaviour
         //    window.SetActive(false);
         //}
         //foreach (GameObject window in hideWindowsFemale)
-        //{
+        //{    
         //    window.SetActive(true);
         //}
-        InvokeRepeating("LoadAvatar", 0f, 5f);
+        Invoke("LoadAvatar", 3f);
 
         menWindows = GameObject.FindGameObjectsWithTag("MenWindow");
         womenWindows = GameObject.FindGameObjectsWithTag("WomenWindow");
@@ -94,7 +95,6 @@ public class AvatarCreator : MonoBehaviour
         SetMale();
 
         selectors = GameObject.FindGameObjectsWithTag("Selector");
-        LoadAvatar();
     }
 
     void OnEnable()
@@ -463,20 +463,21 @@ public class AvatarCreator : MonoBehaviour
     public void SaveAvatar()
     {
         avatarRecipe = avatar.GetCurrentRecipe();
+        Debug.Log("saving " + avatarRecipe);
         PlayerPrefs.SetString("playerRecipe", avatarRecipe);
-    }
-
-    public void ResetAvatar(){
-        PlayerPrefs.DeleteKey("playerRecipe");
-        LoadAvatar();
     }
 
     public void LoadAvatar()
     {
+        Debug.Log("load avatar "+ avatarRecipe);
         avatarRecipe = PlayerPrefs.GetString("playerRecipe");
-        Debug.Log("avatarRecipe "+ avatarRecipe);
-        if (avatarRecipe == "" || avatarRecipe == null) return;
+        if(avatarRecipe == "" || avatarRecipe == null){
+            Debug.Log("There was no recipe");
+            return;
+        };
+        Debug.Log("There was a recipe");
         avatar.ClearSlots();
         avatar.LoadFromRecipeString(avatarRecipe);
+       
     }
 }
