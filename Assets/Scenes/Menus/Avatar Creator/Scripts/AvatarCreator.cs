@@ -84,6 +84,7 @@ public class AvatarCreator : MonoBehaviour
         //{
         //    window.SetActive(true);
         //}
+        InvokeRepeating("LoadAvatar", 0f, 5f);
 
         menWindows = GameObject.FindGameObjectsWithTag("MenWindow");
         womenWindows = GameObject.FindGameObjectsWithTag("WomenWindow");
@@ -171,9 +172,11 @@ public class AvatarCreator : MonoBehaviour
 
     private void Update()
     {
-        if(DNA["breastSize"].Get()>.3f)
-            DNA["breastSize"].Set(0.3f);
-            avatar.BuildCharacter();
+        if(avatar != null && DNA != null){
+            if(DNA["breastSize"].Get()>.3f)
+                DNA["breastSize"].Set(0.3f);
+                avatar.BuildCharacter();
+        }
     }
 
 
@@ -463,9 +466,15 @@ public class AvatarCreator : MonoBehaviour
         PlayerPrefs.SetString("playerRecipe", avatarRecipe);
     }
 
+    public void ResetAvatar(){
+        PlayerPrefs.DeleteKey("playerRecipe");
+        LoadAvatar();
+    }
+
     public void LoadAvatar()
     {
         avatarRecipe = PlayerPrefs.GetString("playerRecipe");
+        Debug.Log("avatarRecipe "+ avatarRecipe);
         if (avatarRecipe == "" || avatarRecipe == null) return;
         avatar.ClearSlots();
         avatar.LoadFromRecipeString(avatarRecipe);
