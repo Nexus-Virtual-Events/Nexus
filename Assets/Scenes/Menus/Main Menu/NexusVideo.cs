@@ -112,8 +112,10 @@ public class NexusVideo
         // delete
         if (mRtcEngine != null)
         {
+            Debug.Log(">> mRtcEngine exists");
             IRtcEngine.Destroy();  // Place this call in ApplicationQuit
             mRtcEngine = null;
+            Debug.Log(">> mrtc engine null");
         }
     }
 
