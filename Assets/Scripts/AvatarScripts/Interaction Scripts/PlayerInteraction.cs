@@ -55,6 +55,7 @@ public class PlayerInteraction : MonoBehaviour
             if(IsPanelActive()){
                 return;
             }
+
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

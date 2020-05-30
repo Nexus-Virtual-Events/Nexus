@@ -16,6 +16,7 @@ TagManager:
   - PlayerManagementCardName
   - RoomCell
   - Capacity
+  - Ball
   layers:
   - Default
   - TransparentFX
