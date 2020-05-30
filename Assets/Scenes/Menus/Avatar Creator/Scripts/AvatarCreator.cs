@@ -93,7 +93,6 @@ public class AvatarCreator : MonoBehaviour
         SetMale();
 
         selectors = GameObject.FindGameObjectsWithTag("Selector");
-        PlayerPrefs.DeleteAll();
         LoadAvatar();
     }
 
