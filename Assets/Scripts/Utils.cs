@@ -35,11 +35,24 @@ public class Utils : MonoBehaviour
     public void ChangeGlobalVolume(float f){
         AudioListener.volume = f;
     }
-
+    
+    private int numPlayers;
+    private void ReloadSkins(){
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        int newNumPlayers = players.Length;
+        if(newNumPlayers != numPlayers){
+            foreach(GameObject player in players){
+                player.GetComponent<ThirdPersonUserControl>().ReloadSkin();
+            }
+            numPlayers = newNumPlayers;
+        }
+    }
     private int numberOfRooms = 9;
 
     private void Awake()
     {
+        InvokeRepeating("ReloadSkins", 5f, 10f);
+
         if(PlayerPrefs.GetString("isAdmin") != "true"){
             adminWindow.SetActive(false);
             adminGlobalButton.SetActive(false);

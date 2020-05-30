@@ -230,10 +230,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
             ActionRouter.SetLocalAvatar(transform.gameObject);
             _recipeSync.SetRecipe(PlayerPrefs.GetString("playerRecipe"));
 
-            if((PlayerPrefs.GetString("adminRoom") == "true" &&  LayerMask.LayerToName(gameObject.layer) == SceneRoomRouter.currentLayer) || PlayerPrefs.GetString("adminRoom") != "true"){
-                Utils.AssignCameraToPlayer(gameObject);
-                Debug.Log("Camera assigned!");
-            }
+            Utils.AssignCameraToPlayer(gameObject);
+            Debug.Log("Camera assigned!");
 
             playerName.SetActive(false);
         }
@@ -262,6 +260,17 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         InvokeRepeating("CheckIfKicked", 2, 5.0f);
 
+    }
+
+    public void ReloadSkin(){
+        Debug.Log("Reloading skin");
+        try{
+            avatar.ClearSlots();
+            avatar.LoadFromRecipeString(_recipeSync.GetRecipe());
+            isRecipeSet = true;
+        }catch{
+            Debug.Log("Skin error from UMA");
+        }
     }
 
     private string[] stringToArray(string s)
