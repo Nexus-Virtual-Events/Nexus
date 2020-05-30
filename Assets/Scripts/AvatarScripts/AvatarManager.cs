@@ -149,7 +149,7 @@ namespace Michsky.UI.ModernUIPack {
                              useInstance: realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
             Debug.Log(">>>> ROOM NAME: " + _realtime._roomToJoinOnStart);
 
-            localPlayer.layer = LayerMask.NameToLayer(_realtime._roomToJoinOnStart);
+            // localPlayer.layer = LayerMask.NameToLayer(_realtime._roomToJoinOnStart);
             Debug.Log(">> Joined from Avatar Manager and assigned to layer "+ LayerMask.NameToLayer(_realtime._roomToJoinOnStart));
             Utils.localPlayers.Add(localPlayer);
             ShowWelcomeWindow();
