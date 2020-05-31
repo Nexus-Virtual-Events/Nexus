@@ -146,13 +146,10 @@ namespace Michsky.UI.ModernUIPack {
             Debug.Log(">>>> ROOM NAME: " + _realtime._roomToJoinOnStart);
 
             // localPlayer.layer = LayerMask.NameToLayer(_realtime._roomToJoinOnStart);
-            Debug.Log(">> Joined from Avatar Manager and assigned to layer "+ LayerMask.NameToLayer(_realtime._roomToJoinOnStart));
-            Utils.localPlayers.Add(localPlayer);
+            // Debug.Log(">> Joined from Avatar Manager and assigned to layer "+ LayerMask.NameToLayer(_realtime._roomToJoinOnStart));
+            // Utils.localPlayers.Add(localPlayer);
             ShowWelcomeWindow();
-            if(PlayerPrefs.GetString("adminRoom") == "true"){
-                localPlayer.layer = LayerMask.NameToLayer("Hidden");
-            }
-
+            
 
             SendConnectionInfo(GameObject.FindGameObjectsWithTag("Player").Length);
 
