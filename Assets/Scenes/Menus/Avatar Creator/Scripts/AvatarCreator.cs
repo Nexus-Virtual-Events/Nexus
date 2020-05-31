@@ -85,7 +85,7 @@ public class AvatarCreator : MonoBehaviour
         //{    
         //    window.SetActive(true);
         //}
-        Invoke("LoadAvatar", 3f);
+        // Invoke("LoadAvatar", 3f);
 
         menWindows = GameObject.FindGameObjectsWithTag("MenWindow");
         womenWindows = GameObject.FindGameObjectsWithTag("WomenWindow");
@@ -95,8 +95,6 @@ public class AvatarCreator : MonoBehaviour
         SetMale();
 
         selectors = GameObject.FindGameObjectsWithTag("Selector");
-
-        PlayerPrefs.DeleteKey("playerRcipe");
     }
 
     void OnEnable()
