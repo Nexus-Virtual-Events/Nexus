@@ -140,6 +140,9 @@ public class AvatarCreator : MonoBehaviour
             //item.GetComponent<CanvasRenderer>().SetAlpha(1);
 
         }
+
+        currentHair = "MaleHair2HD";
+        currentFullOutfit = "BlackSuit1";
     }
 
     void SetFemale()
@@ -168,6 +171,10 @@ public class AvatarCreator : MonoBehaviour
             //item.GetComponent<CanvasRenderer>().SetAlpha(0);
 
         }
+
+        currentFullOutfit = "WhiteDress";
+        currentHair = "FemaleHair2HD";
+        currentShoes = "Shoes2";
     }
 
     private void Update()
@@ -346,12 +353,25 @@ public class AvatarCreator : MonoBehaviour
     {
         if (currentFullOutfit == fullOutfit)
         {
-            avatar.SetSlot("FullOutfit", "BlackSuit1");
-            avatar.BuildCharacter();
-            //currentFullOutfit = "BlackSuit2";
+            if(avatar.activeRace.name == "HumanMaleHD")
+            {
+                avatar.SetSlot("FullOutfit", "BlackSuit1");
+                currentFullOutfit = "BlackSuit1";
+            }
+            else
+            {
+                avatar.SetSlot("FullOutfit", "WhiteDress");
+                currentFullOutfit = "WhiteDress";
+            }
+            avatar.BuildCharacter(); 
         }
         else
         {
+            avatar.ClearSlot("Chest");
+            currentTop = "";
+            avatar.ClearSlot("Legs");
+            currentBottom = "";
+
             currentFullOutfit = fullOutfit;
             avatar.SetSlot("FullOutfit", fullOutfit);
             avatar.BuildCharacter();
@@ -362,13 +382,23 @@ public class AvatarCreator : MonoBehaviour
     {
         if (currentTop == top)
         {
-            avatar.SetSlot("Chest", "CropTop2");
+            avatar.SetSlot("FullOutfit", "WhiteDress");
+            currentFullOutfit = "WhiteDress";
+            avatar.ClearSlot("Chest");
+            currentTop = "";
+            avatar.ClearSlot("Legs");
+            currentBottom = "";
+
             avatar.BuildCharacter();
         }
         else
         {
-            currentTop = top;
+            avatar.ClearSlot("FullOutfit");
+            currentFullOutfit = "";
             avatar.SetSlot("Chest", top);
+            currentTop = top;
+            avatar.SetSlot("Legs", "Skirt1");
+            currentBottom = "Skirt1";
             avatar.BuildCharacter();
         }
     }
@@ -377,13 +407,22 @@ public class AvatarCreator : MonoBehaviour
     {
         if (currentBottom == bottom)
         {
-            avatar.SetSlot("Legs", "Skirt2");
-            avatar.BuildCharacter();
+            avatar.SetSlot("FullOutfit", "WhiteDress");
+            currentFullOutfit = "WhiteDress";
+            avatar.ClearSlot("Chest");
+            currentTop = "";
+            avatar.ClearSlot("Legs");
+            currentBottom = "";
         }
         else
         {
-            currentBottom = bottom;
+            avatar.ClearSlot("FullOutfit");
+            currentFullOutfit = "";
             avatar.SetSlot("Legs", bottom);
+            currentBottom = bottom;
+            avatar.SetSlot("Chest", "CropTop1");
+            currentTop = "CropTop1";
+
             avatar.BuildCharacter();
         }
     }
@@ -394,6 +433,7 @@ public class AvatarCreator : MonoBehaviour
         {
             avatar.SetSlot("Feet", "Shoes2");
             avatar.BuildCharacter();
+            currentShoes = "";
         }
         else
         {
@@ -402,8 +442,6 @@ public class AvatarCreator : MonoBehaviour
             avatar.BuildCharacter();
         }
     }
-
-
 
     public void ToggleVisibility(GameObject window)
     {
