@@ -317,7 +317,7 @@ MonoBehaviour:
   _email: {fileID: 798348523}
   _password: {fileID: 871583798}
   _warningText: {fileID: 2030388751}
-  scene: Lawrenceville
+  scene: The Circle
   displayName: 
 --- !u!114 &152618869
 MonoBehaviour:
@@ -2404,7 +2404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -87.50003}
+  m_AnchoredPosition: {x: 0, y: -87.5}
   m_SizeDelta: {x: 0, y: -175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1362974837
