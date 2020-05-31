@@ -135,14 +135,15 @@ public class Utils : MonoBehaviour
         if (!sceneNames.ContainsKey("2"))
             sceneNames.Add("2", "The Circle");
 
-        for(int i=11; i<22; i++){
-            for(int j=11; j<22; j++){
-                if(i == j)
-                    continue;
+        // for(int i=11; i<22; i++){
+        //     for(int j=11; j<22; j++){
+        //         if(i == j)
+        //             continue;
                 
-                Physics.IgnoreLayerCollision(i, j);
-            }
-        }
+        //         Physics.IgnoreLayerCollision(i, j);
+        //     }
+        // }
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Others"), LayerMask.NameToLayer("SceneProps"));
     }
 
     // private float offsetx = 0f;

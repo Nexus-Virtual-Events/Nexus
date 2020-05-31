@@ -414,6 +414,8 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     {
         if(!_realtimeView.isOwnedLocally)
         {
+            gameObject.layer = LayerMask.NameToLayer("Others");
+
             if(!videoSurfaceParented && _nameSync.GetName() != "" && _nameSync.GetName() != null)
             {
                 Debug.Log("Searching for " + _nameSync.GetName() + "'s VideoSurface");
@@ -462,6 +464,9 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
                     audioEffectManager.SetRemoteVoicePosition(videoFeed.GetComponent<VideoSurface>().uid, pan, gain);
                 }
             }
+        }
+        else{
+            gameObject.layer = LayerMask.NameToLayer("Self");
         }
         
         if (!isRecipeSet){
