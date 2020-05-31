@@ -17,7 +17,6 @@ namespace Michsky.UI.ModernUIPack {
         public NotificationManager connectedNotification;
         public NotificationManager eventStartingNotification;
         public GameObject grassTerrain;
-        private EventManager eventManager;
         private GameObject localPlayer;
 
         public AudioMixer audioMixer;
@@ -38,8 +37,7 @@ namespace Michsky.UI.ModernUIPack {
 
         private void Start()
         {
-            eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
-            eventManager.OnEventsChange.AddListener(ReactToEvent);
+         
 
             resolutions = Screen.resolutions;
             ResolutionSelector.resolutions = resolutions;
@@ -100,15 +98,7 @@ namespace Michsky.UI.ModernUIPack {
 
         public void ReactToEvent()
         {
-            if (eventManager.GetEvents() == null) return;
-            if (eventManager.GetEvents()[1] == '1')
-            {
-                eventStartingNotification.OpenNotification();
-            }
-            else if (eventManager.GetEvents()[1] == '0')
-            {
-                eventStartingNotification.CloseNotification();
-            }
+
         }
 
         public void ShowSettingsWindow()

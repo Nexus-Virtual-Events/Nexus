@@ -29,7 +29,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
     private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
 
     GameObject m_MainCamera;
-    EventManager eventManager;
     public Transform playerCamera;
     private ThirdPersonOrbitCamBasic camScript;
 
@@ -215,8 +214,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
         // get the third person character ( this should never be null due to require component )
         m_Character = GetComponent<ThirdPersonCharacter>();
-        eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
-        eventManager.OnEventsChange.AddListener(SwitchFocus);
 
         interactionModifier = GetComponent<ModifyInteraction>();
 
@@ -399,35 +396,6 @@ public class ThirdPersonUserControl : MultiplayerMonoBehavior
 
     }
 
-    private void SwitchFocus()
-    {
-        if (!_realtimeView.isOwnedLocally)
-            return;
-
-        FocusCameraPosition = GameObject.Find("FocusCamPos");
-
-        if (eventManager.GetEvents()[2] == '1')
-        {
-            cameraStay = Camera.main.transform;
-            camScript.AssignPlayer(FocusCameraPosition.transform);
-            Camera.main.GetComponent<SimpleCameraController>().enabled = true;
-            //Camera.main.GetComponent<ThirdPersonUserControl>().enabled = true;
-            canMove = false;
-            GameObject.Find("Realtime").GetComponent<AdminPanel>().FocusCamera();
-        }
-        else if (prevFocusState == "1" && eventManager.GetEvents()[2] == '0')
-        {
-            Camera.main.transform.position = cameraStay.position;
-            Camera.main.transform.rotation = cameraStay.rotation;
-            camScript.AssignPlayer(transform);
-            Camera.main.GetComponent<SimpleCameraController>().enabled = false;
-            //Camera.main.GetComponent<ThirdPersonUserControl>().enabled = true;
-            canMove = true;
-            GameObject.Find("Realtime").GetComponent<AdminPanel>().UnfocusCamera();
-        }
-
-        prevFocusState = eventManager.GetEvents()[2].ToString();
-    }
     public bool shouldBePinned;
     public bool isPinned = false;
     public bool videoSurfaceParented = false;

@@ -20,7 +20,6 @@ namespace Michsky.UI.ModernUIPack {
         public ModalWindowManager adminPanelWindow;
         public NotificationManager connectedNotification;
         public NotificationManager eventStartingNotification;
-        private EventManager eventManager;
         private GameObject localPlayer;
 
         public GameObject trees;
@@ -98,9 +97,6 @@ namespace Michsky.UI.ModernUIPack {
         }
         private void Start()
         {
-            eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
-            eventManager.OnEventsChange.AddListener(ReactToEvent);
-
             resolutions = Screen.resolutions;
             ResolutionSelector.resolutions = resolutions;
             List<ResolutionSelector.Item> resolutionOptions = new List<ResolutionSelector.Item>();
@@ -256,15 +252,6 @@ namespace Michsky.UI.ModernUIPack {
 
         public void ReactToEvent()
         {
-            if (eventManager.GetEvents() == null) return;
-            if (eventManager.GetEvents()[1] == '1')
-            {
-                eventStartingNotification.OpenNotification();
-            }
-            else if (eventManager.GetEvents()[1] == '0')
-            {
-                eventStartingNotification.CloseNotification();
-            }
         }
 
         public void ShowSettingsWindow()

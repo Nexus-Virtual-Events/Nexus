@@ -34,7 +34,6 @@ namespace Normal.Realtime.Examples
 
         public GameObject podiumCameraPosition;
         GameObject m_MainCamera;
-        EventManager eventManager;
 
         private void Awake()
         {
