@@ -85,7 +85,7 @@ public class AvatarCreator : MonoBehaviour
         //{    
         //    window.SetActive(true);
         //}
-        Invoke("LoadAvatar", 1f);
+        Invoke("LoadAvatar", 3f);
 
         menWindows = GameObject.FindGameObjectsWithTag("MenWindow");
         womenWindows = GameObject.FindGameObjectsWithTag("WomenWindow");
