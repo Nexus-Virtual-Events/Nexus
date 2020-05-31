@@ -64,3 +64,6 @@ Assets/Scenes/Menus/Avatar Creator/Wardrobe Recipes/
 
 **/*.DS_Store
 *.DS_Store
+*.meta
+Assets/Plugins/x86_64/agora_rtc_sdk.dll.meta
+Assets/Plugins/x86_64/agoraSdkCWrapper.dll.meta
