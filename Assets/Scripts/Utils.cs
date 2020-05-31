@@ -143,7 +143,7 @@ public class Utils : MonoBehaviour
         //         Physics.IgnoreLayerCollision(i, j);
         //     }
         // }
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Others"), LayerMask.NameToLayer("SceneProps"));
+        // Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Others"), LayerMask.NameToLayer("SceneProps"));
     }
 
     // private float offsetx = 0f;
